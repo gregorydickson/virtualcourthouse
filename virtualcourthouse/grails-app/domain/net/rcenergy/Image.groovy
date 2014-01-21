@@ -1,7 +1,11 @@
 package net.rcenergy
 
-class Image {
+import java.util.Date;
 
+class Image {
+	Date dateLoaded
+	byte[] image
+	
     static constraints = {
     }
 }
