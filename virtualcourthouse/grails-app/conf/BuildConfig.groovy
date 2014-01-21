@@ -23,7 +23,11 @@ grails.project.fork = [
 
 grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
-    // inherit Grails' default dependencies
+	    plugins {
+		      compile ":foundation:5.0.3"
+		   }
+
+	// inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
@@ -48,7 +52,7 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        // runtime 'mysql:mysql-connector-java:5.1.27'
+        runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
     }
 
