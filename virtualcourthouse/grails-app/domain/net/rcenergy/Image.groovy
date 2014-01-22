@@ -5,9 +5,11 @@ import java.util.Date;
 class Image {
 	Date dateLoaded
 	byte[] image
+	Integer bookNumber
+	Integer pageNumber
 	
-	static belongsTo = [ supervisor: Document ]
-	
+	static hasMany = [documents:Document]
+	static belongsTo = Document
     static constraints = {
     }
 }

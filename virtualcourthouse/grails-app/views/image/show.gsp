@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list image">
 			
+				<g:if test="${imageInstance?.bookNumber}">
+				<li class="fieldcontain">
+					<span id="bookNumber-label" class="property-label"><g:message code="image.bookNumber.label" default="Book Number" /></span>
+					
+						<span class="property-value" aria-labelledby="bookNumber-label"><g:fieldValue bean="${imageInstance}" field="bookNumber"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${imageInstance?.dateLoaded}">
 				<li class="fieldcontain">
 					<span id="dateLoaded-label" class="property-label"><g:message code="image.dateLoaded.label" default="Date Loaded" /></span>
@@ -32,9 +41,29 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${imageInstance?.documents}">
+				<li class="fieldcontain">
+					<span id="documents-label" class="property-label"><g:message code="image.documents.label" default="Documents" /></span>
+					
+						<g:each in="${imageInstance.documents}" var="d">
+						<span class="property-value" aria-labelledby="documents-label"><g:link controller="document" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
+						</g:each>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${imageInstance?.image}">
 				<li class="fieldcontain">
 					<span id="image-label" class="property-label"><g:message code="image.image.label" default="Image" /></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${imageInstance?.pageNumber}">
+				<li class="fieldcontain">
+					<span id="pageNumber-label" class="property-label"><g:message code="image.pageNumber.label" default="Page Number" /></span>
+					
+						<span class="property-value" aria-labelledby="pageNumber-label"><g:fieldValue bean="${imageInstance}" field="pageNumber"/></span>
 					
 				</li>
 				</g:if>

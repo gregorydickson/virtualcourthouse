@@ -12,6 +12,7 @@ class Document {
 	Date instrumentDate
 	
 	static hasMany = [images : Image, parentsDocument:Document, childDocument:Document]
+	
     static constraints = {
     }
 }
