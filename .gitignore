@@ -13,6 +13,7 @@
 /ivy*
 /eclipse
 
+.DS_Store
 # default HSQL database files for production mode
 /prodDb.*
 
