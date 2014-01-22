@@ -7,7 +7,16 @@
 		<g:message code="USState.districts.label" default="Districts" />
 		
 	</label>
-	<g:select name="districts" from="${net.rcenergy.District.list()}" multiple="multiple" optionKey="id" size="5" value="${USStateInstance?.districts*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${USStateInstance?.districts?}" var="d">
+    <li><g:link controller="district" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="district" action="create" params="['USState.id': USStateInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'district.label', default: 'District')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: USStateInstance, field: 'layout', 'error')} ">

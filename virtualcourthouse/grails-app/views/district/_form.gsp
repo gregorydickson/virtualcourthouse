@@ -18,3 +18,11 @@
 	<g:textField name="name" value="${districtInstance?.name}"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: districtInstance, field: 'usstate', 'error')} required">
+	<label for="usstate">
+		<g:message code="district.usstate.label" default="Usstate" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:select id="usstate" name="usstate.id" from="${net.rcenergy.USState.list()}" optionKey="id" required="" value="${districtInstance?.usstate?.id}" class="many-to-one"/>
+</div>
+

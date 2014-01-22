@@ -24,11 +24,11 @@
 			<thead>
 					<tr>
 					
+						<g:sortableColumn property="image" title="${message(code: 'image.image.label', default: 'Image')}" />
+					
 						<g:sortableColumn property="bookNumber" title="${message(code: 'image.bookNumber.label', default: 'Book Number')}" />
 					
 						<g:sortableColumn property="dateLoaded" title="${message(code: 'image.dateLoaded.label', default: 'Date Loaded')}" />
-					
-						<g:sortableColumn property="image" title="${message(code: 'image.image.label', default: 'Image')}" />
 					
 						<g:sortableColumn property="pageNumber" title="${message(code: 'image.pageNumber.label', default: 'Page Number')}" />
 					
@@ -38,11 +38,11 @@
 				<g:each in="${imageInstanceList}" status="i" var="imageInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${imageInstance.id}">${fieldValue(bean: imageInstance, field: "bookNumber")}</g:link></td>
+						<td><g:link action="show" id="${imageInstance.id}">${fieldValue(bean: imageInstance, field: "image")}</g:link></td>
+					
+						<td>${fieldValue(bean: imageInstance, field: "bookNumber")}</td>
 					
 						<td><g:formatDate date="${imageInstance.dateLoaded}" /></td>
-					
-						<td>${fieldValue(bean: imageInstance, field: "image")}</td>
 					
 						<td>${fieldValue(bean: imageInstance, field: "pageNumber")}</td>
 					

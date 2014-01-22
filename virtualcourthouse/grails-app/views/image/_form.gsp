@@ -2,6 +2,14 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: imageInstance, field: 'image', 'error')} required">
+	<label for="image">
+		<g:message code="image.image.label" default="Image" />
+		<span class="required-indicator">*</span>
+	</label>
+	<input type="file" id="image" name="image" />
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: imageInstance, field: 'bookNumber', 'error')} required">
 	<label for="bookNumber">
 		<g:message code="image.bookNumber.label" default="Book Number" />
@@ -24,14 +32,6 @@
 		
 	</label>
 	
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: imageInstance, field: 'image', 'error')} required">
-	<label for="image">
-		<g:message code="image.image.label" default="Image" />
-		<span class="required-indicator">*</span>
-	</label>
-	<input type="file" id="image" name="image" />
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: imageInstance, field: 'pageNumber', 'error')} required">

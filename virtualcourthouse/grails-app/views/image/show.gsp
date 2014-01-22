@@ -23,6 +23,13 @@
 			</g:if>
 			<ol class="property-list image">
 			
+				<g:if test="${imageInstance?.image}">
+				<li class="fieldcontain">
+					<span id="image-label" class="property-label"><g:message code="image.image.label" default="Image" /></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${imageInstance?.bookNumber}">
 				<li class="fieldcontain">
 					<span id="bookNumber-label" class="property-label"><g:message code="image.bookNumber.label" default="Book Number" /></span>
@@ -48,13 +55,6 @@
 						<g:each in="${imageInstance.documents}" var="d">
 						<span class="property-value" aria-labelledby="documents-label"><g:link controller="document" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
 						</g:each>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${imageInstance?.image}">
-				<li class="fieldcontain">
-					<span id="image-label" class="property-label"><g:message code="image.image.label" default="Image" /></span>
 					
 				</li>
 				</g:if>

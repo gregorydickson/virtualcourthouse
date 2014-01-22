@@ -6,7 +6,7 @@ class User {
 	String salt
 	Date dateCreated
 	Boolean enabled
-	
+		
 	static hasMany = [assignments : Assignment]
     static constraints = {
     }

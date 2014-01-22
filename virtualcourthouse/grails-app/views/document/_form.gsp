@@ -66,11 +66,11 @@
 	<g:field name="pageNumber" type="number" value="${documentInstance.pageNumber}" required=""/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: documentInstance, field: 'parentsDocument', 'error')} ">
-	<label for="parentsDocument">
-		<g:message code="document.parentsDocument.label" default="Parents Document" />
+<div class="fieldcontain ${hasErrors(bean: documentInstance, field: 'parentDocument', 'error')} ">
+	<label for="parentDocument">
+		<g:message code="document.parentDocument.label" default="Parent Document" />
 		
 	</label>
-	<g:select name="parentsDocument" from="${net.rcenergy.Document.list()}" multiple="multiple" optionKey="id" size="5" value="${documentInstance?.parentsDocument*.id}" class="many-to-many"/>
+	<g:select name="parentDocument" from="${net.rcenergy.Document.list()}" multiple="multiple" optionKey="id" size="5" value="${documentInstance?.parentDocument*.id}" class="many-to-many"/>
 </div>
 

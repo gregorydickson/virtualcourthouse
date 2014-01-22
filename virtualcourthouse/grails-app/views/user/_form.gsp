@@ -7,7 +7,16 @@
 		<g:message code="user.assignments.label" default="Assignments" />
 		
 	</label>
-	<g:select name="assignments" from="${net.rcenergy.Assignment.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.assignments*.id}" class="many-to-many"/>
+	
+<ul class="one-to-many">
+<g:each in="${userInstance?.assignments?}" var="a">
+    <li><g:link controller="assignment" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+</g:each>
+<li class="add">
+<g:link controller="assignment" action="create" params="['user.id': userInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'assignment.label', default: 'Assignment')])}</g:link>
+</li>
+</ul>
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: userInstance, field: 'enabled', 'error')} ">

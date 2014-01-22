@@ -43,6 +43,15 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${districtInstance?.usstate}">
+				<li class="fieldcontain">
+					<span id="usstate-label" class="property-label"><g:message code="district.usstate.label" default="Usstate" /></span>
+					
+						<span class="property-value" aria-labelledby="usstate-label"><g:link controller="USState" action="show" id="${districtInstance?.usstate?.id}">${districtInstance?.usstate?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 			</ol>
 			<g:form url="[resource:districtInstance, action:'delete']" method="DELETE">
 				<fieldset class="buttons">

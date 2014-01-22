@@ -24,11 +24,15 @@
 			<thead>
 					<tr>
 					
+						<th><g:message code="assignment.user.label" default="User" /></th>
+					
 					</tr>
 				</thead>
 				<tbody>
 				<g:each in="${assignmentInstanceList}" status="i" var="assignmentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+					
+						<td><g:link action="show" id="${assignmentInstance.id}">${fieldValue(bean: assignmentInstance, field: "user")}</g:link></td>
 					
 					</tr>
 				</g:each>

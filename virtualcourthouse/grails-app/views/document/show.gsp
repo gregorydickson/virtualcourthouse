@@ -99,12 +99,12 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${documentInstance?.parentsDocument}">
+				<g:if test="${documentInstance?.parentDocument}">
 				<li class="fieldcontain">
-					<span id="parentsDocument-label" class="property-label"><g:message code="document.parentsDocument.label" default="Parents Document" /></span>
+					<span id="parentDocument-label" class="property-label"><g:message code="document.parentDocument.label" default="Parent Document" /></span>
 					
-						<g:each in="${documentInstance.parentsDocument}" var="p">
-						<span class="property-value" aria-labelledby="parentsDocument-label"><g:link controller="document" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
+						<g:each in="${documentInstance.parentDocument}" var="p">
+						<span class="property-value" aria-labelledby="parentDocument-label"><g:link controller="document" action="show" id="${p.id}">${p?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>
