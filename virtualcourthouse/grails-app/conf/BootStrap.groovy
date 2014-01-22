@@ -12,56 +12,58 @@ class BootStrap {
 			}
 			development {
 
-				// create booktypes
-				def bookType1 = new BookTypes(bookType : "bookType1").save(failOnError : true);
-				def bookType2 = new BookTypes(bookType : "bookType2").save(failOnError : true);
+				// only create test data if there is no data in DB
+				if (USState.count() == 0) {
+					// create booktypes
+					def bookType1 = new BookTypes(bookType : "bookType1").save(failOnError : true);
+					def bookType2 = new BookTypes(bookType : "bookType2").save(failOnError : true);
 
-				// create a state
-				def state = new USState(name: "Oklahoma", layout: "layout").save(failOnError: true);
+					// create a state
+					def state = new USState(name: "Oklahoma", layout: "layout").save(failOnError: true);
 
-				// create districts
-				def district1 = new District(name: "Oklahoma", usstate: state).save(failOnError: true);
-				def district2 = new District(name: "Linkoln", usstate: state).save(failOnError: true);
+					// create districts
+					def district1 = new District(name: "Oklahoma", usstate: state).save(failOnError: true);
+					def district2 = new District(name: "Linkoln", usstate: state).save(failOnError: true);
 
-				// create books
-				def book1 = new Book(identifer : "book1", booktype : bookType1).save(failOnError : true);
-				def book2 = new Book(identifer : "book2", booktype : bookType1).save(failOnError : true);
-				def book3 = new Book(identifer : "book3", booktype : bookType2).save(failOnError : true);
+					// create books
+					def book1 = new Book(identifer : "book1", booktype : bookType1).save(failOnError : true);
+					def book2 = new Book(identifer : "book2", booktype : bookType1).save(failOnError : true);
+					def book3 = new Book(identifer : "book3", booktype : bookType2).save(failOnError : true);
 
-				// bind books to districts
-				district1.books = new ArrayList<Book>();
-				district1.books.add(book1);
-				district1.books.add(book2);
-				district1.books.add(book3);
-				district1.merge();
+					// bind books to districts
+					district1.books = new ArrayList<Book>();
+					district1.books.add(book1);
+					district1.books.add(book2);
+					district1.books.add(book3);
+					district1.merge();
 
-				district2.books = new ArrayList<Book>();
-				district2.books.add(book1);
-				district2.merge();
+					district2.books = new ArrayList<Book>();
+					district2.books.add(book1);
+					district2.merge();
 
-				// create some images
-				def img1 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-				def img2 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-				def img3 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-				def img4 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-				
-				// bind images to books
-				book1.images = new ArrayList<Image>();
-				book1.images.add(img1);
-				book1.images.add(img2);
-				book1.images.add(img3);
-				book1.merge();
+					// create some images
+					def img1 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
+					def img2 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
+					def img3 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
+					def img4 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
 
-				book2.images = new ArrayList<Image>();
-				book2.images.add(img3);
-				book2.images.add(img4);
-				book2.merge();
+					// bind images to books
+					book1.images = new ArrayList<Image>();
+					book1.images.add(img1);
+					book1.images.add(img2);
+					book1.images.add(img3);
+					book1.merge();
 
-				book3.images = new ArrayList<Image>();
-				book3.images.add(img1);
-				book3.images.add(img4);
-				book3.merge();
+					book2.images = new ArrayList<Image>();
+					book2.images.add(img3);
+					book2.images.add(img4);
+					book2.merge();
 
+					book3.images = new ArrayList<Image>();
+					book3.images.add(img1);
+					book3.images.add(img4);
+					book3.merge();
+				}
 			}
 		}
 	}
