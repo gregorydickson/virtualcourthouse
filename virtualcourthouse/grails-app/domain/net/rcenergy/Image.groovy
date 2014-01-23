@@ -8,6 +8,7 @@ class Image {
 
 	Date dateLoaded
 	byte[] image
+	String fileName
 	Integer bookNumber
 	Integer pageNumber
 
@@ -19,7 +20,9 @@ class Image {
 	String getDisplayString() {
 		"image " + id + (bookNumber ? " [book " + bookNumber + "/p." + pageNumber + "]": "")
 	}
-
+	String toString() {
+		"date: " + dateLoaded.toString() + " file:" + fileName
+	}
 	private static final MAX_IMAGE_SIZE = 1073741824
 	static hasMany = [documents:Document]
 	static belongsTo = Document

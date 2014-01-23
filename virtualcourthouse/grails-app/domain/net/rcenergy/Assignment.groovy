@@ -7,4 +7,5 @@ class Assignment {
 	static belongsTo = [user: User]
     static constraints = {
     }
+	String stage
 }
