@@ -3,6 +3,7 @@ import net.rcenergy.BookTypes
 import net.rcenergy.District
 import net.rcenergy.Image
 import net.rcenergy.USState
+import net.rcenergy.User
 
 class BootStrap {
 
@@ -14,12 +15,21 @@ class BootStrap {
 
 				// only create test data if there is no data in DB
 				if (USState.count() == 0) {
+
+					// create some users
+					new User(username : "userX", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+					new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+
 					// create booktypes
 					def bookType1 = new BookTypes(bookType : "bookType1").save(failOnError : true);
 					def bookType2 = new BookTypes(bookType : "bookType2").save(failOnError : true);
 
 					// create a state
 					def state = new USState(name: "Oklahoma", layout: "layout").save(failOnError: true);
+
+					// create a state
+					def state2 = new USState(name: "Idaho", layout: "layout").save(failOnError: true);
+					def district3 = new District(name: "Idaho", usstate: state2).save(failOnError: true);
 
 					// create districts
 					def district1 = new District(name: "Oklahoma", usstate: state).save(failOnError: true);
@@ -41,6 +51,11 @@ class BootStrap {
 					district2.books.add(book1);
 					district2.merge();
 
+					district3.books = new ArrayList<Book>();
+					district3.books.add(book2);
+					district3.books.add(book3);
+					district3.merge();
+					
 					// create some images
 					def img1 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
 					def img2 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
