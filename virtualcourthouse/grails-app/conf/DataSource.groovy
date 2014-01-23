@@ -28,7 +28,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "validate" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "create" // one of 'create', 'create-drop', 'update', 'validate', ''
             
         }
     }

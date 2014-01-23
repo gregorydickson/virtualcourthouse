@@ -21,7 +21,7 @@ class BootStrap {
 					new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
 
 					// create booktypes
-					def bookType1 = new BookTypes(bookType : "bookType1").save(failOnError : true);
+					def bookType1 = new BookTypes(bookType : "Warranty Deed").save(failOnError : true);
 					def bookType2 = new BookTypes(bookType : "bookType2").save(failOnError : true);
 
 					// create a state
@@ -33,7 +33,7 @@ class BootStrap {
 
 					// create districts
 					def district1 = new District(name: "Oklahoma", usstate: state).save(failOnError: true);
-					def district2 = new District(name: "Linkoln", usstate: state).save(failOnError: true);
+					def district2 = new District(name: "Pottawatomie", usstate: state).save(failOnError: true);
 
 					// create books
 					def book1 = new Book(identifer : "book1", booktype : bookType1).save(failOnError : true);
@@ -58,11 +58,12 @@ class BootStrap {
 					
 					// create some images
 					def img1 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-					def img2 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-					def img3 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-					def img4 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, bookNumber: 1, pageNumber : 1).save(failOnError : true);
-
-					// bind images to books
+					def img2 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, bookNumber: 1, pageNumber : 2).save(failOnError : true);
+					def img3 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, bookNumber: 1, pageNumber : 3).save(failOnError : true);
+					def img4 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, bookNumber: 1, pageNumber : 4).save(failOnError : true);
+					def img5 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, bookNumber: 2, pageNumber : 1).save(failOnError : true);
+					def img6 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, bookNumber: 2, pageNumber : 2).save(failOnError : true);
+					// bind images to books, an image will be in only one book
 					book1.images = new ArrayList<Image>();
 					book1.images.add(img1);
 					book1.images.add(img2);
@@ -70,14 +71,17 @@ class BootStrap {
 					book1.merge();
 
 					book2.images = new ArrayList<Image>();
-					book2.images.add(img3);
-					book2.images.add(img4);
+					book2.images.add(img5);
+					book2.images.add(img6);
 					book2.merge();
 
-					book3.images = new ArrayList<Image>();
-					book3.images.add(img1);
-					book3.images.add(img4);
-					book3.merge();
+									
+					//images with no book (some counties will not have books just images)
+					//def img7 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes, pageNumber : 1).save(failOnError : true).save(failOnError : true);
+					//def img8 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, pageNumber : 2).save(failOnError : true).save(failOnError : true);
+					//def img9 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, pageNumber : 3).save(failOnError : true).save(failOnError : true);
+					//def img10 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, pageNumber : 4).save(failOnError : true).save(failOnError : true);
+					
 				}
 			}
 		}
