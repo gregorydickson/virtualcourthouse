@@ -77,10 +77,10 @@ class BootStrap {
 
 									
 					//images with no book (some counties will not have books just images)
-					//def img7 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes, pageNumber : 1).save(failOnError : true).save(failOnError : true);
-					//def img8 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, pageNumber : 2).save(failOnError : true).save(failOnError : true);
-					//def img9 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, pageNumber : 3).save(failOnError : true).save(failOnError : true);
-					//def img10 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, pageNumber : 4).save(failOnError : true).save(failOnError : true);
+					def img7 = new Image(dateLoaded : new Date(), image: new File("testImages/image1.tiff").bytes).save(failOnError : true).save(failOnError : true);
+					def img8 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes).save(failOnError : true).save(failOnError : true);
+					def img9 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes).save(failOnError : true).save(failOnError : true);
+					def img10 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes).save(failOnError : true).save(failOnError : true);
 					
 				}
 			}

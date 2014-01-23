@@ -12,5 +12,9 @@ class Image {
 	static belongsTo = Document
     static constraints = {
        image(maxSize:MAX_IMAGE_SIZE)
+	   
+	   // make book & page numbers optional
+	   bookNumber(nullable:true)
+	   pageNumber(nullable:true)
     }
 }
