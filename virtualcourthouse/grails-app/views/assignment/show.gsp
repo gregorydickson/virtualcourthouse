@@ -28,7 +28,7 @@
 					<span id="images-label" class="property-label"><g:message code="assignment.images.label" default="Images" /></span>
 					
 						<g:each in="${assignmentInstance.images}" var="i">
-						<span class="property-value" aria-labelledby="images-label"><g:link controller="image" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="images-label"><g:link controller="image" action="show" id="${i.id}">${i?.displayString}</g:link></span>
 						</g:each>
 					
 				</li>
@@ -38,15 +38,14 @@
 				<li class="fieldcontain">
 					<span id="user-label" class="property-label"><g:message code="assignment.user.label" default="User" /></span>
 					
-						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${assignmentInstance?.user?.id}">${assignmentInstance?.user?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${assignmentInstance?.user?.id}">${assignmentInstance?.user?.username}</g:link></span>
 					
 				</li>
 				</g:if>
 			
 			</ol>
 			<g:form url="[resource:assignmentInstance, action:'delete']" method="DELETE">
-				<fieldset class="buttons">
-					<g:link class="edit" action="edit" resource="${assignmentInstance}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+				<fieldset class="buttons">				
 					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>

@@ -10,4 +10,5 @@ class User {
 	static hasMany = [assignments : Assignment]
     static constraints = {
     }
+	
 }

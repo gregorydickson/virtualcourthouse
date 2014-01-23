@@ -7,7 +7,7 @@
 			default="User" /> <span class="required-indicator">*</span>
 	</label>
 	<g:select id="user" name="user.id" from="${net.rcenergy.User.list()}"
-		optionKey="id" required="" value="${assignmentInstance?.user?.id}"
+		optionKey="id" optionValue="username" required="" value="${assignmentInstance?.user?.id}"
 		class="many-to-one" />
 </div>
 
@@ -19,14 +19,7 @@
 
 	</label>
 	<g:select name="images" from="${net.rcenergy.Image.list()}"
-		multiple="multiple" optionKey="id" size="5"
-		value="${assignmentInstance?.images*.id}" class="many-to-many" />
-		
-	<label for="images"> <g:message code="assignment.images.label"
-			default="Images" />
+		multiple="multiple" optionKey="id" optionValue="displayString" size="5"
+		value="${assignmentInstance?.images*.id}" style="height:200px;"/>
 
-	</label>
-	<g:select name="images" from="${net.rcenergy.Image.list()}"
-		multiple="multiple" optionKey="id" size="5"
-		value="${assignmentInstance?.images*.id}" class="many-to-many" />
 </div>
