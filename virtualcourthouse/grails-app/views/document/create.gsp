@@ -50,7 +50,14 @@
 			
 			<script>
 			$(function() {
-				$( "#datepicker").datepicker();
+		
+				$('#datepicker').datepicker({
+				  onClose: function(dateText, obj) {
+				    $(this).css('background-color','');
+					alert("onClose");
+				  }
+				});
+				
 			});
 			</script>
 	</body>

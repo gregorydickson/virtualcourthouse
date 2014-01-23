@@ -5,4 +5,7 @@ class InstrumentTypes {
 	
     static constraints = {
     }
+	String toString() {
+		instrumentType
+	}
 }
