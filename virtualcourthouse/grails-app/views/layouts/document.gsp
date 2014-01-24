@@ -14,18 +14,32 @@
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.min.css')}" type="text/css">
-
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'zurb5-multiselect.css')}" type="text/css">
 		<g:layoutHead/>
+		<g:javascript src="modernizr.js"/>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<g:javascript src="modernizr.js"/>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.3/js/foundation.min.js"></script>
+		<script>
+		$( document ).ready(function() {
+
+		    $("#create_doc_form").attr("data-abide", "foundation-form");
+			$(document).foundation();
+			$("#BookType").focus();
+			
+		});
+		</script>
 		<r:layoutResources />
 	</head>
 	<body>
 		
-		<g:layoutBody/>	
-		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.3/js/foundation.min.js"></script>
+		<g:layoutBody/>
+			
+		
+
+		
 		<r:layoutResources />
 		
+		<g:javascript src="zurb5-multiselect.js"/>
 	</body>
 </html>

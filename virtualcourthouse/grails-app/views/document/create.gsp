@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="document">
 		<g:set var="entityName" value="${message(code: 'document.label', default: 'Document')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 		
@@ -39,7 +39,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:documentInstance, action:'save']" >
+			<g:form url="[resource:documentInstance, action:'save']" class="custom create_doc_form" id="create_doc_form">
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>
@@ -51,12 +51,7 @@
 			<script>
 			$(function() {
 		
-				$('#datepicker').datepicker({
-				  onClose: function(dateText, obj) {
-				    $(this).css('background-color','');
-					alert("onClose");
-				  }
-				});
+				
 				
 			});
 			</script>
