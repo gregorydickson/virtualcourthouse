@@ -1,45 +1,51 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta charset="utf-8">
 		<title><g:layoutTitle default="Northwest Land"/></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.min.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'zurb5-multiselect.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript src="modernizr.js"/>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.3/js/foundation.min.js"></script>
-		<script>
-		$( document ).ready(function() {
-
-		    $("#create_doc_form").attr("data-abide", "foundation-form");
-			$(document).foundation();
-			$("#BookType").focus();
-			
-		});
-		</script>
+		
 		<r:layoutResources />
 	</head>
 	<body>
 		
 		<g:layoutBody/>
 			
-		
 
-		
 		<r:layoutResources />
 		
+		
+		<g:javascript src="jquery.js"/>
+		<g:javascript src="fastclick.js"/>
+		<g:javascript src="foundation.js"/>
+		<g:javascript src="foundation.abide.js"/>
 		<g:javascript src="zurb5-multiselect.js"/>
+		<script>
+		$( document ).ready(function() {
+
+		    $("#create_doc_form").attr("data-abide", "foundation-form");
+			console.log("added data-abide");
+			$(document).foundation({
+				abide: {
+					live_validate: true
+					
+				}
+				
+			});
+			console.log("live validate true");
+			$("#BookType").focus();
+			
+		});
+		</script>
 	</body>
 </html>
