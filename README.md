@@ -1,5 +1,8 @@
 Development environment notes:
 
+The application is setup to connect to a local MySQL database "doc", username/password "land/land"
+MySQL must be running and the database must be created with the user "land" assigned all permissions to the schema.
+
 On Mac OS X using jdk 1.7 build 1.7.0_60 (beta). This will throw an exception:
 objc[13294]: Class JavaLaunchHelper is implemented in both /Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/bin/java and /Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/jre/lib/libinstrument.dylib
 

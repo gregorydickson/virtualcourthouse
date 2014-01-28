@@ -4,6 +4,7 @@ import net.rcenergy.District
 import net.rcenergy.Image
 import net.rcenergy.USState
 import net.rcenergy.User
+import net.rcenergy.InstrumentTypes
 
 class BootStrap {
 
@@ -23,7 +24,11 @@ class BootStrap {
 					// create booktypes
 					def bookType1 = new BookTypes(bookType : "Warranty Deed").save(failOnError : true);
 					def bookType2 = new BookTypes(bookType : "Lien").save(failOnError : true);
-
+					def bookType3 = new BookTypes(bookType : "Document").save(failOnError : true);
+					// create instrument types
+					def instrumentType1 = new InstrumentTypes(instrumentType : "Document").save(failOnError : true);
+					def instrumentType2 = new InstrumentTypes(instrumentType : "Oil & Gas Lease").save(failOnError : true);
+					def instrumentType3 = new InstrumentTypes(instrumentType : "Warranty Deed").save(failOnError : true);
 					// create a state
 					def state = new USState(name: "Oklahoma", layout: "layout").save(failOnError: true);
 
