@@ -17,14 +17,14 @@
 	<div class="medium-6 large-3 columns">
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
-			<input type="text" id="fileDate" required pattern="month_day_year" value="${documentInstance?.fileDate}" />
+			<input type="date" id="fileDate" required pattern="month_day_year" value="${documentInstance?.fileDate}" />
 			<small class="error">File Date Required.</small>
 		</div>
 	</div>
 	<div class="medium-6 large-3 columns">
 		<div class="input-wrapper">
 			<label>INSTRUMENT DATE</label>
-			<input type="text" id="instrumentDate" required pattern="month_day_year" value="${documentInstance?.instrumentDate}">	
+			<input type="date" id="instrumentDate" required pattern="month_day_year" value="${documentInstance?.instrumentDate}">	
 			<small class="error">Instrument Date Required.</small>
 		</div>
 	</div>
