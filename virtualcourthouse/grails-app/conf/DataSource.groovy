@@ -1,11 +1,11 @@
 dataSource {
     pooled = true
     dbCreate = "update"
-    url = "jdbc:mysql://localhost/doc"
+    url = "jdbc:mysql://localhost/p1"
     driverClassName = "com.mysql.jdbc.Driver"
     dialect = org.hibernate.dialect.MySQL5InnoDBDialect
     username = "land"
-    password = "land"
+    password = "0gzr4YjMKrsb2Ix"
 	    properties {
         maxActive = 50
         maxIdle = 25

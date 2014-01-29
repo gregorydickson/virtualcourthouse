@@ -3,14 +3,13 @@
 <html class="no-js" lang="en" >
 	<head>
 		<meta charset="utf-8">
-		<title><g:layoutTitle default="Northwest Land"/></title>
+		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
-		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">
+
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'zurb5-multiselect.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript src="modernizr.js"/>
@@ -29,21 +28,14 @@
 		<g:javascript src="foundation.js"/>
 		<g:javascript src="foundation.abide.js"/>
 		<g:javascript src="zurb5-multiselect.js"/>
+		<g:javascript src="chosen.jquery.js"/>
 		<script>
 		$( document ).ready(function() {
+			$(document).foundation();
 
-		    $("#create_doc_form").attr("data-abide", "foundation-form");
-			console.log("added data-abide");
-			$(document).foundation({
-				abide: {
-					live_validate: true
-					
-				}
-				
-			});
-			console.log("live validate true");
-			$("#BookType").focus();
-			
+			$(".chosen-select").chosen();
+			$("#BookType").trigger('chosen:activate');
+			console.log('chosen:updated on chosen');
 		});
 		</script>
 	</body>

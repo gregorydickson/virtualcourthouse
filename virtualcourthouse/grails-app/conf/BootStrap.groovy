@@ -22,28 +22,28 @@ class BootStrap {
 					new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
 
 					// create booktypes
-					def bookType1 = new BookTypes(bookType : "Warranty Deed").save(failOnError : true);
-					def bookType2 = new BookTypes(bookType : "Lien").save(failOnError : true);
-					def bookType3 = new BookTypes(bookType : "Document").save(failOnError : true);
+					def bookType1 = new BookTypes(bookType : "WARRANTY DEED").save(failOnError : true);
+					def bookType2 = new BookTypes(bookType : "LIEN").save(failOnError : true);
+					def bookType3 = new BookTypes(bookType : "DOCUMENT").save(failOnError : true);
 					// create instrument types
-					def instrumentType1 = new InstrumentTypes(instrumentType : "Document").save(failOnError : true);
-					def instrumentType2 = new InstrumentTypes(instrumentType : "Oil & Gas Lease").save(failOnError : true);
-					def instrumentType3 = new InstrumentTypes(instrumentType : "Warranty Deed").save(failOnError : true);
+					def instrumentType1 = new InstrumentTypes(instrumentType : "DOCUMENT").save(failOnError : true);
+					def instrumentType2 = new InstrumentTypes(instrumentType : "OIL AND GAS LEASE").save(failOnError : true);
+					def instrumentType3 = new InstrumentTypes(instrumentType : "WARRANTY DEED").save(failOnError : true);
 					// create a state
-					def state = new USState(name: "Oklahoma", layout: "layout").save(failOnError: true);
+					def state = new USState(name: "OKLAHOMA", layout: "layout").save(failOnError: true);
 
 					// create a state
-					def state2 = new USState(name: "Ohio", layout: "layout").save(failOnError: true);
-					def district3 = new District(name: "Meigs", usstate: state2).save(failOnError: true);
+					def state2 = new USState(name: "OHIO", layout: "layout").save(failOnError: true);
+					def district3 = new District(name: "MEIGS", usstate: state2).save(failOnError: true);
 
 					// create districts
-					def district1 = new District(name: "Oklahoma", usstate: state).save(failOnError: true);
-					def district2 = new District(name: "Pottawatomie", usstate: state).save(failOnError: true);
+					def district1 = new District(name: "OKLAHOMA", usstate: state).save(failOnError: true);
+					def district2 = new District(name: "POTTAWATOMIE", usstate: state).save(failOnError: true);
 
 					// create books
-					def book1 = new Book(identifer : "book1", booktype : bookType1).save(failOnError : true);
-					def book2 = new Book(identifer : "book2", booktype : bookType1).save(failOnError : true);
-					def book3 = new Book(identifer : "book3", booktype : bookType2).save(failOnError : true);
+					def book1 = new Book(identifer : "BOOK1", booktype : bookType1).save(failOnError : true);
+					def book2 = new Book(identifer : "BOOK2", booktype : bookType1).save(failOnError : true);
+					def book3 = new Book(identifer : "BOOK3", booktype : bookType2).save(failOnError : true);
 
 					// bind books to districts
 					district1.books = new ArrayList<Book>();
