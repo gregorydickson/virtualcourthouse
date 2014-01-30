@@ -9,8 +9,6 @@ class Document {
 	Integer pageNumber
 	String instrumentNumber
 	InstrumentTypes instrumentType
-	Party grantor
-	Party grantee
 	Date fileDate
 	Date instrumentDate
 	
@@ -23,5 +21,9 @@ class Document {
     static constraints = {
 		bookNumber(nullable:true)
 		pageNumber(nullable:true)
+		bookType(nullable:true)
+		instrumentNumber(nullable:true)
+		grantor(nullable:true)
+		grantee(nullable:true)
     }
 }

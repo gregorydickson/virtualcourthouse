@@ -2,14 +2,12 @@
 <div class="top row">
 
 	<div class="medium-4 large-2 columns">
-		<div class="input-wrapper">
-			<label>BOOK TYPE</label>
-			<select id="BookType" name="BookType.id" required="" class="chosen-select" >
-		    	<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
-			        <option value="${BookType.id}" > ${BookType.bookType}</option>
-			    </g:each>
-			</select>
-		</div>
+		<label>BOOK TYPE</label>
+		<select id="BookType" name="BookType.id" required="" class="chosen-select" >
+	    	<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
+		        <option value="${BookType.id}" > ${BookType.bookType}</option>
+		    </g:each>
+		</select>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
@@ -52,6 +50,23 @@
 			<input type="date" id="instrumentDate" pattern="date" value="${documentInstance?.instrumentDate}">	
 			<small class="error">Instrument Date Required.</small>
 		</div>
+	</div>
+</div>
+
+<div class="row">
+	<p>GRANTORS</p>
+	<div id="grantors_wrapper" class="large-12 columns">
+	    <p>
+	        <input class="grantor" type="text" id="grantor1"  value="" />
+	    </p>
+	</div>
+</div>
+<div class="row">
+	<p>GRANTEES</p>
+	<div id="grantees_wrapper">
+	    <p>
+	        <input class="grantee" type="text" id="grantee1" value="" />
+	    </p>
 	</div>
 </div>
 
