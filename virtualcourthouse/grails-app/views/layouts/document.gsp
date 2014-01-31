@@ -30,10 +30,10 @@
 		<g:javascript src="chosen.jquery.js"/>
 		<script>
 		function addNewInputGrantor(i) {
-		    return $('<p><input class="grantor" type="text"  id="grantor' + i + '" size="50" value="" /> </p>');
+		    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor' + i + '" size="50" value="" /> </p>');
 		}
 		function addNewInputGrantee(j) {
-		    return $('<p><input  class="grantee" type="text" id="grantee' + j + '" size="50" value="" /> </p>');
+		    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee' + j + '" size="50" value="" /> </p>');
 		}
 		function eventHandlerGrantor(e) {
 		    var code = e.keyCode || e.which;

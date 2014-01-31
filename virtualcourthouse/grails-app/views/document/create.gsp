@@ -41,7 +41,7 @@
 			</g:hasErrors>
 			</div>
 		</div>
-		<form action="/virtualcourthouse/document/save" method="post" class="custom create_doc_form" id="create_doc_form" data-abide>
+		<form action="/virtualcourthouse/document/save" method="post" class="custom create_doc_form" id="create_doc_form" data-abide="ajax">
 			<fieldset class="form">
 				<g:render template="form"/>
 			</fieldset>

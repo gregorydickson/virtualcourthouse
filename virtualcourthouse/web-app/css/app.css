@@ -11,4 +11,10 @@
   padding-left: 0.2rem;
   padding-right: 0.2rem;
  }
-
+.form-paragraph {
+	margin-bottom: -1rem;
+}
+h6 {
+	margin-bottom: -.1rem;
+}
+.grantor-grantee .panel { max-height: 150px; overflow-y: scroll; }

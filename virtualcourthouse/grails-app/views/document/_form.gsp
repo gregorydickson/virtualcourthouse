@@ -13,13 +13,13 @@
 	<div class="medium-4 large-1 columns">
 		<div class="input-wrapper">
 			<label>BOOK #</label>
-			<g:field id="bookNumber" name="bookNumber" type="number" value="${documentInstance.bookNumber}" required=""/>
+			<g:field id="bookNumber" name="bookNumber" type="number" value="${documentInstance.bookNumber}" />
 		</div>	
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<label for="pageNumber">PAGE #</label>
-		<g:field name="pageNumber" type="number" value="${documentInstance.pageNumber}" required=""/>
+		<g:field name="pageNumber" type="number" value="${documentInstance.pageNumber}" />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
@@ -53,20 +53,24 @@
 	</div>
 </div>
 
-<div class="row">
-	<p>GRANTORS</p>
-	<div id="grantors_wrapper" class="large-12 columns">
-	    <p>
-	        <input class="grantor" type="text" id="grantor1"  value="" />
-	    </p>
+<div class="grantor-grantee">
+	<h6>GRANTORS</h6>
+	<div class="panel">
+		<div id="grantors_wrapper" class="large-12 columns">
+		    <p class="form-paragraph">
+		        <input class="grantor" type="text" id="grantor1"  value="" />
+		    </p>
+		</div>
 	</div>
 </div>
-<div class="row">
-	<p>GRANTEES</p>
-	<div id="grantees_wrapper">
-	    <p>
-	        <input class="grantee" type="text" id="grantee1" value="" />
-	    </p>
+<div class="grantor-grantee">
+	<div class="panel">
+		<h6>GRANTEES</h6>
+		<div id="grantees_wrapper">
+		    <p class="form-paragraph">
+		        <input class="grantee" type="text" id="grantee1" value="" />
+		    </p>
+		</div>
 	</div>
 </div>
 
