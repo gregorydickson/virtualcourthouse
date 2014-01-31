@@ -53,7 +53,7 @@
 	</div>
 </div>
 
-<div class="grantor-grantee">
+<div class="grantor-grantee row">
 	<h6>GRANTORS</h6>
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
@@ -63,9 +63,9 @@
 		</div>
 	</div>
 </div>
-<div class="grantor-grantee">
+<div class="grantor-grantee row">
+	<h6>GRANTEES</h6>
 	<div class="panel">
-		<h6>GRANTEES</h6>
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
 		        <input class="grantee" type="text" id="grantee1" value="" />
@@ -74,10 +74,33 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="medium-12 large-12 columns ${hasErrors(bean: documentInstance, field: 'parentDocument', 'error')} ">
-		<label for="parentDocument">RELATED DOCUMENTS</label>
-		<g:select name="parentDocument" from="${net.rcenergy.Document.list()}" multiple="multiple" optionKey="id" size="5" value="${documentInstance?.parentDocument*.id}" class="many-to-many"/>
+<div class="related-documents row">
+	<h6>RELATED DOCUMENTS</h6>
+	<div class="panel">
+		<div id="related_documents_wrapper">
+			<div class="a_related_document">
+				<div class="form-paragraph large-2 columns">
+					<label>Book Type</label>
+					<select id="relatedDocumentBookType1"  required="" class="relatedDocumentBookType chosen-select" >
+						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
+					        <option value="${BookType.id}" > ${BookType.bookType}</option>
+					    </g:each>
+					</select>
+				</div>
+				<div class="form-paragraph large-2 columns">
+					<label>Book Number</label>
+					<input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber1" value="" />
+				</div>
+				<div class="form-paragraph large-2 columns">
+					<label>Page #</label>
+					<input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber1" value="" />
+				</div>
+				<div class="form-paragraph large-6 columns">
+					<label>Instrument #</label>
+					<input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber1" value="" />
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

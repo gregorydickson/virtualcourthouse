@@ -25,5 +25,10 @@ class Document {
 		instrumentNumber(nullable:true)
 		grantor(nullable:true)
 		grantee(nullable:true)
+		parentDocument(nullable:true)
+		childDocument(nullable:true)
+		images(nullable:true)
+		fileDate(nullable:true)
+		instrumentDate(nullable:true)
     }
 }

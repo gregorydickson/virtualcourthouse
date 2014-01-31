@@ -29,80 +29,11 @@
 		<g:javascript src="zurb5-multiselect.js"/>
 		<g:javascript src="chosen.jquery.js"/>
 		<script>
-		function addNewInputGrantor(i) {
-		    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor' + i + '" size="50" value="" /> </p>');
+		function getBookTypeOptions(){
+			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
+			return returnString;
 		}
-		function addNewInputGrantee(j) {
-		    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee' + j + '" size="50" value="" /> </p>');
-		}
-		function eventHandlerGrantor(e) {
-		    var code = e.keyCode || e.which;
-		    if (code == 13) {           
-		       var i = $(".grantor").size() + 1;
-		       var a_new_field = addNewInputGrantor(i);
-		       var div = $('#grantors_wrapper');
-		       $(a_new_field).on('keyup', eventHandlerGrantor);
-		       $(a_new_field).appendTo(div);
-		       var the_input = a_new_field.find(">:first-child");
-		       the_input.focus();
-		       the_input.select();
-		       return false;
-		    }
-		}
-		function eventHandlerGrantee(e) {
-		    var code = e.keyCode || e.which;
-		    if (code == 13) {           
-		       var i = $(".grantee").size() + 1;
-		       var a_new_field = addNewInputGrantee(i);
-		       var div = $('#grantees_wrapper');
-		       $(a_new_field).on('keyup', eventHandlerGrantee);
-		       $(a_new_field).appendTo(div);
-		       var the_input = a_new_field.find(">:first-child");
-		       the_input.focus();
-		       the_input.select();
-		       return false;
-		    }
-		}
-		$( document ).ready(function() {
-			$(document).foundation();
-			$(".chosen-select").chosen();
-			$("#BookType").trigger('chosen:activate');
-			//handle grantors
-		    var grantor_div = $('#grantors_wrapper');
-		    var i = $(".grantor").size() + 1;
-		    $('#grantor1').on('keyup', function (e) {
-		        console.log("GRANTOR KEYUP");
-				var code = e.keyCode || e.which;
-		        if (code == 13) {
-					console.log("GRANTOR RETURN");
-		            var new_item = addNewInputGrantor(i);
-		            $(new_item).on('keyup', eventHandlerGrantor);
-		            $(new_item).appendTo(grantor_div);
-		            var the_input = new_item.find(">:first-child");
-		            the_input.focus();
-		            the_input.select();
-		            i++;
-		            return false;
-		        }
-		    });
-		    //handle grantees
-		    var grantee_div = $('#grantees_wrapper');
-		    var j = $(".grantee").size() + 1;
-		    $('#grantee1').on('keyup', function (e) {
-		        var code = e.keyCode || e.which;
-		        if (code == 13) {
-		            var new_item = addNewInputGrantee(i);
-		            $(new_item).on('keyup', eventHandlerGrantee);
-		            $(new_item).appendTo(grantee_div);
-		            var the_input = new_item.find(">:first-child");
-		            the_input.focus();
-		            the_input.select();
-		            j++;
-		            return false;
-		        }
-		    });
-
-		});
 		</script>
+		<g:javascript src="document.js"/>
 	</body>
 </html>
