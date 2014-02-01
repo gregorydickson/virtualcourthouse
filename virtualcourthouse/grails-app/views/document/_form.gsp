@@ -76,7 +76,7 @@
 
 <div class="related-documents row">
 	<h6>RELATED DOCUMENTS</h6>
-	<div class="panel">
+	<div class="panel related-doc-panel">
 		<div id="related_documents_wrapper">
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">

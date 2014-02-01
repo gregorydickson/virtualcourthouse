@@ -29,15 +29,24 @@ function eventHandlerGrantee(e) {
 function eventHandlerRelatedDocuments(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {           
-       var i = $(".related-documents").size() + 1;
-       var a_new_field = addNewInputGrantee(i);
-       var div = $('#related_documents_wrapper');
-       $(a_new_field).on('keyup', eventHandlerRelatedDocuments);
-       $(a_new_field).appendTo(div);
-       var the_input = a_new_field.find(">:first-child");
-       the_input.focus();
-       the_input.select();
-       return false;
+		var i = $(".a_related_document").size() + 1;
+		console.log("related documents size is " + i);
+		var a_new_field = addNewInputRelatedDocuments(i);
+		var div = $('#related_documents_wrapper');
+		$(a_new_field).on('keyup', eventHandlerRelatedDocuments);
+		$(a_new_field).appendTo(div);
+		$(".chosen-select").chosen();
+		var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + i
+		console.log('string for book type id lookup: ' +relatedDocumenBookTypeIdString);
+		$(relatedDocumenBookTypeIdString).trigger('chosen:activate');
+		//deal with list overflow
+		//$(".chosen-select").on("chosen:showing_dropdown", function () { 
+		//	$(".related-doc-panel").css("overflow", "visible");
+		//});
+		//$(".chosen-select").on("chosen:hiding_dropdown", function () {
+		//	$(".related-doc-panel").css("overflow", "");
+		//});
+        return false;
     }
 }
 function addNewInputGrantor(i) {
@@ -60,10 +69,8 @@ $( document ).ready(function() {
     var grantor_div = $('#grantors_wrapper');
     var i = $(".grantor").size() + 1;
     $('#grantor1').on('keyup', function (e) {
-        console.log("GRANTOR KEYUP");
 		var code = e.keyCode || e.which;
         if (code == 13) {
-			console.log("GRANTOR RETURN");
             var new_item = addNewInputGrantor(i);
             $(new_item).on('keyup', eventHandlerGrantor);
             $(new_item).appendTo(grantor_div);
@@ -93,21 +100,30 @@ $( document ).ready(function() {
     });
 	//end handle grantees
 	//handle related documents
-	var related_documents_div = $('#related_documents_wrapper');
-    var k = $(".relatedDocumentBookType").size() + 1;
+	
     $('#relatedDocumentInstrumentNumber1').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
-            var new_item = addNewInputRelatedDocuments(i);
+			var related_documents_div = $('#related_documents_wrapper');
+		    var k = $(".relatedDocumentBookType").size() + 1;
+			console.log('adding new line - new number for the line is: ' + k);
+            var new_item = addNewInputRelatedDocuments(k);
             $(new_item).on('keyup', eventHandlerRelatedDocuments);
             $(new_item).appendTo(related_documents_div);
 			$(".chosen-select").chosen();
-			var newFocus = $('#relatedDocumentBookType2');
-			console.log(newFocus);
-            newFocus.focus();
-            newFocus.select();
+			var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + k;
+			$(relatedDocumenBookTypeIdString).trigger('chosen:activate');
+			//$(".chosen-select").on("chosen:showing_dropdown", function () { 
+			//	$(".related-doc-panel").css("overflow", "visible");
+			//});
+			//$(".chosen-select").on("chosen:hiding_dropdown", function () {
+			//	$(".related-doc-panel").css("overflow", "");
+			//});
             k++;
             return false;
         }
     });
+
+	
+//END of Document Ready code
 });

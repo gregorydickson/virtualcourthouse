@@ -14,7 +14,7 @@
   position: absolute;
   top: 100%;
   left: -9999px;
-  z-index: 1010;
+  z-index: 101000;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -36,7 +36,7 @@
 .chosen-container-single .chosen-single {
   position: relative;
   display: block;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 0 0 8px;
   height: 23px;
   border: 1px solid #aaa;
@@ -53,13 +53,14 @@
   text-decoration: none;
   white-space: nowrap;
   line-height: 24px;
+  z-index:10000;
 }
 .chosen-container-single .chosen-default {
   color: #999;
 }
 .chosen-container-single .chosen-single span {
   display: block;
-  overflow: hidden;
+  overflow: visible;
   margin-right: 26px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -99,7 +100,8 @@
 }
 .chosen-container-single .chosen-search {
   position: relative;
-  z-index: 1010;
+  overflow: visible;
+  z-index: 10100;
   margin: 0;
   padding: 3px 4px;
   white-space: nowrap;
@@ -139,8 +141,8 @@
 /* @group Results */
 .chosen-container .chosen-results {
   position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: visible;
+  overflow-y: visible;
   margin: 0 4px 4px 0;
   padding: 0 0 0 4px;
   max-height: 240px;

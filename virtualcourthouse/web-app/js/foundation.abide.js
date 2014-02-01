@@ -76,7 +76,7 @@
     },
 
     validate : function (els, e, is_ajax) {
-	  console.log("Abide validating");
+	  
       var validations = this.parse_patterns(els),
           validation_count = validations.length,
           form = $(els[0]).closest('form'),
