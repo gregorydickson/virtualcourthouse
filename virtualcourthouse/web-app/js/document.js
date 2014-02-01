@@ -49,6 +49,21 @@ function eventHandlerRelatedDocuments(e) {
         return false;
     }
 }
+function eventHandlerSecTwnRge(e) {
+	var code = e.keyCode || e.which;
+     if (code == 13) {
+		var sec_twn_rge_div = $('#section_township_range_wrapper');
+		var l = $(".section").size() + 1;
+		console.log('adding new line - new number for the line is: ' + l);
+        var new_item = addNewInputSecTwnRge(l);
+        $(new_item).on('keyup', eventHandlerSecTwnRge);
+        $(new_item).appendTo(sec_twn_rge_div);
+		var the_input = new_item.find(".section");
+        the_input.focus();
+        the_input.select();
+        return false;
+     }
+}
 function addNewInputGrantor(i) {
     return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor' + i + '"  value="" /> </p>');
 }
@@ -56,8 +71,15 @@ function addNewInputGrantee(j) {
     return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee' + j + '"  value="" /> </p>');
 }
 function addNewInputRelatedDocuments(k) {
+	//The book type options have to be rendered in the .gsp page so we do not have them in the 
+	// document.js file since this file is not parsed by the server.
+	// so this function call grabs them from a function in the create.gsp file so we can add them
+	// to a related documents new line select field.
     var optionsString = getBookTypeOptions();
 	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '"  required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber' + k + '" value="" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber' + k + '" value="" /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber' + k + '" value="" /></div></div>');
+}
+function addNewInputSecTwnRge(l) {
+	return $('<div class="a_section_township_range"><div class="form-paragraph large-1 columns"><label>Section</label><input type="text" id="section'+ l +'" class="section" /></div><div class="form-paragraph large-1 columns"><label>Township</label><input type="text" id="township'+ l +'" class="township"/></div><div class="form-paragraph large-2 columns"><label>Range</label><input type="text" id="range'+ l +'" class="range"/></div><div class="form-paragraph large-8 columns"><label>Metes & Bounds</label><input type="text" id="sec-twn-rge-metes-bounds'+ l +'" class="sec-twn-rge-metes-bounds" size="200"/></div></div>');
 }
 //JQuery Document ready funtion that registers the functions to add fields, 
 // starts foundation
@@ -100,13 +122,11 @@ $( document ).ready(function() {
     });
 	//end handle grantees
 	//handle related documents
-	
     $('#relatedDocumentInstrumentNumber1').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
 			var related_documents_div = $('#related_documents_wrapper');
 		    var k = $(".relatedDocumentBookType").size() + 1;
-			console.log('adding new line - new number for the line is: ' + k);
             var new_item = addNewInputRelatedDocuments(k);
             $(new_item).on('keyup', eventHandlerRelatedDocuments);
             $(new_item).appendTo(related_documents_div);
@@ -123,7 +143,25 @@ $( document ).ready(function() {
             return false;
         }
     });
+	//end handle related documents
+	//Start Legal Description
+	$('#sec-twn-rge-metes-bounds1').on('keyup', function (e) {
+        var code = e.keyCode || e.which;
+        if (code == 13) {
+			var sec_twn_rge_div = $('#section_township_range_wrapper');
+		    var l = $(".section").size() + 1;
+            var new_item = addNewInputSecTwnRge(l);
+            $(new_item).on('keyup', eventHandlerSecTwnRge);
+            $(new_item).appendTo(sec_twn_rge_div);
+			var the_input = new_item.find(".section");
+            the_input.focus();
+            the_input.select();
 
+            l++;
+            return false;
+        }
+    });
+	//END Legal Description
 	
 //END of Document Ready code
 });

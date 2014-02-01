@@ -26,6 +26,7 @@
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="foundation.js"/>
 		<g:javascript src="foundation.abide.js"/>
+		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="zurb5-multiselect.js"/>
 		<g:javascript src="chosen.jquery.js"/>
 		<script>
