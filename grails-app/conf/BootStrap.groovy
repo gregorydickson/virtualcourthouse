@@ -83,6 +83,7 @@ class BootStrap {
 					def img8 = new Image(dateLoaded : new Date(), image: new File("testImages/image2.tiff").bytes, fileName: "45837410.tiff").save(failOnError : true).save(failOnError : true);
 					def img9 = new Image(dateLoaded : new Date(), image: new File("testImages/image3.tiff").bytes, fileName: "45837411.tiff").save(failOnError : true).save(failOnError : true);
 					def img10 = new Image(dateLoaded : new Date(), image: new File("testImages/image4.tiff").bytes, fileName: "45837412.tiff").save(failOnError : true).save(failOnError : true);
+				}
 			}
 			development {
 
