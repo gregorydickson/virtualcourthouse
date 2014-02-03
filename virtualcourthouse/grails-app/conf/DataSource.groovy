@@ -56,24 +56,14 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-		    pooled = true
-		    dbCreate = "update"
-		    url = "jdbc:mysql:///p1"
-		    driverClassName = "com.mysql.jdbc.Driver"
-		    dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-		    username = "myuse"
-		    password = "mypass"
-			    properties {
-		        maxActive = 50
-		        maxIdle = 25
-		        minIdle = 5
-		        initialSize = 5
-		        minEvictableIdleTimeMillis = 60000
-		        timeBetweenEvictionRunsMillis = 60000
-		        maxWait = 10000
-		        validationQuery = "/* ping */"
-            }
-        }
-    }
+			dbCreate = "update"
+	        driverClassName = "org.postgresql.Driver"
+	        dialect = org.hibernate.dialect.PostgreSQLDialect
+	        uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
+	        url = "jdbc:postgresql://"+uri.host+uri.path
+	        username = uri.userInfo.split(":")[0]
+	        password = uri.userInfo.split(":")[1]
+			  }
+		}
+	}
 }

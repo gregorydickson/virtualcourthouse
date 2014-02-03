@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class InstrumentTypesController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", ajaxsave: "POST"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -20,6 +20,10 @@ class InstrumentTypesController {
     }
 
     def create() {
+		log.info("PARAMS: " + params)
+		log.info("INstrumentType: " + params.instrumentType)
+		log.info("class: " + params.class)
+		log.info("VALUE: " + params.value)
         respond new InstrumentTypes(params)
     }
 

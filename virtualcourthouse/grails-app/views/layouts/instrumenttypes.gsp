@@ -24,6 +24,31 @@
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="foundation.js"/>
 
-
+		<script>
+		$( document ).ready(function() {
+			console.log("regging the func tions");
+			$('#ajax').click(function(){
+				var postJSON = $( "#instrumentTypes" ).serialize();
+				
+				console.log("postJSON is " + JSON.stringify(postJSON));
+				$.ajax({
+				    
+					url:"${g.createLink(controller:'instrumentTypes',action:'create.json')}",
+					type: "POST",
+				    dataType: 'json',
+					//contentType: 'application/json',
+				    data: postJSON ,
+				    success: function(json) {
+				        console.log("success the AJAX" + JSON.stringify(json) + "post: " + JSON.stringify(postJSON))
+				    },
+				    error: function(request, status, error) {
+				        console.log("ERROR Request: " + JSON.stringify(request) + "post: " + JSON.stringify(postJSON) + "ERROR: " + error)
+				    },
+				    complete: function() {
+				    }
+				});
+			});
+		});
+		</script>
 	</body>
 </html>

@@ -9,4 +9,4 @@
 	</label>
 	<g:textField name="instrumentType" value="${instrumentTypesInstance?.instrumentType}"/>
 </div>
-
+<input type="button" name="ajax" id="ajax" value="Ajax"/>
