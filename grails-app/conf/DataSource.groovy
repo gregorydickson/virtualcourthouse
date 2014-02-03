@@ -35,13 +35,23 @@ environments {
 
     production {
         dataSource {
-			dbCreate = "update"
-	        driverClassName = "org.postgresql.Driver"
-	        dialect = org.hibernate.dialect.PostgreSQLDialect
-	        uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
-	        url = "jdbc:postgresql://"+uri.host+uri.path
-	        username = uri.userInfo.split(":")[0]
-	        password = uri.userInfo.split(":")[1]
+           dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+		    pooled = true
+		    dbCreate = "update"
+		  	driverClassName = "com.mysql.jdbc.Driver"
+			  url = "jdbc:mysql://aa1ojksw5ci9npg.cta6bqnhgrir.us-west-2.rds.amazonaws.com/ebdb?user=land&password=0gzr4YjMKrsb2Ix"
+			  dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+		    username = "land"
+		    password = "0gzr4YjMKrsb2Ix"
+			    properties {
+		       		validationQuery = "SELECT 1"
+					   testOnBorrow = true
+					   testOnReturn = true
+					   testWhileIdle = true
+					   timeBetweenEvictionRunsMillis = 1000 * 60 * 30
+					   numTestsPerEvictionRun = 3
+					   minEvictableIdleTimeMillis = 1000 * 60 * 30
+        	}
 			  
 		}
 	}
