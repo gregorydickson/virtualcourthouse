@@ -58,7 +58,7 @@
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
 		    <p class="form-paragraph">
-		        <input class="grantor" type="text" id="grantor1"  value="" />
+		        <input class="grantor" name="grantor1" type="text" id="grantor1"  value="" />
 		    </p>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee" type="text" id="grantee1" value="" />
+		        <input class="grantee" name="grantee1"type="text" id="grantee1" value="" />
 		    </p>
 		</div>
 	</div>
@@ -81,7 +81,7 @@
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
-					<select id="relatedDocumentBookType1"  required="" class="relatedDocumentBookType chosen-select" >
+					<select id="relatedDocumentBookType1.id" name="relatedDocumentBookType1.id" required="" class="relatedDocumentBookType chosen-select" >
 						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 					        <option value="${BookType.id}" > ${BookType.bookType}</option>
 					    </g:each>
@@ -89,7 +89,7 @@
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Book Number</label>
-					<input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber1" value="" />
+					<input class="related-documents-book-number" type="text" id="parentDocument1" value="" />
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Page #</label>

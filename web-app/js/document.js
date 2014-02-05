@@ -65,10 +65,10 @@ function eventHandlerSecTwnRge(e) {
      }
 }
 function addNewInputGrantor(i) {
-    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor' + i + '"  value="" /> </p>');
+    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor' + i + '" name="grantor' + i + '" value="" /> </p>');
 }
 function addNewInputGrantee(j) {
-    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee' + j + '"  value="" /> </p>');
+    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee' + j + '" name="grantee' + j + '"  value="" /> </p>');
 }
 function addNewInputRelatedDocuments(k) {
 	//The book type options have to be rendered in the .gsp page so we do not have them in the 
@@ -84,10 +84,13 @@ function addNewInputSecTwnRge(l) {
 //JQuery Document ready funtion that registers the functions to add fields, 
 // starts foundation
 $( document ).ready(function() {
+	//Initialize foundation
 	$(document).foundation();
+	//setup all the typeahead dropdowns with chosen.js
 	$(".chosen-select").chosen();
+	//make the first drop down have focus using chosen.js message
 	$("#BookType").trigger('chosen:activate');
-	//handle grantors
+	//create new grantor fields dynamically
     var grantor_div = $('#grantors_wrapper');
     var i = $(".grantor").size() + 1;
     $('#grantor1').on('keyup', function (e) {
@@ -104,7 +107,7 @@ $( document ).ready(function() {
         }
     });
 	//end handle grantors
-    //handle grantees
+    //create new grantee fields dynamically
     var grantee_div = $('#grantees_wrapper');
     var j = $(".grantee").size() + 1;
     $('#grantee1').on('keyup', function (e) {
@@ -121,7 +124,7 @@ $( document ).ready(function() {
         }
     });
 	//end handle grantees
-	//handle related documents
+	//create new related documents fileds dynamically
     $('#relatedDocumentInstrumentNumber1').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
@@ -162,6 +165,6 @@ $( document ).ready(function() {
         }
     });
 	//END Legal Description
-	
+
 //END of Document Ready code
 });

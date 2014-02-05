@@ -3,6 +3,7 @@ package net.rcenergy
 import java.util.Date;
 import java.util.Set;
 
+
 class Document {
 	Integer bookNumber
 	BookTypes bookType
@@ -11,12 +12,12 @@ class Document {
 	InstrumentTypes instrumentType
 	Date fileDate
 	Date instrumentDate
-	
-	static hasMany = [images : Image, 
-			parentDocument:Document, 
-			childDocument:Document,
-			grantor: Party,
-			grantee: Party]
+
+	static hasMany = [images : Integer, 
+			parentDocument:RelatedDocument, 
+			childDocument:RelatedDocument,
+			grantor: String,
+			grantee: String]
 	
     static constraints = {
 		bookNumber(nullable:true)

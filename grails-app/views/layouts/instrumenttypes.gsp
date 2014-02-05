@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
+		
 		<g:layoutHead/>
 		<g:javascript src="modernizr.js"/>
 		<r:layoutResources />
@@ -19,35 +20,36 @@
 	<body>
 		
 		<g:layoutBody/>	
-		
-		<r:layoutResources />
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="foundation.js"/>
+		<r:layoutResources />
+		
+		
 
 		<script>
 		$( document ).ready(function() {
-			console.log("regging the func tions");
-			$('#ajax').click(function(){
-				var postJSON = $( "#instrumentTypes" ).serialize();
-				
-				console.log("postJSON is " + JSON.stringify(postJSON));
-				$.ajax({
-				    
-					url:"${g.createLink(controller:'instrumentTypes',action:'create.json')}",
-					type: "POST",
-				    dataType: 'json',
-					//contentType: 'application/json',
-				    data: postJSON ,
-				    success: function(json) {
-				        console.log("success the AJAX" + JSON.stringify(json) + "post: " + JSON.stringify(postJSON))
-				    },
-				    error: function(request, status, error) {
-				        console.log("ERROR Request: " + JSON.stringify(request) + "post: " + JSON.stringify(postJSON) + "ERROR: " + error)
-				    },
+			$('#ajaxit').click(function(){
+				console.log('ajaxit');
+				console.log("postJSON is " + JSON.stringify($('#instrumentTypes').serializeArray()));
+				jQuery.ajax({type:'POST',
+					data:jQuery('#instrumentTypes').serializeArray(),
+					dataType: 'json',
+				 	url:'${g.createLink(controller:'instrumentTypes',action:'save.json')}',
+				 	success:function(data,textStatus){
+					 alert("saved record");
+					 console.log("RETURN JSON: " + JSON.stringify(data));
+				 	},
+				 	error:function(XMLHttpRequest,textStatus,errorThrown){
+						console.log("ERROR: " + errorThrown);
+				 	},
 				    complete: function() {
+						console.log("COMPLETE")
 				    }
-				});
+		 		});
 			});
+	
+	
+		//END Document ready function
 		});
 		</script>
 	</body>

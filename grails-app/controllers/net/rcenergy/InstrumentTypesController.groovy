@@ -40,14 +40,14 @@ class InstrumentTypesController {
         }
 
         instrumentTypesInstance.save flush:true
-
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'instrumentTypesInstance.label', default: 'InstrumentTypes'), instrumentTypesInstance.id])
-                redirect instrumentTypesInstance
-            }
-            '*' { respond instrumentTypesInstance, [status: CREATED] }
-        }
+		respond instrumentTypesInstance, [formats:[ 'json']]
+        //request.withFormat {
+        //    form {
+        //        flash.message = message(code: 'default.created.message', args: [message(code: 'instrumentTypesInstance.label', default: 'InstrumentTypes'), instrumentTypesInstance.id])
+        //        redirect instrumentTypesInstance
+       //     }
+        //    '*' { respond instrumentTypesInstance, [status: CREATED] }
+       // }
     }
 
     def edit(InstrumentTypes instrumentTypesInstance) {

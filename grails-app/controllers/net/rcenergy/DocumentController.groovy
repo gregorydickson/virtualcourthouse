@@ -36,14 +36,15 @@ class DocumentController {
         }
 
         documentInstance.save flush:true
-
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'documentInstance.label', default: 'Document'), documentInstance.id])
-                redirect documentInstance
-            }
-            '*' { respond documentInstance, [status: CREATED] }
-        }
+		//Only respond with json when saving
+		respond documentInstance, [formats:[ 'json']]
+        //request.withFormat {
+        //    form {
+        //        flash.message = message(code: 'default.created.message', args: [message(code: 'documentInstance.label', default: 'Document'), documentInstance.id])
+        //        redirect documentInstance
+        //    }
+        //    '*' { respond documentInstance, [status: CREATED] }
+        //}
     }
 
     def edit(Document documentInstance) {

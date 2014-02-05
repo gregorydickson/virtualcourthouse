@@ -35,19 +35,17 @@
 			<g:hasErrors bean="${documentInstance}">
 				<ul class="errors" role="alert">
 					<g:eachError bean="${documentInstance}" var="error">
-					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+					<li> <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 					</g:eachError>
 				</ul>
 			</g:hasErrors>
 			</div>
 		</div>
-		<form action="/virtualcourthouse/document/save" method="post" class="custom create_doc_form" id="create_doc_form" data-abide="ajax">
+		<form  id="create_doc_form" data-abide="ajax">
 			<fieldset class="form">
 				<g:render template="form"/>
 			</fieldset>
-			<fieldset class="buttons">
-				<g:submitButton name="Save Document" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-			</fieldset>
+			<input type="button" id="ajaxit" value="AJAXIT">
 		</form>
 		
 	</body>
