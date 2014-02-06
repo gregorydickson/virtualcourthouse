@@ -58,7 +58,7 @@
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
 		    <p class="form-paragraph">
-		        <input class="grantor" name="grantor1" type="text" id="grantor1"  value="" />
+		        <input class="grantor" name="grantor" type="text" id="grantor"  value="" />
 		    </p>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee" name="grantee1"type="text" id="grantee1" value="" />
+		        <input class="grantee" name="grantee"type="text" id="grantee" value="" />
 		    </p>
 		</div>
 	</div>

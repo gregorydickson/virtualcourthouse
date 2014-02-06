@@ -65,10 +65,10 @@ function eventHandlerSecTwnRge(e) {
      }
 }
 function addNewInputGrantor(i) {
-    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor' + i + '" name="grantor' + i + '" value="" /> </p>');
+    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor" name="grantor" value="" /> </p>');
 }
 function addNewInputGrantee(j) {
-    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee' + j + '" name="grantee' + j + '"  value="" /> </p>');
+    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee" name="grantee"  value="" /> </p>');
 }
 function addNewInputRelatedDocuments(k) {
 	//The book type options have to be rendered in the .gsp page so we do not have them in the 
@@ -93,7 +93,7 @@ $( document ).ready(function() {
 	//create new grantor fields dynamically
     var grantor_div = $('#grantors_wrapper');
     var i = $(".grantor").size() + 1;
-    $('#grantor1').on('keyup', function (e) {
+    $('#grantor').on('keyup', function (e) {
 		var code = e.keyCode || e.which;
         if (code == 13) {
             var new_item = addNewInputGrantor(i);
@@ -110,7 +110,7 @@ $( document ).ready(function() {
     //create new grantee fields dynamically
     var grantee_div = $('#grantees_wrapper');
     var j = $(".grantee").size() + 1;
-    $('#grantee1').on('keyup', function (e) {
+    $('#grantee').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
             var new_item = addNewInputGrantee(i);
