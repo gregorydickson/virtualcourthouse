@@ -45,24 +45,34 @@ class DocumentController {
 
     @Transactional
     def save(Document documentInstance) {
-		log.error("SAVING")
+		log.debug("SAVING DOCUMENT")
         if (documentInstance == null) {
             notFound()
             return
         }
 
        
-		log.error("Getting filedate: " + params.fileDate)
-		documentInstance.fileDate = new Date().parse("yyyy-MM-dd", params.fileDate)
-		log.error("DOCUMENT File Date Is:" + documentInstance.fileDate.toString())
-		documentInstance.instrumentDate =  new Date().parse("yyyy-MM-dd", params.instrumentDate)
-		documentInstance.grantor = params.list('grantor')
-		documentInstance.grantee = params.list('grantee')
+		if (params.fileDate != ""){
+			documentInstance.fileDate =  new Date().parse("yyyy-MM-dd", params.fileDate) 
+		}
+		if (params.instrumentDate != ""){
+			documentInstance.instrumentDate =  new Date().parse("yyyy-MM-dd", params.instrumentDate) 
+		}
+		if (params.grantor != ""){
+			documentInstance.grantor =  params.list('grantor')
+		}
+		if (params.grantee != ""){
+			documentInstance.grantee =  params.list('grantee')
+		}
+		
+		
+		
+		
         documentInstance.save flush:true
-		log.error("SAVED DOCUMENT")
+		log.debug("SAVED DOCUMENT")
 		respond  status: OK
 		
-		//Only respond with json when saving
+		//SCAFFOLDED CODE:
 		//respond documentInstance, [formats:[ 'json']]
         //request.withFormat {
         //    form {

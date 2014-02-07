@@ -24,7 +24,7 @@
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentNumber">INST #</label>
-		<g:textField name="instrumentNumber" value="${documentInstance?.instrumentNumber}"/>
+		<g:textField name="instrumentNumber" value="${documentInstance?.instrumentNumber}" class="uppercase"/>
 	</div>
 	
 	<div class="medium-4 large-2 columns">
@@ -58,7 +58,7 @@
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
 		    <p class="form-paragraph">
-		        <input class="grantor" name="grantor" type="text" id="grantor"  value="" />
+		        <input class="grantor uppercase" name="grantor" type="text" id="grantor"  value="" />
 		    </p>
 		</div>
 	</div>
@@ -68,42 +68,20 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee"  type="text" id="grantee" value="" />
+		        <input class="grantee uppercase" name="grantee" type="text" id="grantee" value="" />
 		    </p>
 		</div>
 	</div>
 </div>
 
-<div class="related-documents row">
-	<h6>RELATED DOCUMENTS</h6>
-	<div class="panel related-doc-panel">
-		<div id="related_documents_wrapper">
-			<div class="a_related_document">
-				<div class="form-paragraph large-2 columns">
-					<label>Book Type</label>
-					<select id="relatedDocumentBookType1.id" required="" class="relatedDocumentBookType chosen-select" >
-						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
-					        <option value="${BookType.id}" > ${BookType.bookType}</option>
-					    </g:each>
-					</select>
-				</div>
-				<div class="form-paragraph large-2 columns">
-					<label>Book Number</label>
-					<input class="related-documents-book-number" type="text" id="parentDocument1" value="" />
-				</div>
-				<div class="form-paragraph large-2 columns">
-					<label>Page #</label>
-					<input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber1" value="" />
-				</div>
-				<div class="form-paragraph large-6 columns">
-					<label>Instrument #</label>
-					<input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber1" value="" />
-				</div>
-			</div>
-		</div>
+<div class="row">
+	<div class="large-6 columns">
+		LEGAL DESCRIPTION
+	</div>
+	<div id="large-3 columns totalAcres">
+			 TOTAL ACRES:
 	</div>
 </div>
-<h6>LEGAL DESCRIPTION</h6>
 <div class="legal-description panel">
 	
    <dl class="tabs" data-tab>
@@ -117,21 +95,37 @@
      <div class="content active" id="panel2-1">
         <div id="section_township_range_wrapper">
 		  <div class="a_section_township_range">
-	          <div class="form-paragraph large-1 columns">
+	          <div class="form-paragraph large-2 columns">
 	            <label>Section</label>
-	            <input type="text" id="section1" class="section" />
+	            <input type="text" id="section"name="section[0]" class="section" />
 	          </div>
 	          <div class="form-paragraph large-1 columns">
-	            <label>Township</label>
-	            <input type="text" id="township1" class="township"/>
-	           </div>
-	           <div class="form-paragraph large-2 columns">
-	             <label>Range</label>
-	             <input type="text" id="range1" class="range"/>
-	           </div>
-	          <div class="form-paragraph large-8 columns">
+	            <label>Township Direction</label>
+	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase township"/>
+			  </div>
+			  <div class="form-paragraph large-1 columns">
+				<label>Township Number</label>
+				<input type="text" id="townshipNumber" name="townshipNumber[0]"/>
+	          </div>
+	          <div class="form-paragraph large-1 columns">
+	             <label>Range Direction</label>
+	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase range"/>
+			  </div>
+			  <div class="form-paragraph large-1 columns">
+				<label>Range Number</label>
+				<input type="text" id="rangeNumber" class="rangeNumber[0]"/>
+	          </div>
+	          <div class="form-paragraph large-1 columns">
+	            <label>Acre</label>
+	            <input type="text" id="acre" name="acre[0]" class="acre"/>
+	          </div>
+	          <div class="form-paragraph large-3 columns">
+	            <label>Assessor #</label>
+	            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="uppercase township"/>
+	          </div>
+	          <div class="form-paragraph large-2 columns">
 	             <label>Metes & Bounds</label>
-	             <input type="text" id="sec-twn-rge-metes-bounds1" class="sec-twn-rge-metes-bounds" size="200"/>
+	             <input type="text" id="metesBounds" name="metesBounds[0]"  class="uppercase metesBounds" size="200"/>
 	          </div>
 		  </div>
 	    </div>
@@ -141,7 +135,7 @@
        <div class="city_sub_block_lot_wrapper row">
        <div class="form-paragraph large-2 columns">
             <label>City</label>
-            <input type="text"  />
+            <input type="text" name="city[0]" />
           </div>
           <div class="form-paragraph large-2 columns">
             <label>Sub</label>
@@ -155,10 +149,18 @@
              <label>Lot</label>
              <input type="text"  />
            </div>
-          <div class="form-paragraph large-6 columns">
-             <label>Metes & Bounds</label>
-             <input type="text"  size="200"/>
+           <div class="form-paragraph large-1 columns">
+             <label>Acre</label>
+             <input type="text" name="acre[0]" />
            </div>
+          <div class="form-paragraph large-3 columns">
+            <label>Assessor #</label>
+            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
+          </div>
+          <div class="form-paragraph large-2 columns">
+             <label>Metes & Bounds</label>
+             <input type="text" id="metesBounds" name="metesBounds[0]"  class="metesBounds" size="200"/>
+          </div>
        </div>
      </div>
      <div class="content" id="panel2-3">
@@ -190,6 +192,37 @@
        </div>
      </div>
    </div>
+</div>
+
+
+<div class="related-documents row">
+	<h6>RELATED DOCUMENTS</h6>
+	<div class="panel related-doc-panel">
+		<div id="related_documents_wrapper">
+			<div class="a_related_document">
+				<div class="form-paragraph large-2 columns">
+					<label>Book Type</label>
+					<select id="relatedDocumentBookType1.id" required="" class="relatedDocumentBookType chosen-select" >
+						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
+					        <option value="${BookType.id}" > ${BookType.bookType}</option>
+					    </g:each>
+					</select>
+				</div>
+				<div class="form-paragraph large-2 columns">
+					<label>Book Number</label>
+					<input class="related-documents-book-number" type="text" id="parentDocument1" value="" />
+				</div>
+				<div class="form-paragraph large-2 columns">
+					<label>Page #</label>
+					<input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber1" value="" />
+				</div>
+				<div class="form-paragraph large-6 columns">
+					<label>Instrument #</label>
+					<input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber1" value="" />
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="images row">

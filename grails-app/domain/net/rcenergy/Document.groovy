@@ -21,17 +21,17 @@ class Document {
 			grantee: String,
 			legalDescription: LegalDescriptions
 			]
-	String toString() {"DOCUMENT bookNumber: " + bookNumber.toString() + 
-							" bookType: " + bookType.toString() +
-							" pageNumber: " + pageNumber.toString() +
+	String toString() {"DOCUMENT bookNumber: " + bookNumber?.toString() + 
+							" bookType: " + bookType?.toString() +
+							" pageNumber: " + pageNumber?.toString() +
 							" instrumentNumber: " + instrumentNumber +
-							" instrumentType: " + instrumentType.toString() +
-							" fileDate: " + fileDate.toString() +
-							" instrumentDate: " + instrumentDate.toString() +
-							" parentDocument: " + parentDocument.toString() +
+							" instrumentType: " + instrumentType?.toString() +
+							" fileDate: " + fileDate?.toString() +
+							" instrumentDate: " + instrumentDate?.toString() +
+							" parentDocument: " + parentDocument?.toString() +
 							" grantor: " + grantor +
 							" grantee: " + grantee +
-							" legalDescription: " + legalDescription.toString()
+							" legalDescription: " + legalDescription?.toString()
 	}
     static constraints = {
 		bookNumber(nullable:true)

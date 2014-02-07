@@ -165,6 +165,9 @@ $( document ).ready(function() {
         }
     });
 	//END Legal Description
-
+	//change fields to uppercase
+	$('.uppercase').keyup(function(){
+	    this.value = this.value.toUpperCase();
+	});
 //END of Document Ready code
 });
