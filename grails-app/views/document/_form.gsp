@@ -39,7 +39,7 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
-			<input type="date" id="fileDate" name="file_date" pattern="date" value="${documentInstance?.fileDate}" />
+			<input type="date" id="fileDate" name="fileDate" pattern="date" value="${documentInstance?.fileDate}" />
 			<small class="error">File Date Required.</small>
 		</div>
 	</div>
@@ -47,7 +47,7 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>INST DATE</label>
-			<input type="date" id="instrumentDate" pattern="date" value="${documentInstance?.instrumentDate}">	
+			<input type="date" id="instrumentDate" name="instrumentDate" pattern="date" value="${documentInstance?.instrumentDate}">	
 			<small class="error">Instrument Date Required.</small>
 		</div>
 	</div>
@@ -68,7 +68,7 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee" name="grantee"type="text" id="grantee" value="" />
+		        <input class="grantee"  type="text" id="grantee" value="" />
 		    </p>
 		</div>
 	</div>
@@ -81,7 +81,7 @@
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
-					<select id="relatedDocumentBookType1.id" name="relatedDocumentBookType1.id" required="" class="relatedDocumentBookType chosen-select" >
+					<select id="relatedDocumentBookType1.id" required="" class="relatedDocumentBookType chosen-select" >
 						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 					        <option value="${BookType.id}" > ${BookType.bookType}</option>
 					    </g:each>

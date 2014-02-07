@@ -9,6 +9,26 @@ import grails.transaction.Transactional
 class DocumentController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+	DocumentService documentService
+	
+	def createDocumentWithChildren(Document documentInstance){
+     
+		
+		
+		//document.instrumentType = params.instrumentType
+		documentInstance.bookNumber = new Integer (params.bookNumber)
+		//document.bookType = new BookTypes(params.bookType)
+		documentInstance.pageNumber = new Integer(params.pageNumber)
+		documentInstance.instrumentNumber = new String(params.instrumentNumber)
+		documentInstance.fileDate = new Date().parse("yyyy-MM-dd", params.fileDate)
+		documentInstance.instrumentDate =  new Date().parse("yyyy-MM-dd", params.instrumentDate)
+		
+		//documentInstance.grantor = params.list('grantor')
+		//documentInstance.grantee = params.list('grantee')
+
+		documentInstance.save flush:true
+        respond documentInstance, [formats:[ 'json']]
+	}
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -25,19 +45,25 @@ class DocumentController {
 
     @Transactional
     def save(Document documentInstance) {
+		log.error("SAVING")
         if (documentInstance == null) {
             notFound()
             return
         }
 
-        if (documentInstance.hasErrors()) {
-            respond documentInstance.errors, view:'create'
-            return
-        }
-
+       
+		log.error("Getting filedate: " + params.fileDate)
+		documentInstance.fileDate = new Date().parse("yyyy-MM-dd", params.fileDate)
+		log.error("DOCUMENT File Date Is:" + documentInstance.fileDate.toString())
+		documentInstance.instrumentDate =  new Date().parse("yyyy-MM-dd", params.instrumentDate)
+		documentInstance.grantor = params.list('grantor')
+		documentInstance.grantee = params.list('grantee')
         documentInstance.save flush:true
+		log.error("SAVED DOCUMENT")
+		respond  status: OK
+		
 		//Only respond with json when saving
-		respond documentInstance, [formats:[ 'json']]
+		//respond documentInstance, [formats:[ 'json']]
         //request.withFormat {
         //    form {
         //        flash.message = message(code: 'default.created.message', args: [message(code: 'documentInstance.label', default: 'Document'), documentInstance.id])

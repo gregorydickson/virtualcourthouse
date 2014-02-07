@@ -42,7 +42,7 @@
 				jQuery.ajax({type:'POST',
 					data:jQuery('#create_doc_form').serializeArray(),
 					dataType: 'json',
-				 	url:'${g.createLink(controller:'document',action:'save.json')}',
+				 	url:'/virtualcourthouse/document/save.json',
 				 	success:function(data,textStatus){
 					 alert("saved record");
 					 console.log("RETURN JSON: " + JSON.stringify(data));

@@ -12,24 +12,41 @@ class Document {
 	InstrumentTypes instrumentType
 	Date fileDate
 	Date instrumentDate
+	
 
 	static hasMany = [images : Integer, 
 			parentDocument:RelatedDocument, 
 			childDocument:RelatedDocument,
 			grantor: String,
-			grantee: String]
-	
+			grantee: String,
+			legalDescription: LegalDescriptions
+			]
+	String toString() {"DOCUMENT bookNumber: " + bookNumber.toString() + 
+							" bookType: " + bookType.toString() +
+							" pageNumber: " + pageNumber.toString() +
+							" instrumentNumber: " + instrumentNumber +
+							" instrumentType: " + instrumentType.toString() +
+							" fileDate: " + fileDate.toString() +
+							" instrumentDate: " + instrumentDate.toString() +
+							" parentDocument: " + parentDocument.toString() +
+							" grantor: " + grantor +
+							" grantee: " + grantee +
+							" legalDescription: " + legalDescription.toString()
+	}
     static constraints = {
 		bookNumber(nullable:true)
-		pageNumber(nullable:true)
 		bookType(nullable:true)
+		pageNumber(nullable:true)
 		instrumentNumber(nullable:true)
-		grantor(nullable:true)
-		grantee(nullable:true)
-		parentDocument(nullable:true)
-		childDocument(nullable:true)
-		images(nullable:true)
+		instrumentType(nullable:true)
 		fileDate(nullable:true)
 		instrumentDate(nullable:true)
+		
+		images(nullable:true)
+		parentDocument(nullable:true)
+		childDocument(nullable:true)
+		grantor(nullable:true)
+		grantee(nullable:true)
+		legalDescription(nullable:true)
     }
 }
