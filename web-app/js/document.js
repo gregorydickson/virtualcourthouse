@@ -90,6 +90,29 @@ $( document ).ready(function() {
 	$(".chosen-select").chosen();
 	//make the first drop down have focus using chosen.js message
 	$("#BookType").trigger('chosen:activate');
+	
+	// START - SAVE DOCUMENT VIA AJAX WITH JSON
+	$.key('ctrl+j', function(){
+		console.log('ajaxit');
+		console.log("postJSON is " + JSON.stringify($('#create_doc_form').serializeArray()));
+		jQuery.ajax({type:'POST',
+			data:jQuery('#create_doc_form').serializeArray(),
+			dataType: 'json',
+		 	url:'/virtualcourthouse/document/save.json',
+		 	success:function(data,textStatus){
+			 alert("saved record");
+			 console.log("RETURN JSON: " + JSON.stringify(data));
+		 	},
+		 	error:function(XMLHttpRequest,textStatus,errorThrown){
+				console.log("ERROR: " + errorThrown);
+		 	},
+		    complete: function() {
+				console.log("COMPLETE")
+		    }
+ 		});
+	});
+	// END - SAVE DOCUMENT VIA AJAX WITH JSON
+	
 	//create new grantor fields dynamically
     var grantor_div = $('#grantors_wrapper');
     var i = $(".grantor").size() + 1;

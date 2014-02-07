@@ -96,22 +96,22 @@
         <div id="section_township_range_wrapper">
 		  <div class="a_section_township_range">
 	          <div class="form-paragraph large-2 columns">
-	            <label>Section</label>
+	            <label>SECTION</label>
 	            <input type="text" id="section"name="section[0]" class="section" />
 	          </div>
-	          <div class="form-paragraph large-1 columns">
-	            <label>Township Direction</label>
+	          <div class="form-paragraph large-2 columns">
+	            <label>TOWNSHIP DIRECTION</label>
 	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase township"/>
 			  </div>
 			  <div class="form-paragraph large-1 columns">
-				<label>Township Number</label>
+				<label>TOWNSHIP #</label>
 				<input type="text" id="townshipNumber" name="townshipNumber[0]"/>
 	          </div>
-	          <div class="form-paragraph large-1 columns">
-	             <label>Range Direction</label>
+	          <div class="form-paragraph large-2 columns">
+	             <label>RANGE DIRECTION</label>
 	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase range"/>
 			  </div>
-			  <div class="form-paragraph large-1 columns">
+			  <div class="form-paragraph large-2 columns">
 				<label>Range Number</label>
 				<input type="text" id="rangeNumber" class="rangeNumber[0]"/>
 	          </div>
@@ -119,13 +119,16 @@
 	            <label>Acre</label>
 	            <input type="text" id="acre" name="acre[0]" class="acre"/>
 	          </div>
-	          <div class="form-paragraph large-3 columns">
+	          <div class="form-paragraph large-1 columns">
 	            <label>Assessor #</label>
 	            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="uppercase township"/>
 	          </div>
-	          <div class="form-paragraph large-2 columns">
-	             <label>Metes & Bounds</label>
-	             <input type="text" id="metesBounds" name="metesBounds[0]"  class="uppercase metesBounds" size="200"/>
+	          <div class="form-paragraph large-1 columns">
+	             <a href="#" data-reveal-id="secTwnRgeMetesBounds" data-reveal><label>Metes & Bounds</label></a>
+				 <div id="secTwnRgeMetesBounds" class="reveal-modal" data-reveal>
+					 <h3>METES & BOUNDS</h3>
+	             	<textarea  id="metesBounds" name="metesBounds[0]"  class="uppercase metesBounds" size="200000" height="20" ></textarea>
+				</div>
 	          </div>
 		  </div>
 	    </div>

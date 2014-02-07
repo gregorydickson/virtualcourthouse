@@ -54,7 +54,7 @@
   text-decoration: none;
   white-space: nowrap;
   line-height: 24px;
-  z-index:10000;
+  z-index:0;
 }
 .chosen-container-single .chosen-default {
   color: #999;

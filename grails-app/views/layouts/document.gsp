@@ -26,37 +26,16 @@
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="foundation.js"/>
 		<g:javascript src="foundation.abide.js"/>
+		<g:javascript src="foundation.reveal.js"/>
 		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="zurb5-multiselect.js"/>
 		<g:javascript src="chosen.jquery.js"/>
+		<g:javascript src="jquery.key.js"/>
 		<script>
 		function getBookTypeOptions(){
 			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
 			return returnString;
 		}
-		$( document ).ready(function() {
-			// START - SAVE DOCUMENT VIA AJAX WITH JSON
-			$('#ajaxit').click(function(){
-				console.log('ajaxit');
-				console.log("postJSON is " + JSON.stringify($('#create_doc_form').serializeArray()));
-				jQuery.ajax({type:'POST',
-					data:jQuery('#create_doc_form').serializeArray(),
-					dataType: 'json',
-				 	url:'/virtualcourthouse/document/save.json',
-				 	success:function(data,textStatus){
-					 alert("saved record");
-					 console.log("RETURN JSON: " + JSON.stringify(data));
-				 	},
-				 	error:function(XMLHttpRequest,textStatus,errorThrown){
-						console.log("ERROR: " + errorThrown);
-				 	},
-				    complete: function() {
-						console.log("COMPLETE")
-				    }
-		 		});
-			});
-			// END - SAVE DOCUMENT VIA AJAX WITH JSON
-		});
 		</script>
 		<g:javascript src="document.js"/>
 	</body>
