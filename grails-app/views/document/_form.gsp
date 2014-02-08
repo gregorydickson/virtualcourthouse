@@ -97,7 +97,7 @@
 		  <div class="a_section_township_range">
 	          <div class="form-paragraph large-2 columns">
 	            <label>SECTION</label>
-	            <input type="text" id="section"name="section[0]" class="section" />
+	            <input type="text" id="section"name="section[0]" class="section" size="400" />
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>TOWNSHIP DIRECTION</label>
@@ -127,7 +127,7 @@
 	             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
 				 <div id="MetesBounds1" class="reveal-modal" data-reveal>
 				 	<h3>METES & BOUNDS</h3>
-				  	<textarea  id="" name="metesBounds[0]"  class="uppercase metesBounds"  ></textarea>
+				  	<textarea  id="" name="metesBounds[0]"  class="uppercase popout"  ></textarea>
 				 </div>
 	          </div>
 		  </div>
@@ -136,17 +136,17 @@
      
 	<div class="content" id="panel2-2">
        <div class="city_sub_block_lot_wrapper row">
-       <div class="form-paragraph large-2 columns">
+          <div class="form-paragraph large-2 columns">
             <label>City</label>
-            <input type="text" name="city[0]" />
+            <input type="text" name="city[0]" size="400"/>
           </div>
           <div class="form-paragraph large-2 columns">
             <label>Sub</label>
-            <input type="text" />
+            <input type="text" size="400" />
            </div>
            <div class="form-paragraph large-1 columns">
              <label>Block</label>
-             <input type="text"  />
+             <input type="text" size="400" />
            </div>
            <div class="form-paragraph large-1 columns">
              <label>Lot</label>
@@ -169,7 +169,7 @@
        <div class="tax_map_parcel_wrapper row">
            <div class="form-paragraph large-3 columns">
              <label>Dis/Twn</label>
-             <input type="text" />
+             <input type="text" size="400" />
            </div>
           <div class="form-paragraph large-2 columns">
             <label>Tax</label>
@@ -267,6 +267,22 @@
 	</div>
 </div>
 
+<div class="will-number row">
+	<h6>WILL NUMBER</h6>
+	<div class="large-12 columns panel">
+		<input class="" type="text">
+	</div>
+</div>
+
+<div class="notes row">
+	<a href="#" data-reveal-id="notes" data-reveal><h6>NOTES</h6></a>
+	<div class="large-12 columns panel">
+		 <div id="notes" class="reveal-modal" data-reveal>
+			 <h6>NOTES</h6>
+			 <textarea  id="" name="notes"  class="uppercase popout"  ></textarea>
+		 </div>
+	</div>
+</div>
 <div class="images row">
 	<div class="medium-12 large-12 columns ${hasErrors(bean: documentInstance, field: 'images', 'error')} ">
 		<label for="images">IMAGES</label>
