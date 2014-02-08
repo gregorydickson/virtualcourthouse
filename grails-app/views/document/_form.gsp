@@ -124,11 +124,11 @@
 	            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="uppercase township"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
-	             <a href="#" data-reveal-id="secTwnRgeMetesBounds" data-reveal><label>Metes & Bounds</label></a>
-				 <div id="secTwnRgeMetesBounds" class="reveal-modal" data-reveal>
-					 <h3>METES & BOUNDS</h3>
-	             	<textarea  id="metesBounds" name="metesBounds[0]"  class="uppercase metesBounds" size="200000" height="20" ></textarea>
-				</div>
+	             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
+				 <div id="MetesBounds1" class="reveal-modal" data-reveal>
+				 	<h3>METES & BOUNDS</h3>
+				  	<textarea  id="" name="metesBounds[0]"  class="uppercase metesBounds"  ></textarea>
+				 </div>
 	          </div>
 		  </div>
 	    </div>
@@ -161,18 +161,21 @@
             <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
           </div>
           <div class="form-paragraph large-2 columns">
-             <label>Metes & Bounds</label>
-             <input type="text" id="metesBounds" name="metesBounds[0]"  class="metesBounds" size="200"/>
+             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
           </div>
        </div>
      </div>
      <div class="content" id="panel2-3">
        <div class="tax_map_parcel_wrapper row">
-          <div class="form-paragraph large-1 columns">
+           <div class="form-paragraph large-3 columns">
+             <label>Dis/Twn</label>
+             <input type="text" />
+           </div>
+          <div class="form-paragraph large-2 columns">
             <label>Tax</label>
             <input type="text" />
           </div>
-          <div class="form-paragraph large-1 columns">
+          <div class="form-paragraph large-2 columns">
             <label>Map</label>
             <input type="text"  />
            </div>
@@ -180,22 +183,58 @@
              <label>Parcel</label>
              <input type="text"  />
            </div>
-          <div class="form-paragraph large-8 columns">
-             <label>Metes & Bounds</label>
-             <input type="text" size="200" />
+           <div class="form-paragraph large-1 columns">
+             <label>Acre</label>
+             <input type="text" name="acre[0]" />
            </div>
+           <div class="form-paragraph large-1 columns">
+             <label>Assessor #</label>
+             <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
+           </div>
+          <div class="form-paragraph large-1 columns">
+             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
+		</div>
        </div>
      </div>
      <div class="content" id="panel2-4">
        <div class="survey_wrapper row">
-          <div class="form-paragraph large-12 columns">
+          <div class="form-paragraph large-2 columns">
             <label>Survey</label>
             <input type="text" size="400" />
           </div>
+          <div class="form-paragraph large-1 columns">
+            <label>Abstract</label>
+            <input type="text" />
+          </div>
+          <div class="form-paragraph large-2 columns">
+            <label>Block</label>
+            <input type="text"  />
+           </div>
+           <div class="form-paragraph large-2 columns">
+             <label>Lot</label>
+             <input type="text"  />
+           </div>
+           <div class="form-paragraph large-2 columns">
+             <label>Sec</label>
+             <input type="text"  />
+           </div>
+           <div class="form-paragraph large-1 columns">
+             <label>Acre</label>
+             <input type="text" name="acre[0]" />
+           </div>
+           <div class="form-paragraph large-1 columns">
+             <label>Assessor #</label>
+             <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
+           </div>
+          <div class="form-paragraph large-1 columns">
+             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
+		</div>
        </div>
      </div>
    </div>
 </div>
+
+
 
 
 <div class="related-documents row">
