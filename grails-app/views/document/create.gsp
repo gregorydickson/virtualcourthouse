@@ -27,25 +27,12 @@
 			</nav>
 		</div>
 	
-		<div class="row">
-			<div class="12-medium columns">
-			<g:if test="${flash.message}">
-				<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<g:hasErrors bean="${documentInstance}">
-				<ul class="errors" role="alert">
-					<g:eachError bean="${documentInstance}" var="error">
-					<li> <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
-					</g:eachError>
-				</ul>
-			</g:hasErrors>
-			</div>
-		</div>
+		
 		<form  id="create_doc_form" data-abide="ajax">
 			<fieldset class="form">
 				<g:render template="form"/>
 			</fieldset>
-			<input type="button" id="ajaxit" value="AJAXIT">
+			
 		</form>
 		
 	</body>

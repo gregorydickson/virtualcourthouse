@@ -40,7 +40,7 @@
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
 			<input type="date" id="fileDate" name="fileDate" pattern="date" value="${documentInstance?.fileDate}" />
-			<small class="error">File Date Required.</small>
+			<small class="error">File Date Error.</small>
 		</div>
 	</div>
 	
@@ -48,7 +48,7 @@
 		<div class="input-wrapper">
 			<label>INST DATE</label>
 			<input type="date" id="instrumentDate" name="instrumentDate" pattern="date" value="${documentInstance?.instrumentDate}">	
-			<small class="error">Instrument Date Required.</small>
+			<small class="error">Instrument Date Errror.</small>
 		</div>
 	</div>
 </div>
@@ -75,10 +75,13 @@
 </div>
 
 <div class="row">
-	<div class="large-6 columns">
+	<div class="large-2 columns">
 		LEGAL DESCRIPTION
 	</div>
-	<div id="large-3 columns totalAcres">
+	<div class="large-2 columns">
+	ROWS:
+	</div>
+	<div class="large-8 columns totalAcres">
 			 TOTAL ACRES:
 	</div>
 </div>
@@ -124,10 +127,10 @@
 	            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="uppercase township"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
-	             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
-				 <div id="MetesBounds1" class="reveal-modal" data-reveal>
+	             <a href="#" id="MetesBoundsLink1"><label>Metes & Bounds</label></a>
+				 <div id="MetesBounds1" class="reveal-modal metesBounds" data-reveal>
 				 	<h3>METES & BOUNDS</h3>
-				  	<textarea  id="" name="metesBounds[0]"  class="uppercase popout"  ></textarea>
+				  	<textarea  id="MetesBoundsTextArea1" name="metesBounds[0]"  class="uppercase popout focusme"  ></textarea>
 				 </div>
 	          </div>
 		  </div>
@@ -227,7 +230,7 @@
              <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
            </div>
           <div class="form-paragraph large-1 columns">
-             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
+             <a href="#" data-reveal-id="MetesBounds1" data-reveal tabindex><label>Metes & Bounds</label></a>
 		</div>
        </div>
      </div>
@@ -244,7 +247,7 @@
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
-					<select id="relatedDocumentBookType1.id" required="" class="relatedDocumentBookType chosen-select" >
+					<select id="relatedDocumentBookType1" required="" class="relatedDocumentBookType chosen-select" >
 						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 					        <option value="${BookType.id}" > ${BookType.bookType}</option>
 					    </g:each>
@@ -275,7 +278,7 @@
 </div>
 
 <div class="notes row">
-	<a href="#" data-reveal-id="notes" data-reveal><h6>NOTES</h6></a>
+	<a href="#" data-reveal-id="notes" data-reveal tabindex><h6>NOTES</h6></a>
 	<div class="large-12 columns panel">
 		 <div id="notes" class="reveal-modal" data-reveal>
 			 <h6>NOTES</h6>

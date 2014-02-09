@@ -86,6 +86,14 @@ function addNewInputSecTwnRge(l) {
 $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
+	$("#null").foundation('reveal',{	
+	    opened: function(){
+	       // $(this).find(".focusme").first().focus();
+	    },
+		closed: function(){
+			//$(document).find("#relatedDocumentBookType1").focus();
+		}
+	});
 	//setup all the typeahead dropdowns with chosen.js
 	$(".chosen-select").chosen();
 	//make the first drop down have focus using chosen.js message
@@ -191,6 +199,11 @@ $( document ).ready(function() {
 	//change fields to uppercase
 	$('.uppercase').keyup(function(){
 	    this.value = this.value.toUpperCase();
+	});
+	//END change fields to uppercase
+	$('#MetesBoundsLink1').on('click', function(){
+		$('#MetesBounds1').foundation('reveal', 'open');
+		
 	});
 //END of Document Ready code
 });
