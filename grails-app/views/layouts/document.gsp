@@ -7,7 +7,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'zurb5-multiselect.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
 		<g:layoutHead/>
@@ -28,7 +27,6 @@
 		<g:javascript src="foundation.abide.js"/>
 		<g:javascript src="foundation.reveal.js"/>
 		<g:javascript src="foundation.tab.js"/>
-		<g:javascript src="zurb5-multiselect.js"/>
 		<g:javascript src="chosen.jquery.js"/>
 		<g:javascript src="jquery.key.js"/>
 		<script>

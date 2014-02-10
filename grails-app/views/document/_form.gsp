@@ -287,8 +287,40 @@
 	</div>
 </div>
 <div class="images row">
-	<div class="medium-12 large-12 columns ${hasErrors(bean: documentInstance, field: 'images', 'error')} ">
-		<label for="images">IMAGES</label>
-		<g:select name="images" from="${net.rcenergy.Image.list()}" multiple="multiple" optionKey="id" size="10" value="${documentInstance?.images*.id}" class="many-to-many"/>
+	<h6>IMAGES</h6>
+	<div class="large-12 columns">
+		<table>
+			<thead>
+			    <tr>
+			      <th width="400">FILENAME</th>
+				  <th width="20">VIEW</th>
+			      <th width="200">SELECT & REMOVE</th>
+			      <th width="200">SELECT & REMAIN</th>
+			    </tr>
+			 </thead>
+			 <tbody>
+				 
+					 
+    	<g:each var="images" in="${net.rcenergy.Image.list()}">
+			<tr>
+				<td>
+	         	   ${images*.toString()}
+			   </td>
+			   <td>
+				   <g:link action="show" id="${images.id}" target="_blank">VIEW</g:link>
+			   </td>
+			   <td>
+				   <input type="checkbox" />
+			   </td>
+			   <td>
+				   <input type="checkbox" />
+			   </td>
+			  
+		   </tr>
+	    </g:each>
+	</table>
+		
+		
+		
 	</div>
 </div>
