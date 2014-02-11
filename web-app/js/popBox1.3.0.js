@@ -36,8 +36,12 @@
 	                var top = (winH / 2) - (objH / 2);
 
 	                popBoxContainer.css({ position: 'fixed', margin: 0, top: (top > 0 ? top : 0) + 'px', left: (left > 0 ? left : 0) + 'px' });
-					popBoxContainer.children('.popBox-input').val($(this).val().replace(RegExp(options.newlineString, "g"), "\n"));
-                	popBoxContainer.children('.popBox-input').focus();
+					var input = popBoxContainer.children('.popBox-input');
+					input.val($(this).val());
+					var len = input.val().length;
+					input[0].focus();
+					input[0].setSelectionRange(len, len);
+		            
                 	popBoxContainer.children().keydown(function (e) {
                     	if (e == null) { // ie
                         	keycode = event.keyCode;

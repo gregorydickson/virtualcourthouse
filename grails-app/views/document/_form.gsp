@@ -97,7 +97,7 @@
 	
      <div class="content active" id="panel2-1">
         <div id="section_township_range_wrapper">
-		  <div class="a_section_township_range">
+		  <div class="a_section_township_range row">
 	          <div class="form-paragraph large-2 columns">
 	            <label>SECTION</label>
 	            <input type="text" id="section" name="section[0]" class="section sec-twn-rge" size="400" />

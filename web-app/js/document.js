@@ -1,3 +1,18 @@
+$.fn.setCursorPosition = function (pos) {
+    this.each(function (index, elem) {
+        if (elem.setSelectionRange) {
+            elem.setSelectionRange(pos, pos);
+        } else if (elem.createTextRange) {
+            var range = elem.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', pos);
+            range.moveStart('character', pos);
+            range.select();
+        }
+    });
+    return this;
+};
+
 function eventHandlerGrantor(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {           
@@ -49,6 +64,7 @@ function eventHandlerRelatedDocuments(e) {
         return false;
     }
 }
+
 function eventHandlerSecTwnRge(e) {
 	var code = e.keyCode || e.which;
      if (code == 13) {
@@ -79,7 +95,7 @@ function addNewInputRelatedDocuments(k) {
 	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '"  required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber' + k + '" value="" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber' + k + '" value="" /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber' + k + '" value="" /></div></div>');
 }
 function addNewInputSecTwnRge(l) {
-	return $('<div class="a_section_township_range"><div class="form-paragraph large-1 columns"><label>Section</label><input type="text" id="section'+ l +'" class="section" /></div><div class="form-paragraph large-1 columns"><label>Township</label><input type="text" id="township'+ l +'" class="township"/></div><div class="form-paragraph large-2 columns"><label>Range</label><input type="text" id="range'+ l +'" class="range"/></div><div class="form-paragraph large-8 columns"><label>Metes & Bounds</label><input type="text" id="sec-twn-rge-metes-bounds'+ l +'" class="sec-twn-rge-metes-bounds" size="200"/></div></div>');
+	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[0]" class="section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[0]" class="sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="rangeNumber[0] sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[0]" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[0]" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout focusme"  ></div></div>');
 }
 //JQuery Document ready funtion that registers the functions to add fields, 
 // starts foundation
@@ -178,7 +194,7 @@ $( document ).ready(function() {
         }
     });
 	//end handle related documents
-	//Start Legal Description
+	//Start Legal Description SEC TWN RGE
 	$('.sec-twn-rge').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
@@ -190,25 +206,16 @@ $( document ).ready(function() {
 			var the_input = new_item.find(".section");
             the_input.focus();
             the_input.select();
-
             l++;
             return false;
         }
     });
-	//END Legal Description
+	//END Legal Description SEC TWN RGE
 	//change fields to uppercase
 	$('.uppercase').keyup(function(){
 	    this.value = this.value.toUpperCase();
 	});
 	//END change fields to uppercase
-	$('#metesBounds').on('keyup', function(e){
-        var code = e.keyCode || e.which;
-        if (code != 9) {
-					
-			
-        }
-		
-		
-	});
+
 //END of Document Ready code
 });
