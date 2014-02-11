@@ -100,38 +100,35 @@
 		  <div class="a_section_township_range">
 	          <div class="form-paragraph large-2 columns">
 	            <label>SECTION</label>
-	            <input type="text" id="section"name="section[0]" class="section" size="400" />
+	            <input type="text" id="section" name="section[0]" class="section sec-twn-rge" size="400" />
+	          </div>
+			  <div class="form-paragraph large-1 columns">
+				<label>TOWNSHIP #</label>
+				<input type="text" id="townshipNumber" name="townshipNumber[0]" class="sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>TOWNSHIP DIRECTION</label>
-	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase township"/>
-			  </div>
-			  <div class="form-paragraph large-1 columns">
-				<label>TOWNSHIP #</label>
-				<input type="text" id="townshipNumber" name="townshipNumber[0]"/>
-	          </div>
-	          <div class="form-paragraph large-2 columns">
-	             <label>RANGE DIRECTION</label>
-	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase range"/>
+	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase township sec-twn-rge"/>
 			  </div>
 			  <div class="form-paragraph large-2 columns">
 				<label>Range Number</label>
-				<input type="text" id="rangeNumber" class="rangeNumber[0]"/>
+				<input type="text" id="rangeNumber" class="rangeNumber[0] sec-twn-rge"/>
 	          </div>
+	          <div class="form-paragraph large-2 columns">
+	             <label>RANGE DIRECTION</label>
+	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase range sec-twn-rge"/>
+			  </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Acre</label>
-	            <input type="text" id="acre" name="acre[0]" class="acre"/>
+	            <input type="text" id="acre" name="sec-twn-rge-acre[0]" class="acre sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Assessor #</label>
-	            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="uppercase township"/>
+	            <input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[0]" class="uppercase township sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
-	             <a href="#" id="MetesBoundsLink1"><label>Metes & Bounds</label></a>
-				 <div id="MetesBounds1" class="reveal-modal metesBounds" data-reveal>
-				 	<h3>METES & BOUNDS</h3>
-				  	<textarea  id="MetesBoundsTextArea1" name="metesBounds[0]"  class="uppercase popout focusme"  ></textarea>
-				 </div>
+	             <label>Metes & Bounds</label>
+				 	<input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout focusme"  >
 	          </div>
 		  </div>
 	    </div>

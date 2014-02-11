@@ -71,9 +71,9 @@ function addNewInputGrantee(j) {
     return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee" name="grantee"  value="" /> </p>');
 }
 function addNewInputRelatedDocuments(k) {
-	//The book type options have to be rendered in the .gsp page so we do not have them in the 
+	//The book type options have to be rendered in the .gsp page as we do not have them in the 
 	// document.js file since this file is not parsed by the server.
-	// so this function call grabs them from a function in the create.gsp file so we can add them
+	// This function call grabs them from a function in the create.gsp file so we can add them
 	// to a related documents new line select field.
     var optionsString = getBookTypeOptions();
 	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '"  required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber' + k + '" value="" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber' + k + '" value="" /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber' + k + '" value="" /></div></div>');
@@ -86,19 +86,19 @@ function addNewInputSecTwnRge(l) {
 $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
-	$("#null").foundation('reveal',{	
+	$(document).foundation('reveal',{	
 	    opened: function(){
-	       // $(this).find(".focusme").first().focus();
+	       $(this).find(".focusme").first().focus();
 	    },
 		closed: function(){
-			//$(document).find("#relatedDocumentBookType1").focus();
+			
 		}
 	});
 	//setup all the typeahead dropdowns with chosen.js
 	$(".chosen-select").chosen();
 	//make the first drop down have focus using chosen.js message
 	$("#BookType").trigger('chosen:activate');
-	
+	$("#MetesBoundsTextArea1").popBox();
 	// START - SAVE DOCUMENT VIA AJAX WITH JSON
 	$.key('ctrl+j', function(){
 		console.log('ajaxit');
@@ -179,7 +179,7 @@ $( document ).ready(function() {
     });
 	//end handle related documents
 	//Start Legal Description
-	$('#sec-twn-rge-metes-bounds1').on('keyup', function (e) {
+	$('.sec-twn-rge').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
 			var sec_twn_rge_div = $('#section_township_range_wrapper');
@@ -201,8 +201,13 @@ $( document ).ready(function() {
 	    this.value = this.value.toUpperCase();
 	});
 	//END change fields to uppercase
-	$('#MetesBoundsLink1').on('click', function(){
-		$('#MetesBounds1').foundation('reveal', 'open');
+	$('#metesBounds').on('keyup', function(e){
+        var code = e.keyCode || e.which;
+        if (code != 9) {
+					
+			
+        }
+		
 		
 	});
 //END of Document Ready code
