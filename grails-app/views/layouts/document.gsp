@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'popBox1.3.0.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript src="modernizr.js"/>
@@ -30,7 +29,6 @@
 		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="chosen.jquery.js"/>
 		<g:javascript src="jquery.key.js"/>
-		<g:javascript src="popBox1.3.0.js"/>
 		<script>
 		function getBookTypeOptions(){
 			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';

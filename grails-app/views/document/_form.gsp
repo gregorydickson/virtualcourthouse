@@ -128,7 +128,7 @@
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	             <label>Metes & Bounds</label>
-				 	<input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout focusme"  >
+				 	<input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout sec-twn-rge"  >
 	          </div>
 		  </div>
 	    </div>
