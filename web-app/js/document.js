@@ -43,7 +43,7 @@
 					input[0].focus();
 					input[0].setSelectionRange(len, len);
 		            
-                	popBoxContainer.children().keydown(function (e) {
+                	popBoxContainer.children().keyup(function (e) {
                     	if (e == null) { 
                         	keycode = event.keyCode;
                     	} else { 
@@ -55,13 +55,16 @@
                         	change = true;
                     	}
 						if (keycode ==13 ) { //return so create a new line in this section
+							console.log("popup detected a return");
                         	$(this).parent().hide();
                         	$(this).parent().prev().hide();
                         	change = true;
 							if(obj.hasClass('sec-twn-rge')) {
+								
+								console.log("AddnewSecTwnRge from Popup Box");
 								addNewLineSecTwnRge();
-							}
-							console.log("called AddnewSecTwnRge from Popup Box");
+							} 
+							
 						}
                 	});
 
@@ -140,8 +143,12 @@ function eventHandlerRelatedDocuments(e) {
 function eventHandlerSecTwnRge(e) {
 	var code = e.keyCode || e.which;
      if (code == 13) {
-		addNewLineSecTwnRge()
+		
+		
 		console.log("IN EVENT HANDER: Adding New Line Section Twn Range");
+		
+		addNewLineSecTwnRge()
+		
         return false;
      }
 }
@@ -159,6 +166,15 @@ function addNewInputRelatedDocuments(k) {
     var optionsString = getBookTypeOptions();
 	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '"  required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber' + k + '" value="" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber' + k + '" value="" /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber' + k + '" value="" /></div></div>');
 }
+function decorateSecTwnRange(e){
+	var elements = $(this).parent().parent().find('.sec-twn-rge');
+	$.each(elements, function(){
+		$(this).on('keyup',eventHandlerSecTwnRge);
+	});
+	console.log("DECORATE SECTION TWN RANGE");
+}
+
+
 
 function addNewLineSecTwnRge() {
 	var sec_twn_rge_div = $('#section_township_range_wrapper');
@@ -173,12 +189,13 @@ function addNewLineSecTwnRge() {
 		this.value = this.value.toUpperCase()
 	});
 	console.log("Adding New Line Section Twn Range");
-	setTimeout($(new_item).find('.sec-twn-rge').on('keyup', eventHandlerSecTwnRge), 500000);
-	//$(new_item).find('.sec-twn-rge').on('keyup', eventHandlerSecTwnRge);
+	$(the_input).on('keyup', decorateSecTwnRange);
+	
+	
     return false;
 }
 function addNewInputSecTwnRge(l) {
-	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[' + (l-1) + ']" class="section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[' + (l-1) + ']" class="sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="rangeNumber[' + (l-1) + '] sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[' + (l-1) + ']" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[' + (l-1) + ']" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="sec-twn-rge-metesBounds[' + (l-1) + ']"  class="uppercase popout focusme"  ></div></div>');
+	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[' + (l-1) + ']" class="section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[' + (l-1) + ']" class="sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="rangeNumber[' + (l-1) + '] sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[' + (l-1) + ']" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[' + (l-1) + ']" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="sec-twn-rge-metesBounds[' + (l-1) + ']"  class="uppercase popout focusme sec-twn-rge" /></div></div>');
 }
 //START DOCUMENT READY FUNCTION
 $( document ).ready(function() {
