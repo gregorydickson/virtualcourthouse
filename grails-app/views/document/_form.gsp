@@ -155,7 +155,7 @@
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Acre</label>
-	             <input type="text" name="acre[0]" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/>
+	             <input type="text" name="city-sub-blk-lot-acre[0]" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/>
 	           </div>
 	          <div class="form-paragraph large-3 columns">
 	            <label>Assessor #</label>
@@ -169,38 +169,41 @@
        </div>
      </div>
      <div class="content" id="panel2-3">
-       <div class="tax_map_parcel_wrapper row">
-           <div class="form-paragraph large-3 columns">
-             <label>Dis/Twn</label>
-             <input type="text" size="400" />
-           </div>
-          <div class="form-paragraph large-2 columns">
-            <label>Tax</label>
-            <input type="text" />
-          </div>
-          <div class="form-paragraph large-2 columns">
-            <label>Map</label>
-            <input type="text"  />
-           </div>
-           <div class="form-paragraph large-2 columns">
-             <label>Parcel</label>
-             <input type="text"  />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Acre</label>
-             <input type="text" name="acre[0]" />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Assessor #</label>
-             <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
-           </div>
-          <div class="form-paragraph large-1 columns">
-             
-		  </div>
+       <div id="tax_map_parcel_wrapper">
+		   <div class="a_tax_map_parcel row">
+	           <div class="form-paragraph large-3 columns">
+	             <label>Dis/Twn</label>
+	             <input type="text" size="400" id="district" name="district[0]" class="district uppercase tax-map-parcel"/>
+	           </div>
+	           <div class="form-paragraph large-2 columns">
+	            <label>Tax</label>
+	            <input type="text" name="tax[0]" class="uppercase tax-map-parcel"/>
+	           </div>
+	           <div class="form-paragraph large-2 columns">
+	            <label>Map</label>
+	            <input type="text" name="map[0]" class="uppercase tax-map-parcel" />
+	           </div>
+	           <div class="form-paragraph large-2 columns">
+	             <label>Parcel</label>
+	             <input type="text" name="parcel[0]" class="uppercase tax-map-parcel" />
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Acre</label>
+	             <input type="text" name="tax-map-parcel-acre[0]" id="tax-map-parcel-acre" class="tax-map-parcel"/>
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Assessor #</label>
+	             <input type="text" id="tax-map-parcel-assessorNumber" name="tax-map-parcel-assessorNumber[0]" class="uppercase tax-map-parcel"/>
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+				   <label>Metes & Bounds</label>
+				   <input type="text"  id="tax-map-parcel-metes-bounds" name="tax-map-parcel-metesBounds[0]"  class="uppercase popout tax-map-parcel" />
+			   </div>
+		   </div>
        </div>
      </div>
      <div class="content" id="panel2-4">
-       <div class="survey_wrapper row">
+       <div id="survey_wrapper">
           <div class="form-paragraph large-2 columns">
             <label>Survey</label>
             <input type="text" size="400" />

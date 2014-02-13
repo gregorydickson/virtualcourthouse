@@ -78,7 +78,15 @@ function decorateCtySubBlkLot(){
 	$.each(elements, function(){
 		$(this).on('keyup',eventHandlerCtySubBlkLot);
 	});
-	console.log("DECORATE SECTION TWN RANGE");
+	console.log("DECORATE  City Sub Blk Lot");
+}
+function decorateTaxMapParcel(){
+	var elements = $(this).parent().parent().find('.tax-map-parcel');
+	$.each(elements, function(){
+		$(this).on('keyup',eventHandlerTaxMapParcel);
+	});
+	console.log("DECORATE TAX Map Parcel");
+	
 }
 function eventHandlerCtySubBlkLot(e){
 	var code = e.keyCode || e.which;
@@ -93,6 +101,14 @@ function eventHandlerSecTwnRge(e) {
      if (code == 13) {
 		console.log("IN EVENT HANDER: Adding New Line Section Twn Range");
 		addNewLineSecTwnRge()
+        return false;
+     }
+}
+function eventHandlerTaxMapParcel(e){
+	var code = e.keyCode || e.which;
+     if (code == 13) {
+		console.log("IN EVENT HANDER: Adding New Line TAX MAP PARCEL");
+		addNewLineTaxMapParcel()
         return false;
      }
 }
@@ -128,14 +144,32 @@ function addNewLineSecTwnRge() {
 	$(the_input).on('keyup', decorateSecTwnRange);
     return false;
 }
+function addNewLineTaxMapParcel() {
+	var div = $('#tax_map_parcel_wrapper');
+    var i = $(".district").size() + 1;
+    var new_item = addNewInputTaxMapParcel(i);
+    $(new_item).appendTo(div);
+	var the_input = new_item.find(".district");
+	new_item.find('.popout').popBox();
+    the_input.focus();
+    the_input.select();
+	$(new_item).find('.uppercase').on('keyup', function () {
+		this.value = this.value.toUpperCase()
+	});
+	console.log("Adding New Line TAX MAP PARCEL");
+	$(the_input).on('keyup', decorateTaxMapParcel);
+    return false;
+}
 
-
+function addNewInputTaxMapParcel(i){
+	return $('<div class="a_tax_map_parcel row"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="district[0]" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="tax[0]" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="map[0]" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Parcel</label><input type="text" name="parcel[0]" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="tax-map-parcel-acre[0]" id="tax-map-parcel-acre" class="tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="tax-map-parcel-assessorNumber[0]" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="tax-map-parcel-metesBounds[0]"  class="uppercase popout tax-map-parcel" /></div></div>');
+}
 //TODO: refactor this to just copy the existing DOM row and replace the id numbers
 function addNewInputSecTwnRge(l) {
 	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[' + (l-1) + ']" class="uppercase section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[' + (l-1) + ']" class="uppercase sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="uppercase rangeNumber[' + (l-1) + '] sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[' + (l-1) + ']" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[' + (l-1) + ']" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns metesBounds"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="sec-twn-rge-metesBounds[' + (l-1) + ']"  class="uppercase popout focusme sec-twn-rge" /></div></div>');
 }
 function addNewCitySubBlkLot(i) {
-	return $('<div class="a_city_sub_block_lot row"><div class="form-paragraph large-2 columns"><label>City</label><input type="text" id="city" name="city['+ (i-1) +']" size="400" class="city uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Sub</label><input type="text" size="400" id="sub" name="sub['+ (i-1) +']"class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Block</label><input type="text" size="400" id="block" name="block['+ (i-1) +']" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Lot</label><input type="text" name="lot['+ (i-1) +']" id="lot" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="acre['+ (i-1) +']" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/></div><div class="form-paragraph large-3 columns"><label>Assessor #</label><input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber['+ (i-1) +']" class="uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Metes & Bounds</label><input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds['+ (i-1) +']"  class="uppercase popout city-sub-block-lot" /></div></div>');
+	return $('<div class="a_city_sub_block_lot row"><div class="form-paragraph large-2 columns"><label>City</label><input type="text" id="city" name="city['+ (i-1) +']" size="400" class="city uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Sub</label><input type="text" size="400" id="sub" name="sub['+ (i-1) +']"class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Block</label><input type="text" size="400" id="block" name="block['+ (i-1) +']" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Lot</label><input type="text" name="lot['+ (i-1) +']" id="lot" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="city-sub-blk-lot-acre['+ (i-1) +']" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/></div><div class="form-paragraph large-3 columns"><label>Assessor #</label><input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber['+ (i-1) +']" class="uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Metes & Bounds</label><input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds['+ (i-1) +']"  class="uppercase popout city-sub-block-lot" /></div></div>');
 }
 
 
@@ -235,6 +269,8 @@ $( document ).ready(function() {
 	//Start Legal Description SEC TWN RGE
 	$('.sec-twn-rge').on('keyup', eventHandlerSecTwnRge);
 	//END Legal Description SEC TWN RGE
+	$('.city-sub-block-lot').on('keyup',eventHandlerCtySubBlkLot);	
+	$('.tax-map-parcel').on('keyup',eventHandlerTaxMapParcel);
 	//change fields to uppercase
 	$('.uppercase').keyup(function(){
 	    this.value = this.value.toUpperCase();

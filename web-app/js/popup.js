@@ -66,10 +66,14 @@
 							} 
 							if($(this).parent().parent().parent().hasClass('a_city_sub_block_lot')) {
 								
-								console.log("AddnewSecTwnRge from Popup Box");
+								console.log("New City Sub Block from Popup Box");
 								addNewLineCtySubBlkLot();
 							} 
-							
+							if($(this).parent().parent().parent().hasClass('a_tax_map_parcel')) {
+								
+								console.log("New Tax Map Parcel from Popup Box");
+								addNewLineTaxMapParcel();
+							} 
 							
 						}
                 	});
