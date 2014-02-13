@@ -1,93 +1,3 @@
-(function ($) {
-    $.fn.popBox = function (options) {
-
-        var defaults = {
-            height: 600,
-            width: 600,
-            newlineString: "<br/>"
-        };
-        var options = $.extend(defaults, options);
-
-
-        return this.each(function () {
-
-            obj = $(this);
-
-            var inputName = 'popBoxInput' + obj.attr("Id");
-            var labelValue = $("label[for=" + obj.attr('id') + "]").text();
-
-            obj.after('<div class="popBox-holder"></div><div class="popBox-container"><label style="display: none;" for="' + inputName + '">' + labelValue + '</label> <textarea id="' + inputName + '" name="' + inputName + '" class="popBox-input uppercase" /></div>');
-
-            obj.on('keyup', function (e) {
-				var code = e.keyCode || e.which;
-        		if (code != 9) {
-                	$(this).next(".popBox-holder").show();
-                	var popBoxContainer = $(this).next().next(".popBox-container");
-                	var change = true;
-                	popBoxContainer.children('.popBox-input').css({ height: options.height, width: options.width });
-                	popBoxContainer.show();
-
-	                var winH = $(window).height();
-	                var winW = $(window).width();
-	                var objH = popBoxContainer.height();
-	                var objW = popBoxContainer.width();
-	                var left = (winW / 2) - (objW / 2);
-	                var top = (winH / 2) - (objH / 2);
-
-	                popBoxContainer.css({ position: 'fixed', margin: 0, top: (top > 0 ? top : 0) + 'px', left: (left > 0 ? left : 0) + 'px' });
-					var input = popBoxContainer.children('.popBox-input');
-					//copy the input field to the pop up box
-					input.val($(this).val());
-					//set the cursor to the end of the text
-					var len = input.val().length;
-					input[0].focus();
-					input[0].setSelectionRange(len, len);
-		            
-                	popBoxContainer.children().keyup(function (e) {
-                    	if (e == null) { 
-                        	keycode = event.keyCode;
-                    	} else { 
-                        	keycode = e.which;
-                    	}
-                    	if (keycode == 9 ) { // tab out of box so close and go to next section
-                        	$(this).parent().hide();
-                        	$(this).parent().prev().hide();
-                        	change = true;
-                    	}
-						if (keycode ==13 ) { //return so create a new line in this section
-							console.log("popup detected a return");
-                        	$(this).parent().hide();
-                        	$(this).parent().prev().hide();
-                        	change = true;
-							if(obj.hasClass('sec-twn-rge')) {
-								
-								console.log("AddnewSecTwnRge from Popup Box");
-								addNewLineSecTwnRge();
-							} 
-							
-						}
-                	});
-
-                	popBoxContainer.children().blur(function () {
-
-                    	if (change) {
-							
-                        	$(this).parent().hide();
-                        	$(this).parent().prev().hide();
-                        	$(this).parent().prev().prev().val($(this).val());
-							
-                    	}
-                	});
-				}
-            });
-
-        });
-
-    };
-
-})(jQuery);
-
-
 function eventHandlerGrantor(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {           
@@ -147,6 +57,7 @@ function addNewInputGrantor(i) {
 function addNewInputGrantee(j) {
     return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee" name="grantee"  value="" /> </p>');
 }
+//TODO: refactor this to copy the existing row in the DOM
 function addNewInputRelatedDocuments(k) {
 	//The book type options have to be rendered in the .gsp page as we do not have them in the 
 	// document.js file since this file is not parsed by the server.
@@ -162,26 +73,35 @@ function decorateSecTwnRange(e){
 	});
 	console.log("DECORATE SECTION TWN RANGE");
 }
-
-function eventHandlerSecTwnRge(e) {
+function decorateCtySubBlkLot(){
+	var elements = $(this).parent().parent().find('.city-sub-block-lot');
+	$.each(elements, function(){
+		$(this).on('keyup',eventHandlerCtySubBlkLot);
+	});
+	console.log("DECORATE SECTION TWN RANGE");
+}
+function eventHandlerCtySubBlkLot(e){
 	var code = e.keyCode || e.which;
      if (code == 13) {
-		
-		
-		console.log("IN EVENT HANDER: Adding New Line Section Twn Range");
-		
-		addNewLineSecTwnRge()
-		
+		console.log("IN EVENT HANDER: Adding New Line CITY SUB BLK LOT");
+		addNewLineCtySubBlkLot()
         return false;
      }
 }
-
-function addNewLineSecTwnRge() {
-	var sec_twn_rge_div = $('#section_township_range_wrapper');
-    var l = $(".section").size() + 1;
-    var new_item = addNewInputSecTwnRge(l);
-    $(new_item).appendTo(sec_twn_rge_div);
-	var the_input = new_item.find(".section");
+function eventHandlerSecTwnRge(e) {
+	var code = e.keyCode || e.which;
+     if (code == 13) {
+		console.log("IN EVENT HANDER: Adding New Line Section Twn Range");
+		addNewLineSecTwnRge()
+        return false;
+     }
+}
+function addNewLineCtySubBlkLot(){
+	var div = $('#city_sub_block_lot_wrapper');
+    var l = $(".city").size() + 1;
+    var new_item = addNewCitySubBlkLot(l);
+    $(new_item).appendTo(div);
+	var the_input = new_item.find(".city");
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
@@ -189,29 +109,48 @@ function addNewLineSecTwnRge() {
 		this.value = this.value.toUpperCase()
 	});
 	console.log("Adding New Line Section Twn Range");
+	$(the_input).on('keyup', decorateCtySubBlkLot);
+    return false;
+}
+function addNewLineSecTwnRge() {
+	var div = $('#section_township_range_wrapper');
+    var i = $(".section").size() + 1;
+    var new_item = addNewInputSecTwnRge(i);
+    $(new_item).appendTo(div);
+	var the_input = new_item.find(".section");
+	new_item.find('.popout').popBox();
+    the_input.focus();
+    the_input.select();
+	$(new_item).find('.uppercase').on('keyup', function () {
+		this.value = this.value.toUpperCase()
+	});
+	console.log("Adding New Line CITY SUB BLK LOT");
 	$(the_input).on('keyup', decorateSecTwnRange);
     return false;
 }
+
+
+//TODO: refactor this to just copy the existing DOM row and replace the id numbers
 function addNewInputSecTwnRge(l) {
-	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[' + (l-1) + ']" class="section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[' + (l-1) + ']" class="sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="rangeNumber[' + (l-1) + '] sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[' + (l-1) + ']" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[' + (l-1) + ']" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="sec-twn-rge-metesBounds[' + (l-1) + ']"  class="uppercase popout focusme sec-twn-rge" /></div></div>');
+	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[' + (l-1) + ']" class="uppercase section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[' + (l-1) + ']" class="uppercase sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="uppercase rangeNumber[' + (l-1) + '] sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[' + (l-1) + ']" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[' + (l-1) + ']" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns metesBounds"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="sec-twn-rge-metesBounds[' + (l-1) + ']"  class="uppercase popout focusme sec-twn-rge" /></div></div>');
 }
+function addNewCitySubBlkLot(i) {
+	return $('<div class="a_city_sub_block_lot row"><div class="form-paragraph large-2 columns"><label>City</label><input type="text" id="city" name="city['+ (i-1) +']" size="400" class="city uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Sub</label><input type="text" size="400" id="sub" name="sub['+ (i-1) +']"class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Block</label><input type="text" size="400" id="block" name="block['+ (i-1) +']" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Lot</label><input type="text" name="lot['+ (i-1) +']" id="lot" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="acre['+ (i-1) +']" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/></div><div class="form-paragraph large-3 columns"><label>Assessor #</label><input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber['+ (i-1) +']" class="uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Metes & Bounds</label><input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds['+ (i-1) +']"  class="uppercase popout city-sub-block-lot" /></div></div>');
+}
+
+
+
 //START DOCUMENT READY FUNCTION
 $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
-	$(document).foundation('reveal',{	
-	    opened: function(){
-	       $(this).find(".focusme").first().focus();
-	    },
-		closed: function(){
-			
-		}
-	});
+	
 	//setup all the typeahead dropdowns with chosen.js
 	$(".chosen-select").chosen();
-	//make the first drop down have focus using chosen.js message
+	//make the first field have focus using chosen.js message
 	$("#BookType").trigger('chosen:activate');
-	$("#MetesBoundsTextArea1").popBox();
+	//setup certain fields to pop up a textbox for input
+	$(".popout").popBox();
 	// START - SAVE DOCUMENT VIA AJAX WITH JSON
 	$.key('ctrl+j', function(){
 		console.log('ajaxit');
@@ -268,7 +207,9 @@ $( document ).ready(function() {
         }
     });
 	//end handle grantees
-	//create new related documents fileds dynamically
+	/** create new related documents lines dynamically
+		by registering an event on the instrument number 
+	line to capture a return event and create a new line			*/
     $('#relatedDocumentInstrumentNumber1').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {

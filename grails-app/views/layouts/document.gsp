@@ -21,7 +21,7 @@
 
 		<r:layoutResources />
 		
-		
+		<%-- 3rd Party Javascript --%>
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="foundation.js"/>
 		<g:javascript src="foundation.abide.js"/>
@@ -29,12 +29,15 @@
 		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="chosen.jquery.js"/>
 		<g:javascript src="jquery.key.js"/>
+		
+		<%-- Application Javascript --%>
 		<script>
 		function getBookTypeOptions(){
 			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
 			return returnString;
 		}
 		</script>
+		<g:javascript src="popup.js"/>
 		<g:javascript src="document.js"/>
 	</body>
 </html>

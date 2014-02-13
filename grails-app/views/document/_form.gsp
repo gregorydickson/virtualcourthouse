@@ -126,43 +126,46 @@
 	            <label>Assessor #</label>
 	            <input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[0]" class="uppercase  sec-twn-rge"/>
 	          </div>
-	          <div class="form-paragraph large-1 columns">
+	          <div class="form-paragraph large-1 columns metesBounds">
 	             <label>Metes & Bounds</label>
-				 	<input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout sec-twn-rge" />
+				 	<input type="text"  id="sec-twn-rge-metesBounds" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout sec-twn-rge" />
 	          </div>
 		  </div>
 	    </div>
      </div>
      
 	<div class="content" id="panel2-2">
-       <div class="city_sub_block_lot_wrapper row">
-          <div class="form-paragraph large-2 columns">
-            <label>City</label>
-            <input type="text" name="city[0]" size="400" class="uppercase city-sub-block-lot"/>
-          </div>
-          <div class="form-paragraph large-2 columns">
-            <label>Sub</label>
-            <input type="text" size="400" name="sub[0]"class="uppercase city-sub-block-lot" />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Block</label>
-             <input type="text" size="400" name="block[0]" class="uppercase city-sub-block-lot" />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Lot</label>
-             <input type="text" name="lot[0]" class="uppercase city-sub-block-lot" />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Acre</label>
-             <input type="text" name="acre[0]" class="uppercase city-sub-block-lot"/>
-           </div>
-          <div class="form-paragraph large-3 columns">
-            <label>Assessor #</label>
-            <input type="text" id="assessorNumber" name="city-sub-block-lot-assessorNumber[0]" class="uppercase city-sub-block-lot"/>
-          </div>
-          <div class="form-paragraph large-2 columns">
-             
-          </div>
+       <div id="city_sub_block_lot_wrapper">
+		   <div class="a_city_sub_block_lot row">
+	          <div class="form-paragraph large-2 columns">
+	            <label>City</label>
+	            <input type="text" id="city" name="city[0]" size="400" class="city uppercase city-sub-block-lot"/>
+	          </div>
+	          <div class="form-paragraph large-2 columns">
+	            <label>Sub</label>
+	            <input type="text" size="400" id="sub" name="sub[0]"class="uppercase city-sub-block-lot" />
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Block</label>
+	             <input type="text" size="400" id="block" name="block[0]" class="uppercase city-sub-block-lot" />
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Lot</label>
+	             <input type="text" name="lot[0]" id="lot" class="uppercase city-sub-block-lot" />
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Acre</label>
+	             <input type="text" name="acre[0]" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/>
+	           </div>
+	          <div class="form-paragraph large-3 columns">
+	            <label>Assessor #</label>
+	            <input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber[0]" class="uppercase city-sub-block-lot"/>
+	          </div>
+	          <div class="form-paragraph large-2 columns">
+	             <label>Metes & Bounds</label>
+				 	<input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds[0]"  class="uppercase popout city-sub-block-lot" />
+	          </div>
+		   </div>
        </div>
      </div>
      <div class="content" id="panel2-3">
@@ -192,8 +195,8 @@
              <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
            </div>
           <div class="form-paragraph large-1 columns">
-             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
-		</div>
+             
+		  </div>
        </div>
      </div>
      <div class="content" id="panel2-4">
@@ -277,7 +280,7 @@
 <div class="notes row">
 	<a href="#" data-reveal-id="notes" data-reveal tabindex><h6>NOTES</h6></a>
 	<div class="large-12 columns panel">
-		 <div id="notes" class="reveal-modal" data-reveal>
+		 <div id="notes" class="" >
 			 <h6>NOTES</h6>
 			 <textarea  id="" name="notes"  class="uppercase popout"  ></textarea>
 		 </div>
