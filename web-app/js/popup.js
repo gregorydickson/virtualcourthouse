@@ -74,7 +74,11 @@
 								console.log("New Tax Map Parcel from Popup Box");
 								addNewLineTaxMapParcel();
 							} 
-							
+							if($(this).parent().parent().parent().hasClass('a_survey_abstract')) {
+								
+								console.log("New Survey Abstract from Popup Box");
+								addNewLineSurveyAbstract();
+							} 
 						}
                 	});
 

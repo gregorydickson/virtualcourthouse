@@ -203,38 +203,41 @@
        </div>
      </div>
      <div class="content" id="panel2-4">
-       <div id="survey_wrapper">
-          <div class="form-paragraph large-2 columns">
-            <label>Survey</label>
-            <input type="text" size="400" />
-          </div>
-          <div class="form-paragraph large-1 columns">
-            <label>Abstract</label>
-            <input type="text" />
-          </div>
-          <div class="form-paragraph large-2 columns">
-            <label>Block</label>
-            <input type="text"  />
-           </div>
-           <div class="form-paragraph large-2 columns">
-             <label>Lot</label>
-             <input type="text"  />
-           </div>
-           <div class="form-paragraph large-2 columns">
-             <label>Sec</label>
-             <input type="text"  />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Acre</label>
-             <input type="text" name="acre[0]" />
-           </div>
-           <div class="form-paragraph large-1 columns">
-             <label>Assessor #</label>
-             <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
-           </div>
-          <div class="form-paragraph large-1 columns">
-             <a href="#" data-reveal-id="MetesBounds1" data-reveal tabindex><label>Metes & Bounds</label></a>
-		</div>
+       <div id="survey_abstract_wrapper">
+		   <div class="a_survey_abstract row">
+	          <div class="form-paragraph large-2 columns">
+	            <label>Survey</label>
+	            <input type="text" size="400" name="survey[0]" class="survey uppercase survey-abstract"/>
+	          </div>
+	          <div class="form-paragraph large-1 columns">
+	            <label>Abstract</label>
+	            <input type="text" name="abstract[0]" class="uppercase survey-abstract"/>
+	          </div>
+	          <div class="form-paragraph large-2 columns">
+	            <label>Block</label>
+	            <input type="text" name="survey-abstract-block[0]" class="uppercase survey-abstract" />
+	           </div>
+	           <div class="form-paragraph large-2 columns">
+	             <label>Lot</label>
+	             <input type="text" name="survey-abstract-lot[0]" class="uppercase survey-abstract" />
+	           </div>
+	           <div class="form-paragraph large-2 columns">
+	             <label>Sec</label>
+	             <input type="text" name="survey-abstract-section[0]" class="uppercase survey-abstract" />
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Acre</label>
+	             <input type="text" name="survey-abstract-acre[0]" id="survey-abstract-acre" class="uppercase survey-abstract"/>
+	           </div>
+	           <div class="form-paragraph large-1 columns">
+	             <label>Assessor #</label>
+	             <input type="text" name="survey-abstract-assessorNumber[0]" class="uppercase survey-abstract"/>
+	           </div>
+	          <div class="form-paragraph large-1 columns">
+				  <label>Metes & Bounds</label>
+	             <input type="text"  id="survey-abstract-metes-bounds" name="survey-abstract-metesBounds[0]"  class="uppercase popout survey-abstract" />
+			  </div>
+		  </div>
        </div>
      </div>
    </div>

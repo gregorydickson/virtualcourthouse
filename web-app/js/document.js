@@ -86,7 +86,21 @@ function decorateTaxMapParcel(){
 		$(this).on('keyup',eventHandlerTaxMapParcel);
 	});
 	console.log("DECORATE TAX Map Parcel");
-	
+}
+function decorateSurveyAbstract(){
+	var elements = $(this).parent().parent().find('.survey-abstract');
+	$.each(elements, function(){
+		$(this).on('keyup',eventHandlerSurveyAbstract);
+	});
+	console.log("DECORATE Survey Abstract");
+}
+function eventHandlerSurveyAbstract(e){
+	var code = e.keyCode || e.which;
+     if (code == 13) {
+		console.log("IN EVENT HANDER: Survey Abstract");
+		addNewLineSurveyAbstract()
+        return false;
+     }
 }
 function eventHandlerCtySubBlkLot(e){
 	var code = e.keyCode || e.which;
@@ -160,9 +174,27 @@ function addNewLineTaxMapParcel() {
 	$(the_input).on('keyup', decorateTaxMapParcel);
     return false;
 }
-
+function addNewLineSurveyAbstract(){
+	var div = $('#survey_abstract_wrapper');
+    var i = $(".survey").size() + 1;
+    var new_item = addNewInputSurveyAbstract(i);
+    $(new_item).appendTo(div);
+	var the_input = new_item.find(".survey");
+	new_item.find('.popout').popBox();
+    the_input.focus();
+    the_input.select();
+	$(new_item).find('.uppercase').on('keyup', function () {
+		this.value = this.value.toUpperCase()
+	});
+	console.log("Adding New Line Survey Abstract");
+	$(the_input).on('keyup', decorateSurveyAbstract);
+    return false;
+}
+function addNewInputSurveyAbstract(i){
+	return $('<div class="a_survey_abstract row"><div class="form-paragraph large-2 columns"><label>Survey</label><input type="text" size="400" name="survey[' + (i-1) + ']" class="survey uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Abstract</label><input type="text" name="abstract[' + (i-1) + ']" class="uppercase survey-abstract"/></div><div class="form-paragraph large-2 columns"><label>Block</label><input type="text" name="survey-abstract-block[' + (i-1) + ']" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Lot</label><input type="text" name="survey-abstract-lot[' + (i-1) + ']" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Sec</label><input type="text" name="survey-abstract-section[' + (i-1) + ']" class="uppercase survey-abstract" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="survey-abstract-acre[' + (i-1) + ']" id="survey-abstract-acre" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" name="survey-abstract-assessorNumber[' + (i-1) + ']" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="survey-abstract-metes-bounds" name="survey-abstract-metesBounds[0]"  class="uppercase popout survey-abstract" /></div></div>');
+}
 function addNewInputTaxMapParcel(i){
-	return $('<div class="a_tax_map_parcel row"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="district[0]" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="tax[0]" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="map[0]" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Parcel</label><input type="text" name="parcel[0]" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="tax-map-parcel-acre[0]" id="tax-map-parcel-acre" class="tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="tax-map-parcel-assessorNumber[0]" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="tax-map-parcel-metesBounds[0]"  class="uppercase popout tax-map-parcel" /></div></div>');
+	return $('<div class="a_tax_map_parcel row"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="district[' + (i-1) + ']" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="tax[' + (i-1) + ']" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="map[' + (i-1) + ']" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Parcel</label><input type="text" name="parcel[' + (i-1) + ']" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="tax-map-parcel-acre[' + (i-1) + ']" id="tax-map-parcel-acre" class="tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="tax-map-parcel-assessorNumber[' + (i-1) + ']" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="tax-map-parcel-metesBounds[' + (i-1) + ']"  class="uppercase popout tax-map-parcel" /></div></div>');
 }
 //TODO: refactor this to just copy the existing DOM row and replace the id numbers
 function addNewInputSecTwnRge(l) {
@@ -266,11 +298,11 @@ $( document ).ready(function() {
         }
     });
 	//end handle related documents
-	//Start Legal Description SEC TWN RGE
+	//
 	$('.sec-twn-rge').on('keyup', eventHandlerSecTwnRge);
-	//END Legal Description SEC TWN RGE
 	$('.city-sub-block-lot').on('keyup',eventHandlerCtySubBlkLot);	
 	$('.tax-map-parcel').on('keyup',eventHandlerTaxMapParcel);
+	$('.survey-abstract').on('keyup',eventHandlerSurveyAbstract);
 	//change fields to uppercase
 	$('.uppercase').keyup(function(){
 	    this.value = this.value.toUpperCase();
