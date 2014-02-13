@@ -100,7 +100,7 @@
 		  <div class="a_section_township_range row">
 	          <div class="form-paragraph large-2 columns">
 	            <label>SECTION</label>
-	            <input type="text" id="section" name="section[0]" class="section sec-twn-rge" size="400" />
+	            <input type="text" id="section" name="section[0]" class="section uppercase sec-twn-rge" size="400" />
 	          </div>
 			  <div class="form-paragraph large-1 columns">
 				<label>TOWNSHIP #</label>
@@ -108,7 +108,7 @@
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>TOWNSHIP DIRECTION</label>
-	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase township sec-twn-rge"/>
+	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase sec-twn-rge"/>
 			  </div>
 			  <div class="form-paragraph large-2 columns">
 				<label>Range Number</label>
@@ -116,7 +116,7 @@
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	             <label>RANGE DIRECTION</label>
-	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase range sec-twn-rge"/>
+	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase  sec-twn-rge"/>
 			  </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Acre</label>
@@ -124,11 +124,11 @@
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Assessor #</label>
-	            <input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[0]" class="uppercase township sec-twn-rge"/>
+	            <input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[0]" class="uppercase  sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	             <label>Metes & Bounds</label>
-				 	<input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout sec-twn-rge"  >
+				 	<input type="text"  id="MetesBoundsTextArea1" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout sec-twn-rge" />
 	          </div>
 		  </div>
 	    </div>
@@ -138,30 +138,30 @@
        <div class="city_sub_block_lot_wrapper row">
           <div class="form-paragraph large-2 columns">
             <label>City</label>
-            <input type="text" name="city[0]" size="400"/>
+            <input type="text" name="city[0]" size="400" class="uppercase city-sub-block-lot"/>
           </div>
           <div class="form-paragraph large-2 columns">
             <label>Sub</label>
-            <input type="text" size="400" />
+            <input type="text" size="400" name="sub[0]"class="uppercase city-sub-block-lot" />
            </div>
            <div class="form-paragraph large-1 columns">
              <label>Block</label>
-             <input type="text" size="400" />
+             <input type="text" size="400" name="block[0]" class="uppercase city-sub-block-lot" />
            </div>
            <div class="form-paragraph large-1 columns">
              <label>Lot</label>
-             <input type="text"  />
+             <input type="text" name="lot[0]" class="uppercase city-sub-block-lot" />
            </div>
            <div class="form-paragraph large-1 columns">
              <label>Acre</label>
-             <input type="text" name="acre[0]" />
+             <input type="text" name="acre[0]" class="uppercase city-sub-block-lot"/>
            </div>
           <div class="form-paragraph large-3 columns">
             <label>Assessor #</label>
-            <input type="text" id="assessorNumber" name="assessorNumber[0]" class="township"/>
+            <input type="text" id="assessorNumber" name="city-sub-block-lot-assessorNumber[0]" class="uppercase city-sub-block-lot"/>
           </div>
           <div class="form-paragraph large-2 columns">
-             <a href="#" data-reveal-id="MetesBounds1" data-reveal><label>Metes & Bounds</label></a>
+             
           </div>
        </div>
      </div>

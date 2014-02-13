@@ -140,18 +140,7 @@ function eventHandlerRelatedDocuments(e) {
     }
 }
 
-function eventHandlerSecTwnRge(e) {
-	var code = e.keyCode || e.which;
-     if (code == 13) {
-		
-		
-		console.log("IN EVENT HANDER: Adding New Line Section Twn Range");
-		
-		addNewLineSecTwnRge()
-		
-        return false;
-     }
-}
+
 function addNewInputGrantor(i) {
     return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor" name="grantor" value="" /> </p>');
 }
@@ -174,7 +163,18 @@ function decorateSecTwnRange(e){
 	console.log("DECORATE SECTION TWN RANGE");
 }
 
-
+function eventHandlerSecTwnRge(e) {
+	var code = e.keyCode || e.which;
+     if (code == 13) {
+		
+		
+		console.log("IN EVENT HANDER: Adding New Line Section Twn Range");
+		
+		addNewLineSecTwnRge()
+		
+        return false;
+     }
+}
 
 function addNewLineSecTwnRge() {
 	var sec_twn_rge_div = $('#section_township_range_wrapper');
@@ -190,8 +190,6 @@ function addNewLineSecTwnRge() {
 	});
 	console.log("Adding New Line Section Twn Range");
 	$(the_input).on('keyup', decorateSecTwnRange);
-	
-	
     return false;
 }
 function addNewInputSecTwnRge(l) {
