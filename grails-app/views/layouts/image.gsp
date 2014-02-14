@@ -5,11 +5,10 @@
 		<meta charset="utf-8">
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.iviewer.css')}" type="text/css">
+
 		<g:layoutHead/>
-		<g:javascript src="modernizr.js"/>
+
 		
 		<r:layoutResources />
 	</head>
@@ -22,7 +21,7 @@
 		
 		<%-- 3rd Party Javascript --%>
 		<g:javascript src="jquery.js"/>
-		<g:javascript src="foundation.js"/>
+
 		<g:javascript src="jquery.ui.core.js"/>
 		<g:javascript src="jquery.ui.widget.js"/>
 		<g:javascript src="jquery.ui.mouse.js"/>
@@ -30,7 +29,30 @@
 
 		
 		<%-- Application Javascript --%>
+		<script>
+        var $ = jQuery;
+        $(document).ready(function(){
 
+
+              var iv1 = $('#viewer').iviewer({
+                   src: '${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}',
+                   update_on_resize: false,
+                   zoom_animation: true,
+                   mousewheel: true,
+                   onMouseMove: function(ev, coords) { },
+                   onStartDrag: function(ev, coords) {  }, //this image will not be dragged
+                   onDrag: function(ev, coords) { }
+              });
+
+               $("#in").click(function(){ iv1.iviewer('zoom_by', 1); });
+               $("#out").click(function(){ iv1.iviewer('zoom_by', -1); });
+               $("#fit").click(function(){ iv1.iviewer('fit'); });
+               $("#orig").click(function(){ iv1.iviewer('set_zoom', 100); });
+               $("#update").click(function(){ iv1.iviewer('update_container_info'); });
+
+         
+        });
+		</script>
 
 	</body>
 </html>

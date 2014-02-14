@@ -22,10 +22,9 @@ class ImageController {
 
 	      def image_record = Image.get( params.id )
 	      byte[] an_image = image_record.image 
-		  //response.setHeader('Content-length', an_image.length)
-		  response.contentType = 'image/tiff' // or the appropriate image content type
+		  response.contentType = 'image/png' 
 		  response.outputStream << an_image
-		  //response.outputStream.flush()
+
 	} 
     def create() {
         respond new Image(params)
