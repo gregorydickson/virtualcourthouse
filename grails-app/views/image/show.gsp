@@ -14,13 +14,7 @@
 			<ol class="property-list image">
 			
 				<g:if test="${imageInstance?.image}">
-					<span>
-		                <a id="in" href="#">+</a>
-		                <a id="out" href="#">-</a>
-		                <a id="fit" href="#">fit</a>
-		                <a id="orig" href="#">orig</a>
-		                <a id="update" href="#">update</a>
-				    </span>
+
 					<div id="viewer" class="viewer"></div>
 
 				</g:if>
