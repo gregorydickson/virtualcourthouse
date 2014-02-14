@@ -312,7 +312,7 @@
 	         	   ${images*.toString()}
 			   </td>
 			   <td>
-				   <g:link action="show" id="${images.id}" target="_blank">VIEW</g:link>
+				   <g:link action="show" controller="image" id="${images.id}" target="_blank">VIEW</g:link>
 			   </td>
 			   <td>
 				   <input type="checkbox" />
