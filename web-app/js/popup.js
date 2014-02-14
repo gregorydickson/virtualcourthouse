@@ -83,13 +83,10 @@
                 	});
 
                 	popBoxContainer.children().blur(function () {
-
                     	if (change) {
-							
                         	$(this).parent().hide();
                         	$(this).parent().prev().hide();
                         	$(this).parent().prev().prev().val($(this).val());
-							
                     	}
                 	});
 				}

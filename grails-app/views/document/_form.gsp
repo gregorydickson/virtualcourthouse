@@ -1,6 +1,5 @@
 <%@ page import="net.rcenergy.Document" %>
 <div class="top row">
-
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
 		<select id="BookType" name="BookType.id" required="" class="chosen-select" >
@@ -75,17 +74,14 @@
 </div>
 
 <div class="row">
-	<div class="large-2 columns">
+	<div class="large-5 columns">
 		LEGAL DESCRIPTION
 	</div>
-	<div class="large-2 columns">
-	ROWS:
-	</div>
-	<div class="large-8 columns totalAcres">
+	<div class="large-7 columns totalAcres">
 			 TOTAL ACRES:
 	</div>
 </div>
-<div class="legal-description panel">
+<div class="legal-description row">
 	
    <dl class="tabs" data-tab>
      <dd class="active"><a href="#panel2-1">Sec/Twn/Rge</a></dd>

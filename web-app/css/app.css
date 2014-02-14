@@ -2,6 +2,8 @@
   max-width: 120rem;
   margin-left: -1rem;
   margin-right: -3rem;
+  padding-bottom: -1rem;
+  margin-bottom:-1rem;
 }
 .top {
 	margin-top: .5rem;
@@ -14,12 +16,18 @@
 .form-paragraph {
 	margin-bottom: -1rem;
 }
+.panel {
+    margin-bottom: 1.1rem;
+    padding: 1.1rem;
+}
 h6 {
 	margin-top: 0.1rem;
   	margin-bottom: 0.1rem;
   	line-height: .8;
 }
-.grantor-grantee .panel { max-height: 120px; overflow-y: scroll; }
+.grantor-grantee .panel { 
+	max-height: 120px; 
+	overflow-y: scroll; }
 .related-documents .panel { 
 		min-height: 120px;
 		max-height: 200px;
@@ -28,7 +36,8 @@ h6 {
 		min-height: 120px;
 		max-height: 200px;
 		overflow-y: scroll; }
-
+	    .tabs dd.active a {
+	      background: #C4BFE3; }
 .popBox-holder 
 {
     display:none;
