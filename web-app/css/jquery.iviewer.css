@@ -1,3 +1,16 @@
+.viewer
+ {
+     width: 100%;
+     height: 2000px;
+     border: 1px solid black;
+     position: relative;
+ }
+
+ .wrapper
+ {
+     overflow: hidden;
+ }
+
 .viewer {
     -ms-touch-action: none;
 
@@ -5,7 +18,7 @@
 
 .iviewer_common {
     position:absolute;
-    bottom:200px;
+    bottom:700px;
     border: 1px  solid #000;
     height: 28px;
     z-index: 5000;

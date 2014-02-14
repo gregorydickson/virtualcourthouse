@@ -35,20 +35,18 @@
 
 
               var iv1 = $('#viewer').iviewer({
-                   src: '${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}',
-                   update_on_resize: false,
-                   zoom_animation: true,
-                   mousewheel: true,
-                   onMouseMove: function(ev, coords) { },
-                   onStartDrag: function(ev, coords) {  }, //this image will not be dragged
-                   onDrag: function(ev, coords) { }
+                   src: '${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}'
+                   
               });
-
-               $("#in").click(function(){ iv1.iviewer('zoom_by', 1); });
-               $("#out").click(function(){ iv1.iviewer('zoom_by', -1); });
-               $("#fit").click(function(){ iv1.iviewer('fit'); });
-               $("#orig").click(function(){ iv1.iviewer('set_zoom', 100); });
-               $("#update").click(function(){ iv1.iviewer('update_container_info'); });
+			  
+			 
+			  //$('#viewer').iviewer('center');
+			  
+              $("#in").click(function(){ iv1.iviewer('zoom_by', 1); });
+              $("#out").click(function(){ iv1.iviewer('zoom_by', -1); });
+              $("#fit").click(function(){ iv1.iviewer('fit'); });
+              $("#orig").click(function(){ iv1.iviewer('set_zoom', 100); });
+              $("#update").click(function(){ iv1.iviewer('update_container_info'); });
 
          
         });

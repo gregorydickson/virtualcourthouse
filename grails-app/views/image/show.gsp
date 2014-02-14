@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		
-		<div id="show-image" class="content scaffold-show" role="main">
+		<div id="show-image wrapper" class="content scaffold-show" role="main">
 	
 			<ol class="property-list image">
 			
