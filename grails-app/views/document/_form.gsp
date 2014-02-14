@@ -73,12 +73,15 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row panel">
 	<div class="large-5 columns">
 		LEGAL DESCRIPTION
 	</div>
-	<div class="large-7 columns totalAcres">
+	<div class="large-2 columns">
 			 TOTAL ACRES:
+	</div>
+	<div class="large-5 columns" id="acresTotal">
+		
 	</div>
 </div>
 <div class="legal-description row">
@@ -89,7 +92,7 @@
      <dd><a href="#panel2-3" >Tax/Map/Parcel</a></dd>
      <dd><a href="#panel2-4" >Survey/Abstract</a></dd>
    </dl>
-   <div class="tabs-content">
+   <div class="tabs-content legal-description-tab-content ">
 	
      <div class="content active" id="panel2-1">
         <div id="section_township_range_wrapper">
@@ -249,7 +252,7 @@
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
-					<select id="relatedDocumentBookType1" required="" class="relatedDocumentBookType chosen-select" >
+					<select id="relatedDocumentBookType1" name="related-documents-book-type[0]" required="" class="related-documents relatedDocumentBookType chosen-select" >
 						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 					        <option value="${BookType.id}" > ${BookType.bookType}</option>
 					    </g:each>
@@ -257,15 +260,15 @@
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Book Number</label>
-					<input class="related-documents-book-number" type="text" id="parentDocument1" value="" />
+					<input class="related-documents" name="related-documents-book-number[0]" type="text" />
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Page #</label>
-					<input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber1" value="" />
+					<input class="related-documents" name="related-documents-page-number[0]" type="text"   />
 				</div>
 				<div class="form-paragraph large-6 columns">
 					<label>Instrument #</label>
-					<input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber1" value="" />
+					<input class="related-documents" name="related-documents-instrument-number[0]" type="text"  />
 				</div>
 			</div>
 		</div>

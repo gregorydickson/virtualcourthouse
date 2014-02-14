@@ -1,3 +1,18 @@
+function sumAcres(){
+	var acres = $(".acre");
+	var num = new Number();
+	var string;
+	$.each(acres, function(){
+		if($(this).val() != "")
+		{
+			num = num + parseInt($(this).val(),10);
+		}
+	});
+	string = num.toString();
+	string = string.replace(/^0+/, '');
+	$('#acresTotal').text(string);
+}
+
 function eventHandlerGrantor(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {           
@@ -64,7 +79,7 @@ function addNewInputRelatedDocuments(k) {
 	// This function call grabs them from a function in the create.gsp file so we can add them
 	// to a related documents new line select field.
     var optionsString = getBookTypeOptions();
-	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '"  required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents-book-number" type="text" id="relatedDocumentBookNumber' + k + '" value="" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents-page-number" type="text" id="relatedDocumentPageNumber' + k + '" value="" /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents-instrument-number" type="text" id="relatedDocumentInstrumentNumber' + k + '" value="" /></div></div>');
+	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '" name="related-documents-book-type[' + (k-1) + ']" required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="related-documents-book-number[' + (k-1) + ']" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="related-documents-page-number[' + (k-1) + ']" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="related-documents-instrument-number[' + (k-1) + ']" type="text"  /></div></div>');
 }
 function decorateSecTwnRange(e){
 	var elements = $(this).parent().parent().find('.sec-twn-rge');
@@ -135,6 +150,7 @@ function addNewLineCtySubBlkLot(){
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
+	$(new_item).find('.acre').on('blur',sumAcres);
 	$(new_item).find('.uppercase').on('keyup', function () {
 		this.value = this.value.toUpperCase()
 	});
@@ -151,6 +167,7 @@ function addNewLineSecTwnRge() {
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
+	$(new_item).find('.acre').on('blur',sumAcres);
 	$(new_item).find('.uppercase').on('keyup', function () {
 		this.value = this.value.toUpperCase()
 	});
@@ -167,6 +184,7 @@ function addNewLineTaxMapParcel() {
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
+	$(new_item).find('.acre').on('blur',sumAcres);
 	$(new_item).find('.uppercase').on('keyup', function () {
 		this.value = this.value.toUpperCase()
 	});
@@ -183,6 +201,7 @@ function addNewLineSurveyAbstract(){
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
+	$(new_item).find('.acre').on('blur',sumAcres);
 	$(new_item).find('.uppercase').on('keyup', function () {
 		this.value = this.value.toUpperCase()
 	});
@@ -276,13 +295,13 @@ $( document ).ready(function() {
 	/** create new related documents lines dynamically
 		by registering an event on the instrument number 
 	line to capture a return event and create a new line			*/
-    $('#relatedDocumentInstrumentNumber1').on('keyup', function (e) {
+    $('.related-documents').on('keyup', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
 			var related_documents_div = $('#related_documents_wrapper');
 		    var k = $(".relatedDocumentBookType").size() + 1;
             var new_item = addNewInputRelatedDocuments(k);
-            $(new_item).on('keyup', eventHandlerRelatedDocuments);
+            $(new_item).find('.related-documents').on('keyup', eventHandlerRelatedDocuments);
             $(new_item).appendTo(related_documents_div);
 			$(".chosen-select").chosen();
 			var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + k;
@@ -303,6 +322,7 @@ $( document ).ready(function() {
 	$('.city-sub-block-lot').on('keyup',eventHandlerCtySubBlkLot);	
 	$('.tax-map-parcel').on('keyup',eventHandlerTaxMapParcel);
 	$('.survey-abstract').on('keyup',eventHandlerSurveyAbstract);
+	$('.acre').on('blur',sumAcres);
 	//change fields to uppercase
 	$('.uppercase').keyup(function(){
 	    this.value = this.value.toUpperCase();

@@ -1,3 +1,6 @@
+body {
+  background: #DADCE8;
+}
 .row {
   max-width: 120rem;
   margin-left: -1rem;
@@ -27,17 +30,21 @@ h6 {
 }
 .grantor-grantee .panel { 
 	max-height: 120px; 
-	overflow-y: scroll; }
+	overflow-y: scroll; 
+}
 .related-documents .panel { 
 		min-height: 120px;
 		max-height: 200px;
-		overflow-y: scroll; }
-.legal-description  { 
-		min-height: 120px;
-		max-height: 200px;
-		overflow-y: scroll; }
-	    .tabs dd.active a {
-	      background: #C4BFE3; }
+		overflow-y: scroll; 
+}
+.legal-description-tab-content  { 
+		min-height: 150px;
+		max-height: 250px;
+		overflow-y: scroll;
+}
+.tabs dd.active a {
+	    background: #C4BFE3; 
+}
 .popBox-holder 
 {
     display:none;
