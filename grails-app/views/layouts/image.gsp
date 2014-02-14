@@ -23,8 +23,9 @@
 		<%-- 3rd Party Javascript --%>
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="foundation.js"/>
-		<g:javascript src="jqueryui.js"/>
-		<g:javascript src="jquery.mouse.js"/>
+		<g:javascript src="jquery.ui.core.js"/>
+		<g:javascript src="jquery.ui.widget.js"/>
+		<g:javascript src="jquery.ui.mouse.js"/>
 		<g:javascript src="jquery.iviewer.js"/>
 
 		

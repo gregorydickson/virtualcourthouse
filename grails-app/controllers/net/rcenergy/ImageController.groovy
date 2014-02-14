@@ -18,7 +18,15 @@ class ImageController {
     def show(Image imageInstance) {
         respond imageInstance
     }
+	def viewImage (){
 
+	      def image_record = Image.get( params.id )
+	      byte[] an_image = image_record.image 
+		  //response.setHeader('Content-length', an_image.length)
+		  response.contentType = 'image/tiff' // or the appropriate image content type
+		  response.outputStream << an_image
+		  //response.outputStream.flush()
+	} 
     def create() {
         respond new Image(params)
     }

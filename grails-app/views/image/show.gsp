@@ -26,7 +26,7 @@
 				<g:if test="${imageInstance?.image}">
 				<li class="fieldcontain">
 					<span id="image-label" class="property-label"><g:message code="image.image.label" default="Image" /></span>
-					
+					<img src="${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}" />
 				</li>
 				</g:if>
 			
