@@ -42,6 +42,14 @@ h6 {
 		max-height: 250px;
 		overflow-y: scroll;
 }
+.images-content  { 
+		min-height: 250px;
+		max-height: 250px;
+		overflow-y: scroll;
+}
+.selected {
+    background: #33CCCC !important;
+}
 .tabs dd.active a {
 	    background: #C4BFE3; 
 }

@@ -293,8 +293,8 @@
 </div>
 <div class="images row">
 	<h6>IMAGES</h6>
-	<div class="large-12 columns">
-		<table>
+	<div class="large-12 columns images-content">
+		<table class="">
 			<thead>
 			    <tr>
 			      <th width="400">FILENAME</th>
@@ -307,12 +307,12 @@
 				 
 					 
     	<g:each var="images" in="${net.rcenergy.Image.list()}">
-			<tr>
+			<tr class="data-row">
 				<td>
 	         	   ${images*.toString()}
 			   </td>
 			   <td>
-				   <g:link action="show" controller="image" id="${images.id}" target="_blank">VIEW</g:link>
+				   <g:link action="show" controller="image" id="${images.id}" target="imageWindow">VIEW</g:link>
 			   </td>
 			   <td>
 				   <input type="checkbox" />

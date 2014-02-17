@@ -258,6 +258,37 @@ $( document ).ready(function() {
 	});
 	// END - SAVE DOCUMENT VIA AJAX WITH JSON
 	
+	//Navigate the images table with arrow keys
+	var rows = $('.data-row');
+	var mapKeysToNavigationStrings = {
+	    38: 'up-arrow',
+	    40: 'down-arrow',
+	    37: 'left-arrow',
+	    39: 'right-arrow'
+	};
+	$(document).on('keyup', function (e) {
+		console.log("working");
+		var direction = mapKeysToNavigationStrings[e.which];
+		var active = $('.selected');
+		var index = rows.index(active);
+		if(e.ctrlKey==1){
+			switch(direction) {
+			case 'down-arrow':
+				console.log("goin downtown");
+				var newActiveRowIndex = (index + 1);
+				rows.removeClass('selected').eq(newActiveRowIndex).addClass('selected');
+				//TODO: open the image for the newly selected row
+				break;
+            
+			case 'up-arrow':
+				console.log("goin up");
+				var newActiveRowIndex = (index - 1);
+				rows.removeClass('selected').eq(newActiveRowIndex).addClass('selected');
+				//TODO: open the image for the newly selected row
+				break;
+			}
+		}
+	});
 	//create new grantor fields dynamically
     var grantor_div = $('#grantors_wrapper');
     var i = $(".grantor").size() + 1;

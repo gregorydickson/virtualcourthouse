@@ -22,7 +22,7 @@
 		<%-- 3rd Party Javascript --%>
 		<g:javascript src="jquery.js"/>
 
-		<g:javascript src="jqueryui.js"/>
+		<g:javascript src="jqueryui-1.10.4.js"/>
 		<g:javascript src="jquery.mousewheel.min.js"/>
 		<g:javascript src="jquery.iviewer.js"/>
 
