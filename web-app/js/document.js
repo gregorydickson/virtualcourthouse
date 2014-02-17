@@ -282,15 +282,25 @@ $( document ).ready(function() {
 				var the_cell = a_row.find('.imageLinkCell');
 				var anchor = the_cell.find("a");
 				var href = $(anchor).attr('href');
-				window.open(href, 'imageWindow'); 
-				//TODO: open the image for the newly selected row
+				var doc_window = window.self;
+				window.open(href, 'imageWindow');
+				doc_window.blur();
+				setTimeout(doc_window.focus, 0);
 				break;
             
 			case 'up-arrow':
 				console.log("goin up");
 				var newActiveRowIndex = (index - 1);
 				rows.removeClass('selected').eq(newActiveRowIndex).addClass('selected');
-				//TODO: open the image for the newly selected row
+				var a_row = rows.eq(newActiveRowIndex);
+				a_row.addClass('selected');
+				var the_cell = a_row.find('.imageLinkCell');
+				var anchor = the_cell.find("a");
+				var href = $(anchor).attr('href');
+				var doc_window = window.self;
+				window.open(href, 'imageWindow');
+				doc_window.blur();
+				setTimeout(doc_window.focus, 0);
 				break;
 			}
 		}
