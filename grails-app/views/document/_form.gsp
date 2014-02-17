@@ -311,7 +311,7 @@
 				<td>
 	         	   ${images*.toString()}
 			   </td>
-			   <td>
+			   <td class="imageLinkCell">
 				   <g:link action="show" controller="image" id="${images.id}" target="imageWindow">VIEW</g:link>
 			   </td>
 			   <td>

@@ -276,7 +276,13 @@ $( document ).ready(function() {
 			case 'down-arrow':
 				console.log("goin downtown");
 				var newActiveRowIndex = (index + 1);
-				rows.removeClass('selected').eq(newActiveRowIndex).addClass('selected');
+				rows.removeClass('selected');
+				var a_row = rows.eq(newActiveRowIndex);
+				a_row.addClass('selected');
+				var the_cell = a_row.find('.imageLinkCell');
+				var anchor = the_cell.find("a");
+				var href = $(anchor).attr('href');
+				window.open(href, 'imageWindow'); 
 				//TODO: open the image for the newly selected row
 				break;
             
