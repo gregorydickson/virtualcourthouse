@@ -29,6 +29,9 @@
 		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="chosen.jquery.js"/>
 		<g:javascript src="jquery.key.js"/>
+		<g:javascript src="backbone/underscore-min.js"/>
+		<g:javascript src="backbone/backbone.js"/>
+		<g:javascript src="backbone/model.js"/>
 		
 		<%-- Application Javascript --%>
 		<script>

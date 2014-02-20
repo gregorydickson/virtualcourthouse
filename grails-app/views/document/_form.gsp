@@ -38,7 +38,7 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
-			<input type="date" id="fileDate" name="fileDate" pattern="date" value="${documentInstance?.fileDate}" />
+			<input type="text" id="fileDate" name="fileDate" class="dateformat" />
 			<small class="error">File Date Error.</small>
 		</div>
 	</div>
@@ -46,7 +46,7 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>INST DATE</label>
-			<input type="date" id="instrumentDate" name="instrumentDate" pattern="date" value="${documentInstance?.instrumentDate}">	
+			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat" />	
 			<small class="error">Instrument Date Errror.</small>
 		</div>
 	</div>
@@ -87,14 +87,15 @@
 <div class="legal-description row">
 	
    <dl class="tabs" data-tab>
-     <dd class="active"><a href="#panel2-1">Sec/Twn/Rge</a></dd>
-     <dd><a href="#panel2-2" >City/Sub/Blk/Lot</a></dd>
-     <dd><a href="#panel2-3" >Tax/Map/Parcel</a></dd>
-     <dd><a href="#panel2-4" >Survey/Abstract</a></dd>
+	 <dd class="active"><a href="#panel2-1" >City/Sub/Blk/Lot</a></dd>
+     <dd><a href="#panel2-2">Sec/Twn/Rge</a></dd>
+     <dd><a href="#panel2-3" >Survey/Abstract</a></dd>
+     <dd><a href="#panel2-4" >Tax/Map/Parcel</a></dd>
+     
    </dl>
    <div class="tabs-content legal-description-tab-content ">
 	
-     <div class="content active" id="panel2-1">
+     <div class="content" id="panel2-2">
         <div id="section_township_range_wrapper">
 		  <div class="a_section_township_range row">
 	          <div class="form-paragraph large-2 columns">
@@ -133,7 +134,7 @@
 	    </div>
      </div>
      
-	<div class="content" id="panel2-2">
+	<div class="content active" id="panel2-1">
        <div id="city_sub_block_lot_wrapper">
 		   <div class="a_city_sub_block_lot row">
 	          <div class="form-paragraph large-2 columns">
@@ -167,7 +168,7 @@
 		   </div>
        </div>
      </div>
-     <div class="content" id="panel2-3">
+     <div class="content" id="panel2-4">
        <div id="tax_map_parcel_wrapper">
 		   <div class="a_tax_map_parcel row">
 	           <div class="form-paragraph large-3 columns">
@@ -201,7 +202,7 @@
 		   </div>
        </div>
      </div>
-     <div class="content" id="panel2-4">
+     <div class="content" id="panel2-3">
        <div id="survey_abstract_wrapper">
 		   <div class="a_survey_abstract row">
 	          <div class="form-paragraph large-2 columns">
@@ -278,7 +279,7 @@
 <div class="will-number row">
 	<h6>WILL NUMBER</h6>
 	<div class="large-12 columns panel">
-		<input class="" type="text">
+		<input class="uppercase" name="will-number" type="text">
 	</div>
 </div>
 
@@ -292,40 +293,46 @@
 	</div>
 </div>
 <div class="images row">
-	<h6>IMAGES</h6>
-	<div class="large-12 columns images-content">
-		<table class="">
+	
+	<div class="large-6 columns">
+		<h6>IMAGES LIST</h6>
+		<table class="images-content">
+			<thead>
+				<tr>
+					<th width="400">FILENAME</th>
+					<th></th>
+					<th>ID</th>
+				</tr>
+			</thead>
+			<tbody> 
+				<g:each var="images" in="${net.rcenergy.Image.list()}">
+					<tr class="data-row">
+						<td>
+							${images*.toString()}
+						</td>
+						<td class="imageLinkCell">
+							<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
+						</td>
+						<td>
+							${images*.id}
+						</td>
+					</tr>
+				</g:each>
+			</tbody>
+		</table>
+	</div>
+	<div class="large-6 columns">
+		<h6>IMAGES ASSIGNED TO DOCUMENT</h6>
+		<table id="" class="images-content">
 			<thead>
 			    <tr>
 			      <th width="400">FILENAME</th>
-				  <th width="20">VIEW</th>
-			      <th width="200">SELECT & REMOVE</th>
-			      <th width="200">SELECT & REMAIN</th>
+				  <th></th>
+				  <th>ID</th>
 			    </tr>
 			 </thead>
-			 <tbody>
-				 
-					 
-    	<g:each var="images" in="${net.rcenergy.Image.list()}">
-			<tr class="data-row">
-				<td>
-	         	   ${images*.toString()}
-			   </td>
-			   <td class="imageLinkCell">
-				   <g:link action="show" controller="image" id="${images.id}" target="imageWindow">VIEW</g:link>
-			   </td>
-			   <td>
-				   <input type="checkbox" />
-			   </td>
-			   <td>
-				   <input type="checkbox" />
-			   </td>
-			  
-		   </tr>
-	    </g:each>
-	</table>
-		
-		
-		
+			 <tbody id="images-assigned"> 
+			 </tbody>
+		</table>
 	</div>
 </div>

@@ -5,7 +5,7 @@ function sumAcres(){
 	$.each(acres, function(){
 		if($(this).val() != "")
 		{
-			num = num + parseInt($(this).val(),10);
+			num = num + parseFloat($(this).val(),10);
 		}
 	});
 	string = num.toString();
@@ -22,6 +22,9 @@ function eventHandlerGrantor(e) {
        $(a_new_field).on('keyup', eventHandlerGrantor);
        $(a_new_field).appendTo(div);
        var the_input = a_new_field.find(">:first-child");
+	   the_input.on('keyup', function () {
+		   this.value = this.value.toUpperCase();
+	   });
        the_input.focus();
        the_input.select();
        return false;
@@ -36,6 +39,9 @@ function eventHandlerGrantee(e) {
        $(a_new_field).on('keyup', eventHandlerGrantee);
        $(a_new_field).appendTo(div);
        var the_input = a_new_field.find(">:first-child");
+	   the_input.on('keyup', function () {
+		   this.value = this.value.toUpperCase();
+	   });
        the_input.focus();
        the_input.select();
        return false;
@@ -67,10 +73,10 @@ function eventHandlerRelatedDocuments(e) {
 
 
 function addNewInputGrantor(i) {
-    return $('<p class="form-paragraph"><input class="grantor" type="text"  id="grantor" name="grantor" value="" /> </p>');
+    return $('<p class="form-paragraph"><input class="grantor uppercase" type="text"  id="grantor" name="grantor" value="" /> </p>');
 }
 function addNewInputGrantee(j) {
-    return $('<p class="form-paragraph"><input  class="grantee" type="text" id="grantee" name="grantee"  value="" /> </p>');
+    return $('<p class="form-paragraph"><input  class="grantee uppercase" type="text" id="grantee" name="grantee"  value="" /> </p>');
 }
 //TODO: refactor this to copy the existing row in the DOM
 function addNewInputRelatedDocuments(k) {
@@ -223,8 +229,6 @@ function addNewCitySubBlkLot(i) {
 	return $('<div class="a_city_sub_block_lot row"><div class="form-paragraph large-2 columns"><label>City</label><input type="text" id="city" name="city['+ (i-1) +']" size="400" class="city uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Sub</label><input type="text" size="400" id="sub" name="sub['+ (i-1) +']"class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Block</label><input type="text" size="400" id="block" name="block['+ (i-1) +']" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Lot</label><input type="text" name="lot['+ (i-1) +']" id="lot" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Acre</label><input type="text" name="city-sub-blk-lot-acre['+ (i-1) +']" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/></div><div class="form-paragraph large-3 columns"><label>Assessor #</label><input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber['+ (i-1) +']" class="uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Metes & Bounds</label><input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds['+ (i-1) +']"  class="uppercase popout city-sub-block-lot" /></div></div>');
 }
 
-
-
 //START DOCUMENT READY FUNCTION
 $( document ).ready(function() {
 	//Initialize foundation
@@ -234,6 +238,14 @@ $( document ).ready(function() {
 	$(".chosen-select").chosen();
 	//make the first field have focus using chosen.js message
 	$("#BookType").trigger('chosen:activate');
+	$(".dateformat").keyup(function(){
+		if ($(this).val().length == 2){
+			$(this).val($(this).val() + "/");
+		}else if ($(this).val().length == 5){
+			$(this).val($(this).val() + "/");
+		}
+	});
+
 	//setup certain fields to pop up a textbox for input
 	$(".popout").popBox();
 	// START - SAVE DOCUMENT VIA AJAX WITH JSON
@@ -258,8 +270,9 @@ $( document ).ready(function() {
 	});
 	// END - SAVE DOCUMENT VIA AJAX WITH JSON
 	
-	//Navigate the images table with arrow keys
+	//Navigate the images table with Ctrl+ arrow keys
 	var rows = $('.data-row');
+	var add_to_table = $('#images-assigned');
 	var mapKeysToNavigationStrings = {
 	    38: 'up-arrow',
 	    40: 'down-arrow',
@@ -283,11 +296,10 @@ $( document ).ready(function() {
 				var anchor = the_cell.find("a");
 				var href = $(anchor).attr('href');
 				var doc_window = window.self;
-				window.open(href, 'imageWindow');
-				doc_window.blur();
-				setTimeout(doc_window.focus, 0);
+				var new_window = window.open(href, 'imageWindow');
+				new_window.blur();
+				doc_window.focus();
 				break;
-            
 			case 'up-arrow':
 				console.log("goin up");
 				var newActiveRowIndex = (index - 1);
@@ -298,10 +310,22 @@ $( document ).ready(function() {
 				var anchor = the_cell.find("a");
 				var href = $(anchor).attr('href');
 				var doc_window = window.self;
-				window.open(href, 'imageWindow');
-				doc_window.blur();
-				setTimeout(doc_window.focus, 0);
+				var new_window = window.open(href, 'imageWindow');
+				new_window.blur();
+				doc_window.focus();
 				break;
+			case 'left-arrow':
+				console.log("left arrow SAVE AND REMOVE");
+				the_row = rows.eq(index);
+				//TODO: save the data in a data model
+				var clone = the_row.clone();
+				clone.appendTo(add_to_table);
+				$(the_row).remove();
+				rows = $('.data-row');
+				break;
+			case 'right-arrow':
+				console.log("right arrow SAVE AND LEAVE");
+				
 			}
 		}
 	});
@@ -310,34 +334,40 @@ $( document ).ready(function() {
     var i = $(".grantor").size() + 1;
     $('#grantor').on('keyup', function (e) {
 		var code = e.keyCode || e.which;
-        if (code == 13) {
-            var new_item = addNewInputGrantor(i);
-            $(new_item).on('keyup', eventHandlerGrantor);
-            $(new_item).appendTo(grantor_div);
-            var the_input = new_item.find(">:first-child");
-            the_input.focus();
-            the_input.select();
-            i++;
-            return false;
-        }
+		if (code == 13) {
+			var new_item = addNewInputGrantor(i);
+			$(new_item).on('keyup', eventHandlerGrantor);
+			$(new_item).appendTo(grantor_div);
+			var the_input = new_item.find(">:first-child");
+			the_input.on('keyup', function () {
+				this.value = this.value.toUpperCase();
+			});
+			the_input.focus();
+			the_input.select();
+			i++;
+			return false;
+		}
     });
 	//end handle grantors
     //create new grantee fields dynamically
     var grantee_div = $('#grantees_wrapper');
     var j = $(".grantee").size() + 1;
-    $('#grantee').on('keyup', function (e) {
-        var code = e.keyCode || e.which;
-        if (code == 13) {
-            var new_item = addNewInputGrantee(i);
-            $(new_item).on('keyup', eventHandlerGrantee);
-            $(new_item).appendTo(grantee_div);
-            var the_input = new_item.find(">:first-child");
-            the_input.focus();
-            the_input.select();
-            j++;
-            return false;
-        }
-    });
+	$('#grantee').on('keyup', function (e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+			var new_item = addNewInputGrantee(i);
+			$(new_item).on('keyup', eventHandlerGrantee);
+			$(new_item).appendTo(grantee_div);
+			var the_input = new_item.find(">:first-child");
+			the_input.on('keyup', function () {
+				this.value = this.value.toUpperCase();
+			});
+			the_input.focus();
+			the_input.select();
+			j++;
+			return false;
+		}
+	});
 	//end handle grantees
 	/** create new related documents lines dynamically
 		by registering an event on the instrument number 
