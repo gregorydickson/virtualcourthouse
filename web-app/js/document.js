@@ -1,29 +1,38 @@
-function sumLegalDescriptionRows(){
+function sumRowsContainingValues(rows){
 	var numberOfRows = 0;
-	//find all the rows in Sec/Twn/Range
-	var sectionTownshipRangeRows = $('.a_section_township_range');
-	//check to see if they are empty rows
-	$.each(sectionTownshipRangeRows, function(){
+	$.each(rows, function(){
 		var children = $(this).children();
 		$.each(children, function(){
-			if( $(this).find(":input:empty").length != 0 ) {
+			if( $(this).find(":input").val() != "" ) {
 			        numberOfRows = numberOfRows + 1;
 					return false;
 			}
 		});
 	});
+	return numberOfRows;
+}
+
+function sumLegalDescriptionRows(){
+	var numberOfRows = 0;
+	//find all the rows in Sec/Twn/Range
+	var sectionTownshipRangeRows = $('.a_section_township_range');
+	//check to see if they are empty rows
+	numberOfRows = sumRowsContainingValues(sectionTownshipRangeRows);
 	//find all the rows in City/Sub/Block/Lot
-	
+	var citySubBlockLotRows = $('.a_city_sub_block_lot');
 	//check to see if they are empty rows
-	
+	var rowsToAdd = sumRowsContainingValues(citySubBlockLotRows);
+	numberOfRows = numberOfRows + rowsToAdd;
 	//find all the rows in Tax/Map/Parcel
-	
+	var taxMapParcelRows = $('.a_tax_map_parcel');
 	//check to see if they are empty rows
-	
+	rowsToAdd = sumRowsContainingValues(taxMapParcelRows);
+	numberOfRows = numberOfRows + rowsToAdd;
 	//find all the rows in survey abstract
-	
+	var surveyAbstractRows = $('.a_survey_abstract');
 	//check to see if they are empty rows
-	
+	rowsToAdd = sumRowsContainingValues(surveyAbstractRows);
+	numberOfRows = numberOfRows + rowsToAdd;
 	//update the rows div
 	var string = numberOfRows.toString();
 	$('#rowsTotal').text(string);
@@ -197,6 +206,7 @@ function addNewLineCtySubBlkLot(){
 	});
 	console.log("Adding New Line Section Twn Range");
 	$(new_item).one('keyup', decorateCtySubBlkLot);
+	sumLegalDescriptionRows();
     return false;
 }
 function addNewLineSecTwnRge() {
@@ -214,6 +224,7 @@ function addNewLineSecTwnRge() {
 	});
 	console.log("Adding New Line CITY SUB BLK LOT");
 	$(new_item).one('keyup', decorateSecTwnRange);
+	sumLegalDescriptionRows();
     return false;
 }
 function addNewLineTaxMapParcel() {
@@ -231,6 +242,7 @@ function addNewLineTaxMapParcel() {
 	});
 	console.log("Adding New Line TAX MAP PARCEL");
 	$(new_item).one('keyup', decorateTaxMapParcel);
+	sumLegalDescriptionRows();
     return false;
 }
 function addNewLineSurveyAbstract(){
@@ -248,6 +260,7 @@ function addNewLineSurveyAbstract(){
 	});
 	console.log("Adding New Line Survey Abstract");
 	$(new_item).one('keyup', decorateSurveyAbstract);
+	sumLegalDescriptionRows();
     return false;
 }
 function addNewInputSurveyAbstract(i){
