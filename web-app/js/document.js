@@ -303,7 +303,7 @@ $( document ).ready(function() {
 			case 'up-arrow':
 				console.log("goin up");
 				var newActiveRowIndex = (index - 1);
-				rows.removeClass('selected').eq(newActiveRowIndex).addClass('selected');
+				rows.removeClass('selected');
 				var a_row = rows.eq(newActiveRowIndex);
 				a_row.addClass('selected');
 				var the_cell = a_row.find('.imageLinkCell');
@@ -317,6 +317,19 @@ $( document ).ready(function() {
 			case 'left-arrow':
 				console.log("left arrow SAVE AND REMOVE");
 				the_row = rows.eq(index);
+				var highlight_next_row = index + 1;
+				rows.removeClass('selected');
+				var newActiveRowIndex = (index + 1);
+				rows.removeClass('selected');
+				var a_row = rows.eq(newActiveRowIndex);
+				a_row.addClass('selected');
+				var the_cell = a_row.find('.imageLinkCell');
+				var anchor = the_cell.find("a");
+				var href = $(anchor).attr('href');
+				var doc_window = window.self;
+				var new_window = window.open(href, 'imageWindow');
+				new_window.blur();
+				doc_window.focus();
 				//TODO: save the data in a data model
 				var clone = the_row.clone();
 				clone.appendTo(add_to_table);
