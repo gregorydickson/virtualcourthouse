@@ -3,7 +3,8 @@ package net.rcenergy
 class InstrumentTypes {
 	String instrumentType
 	
-    static constraints = {
+    static mapping = {
+		sort "instrumentType"
     }
 	String toString() {
 		instrumentType

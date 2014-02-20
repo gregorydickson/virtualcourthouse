@@ -7,6 +7,7 @@ class BookTypes {
 	String toString() {
 			bookType  
 	}
-    static constraints = {
+    static mapping = {
+		sort "bookType"
     }
 }

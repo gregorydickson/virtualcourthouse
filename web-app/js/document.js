@@ -1,3 +1,34 @@
+function sumLegalDescriptionRows(){
+	var numberOfRows = 0;
+	//find all the rows in Sec/Twn/Range
+	var sectionTownshipRangeRows = $('.a_section_township_range');
+	//check to see if they are empty rows
+	$.each(sectionTownshipRangeRows, function(){
+		var children = $(this).children();
+		$.each(children, function(){
+			if( $(this).find(":input:empty").length != 0 ) {
+			        numberOfRows = numberOfRows + 1;
+					return false;
+			}
+		});
+	});
+	//find all the rows in City/Sub/Block/Lot
+	
+	//check to see if they are empty rows
+	
+	//find all the rows in Tax/Map/Parcel
+	
+	//check to see if they are empty rows
+	
+	//find all the rows in survey abstract
+	
+	//check to see if they are empty rows
+	
+	//update the rows div
+	var string = numberOfRows.toString();
+	$('#rowsTotal').text(string);
+}
+
 function sumAcres(){
 	var acres = $(".acre");
 	var num = new Number();
@@ -88,6 +119,7 @@ function addNewInputRelatedDocuments(k) {
 	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '" name="related-documents-book-type[' + (k-1) + ']" required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="related-documents-book-number[' + (k-1) + ']" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="related-documents-page-number[' + (k-1) + ']" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="related-documents-instrument-number[' + (k-1) + ']" type="text"  /></div></div>');
 }
 function decorateSecTwnRange(e){
+	sumLegalDescriptionRows();
 	var elements = $(this).parent().parent().find('.sec-twn-rge');
 	$.each(elements, function(){
 		$(this).on('keyup',eventHandlerSecTwnRge);
@@ -95,6 +127,7 @@ function decorateSecTwnRange(e){
 	console.log("DECORATE SECTION TWN RANGE");
 }
 function decorateCtySubBlkLot(){
+	sumLegalDescriptionRows();
 	var elements = $(this).parent().parent().find('.city-sub-block-lot');
 	$.each(elements, function(){
 		$(this).on('keyup',eventHandlerCtySubBlkLot);
@@ -102,6 +135,7 @@ function decorateCtySubBlkLot(){
 	console.log("DECORATE  City Sub Blk Lot");
 }
 function decorateTaxMapParcel(){
+	sumLegalDescriptionRows();
 	var elements = $(this).parent().parent().find('.tax-map-parcel');
 	$.each(elements, function(){
 		$(this).on('keyup',eventHandlerTaxMapParcel);
@@ -109,6 +143,7 @@ function decorateTaxMapParcel(){
 	console.log("DECORATE TAX Map Parcel");
 }
 function decorateSurveyAbstract(){
+	sumLegalDescriptionRows();
 	var elements = $(this).parent().parent().find('.survey-abstract');
 	$.each(elements, function(){
 		$(this).on('keyup',eventHandlerSurveyAbstract);
@@ -161,7 +196,7 @@ function addNewLineCtySubBlkLot(){
 		this.value = this.value.toUpperCase()
 	});
 	console.log("Adding New Line Section Twn Range");
-	$(the_input).on('keyup', decorateCtySubBlkLot);
+	$(new_item).one('keyup', decorateCtySubBlkLot);
     return false;
 }
 function addNewLineSecTwnRge() {
@@ -178,7 +213,7 @@ function addNewLineSecTwnRge() {
 		this.value = this.value.toUpperCase()
 	});
 	console.log("Adding New Line CITY SUB BLK LOT");
-	$(the_input).on('keyup', decorateSecTwnRange);
+	$(new_item).one('keyup', decorateSecTwnRange);
     return false;
 }
 function addNewLineTaxMapParcel() {
@@ -195,7 +230,7 @@ function addNewLineTaxMapParcel() {
 		this.value = this.value.toUpperCase()
 	});
 	console.log("Adding New Line TAX MAP PARCEL");
-	$(the_input).on('keyup', decorateTaxMapParcel);
+	$(new_item).one('keyup', decorateTaxMapParcel);
     return false;
 }
 function addNewLineSurveyAbstract(){
@@ -212,7 +247,7 @@ function addNewLineSurveyAbstract(){
 		this.value = this.value.toUpperCase()
 	});
 	console.log("Adding New Line Survey Abstract");
-	$(the_input).on('keyup', decorateSurveyAbstract);
+	$(new_item).one('keyup', decorateSurveyAbstract);
     return false;
 }
 function addNewInputSurveyAbstract(i){
@@ -257,7 +292,7 @@ $( document ).ready(function() {
 			dataType: 'json',
 		 	url:'/virtualcourthouse/document/save.json',
 		 	success:function(data,textStatus){
-			 alert("saved record");
+			 alert("Saved Document");
 			 console.log("RETURN JSON: " + JSON.stringify(data));
 		 	},
 		 	error:function(XMLHttpRequest,textStatus,errorThrown){

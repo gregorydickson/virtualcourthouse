@@ -74,13 +74,19 @@
 </div>
 
 <div class="row panel">
-	<div class="large-5 columns">
+	<div class="large-2 columns">
 		LEGAL DESCRIPTION
+	</div>
+	<div class="large-2 columns">
+		TOTAL ROWS:
+	</div>
+	<div class="large-2 columns" id="rowsTotal">
+		
 	</div>
 	<div class="large-2 columns">
 			 TOTAL ACRES:
 	</div>
-	<div class="large-5 columns" id="acresTotal">
+	<div class="large-4 columns" id="acresTotal">
 		
 	</div>
 </div>
