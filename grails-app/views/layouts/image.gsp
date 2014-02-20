@@ -34,7 +34,9 @@
 
 
           var iv1 = $('#viewer').iviewer({
-               src: '${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}'
+            src: '${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}',
+			zoom: localStorage.getItem("zoom"),
+			onZoom: function(e, newzoom){localStorage.setItem("zoom",newzoom);}
                
           });
 			  
