@@ -1,9 +1,9 @@
 /* @group Base */
 .chosen-container {
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  display: inline;
   vertical-align: middle;
-  font-size: 14px;
+
   zoom: 1;
   *display: inline;
   -webkit-user-select: none;
@@ -12,21 +12,28 @@
   margin-top: 1px ;
 }
 .chosen-container .chosen-drop {
-  position: absolute;
-  top: 100%;
-  left: -9999px;
-  z-index: 101000;
+	
+
+  left:-9999999;
+  
+  
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  width: 100%;
+
   border: 1px solid #aaa;
   border-top: 0;
   background: #fff;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
 }
 .chosen-container.chosen-with-drop .chosen-drop {
-  left: 0;
+	
+  z-index: 101000 !important;
+
+  left:0;
+  margin:auto;
+
+ 
 }
 .chosen-container a {
   cursor: pointer;

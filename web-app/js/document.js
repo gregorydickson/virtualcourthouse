@@ -88,8 +88,8 @@ function eventHandlerGrantee(e) {
     }
 }
 function eventHandlerRelatedDocuments(e) {
-    var code = e.keyCode || e.which;
-    if (code == 13) {           
+	var code = e.keyCode || e.which;
+	if (code == 13) {           
 		var i = $(".a_related_document").size() + 1;
 		console.log("related documents size is " + i);
 		var a_new_field = addNewInputRelatedDocuments(i);
@@ -100,15 +100,9 @@ function eventHandlerRelatedDocuments(e) {
 		var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + i
 		console.log('string for book type id lookup: ' +relatedDocumenBookTypeIdString);
 		$(relatedDocumenBookTypeIdString).trigger('chosen:activate');
-		//deal with list overflow
-		//$(".chosen-select").on("chosen:showing_dropdown", function () { 
-		//	$(".related-doc-panel").css("overflow", "visible");
-		//});
-		//$(".chosen-select").on("chosen:hiding_dropdown", function () {
-		//	$(".related-doc-panel").css("overflow", "");
-		//});
-        return false;
-    }
+		
+		return false;
+	}
 }
 
 
@@ -444,12 +438,8 @@ $( document ).ready(function() {
 			$(".chosen-select").chosen();
 			var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + k;
 			$(relatedDocumenBookTypeIdString).trigger('chosen:activate');
-			//$(".chosen-select").on("chosen:showing_dropdown", function () { 
-			//	$(".related-doc-panel").css("overflow", "visible");
-			//});
-			//$(".chosen-select").on("chosen:hiding_dropdown", function () {
-			//	$(".related-doc-panel").css("overflow", "");
-			//});
+			//deal with list overflow
+			
             k++;
             return false;
         }
