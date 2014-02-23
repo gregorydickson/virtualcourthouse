@@ -62,9 +62,7 @@ function eventHandlerGrantor(e) {
        $(a_new_field).on('keyup', eventHandlerGrantor);
        $(a_new_field).appendTo(div);
        var the_input = a_new_field.find(">:first-child");
-	   the_input.on('keyup', function () {
-		   this.value = this.value.toUpperCase();
-	   });
+	  
        the_input.focus();
        the_input.select();
        return false;
@@ -79,30 +77,11 @@ function eventHandlerGrantee(e) {
        $(a_new_field).on('keyup', eventHandlerGrantee);
        $(a_new_field).appendTo(div);
        var the_input = a_new_field.find(">:first-child");
-	   the_input.on('keyup', function () {
-		   this.value = this.value.toUpperCase();
-	   });
+	   
        the_input.focus();
        the_input.select();
        return false;
     }
-}
-function eventHandlerRelatedDocuments(e) {
-	var code = e.keyCode || e.which;
-	if (code == 13) {           
-		var i = $(".a_related_document").size() + 1;
-		console.log("related documents size is " + i);
-		var a_new_field = addNewInputRelatedDocuments(i);
-		var div = $('#related_documents_wrapper');
-		$(a_new_field).on('keyup', eventHandlerRelatedDocuments);
-		$(a_new_field).appendTo(div);
-		$(".chosen-select").chosen();
-		var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + i
-		console.log('string for book type id lookup: ' +relatedDocumenBookTypeIdString);
-		$(relatedDocumenBookTypeIdString).trigger('chosen:activate');
-		
-		return false;
-	}
 }
 
 
@@ -119,7 +98,7 @@ function addNewInputRelatedDocuments(k) {
 	// This function call grabs them from a function in the create.gsp file so we can add them
 	// to a related documents new line select field.
     var optionsString = getBookTypeOptions();
-	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><select id="relatedDocumentBookType' + k + '" name="related-documents-book-type[' + (k-1) + ']" required="" class="relatedDocumentBookType chosen-select" >' + optionsString + '</select></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="related-documents-book-number[' + (k-1) + ']" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="related-documents-page-number[' + (k-1) + ']" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="related-documents-instrument-number[' + (k-1) + ']" type="text"  /></div></div>');
+	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><input type="text" id="relatedDocumentBookType' + k + '" name="related-documents-book-type[' + (k-1) + ']"  class="related-documents relatedDocumentBookType" ></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="related-documents-book-number[' + (k-1) + ']" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="related-documents-page-number[' + (k-1) + ']" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="related-documents-instrument-number[' + (k-1) + ']" type="text"  /></div></div>');
 }
 function decorateSecTwnRange(e){
 	sumLegalDescriptionRows();
@@ -195,9 +174,7 @@ function addNewLineCtySubBlkLot(){
     the_input.focus();
     the_input.select();
 	$(new_item).find('.acre').on('blur',sumAcres);
-	$(new_item).find('.uppercase').on('keyup', function () {
-		this.value = this.value.toUpperCase()
-	});
+	
 	console.log("Adding New Line Section Twn Range");
 	$(new_item).one('keyup', decorateCtySubBlkLot);
 	sumLegalDescriptionRows();
@@ -213,9 +190,7 @@ function addNewLineSecTwnRge() {
     the_input.focus();
     the_input.select();
 	$(new_item).find('.acre').on('blur',sumAcres);
-	$(new_item).find('.uppercase').on('keyup', function () {
-		this.value = this.value.toUpperCase()
-	});
+	
 	console.log("Adding New Line CITY SUB BLK LOT");
 	$(new_item).one('keyup', decorateSecTwnRange);
 	sumLegalDescriptionRows();
@@ -231,9 +206,7 @@ function addNewLineTaxMapParcel() {
     the_input.focus();
     the_input.select();
 	$(new_item).find('.acre').on('blur',sumAcres);
-	$(new_item).find('.uppercase').on('keyup', function () {
-		this.value = this.value.toUpperCase()
-	});
+	
 	console.log("Adding New Line TAX MAP PARCEL");
 	$(new_item).one('keyup', decorateTaxMapParcel);
 	sumLegalDescriptionRows();
@@ -249,9 +222,7 @@ function addNewLineSurveyAbstract(){
     the_input.focus();
     the_input.select();
 	$(new_item).find('.acre').on('blur',sumAcres);
-	$(new_item).find('.uppercase').on('keyup', function () {
-		this.value = this.value.toUpperCase()
-	});
+	
 	console.log("Adding New Line Survey Abstract");
 	$(new_item).one('keyup', decorateSurveyAbstract);
 	sumLegalDescriptionRows();
@@ -276,20 +247,46 @@ $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
 	
-	//setup all the typeahead dropdowns with chosen.js
-	$(".chosen-select").chosen();
-	//make the first field have focus using chosen.js message
-	$("#BookType").trigger('chosen:activate');
-	$(".dateformat").keyup(function(){
-		if ($(this).val().length == 2){
-			$(this).val($(this).val() + "/");
-		}else if ($(this).val().length == 5){
-			$(this).val($(this).val() + "/");
-		}
-	});
 
-	//setup certain fields to pop up a textbox for input
-	$(".popout").popBox();
+
+	
+	//#################### JQUERY AUTOCOMPLETE
+	
+	
+	$("#BookType").autocomplete({
+		position: { my : "left top", at: "left bottom", of: "#BookType" },
+		autofocus: "true",
+		minLength: 1,
+		change: function (event, ui) {
+			if (ui.item === null) {
+				$(this).val('');
+				$('#BookType').val('');
+			}
+		},
+		select: function(event, ui) {
+		            // feed hidden id field
+		            $("#BookType.id").val(ui.item.id);
+		        },
+		source: booktypeJSON
+
+	});
+	$("#relatedDocumentBookType1").autocomplete({
+
+		autofocus: "true",
+		minLength: 1,
+		change: function (event, ui) {
+			if (ui.item === null) {
+				$(this).val('');
+				$('#relatedDocumentBookType1').val('');
+			}
+		},
+		
+		source: booktypeJSON
+
+	});
+    
+	//################### END JQUERY AUTOCOMPLETE
+
 	// START - SAVE DOCUMENT VIA AJAX WITH JSON
 	$.key('ctrl+j', function(){
 		console.log('ajaxit');
@@ -312,6 +309,16 @@ $( document ).ready(function() {
 	});
 	// END - SAVE DOCUMENT VIA AJAX WITH JSON
 	
+	$(".dateformat").keyup(function(){
+		if ($(this).val().length == 2){
+			$(this).val($(this).val() + "/");
+		}else if ($(this).val().length == 5){
+			$(this).val($(this).val() + "/");
+		}
+	});
+
+	//setup certain fields to pop up a textbox for input
+	$(".popout").popBox();
 	//Navigate the images table with Ctrl+ arrow keys
 	var rows = $('.data-row');
 	var add_to_table = $('#images-assigned');
@@ -394,9 +401,7 @@ $( document ).ready(function() {
 			$(new_item).on('keyup', eventHandlerGrantor);
 			$(new_item).appendTo(grantor_div);
 			var the_input = new_item.find(">:first-child");
-			the_input.on('keyup', function () {
-				this.value = this.value.toUpperCase();
-			});
+			
 			the_input.focus();
 			the_input.select();
 			i++;
@@ -407,19 +412,17 @@ $( document ).ready(function() {
     //create new grantee fields dynamically
     var grantee_div = $('#grantees_wrapper');
     var j = $(".grantee").size() + 1;
-	$('#grantee').on('keyup', function (e) {
+	$('body'.on('keyup', '.grantee', function (e) {
 		var code = e.keyCode || e.which;
 		if (code == 13) {
 			var new_item = addNewInputGrantee(i);
-			$(new_item).on('keyup', eventHandlerGrantee);
+
 			$(new_item).appendTo(grantee_div);
 			var the_input = new_item.find(">:first-child");
-			the_input.on('keyup', function () {
-				this.value = this.value.toUpperCase();
-			});
+			
 			the_input.focus();
 			the_input.select();
-			j++;
+
 			return false;
 		}
 	});
@@ -427,20 +430,16 @@ $( document ).ready(function() {
 	/** create new related documents lines dynamically
 		by registering an event on the instrument number 
 	line to capture a return event and create a new line			*/
-    $('.related-documents').on('keyup', function (e) {
+    $('body').on('keyup','.related-documents', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
 			var related_documents_div = $('#related_documents_wrapper');
 		    var k = $(".relatedDocumentBookType").size() + 1;
             var new_item = addNewInputRelatedDocuments(k);
-            $(new_item).find('.related-documents').on('keyup', eventHandlerRelatedDocuments);
             $(new_item).appendTo(related_documents_div);
-			$(".chosen-select").chosen();
-			var relatedDocumenBookTypeIdString = '#relatedDocumentBookType' + k;
-			$(relatedDocumenBookTypeIdString).trigger('chosen:activate');
-			//deal with list overflow
-			
-            k++;
+			var the_input = new_item.find(".relatedDocumentBookType");
+			the_input.focus();
+			the_input.select();
             return false;
         }
     });
@@ -452,7 +451,7 @@ $( document ).ready(function() {
 	$('.survey-abstract').on('keyup',eventHandlerSurveyAbstract);
 	$('.acre').on('blur',sumAcres);
 	//change fields to uppercase
-	$('.uppercase').keyup(function(){
+	$('body').on('keyup','.uppercase', function(){
 	    this.value = this.value.toUpperCase();
 	});
 	//END change fields to uppercase

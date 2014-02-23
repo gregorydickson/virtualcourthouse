@@ -7,7 +7,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'chosen.css')}" type="text/css">
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
+		
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript src="modernizr.js"/>
@@ -27,11 +28,10 @@
 		<g:javascript src="foundation.abide.js"/>
 		<g:javascript src="foundation.reveal.js"/>
 		<g:javascript src="foundation.tab.js"/>
-		<g:javascript src="chosen.jquery.js"/>
+		<g:javascript src="jqueryui-1.10.4.js"/>
 		<g:javascript src="jquery.key.js"/>
 		<g:javascript src="backbone/underscore-min.js"/>
 		<g:javascript src="backbone/backbone.js"/>
-		<g:javascript src="backbone/model.js"/>
 		
 		<%-- Application Javascript --%>
 		<script>
@@ -39,6 +39,13 @@
 			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
 			return returnString;
 		}
+	    var booktypeJSON = [
+	       <g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
+		   {
+			   "id": "${BookType.id}",
+			   "value": "${BookType.bookType}"
+		   },</g:each>
+		  ]; 
 		</script>
 		<g:javascript src="popup.js"/>
 		<g:javascript src="document.js"/>

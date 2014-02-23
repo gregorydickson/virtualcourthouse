@@ -2,11 +2,8 @@
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<select id="BookType" name="BookType.id" required="" class="chosen-select" >
-	    	<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
-		        <option value="${BookType.id}" > ${BookType.bookType}</option>
-		    </g:each>
-		</select>
+		<input id="BookType.id" name="BookType.id" type="hidden" >
+		<input id="BookType"   class="autocomplete" autofocus/>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
@@ -57,7 +54,7 @@
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
 		    <p class="form-paragraph">
-		        <input class="grantor uppercase" name="grantor" type="text" id="grantor"  value="" />
+		        <input class="grantor uppercase" name="grantor" type="text" id="grantor"   />
 		    </p>
 		</div>
 	</div>
@@ -67,7 +64,7 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee uppercase" name="grantee" type="text" id="grantee" value="" />
+		        <input class="grantee uppercase" name="grantee" type="text" id="grantee"  />
 		    </p>
 		</div>
 	</div>
@@ -259,11 +256,7 @@
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
-					<select id="relatedDocumentBookType1" name="related-documents-book-type[0]" required="" class="related-documents relatedDocumentBookType chosen-select" >
-						<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
-					        <option value="${BookType.id}" > ${BookType.bookType}</option>
-					    </g:each>
-					</select>
+					<input type="text" id="relatedDocumentBookType1" name="related-documents-book-type[0]"  class="related-documents relatedDocumentBookType" >
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Book Number</label>

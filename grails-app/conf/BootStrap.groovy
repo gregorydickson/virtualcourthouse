@@ -98,6 +98,9 @@ class BootStrap {
 					def bookType1 = new BookTypes(bookType : "WARRANTY DEED").save(failOnError : true);
 					def bookType2 = new BookTypes(bookType : "LIEN").save(failOnError : true);
 					def bookType3 = new BookTypes(bookType : "DOCUMENT").save(failOnError : true);
+					def bookType4 = new BookTypes(bookType : "WARRANTY DEED TWO").save(failOnError : true);
+					def bookType5 = new BookTypes(bookType : "WARRANTY DEED THREE").save(failOnError : true);
+					def bookType6 = new BookTypes(bookType : "WARRANTY DEED FOUR").save(failOnError : true);
 					// create instrument types
 					def instrumentType1 = new InstrumentTypes(instrumentType : "DOCUMENT").save(failOnError : true);
 					def instrumentType2 = new InstrumentTypes(instrumentType : "OIL AND GAS LEASE").save(failOnError : true);

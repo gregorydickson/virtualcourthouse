@@ -47,6 +47,7 @@ h6 {
 		max-height: 250px;
 		overflow-y: scroll;
 }
+
 .selected {
     background: #33CCCC !important;
 }
@@ -86,8 +87,6 @@ h6 {
     border: 5px solid rgba(000, 0, 0, .9);
     position: fixed;
 }
-
-
 .popBox-container .button {
 	display: inline-block;
 	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
@@ -140,6 +139,5 @@ h6 {
 	background: -moz-linear-gradient(top,  #0078a5,  #00adee);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#0078a5', endColorstr='#00adee');
 }
-
 
 
