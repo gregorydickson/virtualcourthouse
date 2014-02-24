@@ -219,6 +219,7 @@ $( document ).ready(function() {
 		},
 		source: booktypeJSON
 	});
+	var filteredSubdivisionsJSON;
 	$(".city").autocomplete({
 		autoFocus: "true",
 		delay: 0,
@@ -228,8 +229,32 @@ $( document ).ready(function() {
 				$(this).val('');
 			}
 		},
-		source: citiesJSON
+		source: citiesJSON,
+		close: function( event, ui ) {
+			var cityElementString = $(this).val();
+			console.log("city Selected is: " + cityElementString);
+			filteredSubdivisionsJSON = $.grep(subdivisionsJSON, function (subdivision, i){
+				console.log("GREPPING");
+				console.log("sub : " + subdivision.value);
+				return subdivision.city == cityElementString;
+			});
+			$(".subdivision").autocomplete({
+				open: function( event, ui ) {
+				},
+				source: filteredSubdivisionsJSON,
+				autoFocus:"true",
+				delay:0,
+				minLength:0,
+				change: function (event, ui) {
+					if (ui.item === null) {
+						$(this).val('');
+					}
+				}
+			});
+		}
 	});
+	
+
     
 	//################### END JQUERY AUTOCOMPLETE
 

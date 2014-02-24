@@ -141,7 +141,7 @@
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Sub</label>
-	            <input type="text" size="400" id="sub" name="sub[0]"class="uppercase city-sub-block-lot" />
+	            <input type="text" size="400" id="sub" name="sub[0]" class="uppercase city-sub-block-lot subdivision" />
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Block</label>

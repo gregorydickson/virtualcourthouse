@@ -62,7 +62,7 @@
 		var subdivisionsJSON = [
 		<g:each var="Subdivision" in="${net.rcenergy.Subdivision.list()}">
 		{
-			"city": "${Subdivision.city}"
+			"city": "${Subdivision.city.name}",
 			"id": "${Subdivision.id}",
 			"value": "${Subdivision.name}"
 		},</g:each>
