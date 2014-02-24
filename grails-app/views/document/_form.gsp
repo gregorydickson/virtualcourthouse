@@ -2,33 +2,29 @@
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<input id="BookType" class="autocomplete" autofocus/>
+		<input id="BookType" name="BookType" class="" autofocus/>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<div class="input-wrapper">
 			<label>BOOK #</label>
-			<g:field id="bookNumber" name="bookNumber" type="number" value="${documentInstance.bookNumber}" />
+			<g:field id="bookNumber" name="bookNumber" type="number"  />
 		</div>	
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<label for="pageNumber">PAGE #</label>
-		<g:field name="pageNumber" type="number" value="${documentInstance.pageNumber}" />
+		<g:field name="pageNumber" type="number"  />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentNumber">INST #</label>
-		<g:textField name="instrumentNumber" value="${documentInstance?.instrumentNumber}" class="uppercase"/>
+		<g:textField name="instrumentNumber"  class="uppercase"/>
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentType">INST TYPE</label>
-		<select id="insrumentType" name="instrumentType.id"  class="chosen-select" >
-	    	<g:each var="InstrumentType" in="${net.rcenergy.InstrumentTypes.list()}">
-		        <option value="${InstrumentType.id}"> ${InstrumentType.instrumentType}</option>
-		    </g:each>
-		</select>
+		<input id="insrumentType" name="instrumentType.id"  class="" >
 	</div>
 	
 	<div class="medium-2 large-2 columns">
