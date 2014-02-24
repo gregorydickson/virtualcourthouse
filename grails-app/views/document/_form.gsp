@@ -2,8 +2,7 @@
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<input id="BookType.id" name="BookType.id" type="hidden" >
-		<input id="BookType"   class="autocomplete" autofocus/>
+		<input id="BookType" class="autocomplete" autofocus/>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
@@ -142,7 +141,7 @@
 		   <div class="a_city_sub_block_lot row">
 	          <div class="form-paragraph large-2 columns">
 	            <label>City</label>
-	            <input type="text" id="city" name="city[0]" size="400" class="city uppercase city-sub-block-lot"/>
+	            <input type="text" id="city" name="city[0]" size="400" class="city autocomplete city-sub-block-lot"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Sub</label>

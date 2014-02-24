@@ -8,7 +8,6 @@
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'normalize.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'foundation.css')}" type="text/css">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery-ui.css')}" type="text/css">
-		
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'app.css')}" type="text/css">
 		<g:layoutHead/>
 		<g:javascript src="modernizr.js"/>
@@ -46,6 +45,13 @@
 			   "value": "${BookType.bookType}"
 		   },</g:each>
 		  ]; 
+		  var citiesJSON = [
+       <g:each var="City" in="${net.rcenergy.City.list()}">
+	   {
+		   "id": "${City.id}",
+		   "value": "${City.name}"
+	   },</g:each>
+		  ];
 		</script>
 		<g:javascript src="popup.js"/>
 		<g:javascript src="document.js"/>

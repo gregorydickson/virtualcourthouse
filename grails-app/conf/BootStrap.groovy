@@ -5,6 +5,7 @@ import net.rcenergy.Image
 import net.rcenergy.USState
 import net.rcenergy.User
 import net.rcenergy.InstrumentTypes
+import net.rcenergy.City
 
 class BootStrap {
 
@@ -28,14 +29,15 @@ class BootStrap {
 					def instrumentType3 = new InstrumentTypes(instrumentType : "WARRANTY DEED").save(failOnError : true);
 					// create a state
 					def state = new USState(name: "OKLAHOMA", layout: "layout").save(failOnError: true);
-
-					// create a state
 					def state2 = new USState(name: "OHIO", layout: "layout").save(failOnError: true);
-					def district3 = new District(name: "MEIGS", usstate: state2).save(failOnError: true);
-
+					
 					// create districts
+					def district3 = new District(name: "MEIGS", usstate: state2).save(failOnError: true);
 					def district1 = new District(name: "OKLAHOMA", usstate: state).save(failOnError: true);
 					def district2 = new District(name: "POTTAWATOMIE", usstate: state).save(failOnError: true);
+					
+					//create cities
+					def city1 = new City(name: "EDMOND", district: district1).save(failOnError: true);
 
 					// create books
 					def book1 = new Book(identifer : "BOOK1", booktype : bookType1).save(failOnError : true);
@@ -115,7 +117,13 @@ class BootStrap {
 					// create districts
 					def district1 = new District(name: "OKLAHOMA", usstate: state).save(failOnError: true);
 					def district2 = new District(name: "POTTAWATOMIE", usstate: state).save(failOnError: true);
-
+					//create cities
+					def city1 = new City(name: "EDMOND", district: district1).save(failOnError: true);
+					def city2 = new City(name: "BETHANY", district: district1).save(failOnError: true);
+					def city3 = new City(name: "OKLAHOMA CITY", district: district1).save(failOnError: true);
+					def city4 = new City(name: "NEWALLA", district: district1).save(failOnError: true);
+					def city5 = new City(name: "JONES", district: district1).save(failOnError: true);
+					def city6 = new City(name: "HARRAH", district: district1).save(failOnError: true);
 					// create books
 					def book1 = new Book(identifer : "BOOK1", booktype : bookType1).save(failOnError : true);
 					def book2 = new Book(identifer : "BOOK2", booktype : bookType1).save(failOnError : true);

@@ -53,38 +53,6 @@ function sumAcres(){
 	$('#acresTotal').text(string);
 }
 
-function eventHandlerGrantor(e) {
-    var code = e.keyCode || e.which;
-    if (code == 13) {           
-       var i = $(".grantor").size() + 1;
-       var a_new_field = addNewInputGrantor(i);
-       var div = $('#grantors_wrapper');
-       $(a_new_field).on('keyup', eventHandlerGrantor);
-       $(a_new_field).appendTo(div);
-       var the_input = a_new_field.find(">:first-child");
-	  
-       the_input.focus();
-       the_input.select();
-       return false;
-    }
-}
-function eventHandlerGrantee(e) {
-    var code = e.keyCode || e.which;
-    if (code == 13) {           
-       var i = $(".grantee").size() + 1;
-       var a_new_field = addNewInputGrantee(i);
-       var div = $('#grantees_wrapper');
-       $(a_new_field).on('keyup', eventHandlerGrantee);
-       $(a_new_field).appendTo(div);
-       var the_input = a_new_field.find(">:first-child");
-	   
-       the_input.focus();
-       the_input.select();
-       return false;
-    }
-}
-
-
 function addNewInputGrantor(i) {
     return $('<p class="form-paragraph"><input class="grantor uppercase" type="text"  id="grantor" name="grantor" value="" /> </p>');
 }
@@ -93,45 +61,9 @@ function addNewInputGrantee(j) {
 }
 //TODO: refactor this to copy the existing row in the DOM
 function addNewInputRelatedDocuments(k) {
-	//The book type options have to be rendered in the .gsp page as we do not have them in the 
-	// document.js file since this file is not parsed by the server.
-	// This function call grabs them from a function in the create.gsp file so we can add them
-	// to a related documents new line select field.
-    var optionsString = getBookTypeOptions();
 	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><input type="text" id="relatedDocumentBookType' + k + '" name="related-documents-book-type[' + (k-1) + ']"  class="related-documents relatedDocumentBookType" ></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="related-documents-book-number[' + (k-1) + ']" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="related-documents-page-number[' + (k-1) + ']" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="related-documents-instrument-number[' + (k-1) + ']" type="text"  /></div></div>');
 }
-function decorateSecTwnRange(e){
-	sumLegalDescriptionRows();
-	var elements = $(this).parent().parent().find('.sec-twn-rge');
-	$.each(elements, function(){
-		$(this).on('keyup',eventHandlerSecTwnRge);
-	});
-	console.log("DECORATE SECTION TWN RANGE");
-}
-function decorateCtySubBlkLot(){
-	sumLegalDescriptionRows();
-	var elements = $(this).parent().parent().find('.city-sub-block-lot');
-	$.each(elements, function(){
-		$(this).on('keyup',eventHandlerCtySubBlkLot);
-	});
-	console.log("DECORATE  City Sub Blk Lot");
-}
-function decorateTaxMapParcel(){
-	sumLegalDescriptionRows();
-	var elements = $(this).parent().parent().find('.tax-map-parcel');
-	$.each(elements, function(){
-		$(this).on('keyup',eventHandlerTaxMapParcel);
-	});
-	console.log("DECORATE TAX Map Parcel");
-}
-function decorateSurveyAbstract(){
-	sumLegalDescriptionRows();
-	var elements = $(this).parent().parent().find('.survey-abstract');
-	$.each(elements, function(){
-		$(this).on('keyup',eventHandlerSurveyAbstract);
-	});
-	console.log("DECORATE Survey Abstract");
-}
+
 function eventHandlerSurveyAbstract(e){
 	var code = e.keyCode || e.which;
      if (code == 13) {
@@ -171,12 +103,19 @@ function addNewLineCtySubBlkLot(){
     $(new_item).appendTo(div);
 	var the_input = new_item.find(".city");
 	new_item.find('.popout').popBox();
+	$(the_input).autocomplete({
+		autofocus: "true",
+		minLength: 1,
+		change: function (event, ui) {
+			if (ui.item === null) {
+				$(this).val('');
+			}
+		},
+		source: citiesJSON
+	});
     the_input.focus();
     the_input.select();
-	$(new_item).find('.acre').on('blur',sumAcres);
-	
 	console.log("Adding New Line Section Twn Range");
-	$(new_item).one('keyup', decorateCtySubBlkLot);
 	sumLegalDescriptionRows();
     return false;
 }
@@ -189,10 +128,7 @@ function addNewLineSecTwnRge() {
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
-	$(new_item).find('.acre').on('blur',sumAcres);
-	
 	console.log("Adding New Line CITY SUB BLK LOT");
-	$(new_item).one('keyup', decorateSecTwnRange);
 	sumLegalDescriptionRows();
     return false;
 }
@@ -205,10 +141,7 @@ function addNewLineTaxMapParcel() {
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
-	$(new_item).find('.acre').on('blur',sumAcres);
-	
 	console.log("Adding New Line TAX MAP PARCEL");
-	$(new_item).one('keyup', decorateTaxMapParcel);
 	sumLegalDescriptionRows();
     return false;
 }
@@ -221,10 +154,7 @@ function addNewLineSurveyAbstract(){
 	new_item.find('.popout').popBox();
     the_input.focus();
     the_input.select();
-	$(new_item).find('.acre').on('blur',sumAcres);
-	
 	console.log("Adding New Line Survey Abstract");
-	$(new_item).one('keyup', decorateSurveyAbstract);
 	sumLegalDescriptionRows();
     return false;
 }
@@ -246,13 +176,8 @@ function addNewCitySubBlkLot(i) {
 $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
-	
 
-
-	
 	//#################### JQUERY AUTOCOMPLETE
-	
-	
 	$("#BookType").autocomplete({
 		position: { my : "left top", at: "left bottom", of: "#BookType" },
 		autofocus: "true",
@@ -270,19 +195,25 @@ $( document ).ready(function() {
 		source: booktypeJSON
 
 	});
-	$("#relatedDocumentBookType1").autocomplete({
-
+	$(".relatedDocumentBookType").autocomplete({
 		autofocus: "true",
 		minLength: 1,
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
-				$('#relatedDocumentBookType1').val('');
 			}
 		},
-		
 		source: booktypeJSON
-
+	});
+	$(".city").autocomplete({
+		autofocus: "true",
+		minLength: 1,
+		change: function (event, ui) {
+			if (ui.item === null) {
+				$(this).val('');
+			}
+		},
+		source: citiesJSON
 	});
     
 	//################### END JQUERY AUTOCOMPLETE
@@ -392,16 +323,14 @@ $( document ).ready(function() {
 		}
 	});
 	//create new grantor fields dynamically
-    var grantor_div = $('#grantors_wrapper');
-    var i = $(".grantor").size() + 1;
-    $('#grantor').on('keyup', function (e) {
+    $('body').on('keyup','.grantor', function (e) {
 		var code = e.keyCode || e.which;
 		if (code == 13) {
+		    var grantor_div = $('#grantors_wrapper');
+		    var i = $(".grantor").size() + 1;
 			var new_item = addNewInputGrantor(i);
-			$(new_item).on('keyup', eventHandlerGrantor);
 			$(new_item).appendTo(grantor_div);
 			var the_input = new_item.find(">:first-child");
-			
 			the_input.focus();
 			the_input.select();
 			i++;
@@ -410,26 +339,21 @@ $( document ).ready(function() {
     });
 	//end handle grantors
     //create new grantee fields dynamically
-    var grantee_div = $('#grantees_wrapper');
-    var j = $(".grantee").size() + 1;
-	$('body'.on('keyup', '.grantee', function (e) {
+	$('body').on('keyup', '.grantee', function (e) {
 		var code = e.keyCode || e.which;
 		if (code == 13) {
-			var new_item = addNewInputGrantee(i);
-
+		    var grantee_div = $('#grantees_wrapper');
+		    var j = $(".grantee").size() + 1;
+			var new_item = addNewInputGrantee(j);
 			$(new_item).appendTo(grantee_div);
 			var the_input = new_item.find(">:first-child");
-			
 			the_input.focus();
 			the_input.select();
-
 			return false;
 		}
 	});
 	//end handle grantees
-	/** create new related documents lines dynamically
-		by registering an event on the instrument number 
-	line to capture a return event and create a new line			*/
+
     $('body').on('keyup','.related-documents', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
@@ -438,23 +362,29 @@ $( document ).ready(function() {
             var new_item = addNewInputRelatedDocuments(k);
             $(new_item).appendTo(related_documents_div);
 			var the_input = new_item.find(".relatedDocumentBookType");
+			$(the_input).autocomplete({
+				autofocus: "true",
+				minLength: 1,
+				change: function (event, ui) {
+					if (ui.item === null) {
+						$(this).val('');
+					}
+				},
+				source: booktypeJSON
+			});
 			the_input.focus();
 			the_input.select();
             return false;
         }
     });
-	//end handle related documents
-	//
-	$('.sec-twn-rge').on('keyup', eventHandlerSecTwnRge);
-	$('.city-sub-block-lot').on('keyup',eventHandlerCtySubBlkLot);	
-	$('.tax-map-parcel').on('keyup',eventHandlerTaxMapParcel);
-	$('.survey-abstract').on('keyup',eventHandlerSurveyAbstract);
-	$('.acre').on('blur',sumAcres);
-	//change fields to uppercase
+
+	$('body').on('keyup', '.sec-twn-rge', eventHandlerSecTwnRge);
+	$('body').on('keyup', '.tax-map-parcel',eventHandlerTaxMapParcel);
+	$('body').on('keyup', '.survey-abstract',eventHandlerSurveyAbstract);
+	$('body').on('keyup', '.city-sub-block-lot',eventHandlerCtySubBlkLot);
+	$('body').on('blur', '.acre', sumAcres);
 	$('body').on('keyup','.uppercase', function(){
 	    this.value = this.value.toUpperCase();
 	});
-	//END change fields to uppercase
-
 //END of Document Ready code
 });
