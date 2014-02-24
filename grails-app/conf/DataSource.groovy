@@ -14,7 +14,6 @@ environments {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
 		    pooled = true
-		    dbCreate = "update"
 		    url = "jdbc:mysql://localhost/p1"
 		    driverClassName = "com.mysql.jdbc.Driver"
 		    dialect = org.hibernate.dialect.MySQL5InnoDBDialect
@@ -29,6 +28,10 @@ environments {
 		        timeBetweenEvictionRunsMillis = 60000
 		        maxWait = 10000
 		        validationQuery = "/* ping */"
+				testOnBorrow=true
+			    testWhileIdle=true
+			    testOnReturn=true
+
         	}
 		}
     }
@@ -37,7 +40,6 @@ environments {
         dataSource {
            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
 		    pooled = true
-		    dbCreate = "update"
 		  	driverClassName = "com.mysql.jdbc.Driver"
 			  url = "jdbc:mysql://aa1ojksw5ci9npg.cta6bqnhgrir.us-west-2.rds.amazonaws.com/ebdb?user=land&password=0gzr4YjMKrsb2Ix"
 			  dialect = org.hibernate.dialect.MySQL5InnoDBDialect

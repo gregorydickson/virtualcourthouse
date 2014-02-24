@@ -38,20 +38,35 @@
 			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
 			return returnString;
 		}
-	    var booktypeJSON = [
-	       <g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
-		   {
-			   "id": "${BookType.id}",
-			   "value": "${BookType.bookType}"
-		   },</g:each>
-		  ]; 
-		  var citiesJSON = [
-       <g:each var="City" in="${net.rcenergy.City.list()}">
-	   {
-		   "id": "${City.id}",
-		   "value": "${City.name}"
-	   },</g:each>
-		  ];
+		var booktypeJSON = [
+		<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
+		{
+			"id": "${BookType.id}",
+			"value": "${BookType.bookType}"
+		},</g:each>
+		]; 
+		var instrumenttypeJSON = [
+		<g:each var="InstrumentType" in="${net.rcenergy.InstrumentTypes.list()}">
+		{
+			"id": "${InstrumentType.id}",
+			"value": "${InstrumentType.instrumentType}"
+		},</g:each>
+		]; 
+		var citiesJSON = [
+		<g:each var="City" in="${net.rcenergy.City.list()}">
+		{
+			"id": "${City.id}",
+			"value": "${City.name}"
+		},</g:each>
+		];
+		var subdivisionsJSON = [
+		<g:each var="Subdivision" in="${net.rcenergy.Subdivision.list()}">
+		{
+			"city": "${Subdivision.city}"
+			"id": "${Subdivision.id}",
+			"value": "${Subdivision.name}"
+		},</g:each>
+		];
 		</script>
 		<g:javascript src="popup.js"/>
 		<g:javascript src="document.js"/>

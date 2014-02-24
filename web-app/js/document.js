@@ -104,8 +104,9 @@ function addNewLineCtySubBlkLot(){
 	var the_input = new_item.find(".city");
 	new_item.find('.popout').popBox();
 	$(the_input).autocomplete({
-		autofocus: "true",
-		minLength: 1,
+		autoFocus: "true",
+		minLength: 0,
+		delay: 0,
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
@@ -180,12 +181,12 @@ $( document ).ready(function() {
 	//#################### JQUERY AUTOCOMPLETE
 	$("#BookType").autocomplete({
 		position: { my : "left top", at: "left bottom", of: "#BookType" },
-		autofocus: "true",
-		minLength: 1,
+		delay: 0,
+		autoFocus: "true",
+		minLength: 0,
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
-				$('#BookType').val('');
 			}
 		},
 		select: function(event, ui) {
@@ -195,9 +196,22 @@ $( document ).ready(function() {
 		source: booktypeJSON
 
 	});
+	$(".InstrumentType").autocomplete({
+		autoFocus: "true",
+		delay: 0,
+		minLength: 0,
+		change: function (event, ui) {
+			if (ui.item === null) {
+				$(this).val('');
+			}
+		},
+		source: instrumenttypeJSON
+	});
+	
 	$(".relatedDocumentBookType").autocomplete({
-		autofocus: "true",
-		minLength: 1,
+		autoFocus: "true",
+		delay: 0,
+		minLength: 0,
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
@@ -206,8 +220,9 @@ $( document ).ready(function() {
 		source: booktypeJSON
 	});
 	$(".city").autocomplete({
-		autofocus: "true",
-		minLength: 1,
+		autoFocus: "true",
+		delay: 0,
+		minLength: 0,
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
@@ -363,8 +378,9 @@ $( document ).ready(function() {
             $(new_item).appendTo(related_documents_div);
 			var the_input = new_item.find(".relatedDocumentBookType");
 			$(the_input).autocomplete({
-				autofocus: "true",
-				minLength: 1,
+				autoFocus: "true",
+				delay: 0,
+				minLength: 0,
 				change: function (event, ui) {
 					if (ui.item === null) {
 						$(this).val('');

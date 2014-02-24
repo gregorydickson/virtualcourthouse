@@ -2,7 +2,7 @@
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<input id="BookType" name="BookType" class="" autofocus/>
+		<input id="BookType" type="text" name="BookType" class="" autofocus/>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
@@ -23,8 +23,8 @@
 	</div>
 	
 	<div class="medium-4 large-2 columns">
-		<label for="instrumentType">INST TYPE</label>
-		<input id="insrumentType" name="instrumentType.id"  class="" >
+		<label>INST TYPE</label>
+		<input id="InsrumentType" type="text" name="InstrumentType"  class="InstrumentType" />
 	</div>
 	
 	<div class="medium-2 large-2 columns">
