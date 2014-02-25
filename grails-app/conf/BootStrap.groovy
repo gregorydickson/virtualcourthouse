@@ -7,6 +7,7 @@ import net.rcenergy.User
 import net.rcenergy.InstrumentTypes
 import net.rcenergy.City
 import net.rcenergy.Subdivision
+import net.rcenergy.Assignment
 
 class BootStrap {
 
@@ -21,8 +22,8 @@ class BootStrap {
 				if (USState.count() == 0) {
 
 					// create some users
-					new User(username : "userX", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
-					new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+					def user1 = new User(username : "userX", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+					def user2 = new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
 
 					// create booktypes
 					def bookType1 = new BookTypes(bookType : "WARRANTY DEED").save(failOnError : true);
@@ -94,7 +95,6 @@ class BootStrap {
 					book2.images.add(img5);
 					book2.images.add(img6);
 					book2.merge();
-
 									
 					//images with no book (some counties will not have books just images)
 					def img7 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).save(failOnError : true);
@@ -102,6 +102,10 @@ class BootStrap {
 					def img9 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).save(failOnError : true);
 					def img10 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true);
 					
+					//assignment
+					def assignment1 = new Assignment(district:district1, user: user1).save(failOnError : true);
+					assignment1.images.add(img1);
+					assignment1.save(failOnError : true);
 				}
 			}
 		}
