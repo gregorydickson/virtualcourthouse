@@ -11,6 +11,7 @@ class Image {
 	String fileName
 	Integer bookNumber
 	Integer pageNumber
+	District district
 
 	/**
 	 * A transient property to represent an image object as string in UI
@@ -25,7 +26,7 @@ class Image {
 	}
 	private static final MAX_IMAGE_SIZE = 1073741824
 	static hasMany = [documents:Document]
-	static belongsTo = Document
+
 	static constraints = {
 		image(maxSize:MAX_IMAGE_SIZE)
 
