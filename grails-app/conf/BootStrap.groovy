@@ -22,8 +22,8 @@ class BootStrap {
 				if (USState.count() == 0) {
 
 					// create some users
-					def user1 = new User(username : "userX", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
-					def user2 = new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+					//def user1 = new User(username : "userX", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+					//def user2 = new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
 
 					// create booktypes
 					def bookType1 = new BookTypes(bookType : "WARRANTY DEED").save(failOnError : true);
@@ -103,10 +103,10 @@ class BootStrap {
 					def img10 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true);
 					
 					//assignment
-					def assignment1 = new Assignment(district:district1, user: user1).save(failOnError : true);
-					assignment1.images = new ArrayList<Image>();
-					assignment1.images.add(img1);
-					assignment1.save(failOnError : true);
+					//def assignment1 = new Assignment(district:district1, user: user1).save(failOnError : true);
+					//assignment1.images = new ArrayList<Image>();
+					//assignment1.images.add(img1);
+					//assignment1.save(failOnError : true);
 				}
 			}
 		}
