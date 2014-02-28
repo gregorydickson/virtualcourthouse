@@ -104,6 +104,7 @@ class BootStrap {
 					
 					//assignment
 					def assignment1 = new Assignment(district:district1, user: user1).save(failOnError : true);
+					assignment1.images = new ArrayList<Image>();
 					assignment1.images.add(img1);
 					assignment1.save(failOnError : true);
 				}

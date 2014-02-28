@@ -12,6 +12,7 @@ class Document {
 	InstrumentTypes instrumentType
 	Date fileDate
 	Date instrumentDate
+	String notes
 	
 
 	static hasMany = [images : Integer, 
