@@ -26,6 +26,7 @@
 		<g:javascript src="foundation.js"/>
 		<g:javascript src="foundation.abide.js"/>
 		<g:javascript src="foundation.reveal.js"/>
+		<g:javascript src="foundation.topbar.js"/>
 		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="jqueryui-1.10.4.js"/>
 		<g:javascript src="jquery.key.js"/>

@@ -112,11 +112,11 @@
 				<label>Range Number</label>
 				<input type="text" id="rangeNumber" class="rangeNumber[0] sec-twn-rge"/>
 	          </div>
-	          <div class="form-paragraph large-2 columns">
+	          <div class="form-paragraph large-1 columns">
 	             <label>RANGE DIRECTION</label>
 	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase  sec-twn-rge"/>
 			  </div>
-	          <div class="form-paragraph large-1 columns">
+	          <div class="form-paragraph large-2 columns">
 	            <label>Acre</label>
 	            <input type="text" id="acre" name="sec-twn-rge-acre[0]" class="acre sec-twn-rge"/>
 	          </div>
@@ -151,11 +151,11 @@
 	             <label>Lot</label>
 	             <input type="text" name="lot[0]" id="lot" class="uppercase city-sub-block-lot" />
 	           </div>
-	           <div class="form-paragraph large-1 columns">
+	           <div class="form-paragraph large-2 columns">
 	             <label>Acre</label>
 	             <input type="text" name="city-sub-blk-lot-acre[0]" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/>
 	           </div>
-	          <div class="form-paragraph large-3 columns">
+	          <div class="form-paragraph large-2 columns">
 	            <label>Assessor #</label>
 	            <input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber[0]" class="uppercase city-sub-block-lot"/>
 	          </div>
@@ -181,11 +181,11 @@
 	            <label>Map</label>
 	            <input type="text" name="map[0]" class="uppercase tax-map-parcel" />
 	           </div>
-	           <div class="form-paragraph large-2 columns">
+	           <div class="form-paragraph large-1 columns">
 	             <label>Parcel</label>
 	             <input type="text" name="parcel[0]" class="uppercase tax-map-parcel" />
 	           </div>
-	           <div class="form-paragraph large-1 columns">
+	           <div class="form-paragraph large-2 columns">
 	             <label>Acre</label>
 	             <input type="text" name="tax-map-parcel-acre[0]" id="tax-map-parcel-acre" class="tax-map-parcel"/>
 	           </div>
@@ -219,11 +219,11 @@
 	             <label>Lot</label>
 	             <input type="text" name="survey-abstract-lot[0]" class="uppercase survey-abstract" />
 	           </div>
-	           <div class="form-paragraph large-2 columns">
+	           <div class="form-paragraph large-1 columns">
 	             <label>Sec</label>
 	             <input type="text" name="survey-abstract-section[0]" class="uppercase survey-abstract" />
 	           </div>
-	           <div class="form-paragraph large-1 columns">
+	           <div class="form-paragraph large-2 columns">
 	             <label>Acre</label>
 	             <input type="text" name="survey-abstract-acre[0]" id="survey-abstract-acre" class="uppercase survey-abstract"/>
 	           </div>

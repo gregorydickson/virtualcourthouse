@@ -11,19 +11,28 @@
 			<nav class="top-bar" data-topbar>
 			  <ul class="title-area">
 			    <li class="name">
-			      <h1><a href="${createLink(uri: '/')}">Virtual Courthouse</a></h1>
+			      <h1><a href="#">Virtual Courthouse</a></h1>
 			    </li>
+			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 			  </ul>
-			  <ul class="left">
-				<li>
-			      <g:message code="default.create.label" args="[entityName]" />
-			    </li>
-			  </ul>
-			  <ul class="right">
-				<li class="has-form">
-				  <g:link class="button" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link>
-				</li>
-			  </ul>
+
+			  <section class="top-bar-section">
+			    <!-- Right Nav Section -->
+			    <ul class="right">
+			      <li class="active"><a href="#">Right Button Active</a></li>
+			      <li class="has-dropdown">
+			        <a href="#">Right Button with Dropdown</a>
+			        <ul class="dropdown">
+			          <li><a href="#">First link in dropdown</a></li>
+			        </ul>
+			      </li>
+			    </ul>
+
+			    <!-- Left Nav Section -->
+			    <ul class="left">
+			      <li><a href="#">Left Nav Button</a></li>
+			    </ul>
+			  </section>
 			</nav>
 		</div>
 	

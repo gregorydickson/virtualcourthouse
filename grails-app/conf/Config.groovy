@@ -123,33 +123,17 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'net.rcenergy.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'net.rcenergy.UserRole'
 grails.plugin.springsecurity.authority.className = 'net.rcenergy.Role'
-grails.plugin.springsecurity.requestMap.className = 'net.rcenergy.Requestmap'
-grails.plugin.springsecurity.securityConfigType = 'Requestmap'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
+grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.interceptUrlMap = [
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/**/favicon.ico':                ['permitAll'],
+	'/login/**':                      ['permitAll'],
+	'/user/**':                       ['permitAll'],
+	'/role/**':                       ['permitAll'],
+	'/document/**':                   ['permitAll']
 ]
 
 
-
-// Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'net.rcenergy.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'net.rcenergy.UserRole'
-grails.plugin.springsecurity.authority.className = 'net.rcenergy.Role'
-grails.plugin.springsecurity.requestMap.className = 'net.rcenergy.RequestMap'
-grails.plugin.springsecurity.securityConfigType = 'Requestmap'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
-]
 
