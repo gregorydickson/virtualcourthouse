@@ -2,35 +2,35 @@
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<input id="BookType" type="text" name="BookType" class="" autofocus/>
+		<input id="BookType" type="text" name="document.bookType" class="" autofocus/>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<div class="input-wrapper">
 			<label>BOOK #</label>
-			<g:field id="bookNumber" name="bookNumber" type="number"  />
+			<g:field id="bookNumber" name="document.bookNumber" type="number"  />
 		</div>	
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<label for="pageNumber">PAGE #</label>
-		<g:field name="pageNumber" type="number"  />
+		<g:field name="document.pageNumber" type="number"  />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentNumber">INST #</label>
-		<g:textField name="instrumentNumber"  class="uppercase"/>
+		<g:textField name="document.instrumentNumber"  class="uppercase"/>
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label>INST TYPE</label>
-		<input id="InsrumentType" type="text" name="InstrumentType"  class="InstrumentType" />
+		<input id="InsrumentType" type="text" name="document.instrumentType"  class="InstrumentType" />
 	</div>
 	
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
-			<input type="text" id="fileDate" name="fileDate" class="dateformat" />
+			<input type="text" id="fileDate" name="document.fileDate" class="dateformat" />
 			<small class="error">File Date Error.</small>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>INST DATE</label>
-			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat" />	
+			<input type="text" id="instrumentDate" name="document.instrumentDate" class="dateformat" />	
 			<small class="error">Instrument Date Errror.</small>
 		</div>
 	</div>
@@ -49,7 +49,7 @@
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
 		    <p class="form-paragraph">
-		        <input class="grantor uppercase" name="grantor" type="text" id="grantor"   />
+		        <input class="grantor uppercase" name="document.grantor[]" type="text" id="grantor"   />
 		    </p>
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee uppercase" name="grantee" type="text" id="grantee"  />
+		        <input class="grantee uppercase" name="document.grantee[]" type="text" id="grantee"  />
 		    </p>
 		</div>
 	</div>

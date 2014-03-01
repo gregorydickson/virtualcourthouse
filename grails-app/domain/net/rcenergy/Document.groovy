@@ -13,6 +13,10 @@ class Document {
 	Date fileDate
 	Date instrumentDate
 	String notes
+	User indexer
+	User reviewer
+	Assignment assignment
+	
 	
 
 	static hasMany = [images : Integer, 
@@ -20,19 +24,18 @@ class Document {
 			childDocument:RelatedDocument,
 			grantor: String,
 			grantee: String,
-			legalDescription: LegalDescriptions
-			]
+			legalDescriptionCitySubBlkLot: LegalDescriptionCitySubBlkLot,
+			legalDescriptionSecTwnRge: LegalDescriptionSecTwnRge,
+			legalDescriptionSurveyAbstract: LegalDescriptionSurveyAbstract,
+			legalDescriptionTaxMapParcel: LegalDescriptionTaxMapParcel
+	]
 	String toString() {"DOCUMENT bookNumber: " + bookNumber?.toString() + 
 							" bookType: " + bookType?.toString() +
 							" pageNumber: " + pageNumber?.toString() +
 							" instrumentNumber: " + instrumentNumber +
 							" instrumentType: " + instrumentType?.toString() +
 							" fileDate: " + fileDate?.toString() +
-							" instrumentDate: " + instrumentDate?.toString() +
-							" parentDocument: " + parentDocument?.toString() +
-							" grantor: " + grantor +
-							" grantee: " + grantee +
-							" legalDescription: " + legalDescription?.toString()
+							" instrumentDate: " + instrumentDate?.toString() 
 	}
     static constraints = {
 		bookNumber(nullable:true)
@@ -42,12 +45,19 @@ class Document {
 		instrumentType(nullable:true)
 		fileDate(nullable:true)
 		instrumentDate(nullable:true)
-		
 		images(nullable:true)
 		parentDocument(nullable:true)
 		childDocument(nullable:true)
 		grantor(nullable:true)
 		grantee(nullable:true)
-		legalDescription(nullable:true)
+		legalDescriptionCitySubBlkLot(nullable:true)
+		legalDescriptionSecTwnRge(nullable:true)
+		legalDescriptionSurveyAbstract(nullable:true)
+		legalDescriptionTaxMapParcel(nullable:true)
+		indexer(nullable:true)
+		reviewer(nullable:true)
+		assignment(nullable:true)
+		notes(nullable:true,maxSize:200000)
+		
     }
 }

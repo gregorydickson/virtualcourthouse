@@ -53,11 +53,11 @@ function sumAcres(){
 	$('#acresTotal').text(string);
 }
 
-function addNewInputGrantor(i) {
-    return $('<p class="form-paragraph"><input class="grantor uppercase" type="text"  id="grantor" name="grantor" value="" /> </p>');
+function addNewInputGrantor() {
+    return $('<p class="form-paragraph"><input class="grantor uppercase" type="text"  id="grantor" name="document.grantor[]" value="" /> </p>');
 }
-function addNewInputGrantee(j) {
-    return $('<p class="form-paragraph"><input  class="grantee uppercase" type="text" id="grantee" name="grantee"  value="" /> </p>');
+function addNewInputGrantee() {
+    return $('<p class="form-paragraph"><input  class="grantee uppercase" type="text" id="grantee" name="document.grantee[]"  value="" /> </p>');
 }
 //TODO: refactor this to copy the existing row in the DOM
 function addNewInputRelatedDocuments(k) {
@@ -293,11 +293,12 @@ $( document ).ready(function() {
 	// START - SAVE DOCUMENT VIA AJAX WITH JSON
 	$.key('ctrl+j', function(){
 		console.log('ajaxit');
-		console.log("postJSON is " + JSON.stringify($('#create_doc_form').serializeArray()));
+		var objectGraph = form2js('create_doc_form','.',true)
+		console.log("postJSON is " + JSON.stringify(objectGraph));
 		jQuery.ajax({type:'POST',
-			data:jQuery('#create_doc_form').serializeArray(),
+			data:jQuery(objectGraph).serializeArray(),
 			dataType: 'json',
-		 	url:'/virtualcourthouse/document/save.json',
+		 	url:'/virtualcourthouse/document/createDocumentWithChildren.json',
 		 	success:function(data,textStatus){
 			 alert("Saved Document");
 			 console.log("RETURN JSON: " + JSON.stringify(data));
@@ -400,7 +401,7 @@ $( document ).ready(function() {
 		if (code == 13) {
 		    var grantor_div = $('#grantors_wrapper');
 		    var i = $(".grantor").size() + 1;
-			var new_item = addNewInputGrantor(i);
+			var new_item = addNewInputGrantor();
 			$(new_item).appendTo(grantor_div);
 			var the_input = new_item.find(">:first-child");
 			the_input.focus();
@@ -416,7 +417,7 @@ $( document ).ready(function() {
 		if (code == 13) {
 		    var grantee_div = $('#grantees_wrapper');
 		    var j = $(".grantee").size() + 1;
-			var new_item = addNewInputGrantee(j);
+			var new_item = addNewInputGrantee();
 			$(new_item).appendTo(grantee_div);
 			var the_input = new_item.find(">:first-child");
 			the_input.focus();

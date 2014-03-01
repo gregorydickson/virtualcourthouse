@@ -1,33 +1,31 @@
 package net.rcenergy
 
 
-
+import grails.converters.JSON
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class DocumentController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST",createDocumentWithChildren: "POST", update: "PUT", delete: "DELETE"]
 	DocumentService documentService
 	
-	def createDocumentWithChildren(Document documentInstance){
+	@Transactional
+	def createDocumentWithChildren(){
      
 		
-		
-		//document.instrumentType = params.instrumentType
-		documentInstance.bookNumber = new Integer (params.bookNumber)
-		//document.bookType = new BookTypes(params.bookType)
-		documentInstance.pageNumber = new Integer(params.pageNumber)
-		documentInstance.instrumentNumber = new String(params.instrumentNumber)
-		documentInstance.fileDate = new Date().parse("yyyy-MM-dd", params.fileDate)
-		documentInstance.instrumentDate =  new Date().parse("yyyy-MM-dd", params.instrumentDate)
-		
-		//documentInstance.grantor = params.list('grantor')
-		//documentInstance.grantee = params.list('grantee')
-
-		documentInstance.save flush:true
-        respond documentInstance, [formats:[ 'json']]
+		def input = request.JSON
+		println request.JSON as JSON
+		println "Here is params: $params"
+    	def p = new Document(input)
+    	println p
+    	if (p.save(flush: true)) {
+    		render status: 200, text: 'ok'
+    	} else {
+    		for (error in p.errors.allErrors) println "$error.field: $error.code"
+    		render status: 422, text: 'there are errors'
+    	}
 	}
 
     def index(Integer max) {
@@ -45,13 +43,9 @@ class DocumentController {
 
     @Transactional
     def save(Document documentInstance) {
-		log.debug("SAVING DOCUMENT")
-        if (documentInstance == null) {
-            notFound()
-            return
-        }
+    	
 
-       
+		
 		if (params.fileDate != ""){
 			documentInstance.fileDate =  new Date().parse("yyyy-MM-dd", params.fileDate) 
 		}
@@ -66,21 +60,23 @@ class DocumentController {
 		}
 		
 		
+	    documentInstance.save flush:true
+	   		log.debug("SAVED DOCUMENT")
+	   		respond  status: OK
+
+	   		//SCAFFOLDED CODE:
+	   		//respond documentInstance, [formats:[ 'json']]
+	           //request.withFormat {
+	           //    form {
+	           //        flash.message = message(code: 'default.created.message', args: [message(code: 'documentInstance.label', default: 'Document'), documentInstance.id])
+	           //        redirect documentInstance
+	           //    }
+	           //    '*' { respond documentInstance, [status: CREATED] }
+	           //}
+		
+       
 		
 		
-        documentInstance.save flush:true
-		log.debug("SAVED DOCUMENT")
-		respond  status: OK
-		
-		//SCAFFOLDED CODE:
-		//respond documentInstance, [formats:[ 'json']]
-        //request.withFormat {
-        //    form {
-        //        flash.message = message(code: 'default.created.message', args: [message(code: 'documentInstance.label', default: 'Document'), documentInstance.id])
-        //        redirect documentInstance
-        //    }
-        //    '*' { respond documentInstance, [status: CREATED] }
-        //}
     }
 
     def edit(Document documentInstance) {

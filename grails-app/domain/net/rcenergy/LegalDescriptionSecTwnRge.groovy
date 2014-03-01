@@ -1,10 +1,11 @@
 package net.rcenergy
 
-class CitySubBlkLot {
-	String city
-	String sub
-	String block
-	String lot
+class LegalDescriptionSecTwnRge {
+	String section
+	String townshipNumber
+	String townshipDirection
+	String rangeNumber
+	String rangeDirection
 	String assessorNumber
 	String acre
 	String metesBounds
