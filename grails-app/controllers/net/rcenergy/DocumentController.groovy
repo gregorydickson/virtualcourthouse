@@ -16,7 +16,7 @@ class DocumentController {
      
 		
 		def input = request.JSON
-		println request.JSON as JSON
+		println "Here is request.JSON: ${request.JSON as JSON}"
 		println "Here is params: $params"
     	def p = new Document(input)
     	println p
