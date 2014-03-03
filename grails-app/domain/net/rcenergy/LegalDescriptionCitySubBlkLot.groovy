@@ -1,8 +1,8 @@
 package net.rcenergy
 
 class LegalDescriptionCitySubBlkLot {
-	String city
-	String sub
+	City city
+	Subdivision subdivision
 	String block
 	String lot
 	String assessorNumber
@@ -10,10 +10,16 @@ class LegalDescriptionCitySubBlkLot {
 	String metesBounds
 	
 	static constraints = {
-		metesBounds(maxSize:200000)
+		city(nullable:true)
+		subdivision(nullable:true)
+		block(nullable:true)
+		lot(nullable:true)
+		assessorNumber(nullable:true)
+		acre(nullable:true)
+		metesBounds(nullable:true, maxSize:200000)
 	}
 	
-	static belongsTo = [document: Document]
+
     static mapping = {
 
     }

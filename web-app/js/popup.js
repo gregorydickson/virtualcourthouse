@@ -16,7 +16,7 @@
             var inputName = 'popBoxInput' + obj.attr("Id");
             var labelValue = $("label[for=" + obj.attr('id') + "]").text();
 
-            obj.after('<div class="popBox-holder"></div><div class="popBox-container"><label style="display: none;" for="' + inputName + '">' + labelValue + '</label> <textarea id="' + inputName + '" name="' + inputName + '" class="popBox-input uppercase" /></div>');
+            obj.after('<div class="popBox-holder"></div><div class="popBox-container"><label style="display: none;" for="' + inputName + '">' + labelValue + '</label> <textarea id="' + inputName + '" class="popBox-input uppercase" /></div>');
 
             obj.on('keyup', function (e) {
 				var code = e.keyCode || e.which;

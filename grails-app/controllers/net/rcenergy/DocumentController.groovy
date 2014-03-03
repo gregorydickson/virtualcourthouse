@@ -8,11 +8,11 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DocumentController {
 
-    static allowedMethods = [save: "POST",createDocumentWithChildren: "POST", update: "PUT", delete: "DELETE"]
-	DocumentService documentService
+    static allowedMethods = [ createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
+	
 	
 	@Transactional
-	def createDocumentWithChildren(){
+	def createDocumentIndexer(){
      
 		
 		def input = request.JSON
@@ -21,7 +21,8 @@ class DocumentController {
     	def p = new Document(input)
     	println p
     	if (p.save(flush: true)) {
-    		render status: 200, text: 'ok'
+    		//render status: 200, text: 'ok'
+			respond p, [formats:[ 'json']]
     	} else {
     		for (error in p.errors.allErrors) println "$error.field: $error.code"
     		render status: 422, text: 'there are errors'
@@ -45,24 +46,23 @@ class DocumentController {
     def save(Document documentInstance) {
     	
 
+		def input = request.JSON
+		println "Here is request.JSON: ${request.JSON as JSON}"
+		println "Here is params: $params"
+    	def p = new Document(input)
+    	println p
+    	if (p.save(flush: true)) {
+    		respond p as JSON
+    	} else {
+    		for (error in p.errors.allErrors) println "$error.field: $error.code"
+    		render status: 422, text: 'there are errors'
+    	}
+
 		
-		if (params.fileDate != ""){
-			documentInstance.fileDate =  new Date().parse("yyyy-MM-dd", params.fileDate) 
-		}
-		if (params.instrumentDate != ""){
-			documentInstance.instrumentDate =  new Date().parse("yyyy-MM-dd", params.instrumentDate) 
-		}
-		if (params.grantor != ""){
-			documentInstance.grantor =  params.list('grantor')
-		}
-		if (params.grantee != ""){
-			documentInstance.grantee =  params.list('grantee')
-		}
 		
-		
-	    documentInstance.save flush:true
-	   		log.debug("SAVED DOCUMENT")
-	   		respond  status: OK
+	   // documentInstance.save flush:true
+	   //		log.debug("SAVED DOCUMENT")
+	   //		respond  status: OK
 
 	   		//SCAFFOLDED CODE:
 	   		//respond documentInstance, [formats:[ 'json']]
@@ -84,26 +84,18 @@ class DocumentController {
     }
 
     @Transactional
-    def update(Document documentInstance) {
-        if (documentInstance == null) {
-            notFound()
-            return
-        }
+    def updateDocumentIndexer() {
+		println "Here is request.JSON: ${request.JSON as JSON}"
+		println "Here is params: $params"
+		def input = request.JSON
+		def doc = Document.get(input.id)
+		
+		doc.properties = input
+        doc.save flush:true
 
-        if (documentInstance.hasErrors()) {
-            respond documentInstance.errors, view:'edit'
-            return
-        }
-
-        documentInstance.save flush:true
-
-        request.withFormat {
-            form {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Document.label', default: 'Document'), documentInstance.id])
-                redirect documentInstance
-            }
-            '*'{ respond documentInstance, [status: OK] }
-        }
+     
+        respond doc, [formats:[ 'json']]
+      
     }
 
     @Transactional

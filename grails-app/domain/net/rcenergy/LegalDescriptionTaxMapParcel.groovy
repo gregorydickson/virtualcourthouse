@@ -1,19 +1,25 @@
 package net.rcenergy
 
 class LegalDescriptionTaxMapParcel {
-	String District
-	String Tax
-	String Map
-	String Parcel
+	String district
+	String tax
+	String map
+	String parcel
 	String assessorNumber
 	String acre
 	String metesBounds
 	
 	static constraints = {
-		metesBounds(maxSize:200000)
+		district(nullable:true)
+		tax(nullable:true)
+		map(nullable:true)
+		parcel(nullable:true)
+		assessorNumber(nullable:true)
+		acre(nullable:true)
+		metesBounds(nullable:true,maxSize:200000)
 	}
 	
-	static belongsTo = [document: Document]
+
     static mapping = {
 
     }

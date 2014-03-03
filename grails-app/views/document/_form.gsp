@@ -1,36 +1,39 @@
 <%@ page import="net.rcenergy.Document" %>
+<input type="hidden" name="id" class="documentId" id="documentId"/>
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<input id="BookType" type="text" name="document.bookType" class="" autofocus/>
+		<input id="BookType" type="text" class="" autofocus/>
+		<input type="hidden" name="bookType" id="BookType.id"/>
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<div class="input-wrapper">
 			<label>BOOK #</label>
-			<g:field id="bookNumber" name="document.bookNumber" type="number"  />
+			<g:field id="bookNumber" name="bookNumber" type="number"  />
 		</div>	
 	</div>
 	
 	<div class="medium-4 large-1 columns">
 		<label for="pageNumber">PAGE #</label>
-		<g:field name="document.pageNumber" type="number"  />
+		<g:field name="pageNumber" type="number"  />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentNumber">INST #</label>
-		<g:textField name="document.instrumentNumber"  class="uppercase"/>
+		<g:textField name="instrumentNumber"  class="uppercase"/>
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label>INST TYPE</label>
-		<input id="InsrumentType" type="text" name="document.instrumentType"  class="InstrumentType" />
+		<input id="InsrumentType" type="text"   class="InstrumentType" />
+		<input type="hidden" name="instrumentType" id="InstrumentType.id"/>
 	</div>
 	
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
-			<input type="text" id="fileDate" name="document.fileDate" class="dateformat" />
+			<input type="text" id="fileDate" name="fileDate" class="dateformat" />
 			<small class="error">File Date Error.</small>
 		</div>
 	</div>
@@ -38,7 +41,7 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>INST DATE</label>
-			<input type="text" id="instrumentDate" name="document.instrumentDate" class="dateformat" />	
+			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat" />	
 			<small class="error">Instrument Date Errror.</small>
 		</div>
 	</div>
@@ -49,7 +52,7 @@
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns">
 		    <p class="form-paragraph">
-		        <input class="grantor uppercase" name="document.grantor[]" type="text" id="grantor"   />
+		        <input class="grantor uppercase" name="grantor[]" type="text" id="grantor"   />
 		    </p>
 		</div>
 	</div>
@@ -59,7 +62,7 @@
 	<div class="panel">
 		<div id="grantees_wrapper">
 		    <p class="form-paragraph">
-		        <input class="grantee uppercase" name="document.grantee[]" type="text" id="grantee"  />
+		        <input class="grantee uppercase" name="grantee[]" type="text" id="grantee"  />
 		    </p>
 		</div>
 	</div>
@@ -98,35 +101,35 @@
 		  <div class="a_section_township_range row">
 	          <div class="form-paragraph large-2 columns">
 	            <label>SECTION</label>
-	            <input type="text" id="section" name="section[0]" class="section uppercase sec-twn-rge" size="400" />
+	            <input type="text" id="section" name="legalDescriptionSecTwnRge[0].section" class="section uppercase sec-twn-rge" size="400" />
 	          </div>
 			  <div class="form-paragraph large-1 columns">
 				<label>TOWNSHIP #</label>
-				<input type="text" id="townshipNumber" name="townshipNumber[0]" class="sec-twn-rge"/>
+				<input type="text" id="townshipNumber" name="legalDescriptionSecTwnRge[0].townshipNumber" class="sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>TOWNSHIP DIRECTION</label>
-	            <input type="text" id="townshipDirection" name="townshipDirection[0]" class="uppercase sec-twn-rge"/>
+	            <input type="text" id="townshipDirection" name="legalDescriptionSecTwnRge[0].townshipDirection" class="uppercase sec-twn-rge"/>
 			  </div>
 			  <div class="form-paragraph large-2 columns">
 				<label>Range Number</label>
-				<input type="text" id="rangeNumber" class="rangeNumber[0] sec-twn-rge"/>
+				<input type="text" id="rangeNumber" name="legalDescriptionSecTwnRge[0].rangeNumber" class="rangeNumber[0] sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	             <label>RANGE DIRECTION</label>
-	             <input type="text" id="rangeDirection" name="rangeDirection[0]" class="uppercase  sec-twn-rge"/>
+	             <input type="text" id="rangeDirection" name="legalDescriptionSecTwnRge[0].rangeDirection" class="uppercase  sec-twn-rge"/>
 			  </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Acre</label>
-	            <input type="text" id="acre" name="sec-twn-rge-acre[0]" class="acre sec-twn-rge"/>
+	            <input type="text" id="acre" name="legalDescriptionSecTwnRge[0].acre" class="acre sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Assessor #</label>
-	            <input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[0]" class="uppercase  sec-twn-rge"/>
+	            <input type="text" id="assessorNumber" name="legalDescriptionSecTwnRge[0].assessorNumber" class="uppercase  sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns metesBounds">
 	             <label>Metes & Bounds</label>
-				 	<input type="text"  id="sec-twn-rge-metesBounds" name="sec-twn-rge-metesBounds[0]"  class="uppercase popout sec-twn-rge" />
+				 	<input type="text"  id="sec-twn-rge-metesBounds" name="legalDescriptionSecTwnRge[0].metesBounds"  class="uppercase popout sec-twn-rge" />
 	          </div>
 		  </div>
 	    </div>
@@ -137,31 +140,33 @@
 		   <div class="a_city_sub_block_lot row">
 	          <div class="form-paragraph large-2 columns">
 	            <label>City</label>
-	            <input type="text" id="city" name="city[0]" size="400" class="city autocomplete city-sub-block-lot"/>
+	            <input type="text" id="city"  size="400" class="city autocomplete city-sub-block-lot"/>
+				<input type="hidden" name="legalDescriptionCitySubBlkLot[0].city"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Sub</label>
-	            <input type="text" size="400" id="sub" name="sub[0]" class="uppercase city-sub-block-lot subdivision" />
+	            <input type="text" size="400" id="sub" class="uppercase city-sub-block-lot subdivision" />
+				<input type="hidden" name="legalDescriptionCitySubBlkLot[0].subdivision"/>
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Block</label>
-	             <input type="text" size="400" id="block" name="block[0]" class="uppercase city-sub-block-lot" />
+	             <input type="text" size="400" id="block" name="legalDescriptionCitySubBlkLot[0].block" class="uppercase city-sub-block-lot" />
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Lot</label>
-	             <input type="text" name="lot[0]" id="lot" class="uppercase city-sub-block-lot" />
+	             <input type="text" name="legalDescriptionCitySubBlkLot[0].lot" id="lot" class="uppercase city-sub-block-lot" />
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	             <label>Acre</label>
-	             <input type="text" name="city-sub-blk-lot-acre[0]" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/>
+	             <input type="text" name="legalDescriptionCitySubBlkLot[0].acre" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/>
 	           </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Assessor #</label>
-	            <input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber[0]" class="uppercase city-sub-block-lot"/>
+	            <input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="legalDescriptionCitySubBlkLot[0].assessorNumber" class="uppercase city-sub-block-lot"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	             <label>Metes & Bounds</label>
-				 	<input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds[0]"  class="uppercase popout city-sub-block-lot" />
+				 	<input type="text"  id="city-sub-block-lot-metes-bounds" name="legalDescriptionCitySubBlkLot[0].metesBounds"  class="uppercase popout city-sub-block-lot" />
 	          </div>
 		   </div>
        </div>
@@ -171,31 +176,32 @@
 		   <div class="a_tax_map_parcel row">
 	           <div class="form-paragraph large-3 columns">
 	             <label>Dis/Twn</label>
-	             <input type="text" size="400" id="district" name="district[0]" class="district uppercase tax-map-parcel"/>
+	             <input type="text" size="400" id="district"  class="district uppercase tax-map-parcel"/>
+				 <input type="hidden" name="legalDescriptionTaxMapParcel[0].district" />
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	            <label>Tax</label>
-	            <input type="text" name="tax[0]" class="uppercase tax-map-parcel"/>
+	            <input type="text" name="legalDescriptionTaxMapParcel[0].tax" class="uppercase tax-map-parcel"/>
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	            <label>Map</label>
-	            <input type="text" name="map[0]" class="uppercase tax-map-parcel" />
+	            <input type="text" name="legalDescriptionTaxMapParcel[0].map" class="uppercase tax-map-parcel" />
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Parcel</label>
-	             <input type="text" name="parcel[0]" class="uppercase tax-map-parcel" />
+	             <input type="text" name="legalDescriptionTaxMapParcel[0].parcel" class="uppercase tax-map-parcel" />
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	             <label>Acre</label>
-	             <input type="text" name="tax-map-parcel-acre[0]" id="tax-map-parcel-acre" class="tax-map-parcel"/>
+	             <input type="text" name="legalDescriptionTaxMapParcel[0].acre" id="tax-map-parcel-acre" class="tax-map-parcel"/>
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Assessor #</label>
-	             <input type="text" id="tax-map-parcel-assessorNumber" name="tax-map-parcel-assessorNumber[0]" class="uppercase tax-map-parcel"/>
+	             <input type="text" id="tax-map-parcel-assessorNumber" name="legalDescriptionTaxMapParcel[0].assessorNumber" class="uppercase tax-map-parcel"/>
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 				   <label>Metes & Bounds</label>
-				   <input type="text"  id="tax-map-parcel-metes-bounds" name="tax-map-parcel-metesBounds[0]"  class="uppercase popout tax-map-parcel" />
+				   <input type="text"  id="tax-map-parcel-metes-bounds" name="legalDescriptionTaxMapParcel[0].metesBounds"  class="uppercase popout tax-map-parcel" />
 			   </div>
 		   </div>
        </div>
@@ -205,35 +211,35 @@
 		   <div class="a_survey_abstract row">
 	          <div class="form-paragraph large-2 columns">
 	            <label>Survey</label>
-	            <input type="text" size="400" name="survey[0]" class="survey uppercase survey-abstract"/>
+	            <input type="text" size="400" name="legalDescriptionSurveyAbstract[0].survey" class="survey uppercase survey-abstract"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Abstract</label>
-	            <input type="text" name="abstract[0]" class="uppercase survey-abstract"/>
+	            <input type="text" name="legalDescriptionSurveyAbstract[0].abstract" class="uppercase survey-abstract"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Block</label>
-	            <input type="text" name="survey-abstract-block[0]" class="uppercase survey-abstract" />
+	            <input type="text" name="legalDescriptionSurveyAbstract[0].block" class="uppercase survey-abstract" />
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	             <label>Lot</label>
-	             <input type="text" name="survey-abstract-lot[0]" class="uppercase survey-abstract" />
+	             <input type="text" name="legalDescriptionSurveyAbstract[0].lot" class="uppercase survey-abstract" />
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Sec</label>
-	             <input type="text" name="survey-abstract-section[0]" class="uppercase survey-abstract" />
+	             <input type="text" name="legalDescriptionSurveyAbstract[0].section" class="uppercase survey-abstract" />
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	             <label>Acre</label>
-	             <input type="text" name="survey-abstract-acre[0]" id="survey-abstract-acre" class="uppercase survey-abstract"/>
+	             <input type="text" name="legalDescriptionSurveyAbstract[0].acre" id="survey-abstract-acre" class="uppercase survey-abstract"/>
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Assessor #</label>
-	             <input type="text" name="survey-abstract-assessorNumber[0]" class="uppercase survey-abstract"/>
+	             <input type="text" name="legalDescriptionSurveyAbstract[0].assessorNumber" class="uppercase survey-abstract"/>
 	           </div>
 	          <div class="form-paragraph large-1 columns">
 				  <label>Metes & Bounds</label>
-	             <input type="text"  id="survey-abstract-metes-bounds" name="survey-abstract-metesBounds[0]"  class="uppercase popout survey-abstract" />
+	             <input type="text"  id="survey-abstract-metes-bounds" name="legalDescriptionSurveyAbstract[0].metesBounds"  class="uppercase popout survey-abstract" />
 			  </div>
 		  </div>
        </div>
@@ -251,19 +257,20 @@
 			<div class="a_related_document">
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
-					<input type="text" id="relatedDocumentBookType1" name="related-documents-book-type[0]"  class="related-documents relatedDocumentBookType" >
+					<input type="text" id="relatedDocumentBookType1"  class="related-documents relatedDocumentBookType" >
+					<input type="hidden" name="parentDocument[0].bookType" />
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Book Number</label>
-					<input class="related-documents" name="related-documents-book-number[0]" type="text" />
+					<input class="related-documents" name="parentDocument[0].bookNumber" type="text" />
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Page #</label>
-					<input class="related-documents" name="related-documents-page-number[0]" type="text"   />
+					<input class="related-documents" name="parentDocument[0].pageNumber" type="text"   />
 				</div>
 				<div class="form-paragraph large-6 columns">
 					<label>Instrument #</label>
-					<input class="related-documents" name="related-documents-instrument-number[0]" type="text"  />
+					<input class="related-documents" name="parentDocument[0].instrumentNumber" type="text"  />
 				</div>
 			</div>
 		</div>

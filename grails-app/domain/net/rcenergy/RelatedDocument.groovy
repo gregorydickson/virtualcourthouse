@@ -5,8 +5,9 @@ import java.util.Set;
 
 
 class RelatedDocument {
-	Integer bookNumber
-	Integer pageNumber
+	BookTypes bookType
+	String bookNumber
+	String pageNumber
 	String instrumentNumber
 
 
@@ -14,6 +15,7 @@ class RelatedDocument {
 	
     static constraints = {
 		bookNumber(nullable:true)
+		bookType(nullable:true)
 		pageNumber(nullable:true)
 		instrumentNumber(nullable:true)
 

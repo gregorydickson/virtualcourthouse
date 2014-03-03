@@ -54,14 +54,14 @@ function sumAcres(){
 }
 
 function addNewInputGrantor() {
-    return $('<p class="form-paragraph"><input class="grantor uppercase" type="text"  id="grantor" name="document.grantor[]" value="" /> </p>');
+    return $('<p class="form-paragraph"><input class="grantor uppercase" type="text"  id="grantor" name="grantor[]" value="" /> </p>');
 }
 function addNewInputGrantee() {
-    return $('<p class="form-paragraph"><input  class="grantee uppercase" type="text" id="grantee" name="document.grantee[]"  value="" /> </p>');
+    return $('<p class="form-paragraph"><input  class="grantee uppercase" type="text" id="grantee" name="grantee[]"  value="" /> </p>');
 }
 //TODO: refactor this to copy the existing row in the DOM
 function addNewInputRelatedDocuments(k) {
-	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><input type="text" id="relatedDocumentBookType' + k + '" name="related-documents-book-type[' + (k-1) + ']"  class="related-documents relatedDocumentBookType" ></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="related-documents-book-number[' + (k-1) + ']" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="related-documents-page-number[' + (k-1) + ']" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="related-documents-instrument-number[' + (k-1) + ']" type="text"  /></div></div>');
+	return $('<div class="a_related_document"><div class="form-paragraph large-2 columns"><label>Book Type</label><input type="text" id="relatedDocumentBookType" class="related-documents relatedDocumentBookType" ><input type="hidden" name="parentDocument[' + (k-1) + '].bookType" /></div><div class="form-paragraph large-2 columns"><label>Book Number</label><input class="related-documents" name="parentDocument[' + (k-1) + '].bookNumber" type="text" /></div><div class="form-paragraph large-2 columns"><label>Page #</label><input class="related-documents" name="parentDocument[' + (k-1) + '].pageNumber" type="text"   /></div><div class="form-paragraph large-6 columns"><label>Instrument #</label><input class="related-documents" name="parentDocument[' + (k-1) + '].instrumentNumber" type="text"  /></div></div>');
 }
 
 function eventHandlerSurveyAbstract(e){
@@ -113,6 +113,10 @@ function addNewLineCtySubBlkLot(){
 			}
 		},
 		source: citiesJSON,
+		select: function(event, ui) {
+		            // feed hidden id field
+		            $(this).parent().find(':hidden').attr('value',ui.item.id);
+		        },
 		close: function( event, ui ) {
 			var cityElementString = $(this).val();
 			console.log("city Selected is: " + cityElementString);
@@ -128,6 +132,10 @@ function addNewLineCtySubBlkLot(){
 				autoFocus:"true",
 				delay:0,
 				minLength:0,
+				select: function(event, ui) {
+				            // feed hidden id field
+				            $(this).parent().find(':hidden').attr('value',ui.item.id);
+				        },
 				change: function (event, ui) {
 					if (ui.item === null) {
 						$(this).val('');
@@ -182,17 +190,17 @@ function addNewLineSurveyAbstract(){
     return false;
 }
 function addNewInputSurveyAbstract(i){
-	return $('<div class="a_survey_abstract row"><div class="form-paragraph large-2 columns"><label>Survey</label><input type="text" size="400" name="survey[' + (i-1) + ']" class="survey uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Abstract</label><input type="text" name="abstract[' + (i-1) + ']" class="uppercase survey-abstract"/></div><div class="form-paragraph large-2 columns"><label>Block</label><input type="text" name="survey-abstract-block[' + (i-1) + ']" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Lot</label><input type="text" name="survey-abstract-lot[' + (i-1) + ']" class="uppercase survey-abstract" /></div><div class="form-paragraph large-1 columns"><label>Sec</label><input type="text" name="survey-abstract-section[' + (i-1) + ']" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="survey-abstract-acre[' + (i-1) + ']" id="survey-abstract-acre" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" name="survey-abstract-assessorNumber[' + (i-1) + ']" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="survey-abstract-metes-bounds" name="survey-abstract-metesBounds[0]"  class="uppercase popout survey-abstract" /></div></div>');
+	return $('<div class="a_survey_abstract row"><div class="form-paragraph large-2 columns"><label>Survey</label><input type="text" size="400" name="legalDescriptionSurveyAbstract[' + (i-1) + '].survey" class="survey uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Abstract</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].abstract" class="uppercase survey-abstract"/></div><div class="form-paragraph large-2 columns"><label>Block</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].block" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Lot</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].lot" class="uppercase survey-abstract" /></div><div class="form-paragraph large-1 columns"><label>Sec</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].section" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].acre" id="survey-abstract-acre" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].assessorNumber" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="survey-abstract-metes-bounds" name="legalDescriptionSurveyAbstract[' + (i-1) + '].metesBounds"  class="uppercase popout survey-abstract" /></div></div>');
 }
 function addNewInputTaxMapParcel(i){
-	return $('<div class="a_tax_map_parcel row"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="district[' + (i-1) + ']" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="tax[' + (i-1) + ']" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="map[' + (i-1) + ']" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Parcel</label><input type="text" name="parcel[' + (i-1) + ']" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="tax-map-parcel-acre[' + (i-1) + ']" id="tax-map-parcel-acre" class="tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="tax-map-parcel-assessorNumber[' + (i-1) + ']" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="tax-map-parcel-metesBounds[' + (i-1) + ']"  class="uppercase popout tax-map-parcel" /></div></div>');
+	return $('<div class="a_tax_map_parcel row"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="legalDescriptionTaxMapParcel[' + (i-1) + '].district" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].tax" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].map" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Parcel</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].parcel" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].acre" id="tax-map-parcel-acre" class="tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="legalDescriptionTaxMapParcel[' + (i-1) + '].assessorNumber" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="legalDescriptionTaxMapParcel[' + (i-1) + '].metesBounds"  class="uppercase popout tax-map-parcel" /></div></div>');
 }
 //TODO: refactor this to just clone the existing DOM row
 function addNewInputSecTwnRge(l) {
-	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="section[' + (l-1) + ']" class="uppercase section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="townshipNumber[' + (l-1) + ']" class="uppercase sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="townshipDirection[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="uppercase rangeNumber[' + (l-1) + '] sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="rangeDirection[' + (l-1) + ']" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" id="acre" name="sec-twn-rge-acre[' + (l-1) + ']" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="sec-twn-rge-assessorNumber[' + (l-1) + ']" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns metesBounds"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="sec-twn-rge-metesBounds[' + (l-1) + ']"  class="uppercase popout focusme sec-twn-rge" /></div></div>');
+	return $('<div class="a_section_township_range row"><div class="form-paragraph large-2 columns"><label>SECTION</label><input type="text" id="section" name="legalDescriptionSecTwnRge[' + (l-1) + '].section" class="uppercase section sec-twn-rge" size="400" /></div><div class="form-paragraph large-1 columns"><label>TOWNSHIP #</label><input type="text" id="townshipNumber" name="legalDescriptionSecTwnRge[' + (l-1) + '].townshipNumber" class="uppercase sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>TOWNSHIP DIRECTION</label><input type="text" id="townshipDirection" name="legalDescriptionSecTwnRge[' + (l-1) + '].townshipDirection" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Range Number</label><input type="text" id="rangeNumber" class="uppercase sec-twn-rge" name="legalDescriptionSecTwnRge[' + (l-1) + '].rangeNumber "/></div><div class="form-paragraph large-1 columns"><label>RANGE DIRECTION</label><input type="text" id="rangeDirection" name="legalDescriptionSecTwnRge[' + (l-1) + '].rangeDirection" class="uppercase range sec-twn-rge"/></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" id="acre" name="legalDescriptionSecTwnRge[' + (l-1) + '].acre" class="acre sec-twn-rge"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="assessorNumber" name="legalDescriptionSecTwnRge[' + (l-1) + '].assessorNumber" class="uppercase township sec-twn-rge"/></div><div class="form-paragraph large-1 columns metesBounds"><label>Metes & Bounds</label><input type="text"  id="MetesBoundsTextArea' + l + '" name="legalDescriptionSecTwnRge[' + (l-1) + '].metesBounds"  class="uppercase popout focusme sec-twn-rge" /></div></div>');
 }
 function addNewCitySubBlkLot(i) {
-	return $('<div class="a_city_sub_block_lot row"><div class="form-paragraph large-2 columns"><label>City</label><input type="text" id="city" name="city['+ (i-1) +']" size="400" class="city uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Sub</label><input type="text" size="400" id="sub" name="sub['+ (i-1) +']"class="uppercase city-sub-block-lot subdivision" /></div><div class="form-paragraph large-1 columns"><label>Block</label><input type="text" size="400" id="block" name="block['+ (i-1) +']" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Lot</label><input type="text" name="lot['+ (i-1) +']" id="lot" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="city-sub-blk-lot-acre['+ (i-1) +']" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Assessor #</label><input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber"name="city-sub-block-lot-assessorNumber['+ (i-1) +']" class="uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Metes & Bounds</label><input type="text"  id="city-sub-block-lot-metes-bounds" name="city-sub-block-lot-metesBounds['+ (i-1) +']"  class="uppercase popout city-sub-block-lot" /></div></div>');
+	return $('<div class="a_city_sub_block_lot row"><div class="form-paragraph large-2 columns"><label>City</label><input type="text" id="city" size="400" class="city uppercase city-sub-block-lot"/><input type="hidden" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].city" /></div><div class="form-paragraph large-2 columns"><label>Sub</label><input type="text" size="400" id="sub" class="uppercase city-sub-block-lot subdivision" /><input type="hidden" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].subdivision" /></div><div class="form-paragraph large-1 columns"><label>Block</label><input type="text" size="400" id="block" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].block" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-1 columns"><label>Lot</label><input type="text" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].lot" id="lot" class="uppercase city-sub-block-lot" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].acre" id="city-sub-blk-lot-acre" class="acre uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Assessor #</label><input type="text" id="assessorNumber" id="city-sub-block-lot-assessorNumber" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].assessorNumber" class="uppercase city-sub-block-lot"/></div><div class="form-paragraph large-2 columns"><label>Metes & Bounds</label><input type="text"  id="city-sub-block-lot-metes-bounds" name="legalDescriptionCitySubBlkLot['+ (i-1) +'].metesBounds"  class="uppercase popout city-sub-block-lot" /></div></div>');
 }
 
 //START DOCUMENT READY FUNCTION
@@ -213,7 +221,7 @@ $( document ).ready(function() {
 		},
 		select: function(event, ui) {
 		            // feed hidden id field
-		            $("#BookType.id").val(ui.item.id);
+		            $(this).parent().find(':hidden').attr('value',ui.item.id);
 		        },
 		source: booktypeJSON
 
@@ -227,6 +235,10 @@ $( document ).ready(function() {
 				$(this).val('');
 			}
 		},
+		select: function(event, ui) {
+		            // feed hidden id field
+		            $(this).parent().find(':hidden').attr('value',ui.item.id);
+		        },
 		source: instrumenttypeJSON
 	});
 	
@@ -234,6 +246,10 @@ $( document ).ready(function() {
 		autoFocus: "true",
 		delay: 0,
 		minLength: 0,
+		select: function(event, ui) {
+		            // feed hidden id field
+		            $(this).parent().find(':hidden').attr('value',ui.item.id);
+		        },
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
@@ -258,6 +274,10 @@ $( document ).ready(function() {
 		autoFocus: "true",
 		delay: 0,
 		minLength: 0,
+		select: function(event, ui) {
+		            // feed hidden id field
+		            $(this).parent().find(':hidden').attr('value',ui.item.id);
+		        },
 		change: function (event, ui) {
 			if (ui.item === null) {
 				$(this).val('');
@@ -276,6 +296,10 @@ $( document ).ready(function() {
 				open: function( event, ui ) {
 				},
 				source: filteredSubdivisionsJSON,
+				select: function(event, ui) {
+				            // feed hidden id field
+				            $(this).parent().find(':hidden').attr('value',ui.item.id);
+				        },
 				autoFocus:"true",
 				delay:0,
 				minLength:0,
@@ -295,22 +319,48 @@ $( document ).ready(function() {
 		console.log('ajaxit');
 		var objectGraph = form2js('create_doc_form','.',true)
 		console.log("postJSON is " + JSON.stringify(objectGraph));
-		jQuery.ajax({type:'POST',
-			data:jQuery(objectGraph).serializeArray(),
-			dataType: 'json',
-		 	url:'/virtualcourthouse/document/createDocumentWithChildren.json',
-		 	success:function(data,textStatus){
-			 alert("Saved Document");
-			 console.log("RETURN JSON: " + JSON.stringify(data));
-		 	},
-		 	error:function(XMLHttpRequest,textStatus,errorThrown){
-				console.log("ERROR: " + errorThrown);
-		 	},
-		    complete: function() {
-				console.log("COMPLETE")
-		    }
- 		});
-	});
+		if($('#documentId').val() == "")
+		{
+			console.log("Saving a New Document");
+			jQuery.ajax({type:'POST',
+				data: JSON.stringify(objectGraph),
+				dataType: 'json',
+				contentType:'application/json',
+				url:'/virtualcourthouse/document/createDocumentIndexer',
+				success:function(data,textStatus){
+					alert("Saved Document ID: " + data.id);
+					console.log("RETURN JSON: " + JSON.stringify(data));
+					$(".documentId").attr("value", data.id);
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown){
+					console.log("ERROR: " + errorThrown);
+				},
+				complete: function() {
+					console.log("COMPLETE")
+				}
+			});
+		} else
+		{
+			console.log("UPDATING a Document");
+			jQuery.ajax({type:'POST',
+				data: JSON.stringify(objectGraph),
+				dataType: 'json',
+				contentType:'application/json',
+				url:'/virtualcourthouse/document/updateDocumentIndexer',
+				success:function(data,textStatus){
+					alert("Saved Document ID: " + data.id);
+					console.log("RETURN JSON: " + JSON.stringify(data));
+					$(".documentId").attr("value", data.id);
+				},
+				error:function(XMLHttpRequest,textStatus,errorThrown){
+					console.log("ERROR: " + errorThrown);
+				},
+				complete: function() {
+					console.log("COMPLETE")
+				}
+			});
+		}
+});
 	// END - SAVE DOCUMENT VIA AJAX WITH JSON
 	
 	$(".dateformat").keyup(function(){
@@ -444,6 +494,10 @@ $( document ).ready(function() {
 						$(this).val('');
 					}
 				},
+				select: function(event, ui) {
+				            // feed hidden id field
+				            $(this).parent().find(':hidden').attr('value',ui.item.id);
+				        },
 				source: booktypeJSON
 			});
 			the_input.focus();

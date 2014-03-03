@@ -83,9 +83,12 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+grails.databinding.dateFormats = ['MM/dd/yyyy', 'yyyy-MM-dd', "yyyy-MM-dd"]
+
 environments {
     development {
         grails.logging.jul.usebridge = true
+		//grails.plugin.springsecurity.active = false
     }
     production {
         grails.logging.jul.usebridge = false
@@ -124,6 +127,7 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'net.rcenergy.User
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'net.rcenergy.UserRole'
 grails.plugin.springsecurity.authority.className = 'net.rcenergy.Role'
 grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.interceptUrlMap = [
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
@@ -133,7 +137,9 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/user/**':                       ['permitAll'],
 	'/role/**':                       ['permitAll'],
 	'/document/**':                   ['permitAll'],
-	'/image/**':                      ['permitAll']
+	'/image/**':                      ['permitAll'],
+	'/**':                            ['permitAll'],
+	'/city/**':                       ['permitAll']
 ]
 
 

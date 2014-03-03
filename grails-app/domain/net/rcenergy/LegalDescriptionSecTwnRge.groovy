@@ -11,10 +11,17 @@ class LegalDescriptionSecTwnRge {
 	String metesBounds
 	
 	static constraints = {
-		metesBounds(maxSize:200000)
+		section(nullable:true)
+		townshipNumber(nullable:true)
+		townshipDirection(nullable:true)
+		rangeNumber(nullable:true)
+		rangeDirection(nullable:true)
+		assessorNumber(nullable:true)
+		acre(nullable:true)
+		metesBounds(nullable:true,maxSize:200000)
 	}
 	
-	static belongsTo = [document: Document]
+
     static mapping = {
 
     }

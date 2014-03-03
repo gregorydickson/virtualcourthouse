@@ -11,10 +11,17 @@ class LegalDescriptionSurveyAbstract {
 	String metesBounds
 	
 	static constraints = {
-		metesBounds(maxSize:200000)
+		survey(nullable:true)
+		abstractNumber(nullable:true)
+		block(nullable:true)
+		lot(nullable:true)
+		section(nullable:true)
+		assessorNumber(nullable:true)
+		acre(nullable:true)
+		metesBounds(nullable:true,maxSize:200000)
 	}
 	
-	static belongsTo = [document: Document]
+
     static mapping = {
 
     }

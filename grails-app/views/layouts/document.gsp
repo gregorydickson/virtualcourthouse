@@ -35,10 +35,7 @@
 		
 		<%-- Application Javascript --%>
 		<script>
-		function getBookTypeOptions(){
-			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
-			return returnString;
-		}
+
 		var booktypeJSON = [
 		<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 		{
