@@ -24,8 +24,11 @@ class Image {
 	String toString() {
 		"date: " + dateLoaded.toString() + " file:" + fileName
 	}
+	String idToString(){
+		id
+	}
 	private static final MAX_IMAGE_SIZE = 1073741824
-	static hasMany = [documents:Document]
+
 
 	static constraints = {
 		image(maxSize:MAX_IMAGE_SIZE)

@@ -13,10 +13,10 @@
 			<g:field id="bookNumber" name="bookNumber" type="number"  />
 		</div>	
 	</div>
-	
+	<div class="clearfields">
 	<div class="medium-4 large-1 columns">
-		<label for="pageNumber">PAGE #</label>
-		<g:field name="pageNumber" type="number"  />
+		<label>PAGE #</label>
+		<input type="text" name="pageNumber" />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
@@ -26,8 +26,8 @@
 	
 	<div class="medium-4 large-2 columns">
 		<label>INST TYPE</label>
-		<input id="InsrumentType" type="text"   class="InstrumentType" />
-		<input type="hidden" name="instrumentType" id="InstrumentType.id"/>
+		<input id="InsrumentType" type="text"   class="InstrumentType clear" />
+		<input type="hidden" name="instrumentType" id="InstrumentType.id" class=""/>
 	</div>
 	
 	<div class="medium-2 large-2 columns">
@@ -41,18 +41,18 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper">
 			<label>INST DATE</label>
-			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat" />	
+			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat clear" />	
 			<small class="error">Instrument Date Errror.</small>
 		</div>
 	</div>
+    </div>
 </div>
-
 <div class="grantor-grantee row">
 	<h6>GRANTORS</h6>
 	<div class="panel">
-		<div id="grantors_wrapper" class="large-12 columns">
+		<div id="grantors_wrapper" class="large-12 columns clearfields"	>
 		    <p class="form-paragraph">
-		        <input class="grantor uppercase" name="grantor[]" type="text" id="grantor"   />
+		        <input class="grantor uppercase clear" name="grantor[]" type="text" id="grantor"   />
 		    </p>
 		</div>
 	</div>
@@ -60,9 +60,9 @@
 <div class="grantor-grantee row">
 	<h6>GRANTEES</h6>
 	<div class="panel">
-		<div id="grantees_wrapper">
+		<div id="grantees_wrapper" class="large-12 columns clearfields">
 		    <p class="form-paragraph">
-		        <input class="grantee uppercase" name="grantee[]" type="text" id="grantee"  />
+		        <input class="grantee uppercase clear" name="grantee[]" type="text" id="grantee"  />
 		    </p>
 		</div>
 	</div>
@@ -85,7 +85,7 @@
 		
 	</div>
 </div>
-<div class="legal-description row">
+<div class="legal-description row clearfields">
 	
    <dl class="tabs" data-tab>
 	 <dd class="active"><a href="#panel2-1" >City/Sub/Blk/Lot</a></dd>
@@ -125,7 +125,7 @@
 	          </div>
 	          <div class="form-paragraph large-1 columns">
 	            <label>Assessor #</label>
-	            <input type="text" id="assessorNumber" name="legalDescriptionSecTwnRge[0].assessorNumber" class="uppercase  sec-twn-rge"/>
+	            <input type="text" id="assessorNumber" name="legalDescriptionSecTwnRge[0].assessorNumber" class="uppercase sec-twn-rge"/>
 	          </div>
 	          <div class="form-paragraph large-1 columns metesBounds">
 	             <label>Metes & Bounds</label>
@@ -141,12 +141,12 @@
 	          <div class="form-paragraph large-2 columns">
 	            <label>City</label>
 	            <input type="text" id="city"  size="400" class="city autocomplete city-sub-block-lot"/>
-				<input type="hidden" name="legalDescriptionCitySubBlkLot[0].city"/>
+				<input type="hidden" name="legalDescriptionCitySubBlkLot[0].city" class="city-sub-block-lot"/>
 	          </div>
 	          <div class="form-paragraph large-2 columns">
 	            <label>Sub</label>
 	            <input type="text" size="400" id="sub" class="uppercase city-sub-block-lot subdivision" />
-				<input type="hidden" name="legalDescriptionCitySubBlkLot[0].subdivision"/>
+				<input type="hidden" name="legalDescriptionCitySubBlkLot[0].subdivision" class="city-sub-block-lot"/>
 	           </div>
 	           <div class="form-paragraph large-1 columns">
 	             <label>Block</label>
@@ -177,7 +177,7 @@
 	           <div class="form-paragraph large-3 columns">
 	             <label>Dis/Twn</label>
 	             <input type="text" size="400" id="district"  class="district uppercase tax-map-parcel"/>
-				 <input type="hidden" name="legalDescriptionTaxMapParcel[0].district" />
+				 <input type="hidden" name="legalDescriptionTaxMapParcel[0].district" class="tax-map-parcel" />
 	           </div>
 	           <div class="form-paragraph large-2 columns">
 	            <label>Tax</label>
@@ -248,9 +248,7 @@
 </div>
 
 
-
-
-<div class="related-documents row">
+<div class="related-documents row clearfields">
 	<h6>RELATED DOCUMENTS</h6>
 	<div class="panel related-doc-panel">
 		<div id="related_documents_wrapper">
@@ -258,7 +256,7 @@
 				<div class="form-paragraph large-2 columns">
 					<label>Book Type</label>
 					<input type="text" id="relatedDocumentBookType1"  class="related-documents relatedDocumentBookType" >
-					<input type="hidden" name="parentDocument[0].bookType" />
+					<input type="hidden" name="parentDocument[0].bookType" class="related-documents" />
 				</div>
 				<div class="form-paragraph large-2 columns">
 					<label>Book Number</label>
@@ -277,23 +275,23 @@
 	</div>
 </div>
 
-<div class="will-number row">
+<div class="will-number row clearfields">
 	<h6>WILL NUMBER</h6>
 	<div class="large-12 columns panel">
-		<input class="uppercase" name="will-number" type="text">
+		<input class="uppercase clear" name="will-number" type="text">
 	</div>
 </div>
 
-<div class="notes row">
+<div class="notes row clearfields">
 	<a href="#" data-reveal-id="notes" data-reveal tabindex><h6>NOTES</h6></a>
 	<div class="large-12 columns panel">
 		 <div id="notes" class="" >
 			 <h6>NOTES</h6>
-			 <textarea  id="" name="notes"  class="uppercase popout"  ></textarea>
+			 <textarea  id="" name="notes"  class="uppercase popout clear"  ></textarea>
 		 </div>
 	</div>
 </div>
-<div class="images row">
+<div class="images row" id="imagesRow">
 	
 	<div class="large-6 columns">
 		<h6>IMAGES LIST</h6>
@@ -309,13 +307,13 @@
 				<g:each var="images" in="${net.rcenergy.Image.list()}">
 					<tr class="data-row">
 						<td>
-							${images*.toString()}
+							${images.toString()}
 						</td>
 						<td class="imageLinkCell">
 							<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
 						</td>
-						<td>
-							${images*.id}
+						<td class="imageId">
+							${images.id}
 						</td>
 					</tr>
 				</g:each>

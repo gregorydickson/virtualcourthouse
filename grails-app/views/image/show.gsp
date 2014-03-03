@@ -37,16 +37,7 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${imageInstance?.documents}">
-				<li class="fieldcontain">
-					<span id="documents-label" class="property-label"><g:message code="image.documents.label" default="Documents" /></span>
-					
-						<g:each in="${imageInstance.documents}" var="d">
-						<span class="property-value" aria-labelledby="documents-label"><g:link controller="document" action="show" id="${d.id}">${d?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
-				</g:if>
+	
 			
 				<g:if test="${imageInstance?.pageNumber}">
 				<li class="fieldcontain">

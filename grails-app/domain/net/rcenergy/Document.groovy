@@ -16,10 +16,22 @@ class Document {
 	User indexer
 	User reviewer
 	Assignment assignment
+	/*A Document will have two copies, an indexer copy and a review copy.
+	When indexing final, a copy is made and the review copy id is saved
+	in the indexer copy and indexer id in the review copy    */
+	Boolean isIndexerFinal //If True then this copy cannot be updated, it is the indexed version, 
+							//  and a copy has been generated, the id of the copy has been saved as
+							// submittedVersionId
 	
+	// If this is the review copy then it will have the id of the indexer version
+	Long indexerVersionId
+	//If this is the indexer copy, and the indexing is final then it will have the id of the review
+	// copy:
+	Long reviewerVersionId
+	Boolean isReviewerCopy //If True then this is the reviewer copy
+	Boolean reviewFinal    //If true then the review is final, NO CHANGES
 	
-
-	static hasMany = [images : Integer, 
+	static hasMany = [images : Image, 
 			parentDocument:RelatedDocument, 
 			childDocument:RelatedDocument,
 			grantor: String,
@@ -58,6 +70,10 @@ class Document {
 		reviewer(nullable:true)
 		assignment(nullable:true)
 		notes(nullable:true,maxSize:200000)
-		
+		indexerVersionId(nullable:true)
+		reviewerVersionId(nullable:true)
+		isIndexerFinal(nullable:true)
+		isReviewerCopy(nullable:true)
+		reviewFinal(nullable:true)
     }
 }

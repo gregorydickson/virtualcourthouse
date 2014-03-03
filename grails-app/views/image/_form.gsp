@@ -26,13 +26,7 @@
 	<g:datePicker name="dateLoaded" precision="day"  value="${imageInstance?.dateLoaded}"  />
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: imageInstance, field: 'documents', 'error')} ">
-	<label for="documents">
-		<g:message code="image.documents.label" default="Documents" />
-		
-	</label>
-	
-</div>
+
 
 <div class="fieldcontain ${hasErrors(bean: imageInstance, field: 'pageNumber', 'error')} required">
 	<label for="pageNumber">

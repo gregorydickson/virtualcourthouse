@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DocumentController {
 
-    static allowedMethods = [ createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
+    static allowedMethods = [ submitDocumentIndexer:"POST",createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
 	
 	
 	@Transactional
@@ -42,43 +42,7 @@ class DocumentController {
         respond new Document(params)
     }
 
-    @Transactional
-    def save(Document documentInstance) {
-    	
-
-		def input = request.JSON
-		println "Here is request.JSON: ${request.JSON as JSON}"
-		println "Here is params: $params"
-    	def p = new Document(input)
-    	println p
-    	if (p.save(flush: true)) {
-    		respond p as JSON
-    	} else {
-    		for (error in p.errors.allErrors) println "$error.field: $error.code"
-    		render status: 422, text: 'there are errors'
-    	}
-
-		
-		
-	   // documentInstance.save flush:true
-	   //		log.debug("SAVED DOCUMENT")
-	   //		respond  status: OK
-
-	   		//SCAFFOLDED CODE:
-	   		//respond documentInstance, [formats:[ 'json']]
-	           //request.withFormat {
-	           //    form {
-	           //        flash.message = message(code: 'default.created.message', args: [message(code: 'documentInstance.label', default: 'Document'), documentInstance.id])
-	           //        redirect documentInstance
-	           //    }
-	           //    '*' { respond documentInstance, [status: CREATED] }
-	           //}
-		
-       
-		
-		
-    }
-
+   
     def edit(Document documentInstance) {
         respond documentInstance
     }
@@ -97,6 +61,30 @@ class DocumentController {
         respond doc, [formats:[ 'json']]
       
     }
+
+    @Transactional
+    def submitDocumentIndexer() {
+		println "Here is request.JSON: ${request.JSON as JSON}"
+		println "Here is params: $params"
+		
+		//update the existing doc
+		def input = request.JSON
+		def doc = Document.get(input.id)
+		doc.properties = input
+		doc.isIndexerFinal = true
+		//create the review copy
+		def reviewerDocumentCopy = new Document(input)
+		reviewerDocumentCopy.isReviewerCopy = true
+		reviewerDocumentCopy.indexerVersionId = doc.id
+		reviewerDocumentCopy.save flush:true
+		//get the reviewer copy id
+		doc.reviewerVersionId = reviewerDocumentCopy.id
+     	
+		doc.save flush:true
+        respond doc, [formats:[ 'json']]
+      
+    }
+
 
     @Transactional
     def delete(Document documentInstance) {
