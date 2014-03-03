@@ -15,7 +15,7 @@
 		<r:layoutResources />
 	</head>
 	<body>
-		
+		<div id="status-area"></div>
 		<g:layoutBody/>
 			
 
@@ -31,6 +31,8 @@
 		<g:javascript src="jqueryui-1.10.4.js"/>
 		<g:javascript src="jquery.key.js"/>
 		<g:javascript src="form2js.js"/>
+		<g:javascript src="jquery.gritter.js"/>
+		
 
 		
 		<%-- Application Javascript --%>

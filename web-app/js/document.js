@@ -328,7 +328,19 @@ $( document ).ready(function() {
 				contentType:'application/json',
 				url:'/virtualcourthouse/document/createDocumentIndexer',
 				success:function(data,textStatus){
-					alert("Saved Document ID: " + data.id);
+					var unique_id = $.gritter.add({
+						// (string | mandatory) the heading of the notification
+						title: 'SAVED DOCUMENT',
+						// (string | mandatory) the text inside the notification
+						text: "Saved Document ID: " + data.id,
+						// (string | optional) the image to display on the left
+						image: '',
+						// (bool | optional) if you want it to fade out on its own or just sit there
+						sticky: false,
+						// (int | optional) the time you want it to be alive for before fading out
+						time: '2000',
+
+					});
 					console.log("RETURN JSON: " + JSON.stringify(data));
 					$(".documentId").attr("value", data.id);
 				},
@@ -348,7 +360,19 @@ $( document ).ready(function() {
 				contentType:'application/json',
 				url:'/virtualcourthouse/document/updateDocumentIndexer',
 				success:function(data,textStatus){
-					alert("Saved Document ID: " + data.id);
+					var unique_id = $.gritter.add({
+						// (string | mandatory) the heading of the notification
+						title: 'UPDATED DOCUMENT',
+						// (string | mandatory) the text inside the notification
+						text: "UPDATED Document ID: " + data.id,
+						// (string | optional) the image to display on the left
+						image: '',
+						// (bool | optional) if you want it to fade out on its own or just sit there
+						sticky: false,
+						// (int | optional) the time you want it to be alive for before fading out
+						time: '2000',
+
+					});
 					console.log("RETURN JSON: " + JSON.stringify(data));
 					$(".documentId").attr("value", data.id);
 				},
