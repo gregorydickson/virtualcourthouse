@@ -512,7 +512,6 @@ $( document ).ready(function() {
 				var new_window = window.open(href, 'imageWindow');
 				new_window.blur();
 				doc_window.focus();
-				//TODO: save the data in a data model
 				var clone = the_row.clone();
 				clone.appendTo(add_to_table);
 				$(the_row).remove();
@@ -520,7 +519,7 @@ $( document ).ready(function() {
 				break;
 			case 'right-arrow':
 				console.log("right arrow SAVE AND LEAVE");
-				
+				//TODO: have the image add to the list but leave it in the assignment list
 			}
 		}
 	});
