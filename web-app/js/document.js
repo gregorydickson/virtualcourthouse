@@ -204,10 +204,10 @@ function addNewLineSurveyAbstract(){
     return false;
 }
 function addNewInputSurveyAbstract(i){
-	return $('<div class="a_survey_abstract row added"><div class="form-paragraph large-2 columns"><label>Survey</label><input type="text" size="400" name="legalDescriptionSurveyAbstract[' + (i-1) + '].survey" class="survey uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Abstract</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].abstract" class="uppercase survey-abstract"/></div><div class="form-paragraph large-2 columns"><label>Block</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].block" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Lot</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].lot" class="uppercase survey-abstract" /></div><div class="form-paragraph large-1 columns"><label>Sec</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].section" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].acre" id="survey-abstract-acre" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].assessorNumber" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="survey-abstract-metes-bounds" name="legalDescriptionSurveyAbstract[' + (i-1) + '].metesBounds"  class="uppercase popout survey-abstract" /></div></div>');
+	return $('<div class="a_survey_abstract row added"><div class="form-paragraph large-2 columns"><label>Survey</label><input type="text" size="400" name="legalDescriptionSurveyAbstract[' + (i-1) + '].survey" class="survey uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Abstract</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].abstractNumber" class="uppercase survey-abstract"/></div><div class="form-paragraph large-2 columns"><label>Block</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].block" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Lot</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].lot" class="uppercase survey-abstract" /></div><div class="form-paragraph large-1 columns"><label>Sec</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].section" class="uppercase survey-abstract" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].acre" id="survey-abstract-acre" class="uppercase survey-abstract acre"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" name="legalDescriptionSurveyAbstract[' + (i-1) + '].assessorNumber" class="uppercase survey-abstract"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="survey-abstract-metes-bounds" name="legalDescriptionSurveyAbstract[' + (i-1) + '].metesBounds"  class="uppercase popout survey-abstract" /></div></div>');
 }
 function addNewInputTaxMapParcel(i){
-	return $('<div class="a_tax_map_parcel row added"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="legalDescriptionTaxMapParcel[' + (i-1) + '].district" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].tax" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].map" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Parcel</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].parcel" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].acre" id="tax-map-parcel-acre" class="tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="legalDescriptionTaxMapParcel[' + (i-1) + '].assessorNumber" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="legalDescriptionTaxMapParcel[' + (i-1) + '].metesBounds"  class="uppercase popout tax-map-parcel" /></div></div>');
+	return $('<div class="a_tax_map_parcel row added"><div class="form-paragraph large-3 columns"><label>Dis/Twn</label><input type="text" size="400" id="district" name="legalDescriptionTaxMapParcel[' + (i-1) + '].district" class="district uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Tax</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].tax" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-2 columns"><label>Map</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].map" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-1 columns"><label>Parcel</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].parcel" class="uppercase tax-map-parcel" /></div><div class="form-paragraph large-2 columns"><label>Acre</label><input type="text" name="legalDescriptionTaxMapParcel[' + (i-1) + '].acre" id="tax-map-parcel-acre" class="tax-map-parcel acre"/></div><div class="form-paragraph large-1 columns"><label>Assessor #</label><input type="text" id="tax-map-parcel-assessorNumber" name="legalDescriptionTaxMapParcel[' + (i-1) + '].assessorNumber" class="uppercase tax-map-parcel"/></div><div class="form-paragraph large-1 columns"><label>Metes & Bounds</label><input type="text"  id="tax-map-parcel-metes-bounds" name="legalDescriptionTaxMapParcel[' + (i-1) + '].metesBounds"  class="uppercase popout tax-map-parcel" /></div></div>');
 }
 //TODO: refactor this to just clone the existing DOM row
 function addNewInputSecTwnRge(l) {
@@ -328,115 +328,7 @@ $( document ).ready(function() {
 	//################### END JQUERY AUTOCOMPLETE
 	
 	
-	// START - SAVE DOCUMENT VIA AJAX WITH JSON
-	// CTRL J is save/update
-	// CTRL K is save/submit to review
-	$.key('ctrl+k', function(){
-		console.log("FINALIZE a Document");
-		var objectGraph = form2js('create_doc_form','.',true)
-		console.log("postJSON is " + JSON.stringify(objectGraph));
-		jQuery.ajax({type:'POST',
-			data: JSON.stringify(objectGraph),
-			dataType: 'json',
-			contentType:'application/json',
-			url:'/virtualcourthouse/document/submitDocumentIndexer',
-			success:function(data,textStatus){
-				resetDOM();
-				var unique_id = $.gritter.add({
-					// (string | mandatory) the heading of the notification
-					title: 'SUBMITTED DOCUMENT',
-					// (string | mandatory) the text inside the notification
-					text: "SUBMITTED DOCUMENT FOR REVIEW ID: " + data.id,
-					// (string | optional) the image to display on the left
-					image: '',
-					// (bool | optional) if you want it to fade out on its own or just sit there
-					sticky: false,
-					// (int | optional) the time you want it to be alive for before fading out
-					time: '2000',
 
-				});
-				console.log("RETURN JSON: " + JSON.stringify(data));
-				
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown){
-				console.log("ERROR: " + errorThrown);
-			},
-			complete: function() {
-				console.log("COMPLETE")
-			}
-		});
-	});
-	$.key('ctrl+j', function(){
-		console.log('ajaxit');
-		var objectGraph = form2js('create_doc_form','.',true)
-		console.log("postJSON is " + JSON.stringify(objectGraph));
-		if($('#documentId').val() == "")
-		{
-			console.log("Saving a New Document");
-			jQuery.ajax({type:'POST',
-				data: JSON.stringify(objectGraph),
-				dataType: 'json',
-				contentType:'application/json',
-				url:'/virtualcourthouse/document/createDocumentIndexer',
-				success:function(data,textStatus){
-					var unique_id = $.gritter.add({
-						// (string | mandatory) the heading of the notification
-						title: 'SAVED DOCUMENT',
-						// (string | mandatory) the text inside the notification
-						text: "Saved Document ID: " + data.id,
-						// (string | optional) the image to display on the left
-						image: '',
-						// (bool | optional) if you want it to fade out on its own or just sit there
-						sticky: false,
-						// (int | optional) the time you want it to be alive for before fading out
-						time: '2000',
-
-					});
-					console.log("RETURN JSON: " + JSON.stringify(data));
-					$(".documentId").attr("value", data.id);
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown){
-					console.log("ERROR: " + errorThrown);
-				},
-				complete: function() {
-					console.log("COMPLETE")
-				}
-			});
-		} else
-		{
-			console.log("UPDATING a Document");
-			jQuery.ajax({type:'POST',
-				data: JSON.stringify(objectGraph),
-				dataType: 'json',
-				contentType:'application/json',
-				url:'/virtualcourthouse/document/updateDocumentIndexer',
-				success:function(data,textStatus){
-					var unique_id = $.gritter.add({
-						// (string | mandatory) the heading of the notification
-						title: 'UPDATED DOCUMENT',
-						// (string | mandatory) the text inside the notification
-						text: "UPDATED Document ID: " + data.id,
-						// (string | optional) the image to display on the left
-						image: '',
-						// (bool | optional) if you want it to fade out on its own or just sit there
-						sticky: false,
-						// (int | optional) the time you want it to be alive for before fading out
-						time: '2000',
-
-					});
-					console.log("RETURN JSON: " + JSON.stringify(data));
-					$(".documentId").attr("value", data.id);
-				},
-				error:function(XMLHttpRequest,textStatus,errorThrown){
-					console.log("ERROR: " + errorThrown);
-				},
-				complete: function() {
-					console.log("COMPLETE")
-				}
-			});
-		}
-});
-	// END - SAVE DOCUMENT VIA AJAX WITH JSON
 	
 	$(".dateformat").keyup(function(){
 		if ($(this).val().length == 2){
@@ -448,81 +340,7 @@ $( document ).ready(function() {
 
 	//setup certain fields to pop up a textbox for input
 	$(".popout").popBox();
-	//Navigate the images table with Ctrl+ arrow keys
-	var rows = $('.data-row');
-	var add_to_table = $('#images-assigned');
-	var mapKeysToNavigationStrings = {
-	    38: 'up-arrow',
-	    40: 'down-arrow',
-	    37: 'left-arrow',
-	    39: 'right-arrow'
-	};
-	$(document).on('keyup', function (e) {
-		console.log("working");
-		var direction = mapKeysToNavigationStrings[e.which];
-		var active = $('.selected');
-		var index = rows.index(active);
-		if(e.ctrlKey==1){
-			switch(direction) {
-			case 'down-arrow':
-				console.log("goin downtown");
-				var newActiveRowIndex = (index + 1);
-				rows.removeClass('selected');
-				var a_row = rows.eq(newActiveRowIndex);
-				a_row.addClass('selected');
-				var the_cell = a_row.find('.imageLinkCell');
-				var anchor = the_cell.find("a");
-				var href = $(anchor).attr('href');
-				var doc_window = window.self;
-				var new_window = window.open(href, 'imageWindow');
-				new_window.blur();
-				doc_window.focus();
-				break;
-			case 'up-arrow':
-				console.log("goin up");
-				var newActiveRowIndex = (index - 1);
-				rows.removeClass('selected');
-				var a_row = rows.eq(newActiveRowIndex);
-				a_row.addClass('selected');
-				var the_cell = a_row.find('.imageLinkCell');
-				var anchor = the_cell.find("a");
-				var href = $(anchor).attr('href');
-				var doc_window = window.self;
-				var new_window = window.open(href, 'imageWindow');
-				new_window.blur();
-				doc_window.focus();
-				break;
-			case 'left-arrow':
-				console.log("left arrow SAVE AND REMOVE");
-				the_row = rows.eq(index);
-				var highlight_next_row = index + 1;
-				rows.removeClass('selected');
-				var newActiveRowIndex = (index + 1);
-				rows.removeClass('selected');
-				var a_row = rows.eq(newActiveRowIndex);
-				a_row.addClass('selected');
-				//add the image id to a hidden field
-				var imageID = the_row.find('.imageId').text();
-				var trimmedImageID = $.trim(imageID);
-				addImageToDocument(trimmedImageID);
-				var the_cell = a_row.find('.imageLinkCell');
-				var anchor = the_cell.find("a");
-				var href = $(anchor).attr('href');
-				var doc_window = window.self;
-				var new_window = window.open(href, 'imageWindow');
-				new_window.blur();
-				doc_window.focus();
-				var clone = the_row.clone();
-				clone.appendTo(add_to_table);
-				$(the_row).remove();
-				rows = $('.data-row');
-				break;
-			case 'right-arrow':
-				console.log("right arrow SAVE AND LEAVE");
-				//TODO: have the image add to the list but leave it in the assignment list
-			}
-		}
-	});
+
 	//create new grantor fields dynamically
     $('body').on('keyup','.grantor', function (e) {
 		var code = e.keyCode || e.which;

@@ -13,6 +13,7 @@ class Document {
 	Date fileDate
 	Date instrumentDate
 	String notes
+	String willNumber
 	User indexer
 	User reviewer
 	Assignment assignment
@@ -75,5 +76,6 @@ class Document {
 		isIndexerFinal(nullable:true)
 		isReviewerCopy(nullable:true)
 		reviewFinal(nullable:true)
+		willNumber(nullable:true)
     }
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="indexer">
+		<meta name="layout" content="review">
 		<g:set var="entityName" value="${message(code: 'document.label', default: 'Document')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 		

@@ -34,7 +34,7 @@ class DocumentController {
         respond Document.list(params), model:[documentInstanceCount: Document.count()]
     }
 
-    def show(Document documentInstance) {
+    def review(Document documentInstance) {
         respond documentInstance
     }
 
