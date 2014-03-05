@@ -1,14 +1,20 @@
 Development environment notes:
 
 1. Install MySQL
-2. Install Grails 2.3.5 (can use GVM)
+2. Install Grails 2.3.6 (can use GVM)
 3. Clone from GIT
 
 
 The application is setup to connect to a local MySQL database "p1", username/password "land/0gzr4YjMKrsb2Ix"
 MySQL must be running and the database must be created with the user "land" assigned all permissions to the schema.
 
-Spring Grails 2.3.5
+Initially the application will bootstrap following users with corresponding roles:
+admin/password
+supervisor/password
+reviewer/password
+indexer/password
+ 
+Spring Grails 2.3.6
 Hibernate 3.6.10.7
 Foundation by Zurb version 5.0.3
 mysql:mysql-connector-java:5.1.27
