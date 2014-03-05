@@ -1,3 +1,19 @@
+function updateImagesCount(){
+	var rows = $('.data-row');
+	var count = $('.data-row').length;
+	var active = $('.selected');
+	var message;
+	if(active){
+		var index = rows.index(active);
+		index = index + 1;
+		message = index +" OF " + count + " IMAGES";
+		$("#imageTotal").text(message);
+		return false;
+	}else {
+		return false;
+	}
+}
+
 function addImageToDocument(id){
 	console.log("Image ID is: " + id);
 	var element = $('<input type="hidden" name="images[]"/>');
@@ -221,7 +237,6 @@ function addNewCitySubBlkLot(i) {
 $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
-
 	//#################### JQUERY AUTOCOMPLETE
 	$("#BookType").autocomplete({
 		position: { my : "left top", at: "left bottom", of: "#BookType" },
@@ -238,7 +253,6 @@ $( document ).ready(function() {
 		            $(this).parent().find(':hidden').attr('value',ui.item.id);
 		        },
 		source: booktypeJSON
-
 	});
 	$(".InstrumentType").autocomplete({
 		autoFocus: "true",
@@ -372,7 +386,17 @@ $( document ).ready(function() {
 		}
 	});
 	//end handle grantees
-
+	$('body').on('click','.image-assigned-row', function (e) {
+		console.log("Clicked on image assigned row");
+		var the_cell = $(this).find('.imageLinkCell');
+		var anchor = the_cell.find("a");
+		var href = $(anchor).attr('href');
+		var doc_window = window.self;
+		var new_window = window.open(href, 'imageWindow');
+		new_window.blur();
+		doc_window.focus();
+		return false;
+	});
     $('body').on('keyup','.related-documents', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {
@@ -401,7 +425,6 @@ $( document ).ready(function() {
             return false;
         }
     });
-
 	$('body').on('keyup', '.sec-twn-rge', eventHandlerSecTwnRge);
 	$('body').on('keyup', '.tax-map-parcel',eventHandlerTaxMapParcel);
 	$('body').on('keyup', '.survey-abstract',eventHandlerSurveyAbstract);

@@ -481,7 +481,7 @@
 </div>
 
 <div class="notes row clearfields">
-	<a href="#" data-reveal-id="notes" data-reveal tabindex><h6>NOTES</h6></a>
+	<h6>NOTES</h6>
 	<div class="large-12 columns panel">
 		 <div id="notes" class="" >
 			 <h6>NOTES</h6>
@@ -489,10 +489,15 @@
 		 </div>
 	</div>
 </div>
+<div class="row">
+	<div class="large-1 columns">IMAGES LIST</div>
+	<div class="large-11 columns" id="imageTotal">X OF X IMAGES</div>
+</div>
+
 <div class="images row" id="imagesRow">
 	
 	<div class="large-6 columns">
-		<h6>IMAGES LIST</h6>
+
 		<table class="images-content">
 			<thead>
 				<tr>
@@ -529,6 +534,23 @@
 			    </tr>
 			 </thead>
 			 <tbody id="images-assigned"> 
+				 <g:if test="${documentInstance?.images?.isEmpty() || documentInstance.id == null}">
+				 </g:if>
+				 <g:else>
+				 	<g:each in="${documentInstance.images}" var="image" status="i">
+						<tr class="image-assigned-row">
+							<td>
+								${image.toString()}
+							</td>
+							<td class="imageLinkCell">
+								<g:link action="show" controller="image" id="${image.id}" target="imageWindow"></g:link>
+							</td>
+							<td class="imageId">
+								${image.id}
+							</td>
+						</tr>
+					</g:each>
+				 </g:else>
 			 </tbody>
 		</table>
 	</div>

@@ -24,11 +24,9 @@ $( document ).ready(function() {
 					// (bool | optional) if you want it to fade out on its own or just sit there
 					sticky: false,
 					// (int | optional) the time you want it to be alive for before fading out
-					time: '2000',
-
+					time: '2000'
 				});
 				console.log("RETURN JSON: " + JSON.stringify(data));
-				
 			},
 			error:function(XMLHttpRequest,textStatus,errorThrown){
 				console.log("ERROR: " + errorThrown);
@@ -118,11 +116,11 @@ $( document ).ready(function() {
 	    39: 'right-arrow'
 	};
 	$(document).on('keyup', function (e) {
-		console.log("working");
 		var direction = mapKeysToNavigationStrings[e.which];
 		var active = $('.selected');
 		var index = rows.index(active);
 		if(e.ctrlKey==1){
+			console.log("Ctrl Key Pushed - Checking Arrow Keys");
 			switch(direction) {
 			case 'down-arrow':
 				console.log("goin downtown");
@@ -137,6 +135,7 @@ $( document ).ready(function() {
 				var new_window = window.open(href, 'imageWindow');
 				new_window.blur();
 				doc_window.focus();
+				updateImagesCount();
 				break;
 			case 'up-arrow':
 				console.log("goin up");
@@ -151,9 +150,11 @@ $( document ).ready(function() {
 				var new_window = window.open(href, 'imageWindow');
 				new_window.blur();
 				doc_window.focus();
+				updateImagesCount();
 				break;
 			case 'left-arrow':
 				console.log("left arrow SAVE AND REMOVE");
+				//find the currently selected image
 				the_row = rows.eq(index);
 				var highlight_next_row = index + 1;
 				rows.removeClass('selected');
@@ -163,8 +164,10 @@ $( document ).ready(function() {
 				a_row.addClass('selected');
 				//add the image id to a hidden field
 				var imageID = the_row.find('.imageId').text();
+				//save the image id to a hidden field for submit
 				var trimmedImageID = $.trim(imageID);
 				addImageToDocument(trimmedImageID);
+				//find the link and open the image in a window
 				var the_cell = a_row.find('.imageLinkCell');
 				var anchor = the_cell.find("a");
 				var href = $(anchor).attr('href');
@@ -172,16 +175,41 @@ $( document ).ready(function() {
 				var new_window = window.open(href, 'imageWindow');
 				new_window.blur();
 				doc_window.focus();
+				//copy the image row to the assigned table
+				the_row.removeClass("data-row");
+				the_row.addClass("image-assigned-row");
 				var clone = the_row.clone();
 				clone.appendTo(add_to_table);
 				$(the_row).remove();
 				rows = $('.data-row');
+				updateImagesCount();
 				break;
 			case 'right-arrow':
 				console.log("right arrow SAVE AND LEAVE");
 				//TODO: have the image add to the list but leave it in the assignment list
+				the_row = rows.eq(index);
+				//add the image id to a hidden field
+				var imageID = the_row.find('.imageId').text();
+				//save the image id to a hidden field for submit
+				var trimmedImageID = $.trim(imageID);
+				addImageToDocument(trimmedImageID);
+				//find the link and open the image in a window
+				var the_cell = the_row.find('.imageLinkCell');
+				var anchor = the_cell.find("a");
+				var href = $(anchor).attr('href');
+				var doc_window = window.self;
+				var new_window = window.open(href, 'imageWindow');
+				new_window.blur();
+				doc_window.focus();
+				//copy the image row to the assigned table
+				var clone = the_row.clone();
+				clone.removeClass("data-row");
+				clone.removeClass('selected');
+				clone.addClass("image-assigned-row");
+				clone.appendTo(add_to_table);
+				updateImagesCount();
+				break;
 			}
 		}
 	});
 });
-	// END - SAVE DOCUMENT VIA AJAX WITH JSON
