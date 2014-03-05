@@ -2,6 +2,7 @@ package net.rcenergy
 
 
 
+import grails.plugin.springsecurity.ui.UserController
 import grails.test.mixin.*
 import spock.lang.*
 

@@ -1,6 +1,7 @@
 package virtualcourthouse
 
-import grails.test.mixin.TestFor
+import grails.test.mixin.*
+import net.rcenergy.DocumentService
 import spock.lang.Specification
 
 /**

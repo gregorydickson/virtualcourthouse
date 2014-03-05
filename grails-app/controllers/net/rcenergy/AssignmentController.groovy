@@ -3,6 +3,7 @@ package net.rcenergy
 
 
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -10,6 +11,8 @@ class AssignmentController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def springSecurityService
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Assignment.list(params), model:[assignmentInstanceCount: Assignment.count()]
@@ -101,4 +104,12 @@ class AssignmentController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+	/**
+	 * Use this to get the currently logged user	
+	 * @return
+	 */
+	protected currentUser() {
+		return User.get(springSecurityService.principal.id);
+	}
 }

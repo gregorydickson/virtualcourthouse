@@ -129,6 +129,11 @@ grails.plugin.springsecurity.authority.className = 'net.rcenergy.Role'
 grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
 grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.interceptUrlMap = [
+	
+	// role-based access, most restrictive rules should go first
+	'/assignment/create':		['ROLE_ADMIN'],
+	'/document/create':			['ROLE_INDEXER'],
+
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
@@ -138,8 +143,9 @@ grails.plugin.springsecurity.interceptUrlMap = [
 	'/role/**':                       ['permitAll'],
 	'/document/**':                   ['permitAll'],
 	'/image/**':                      ['permitAll'],
-	'/**':                            ['permitAll'],
-	'/city/**':                       ['permitAll']
+	'/city/**':                       ['permitAll'],
+	// least restrictive should go last	 
+	'/**':                            ['permitAll']	
 ]
 
 

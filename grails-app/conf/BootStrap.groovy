@@ -2,12 +2,14 @@ import net.rcenergy.Book
 import net.rcenergy.BookTypes
 import net.rcenergy.District
 import net.rcenergy.Image
+import net.rcenergy.Role;
 import net.rcenergy.USState
 import net.rcenergy.User
 import net.rcenergy.InstrumentTypes
 import net.rcenergy.City
 import net.rcenergy.Subdivision
 import net.rcenergy.Assignment
+import net.rcenergy.UserRole;
 
 class BootStrap {
 
@@ -17,14 +19,26 @@ class BootStrap {
 				
 			}
 			development {
-
+				
 				// only create test data if there is no data in DB
 				if (USState.count() == 0) {
 
-					// create some users
-					//def user1 = new User(username : "userX", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
-					//def user2 = new User(username : "userY", password: "pass123", salt : "salt", dateCreated : new Date(), enabled : true).save(failOnError : true);
+					def adminRole = new Role(authority: "ROLE_ADMIN").save();					
+					def admin = new User(username : "admin", password : "password").save();										
+					UserRole.create(admin, adminRole).save();					
 
+					def supervisor = new User(username : "supervisor", password : "password").save();
+					def supervisorRole = new Role(authority: "ROLE_SUPERVISOR").save();					
+					UserRole.create(supervisor, supervisorRole).save();					
+					
+					def indexer = new User(username : "indexer", password : "password").save();
+					def indexerRole = new Role(authority: "ROLE_INDEXER").save();
+					UserRole.create(indexer, indexerRole).save();
+					
+					def reviewer = new User(username : "reviewer", password : "password").save();
+					def reviewerRole = new Role(authority: "ROLE_REVIEWER").save();
+					UserRole.create(reviewer, reviewerRole).save();
+					
 					// create booktypes
 					def bookType1 = new BookTypes(bookType : "WARRANTY DEED").save(failOnError : true);
 					def bookType2 = new BookTypes(bookType : "LIEN").save(failOnError : true);
