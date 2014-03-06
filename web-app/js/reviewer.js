@@ -58,36 +58,7 @@ $( document ).ready(function() {
 			}
 		});
 
-		console.log("UPDATING a Document");
-		jQuery.ajax({type:'POST',
-			data: JSON.stringify(objectGraph),
-			dataType: 'json',
-			contentType:'application/json',
-			url:'/virtualcourthouse/document/updateDocumentIndexer',
-			success:function(data,textStatus){
-				var unique_id = $.gritter.add({
-					title: 'UPDATED DOCUMENT',
-					// (string | mandatory) the text inside the notification
-					text: "UPDATED Document ID: " + data.id,
-					// (string | optional) the image to display on the left
-					image: '',
-					// (bool | optional) if you want it to fade out on its own or just sit there
-					sticky: false,
-					// (int | optional) the time you want it to be alive for before fading out
-					time: '2000',
-
-				});
-				console.log("RETURN JSON: " + JSON.stringify(data));
-				$(".documentId").attr("value", data.id);
-			},
-			error:function(XMLHttpRequest,textStatus,errorThrown){
-				console.log("ERROR: " + errorThrown);
-			},
-			complete: function() {
-				console.log("COMPLETE")
-			}
-		});
-
+		
 	});
 	//Navigate the images table with Ctrl+ arrow keys
 	var rows = $('.data-row');

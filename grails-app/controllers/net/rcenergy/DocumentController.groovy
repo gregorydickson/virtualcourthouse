@@ -37,6 +37,13 @@ class DocumentController {
     def review(Document documentInstance) {
         respond documentInstance
     }
+    def audit() {
+		println params
+		def doc = Document.get(params.id)
+		def list = Document.getAll(doc.indexerVersionId, doc.id )
+		render(view:"/document/audit",  model: [documentInstanceList: list])
+         
+    }	
 
     def create() {
         respond new Document(params)

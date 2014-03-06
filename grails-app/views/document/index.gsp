@@ -1,4 +1,3 @@
-
 <%@ page import="net.rcenergy.Document" %>
 <!DOCTYPE html>
 <html>

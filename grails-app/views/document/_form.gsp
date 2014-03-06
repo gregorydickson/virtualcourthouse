@@ -18,12 +18,12 @@
 	<div class="clearfields">
 	<div class="medium-4 large-1 columns">
 		<label>PAGE #</label>
-		<input type="text" name="pageNumber" value="${documentInstance.pageNumber}" />
+		<input type="text" name="pageNumber" class="pageNumber" value="${documentInstance.pageNumber}" />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentNumber">INST #</label>
-		<g:textField name="instrumentNumber"  class="uppercase" value="${documentInstance.instrumentNumber}" />
+		<g:textField name="instrumentNumber"  class="uppercase instrumentNumber" value="${documentInstance.instrumentNumber}" />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
@@ -36,7 +36,6 @@
 		<div class="input-wrapper">
 			<label>FILE DATE</label>
 			<input type="text" id="fileDate" name="fileDate" class="dateformat" value="<g:formatDate date="${documentInstance.fileDate}"/>"/>
-			<small class="error">File Date Error.</small>
 		</div>
 	</div>
 	
@@ -44,7 +43,6 @@
 		<div class="input-wrapper">
 			<label>INST DATE</label>
 			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat clear" value="<g:formatDate date="${documentInstance.instrumentDate}"/>" />	
-			<small class="error">Instrument Date Errror.</small>
 		</div>
 	</div>
     </div>

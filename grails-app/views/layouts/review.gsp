@@ -71,5 +71,6 @@
 		</script>
 		<g:javascript src="popup.js"/>
 		<g:javascript src="document.js"/>
+		<g:javascript src="reviewer.js"/>
 	</body>
 </html>
