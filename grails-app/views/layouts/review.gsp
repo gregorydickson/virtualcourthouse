@@ -30,9 +30,8 @@
 		<g:javascript src="foundation.tab.js"/>
 		<g:javascript src="jqueryui-1.10.4.js"/>
 		<g:javascript src="jquery.key.js"/>
-		<g:javascript src="backbone/underscore-min.js"/>
-		<g:javascript src="backbone/backbone.js"/>
-		
+		<g:javascript src="form2js.js"/>
+		<g:javascript src="jquery.gritter.js"/>
 		<%-- Application Javascript --%>
 		<script>
 		function getBookTypeOptions(){

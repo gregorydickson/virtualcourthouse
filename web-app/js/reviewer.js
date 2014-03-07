@@ -9,7 +9,7 @@ $( document ).ready(function() {
 			data: JSON.stringify(objectGraph),
 			dataType: 'json',
 			contentType:'application/json',
-			url:'/virtualcourthouse/document/updateDocumentReviewer',
+			url:'/virtualcourthouse/document/submitDocumentReviewer',
 			success:function(data,textStatus){
 				resetDOM();
 				var unique_id = $.gritter.add({
@@ -38,7 +38,7 @@ $( document ).ready(function() {
 			data: JSON.stringify(objectGraph),
 			dataType: 'json',
 			contentType:'application/json',
-			url: '/virtualcourthouse/document/submitDocumentReviewer',
+			url: '/virtualcourthouse/document/updateDocumentReviewer',
 			success:function(data,textStatus){
 				var unique_id = $.gritter.add({
 					title: 'SAVED DOCUMENT',

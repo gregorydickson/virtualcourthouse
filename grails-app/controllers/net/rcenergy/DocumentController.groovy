@@ -53,7 +53,20 @@ class DocumentController {
     def edit(Document documentInstance) {
         respond documentInstance
     }
+    @Transactional
+    def updateDocumentReviewer() {
+		println "Here is request.JSON: ${request.JSON as JSON}"
+		println "Here is params: $params"
+		def input = request.JSON
+		def doc = Document.get(input.id)
+		
+		doc.properties = input
+        doc.save flush:true
 
+     
+        respond doc, [formats:[ 'json']]
+      
+    }
     @Transactional
     def updateDocumentIndexer() {
 		println "Here is request.JSON: ${request.JSON as JSON}"

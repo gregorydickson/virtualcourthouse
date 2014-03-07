@@ -1,5 +1,6 @@
 body {
   background: #DADCE8;
+  padding-top: 0 !important; 
 }
 .row {
   max-width: 120rem;
@@ -43,6 +44,11 @@ h6 {
 		overflow-y: scroll;
 }
 .images-content  { 
+		min-height: 250px;
+		max-height: 250px;
+		overflow-y: scroll;
+}
+.images-assigned-content  { 
 		min-height: 250px;
 		max-height: 250px;
 		overflow-y: scroll;

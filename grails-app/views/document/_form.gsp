@@ -5,8 +5,8 @@
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
-		<input id="BookType" type="text" class="" value="${documentInstance.bookType}" autofocus/>
-		<input type="hidden" name="bookType" id="BookType.id"  />
+		<input id="BookType" type="text" class="" value="${documentInstance?.bookType}" autofocus/>
+		<input type="hidden" name="bookType" id="BookType.id" value="${documentInstance?.bookType?.id}" />
 	</div>
 	
 	<div class="medium-4 large-1 columns">
@@ -28,21 +28,21 @@
 	
 	<div class="medium-4 large-2 columns">
 		<label>INST TYPE</label>
-		<input id="InsrumentType" type="text"   class="InstrumentType clear" value="${documentInstance.instrumentType}"/>
-		<input type="hidden" name="instrumentType" id="InstrumentType.id" class=""  />
+		<input id="InsrumentType" type="text"   class="InstrumentType clear" value="${documentInstance?.instrumentType}"/>
+		<input type="hidden" name="instrumentType" id="InstrumentType.id" class="" value="${documentInstance?.instrumentType?.id}" />
 	</div>
 	
 	<div class="medium-2 large-2 columns">
-		<div class="input-wrapper">
+		<div class="input-wrapper file-date-wrapper">
 			<label>FILE DATE</label>
-			<input type="text" id="fileDate" name="fileDate" class="dateformat" value="<g:formatDate date="${documentInstance.fileDate}"/>"/>
+			<input type="text" id="fileDate" name="fileDate" class="dateformat fileDate" value="<g:formatDate date="${documentInstance.fileDate}"/>"/>
 		</div>
 	</div>
 	
 	<div class="medium-2 large-2 columns">
-		<div class="input-wrapper">
+		<div class="input-wrapper instrument-date-wrapper">
 			<label>INST DATE</label>
-			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat clear" value="<g:formatDate date="${documentInstance.instrumentDate}"/>" />	
+			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat clear instrumentDate" value="<g:formatDate date="${documentInstance.instrumentDate}"/>" />	
 		</div>
 	</div>
     </div>
@@ -50,7 +50,7 @@
 <div class="grantor-grantee row">
 	<h6>GRANTORS</h6>
 	<div class="panel">
-		<div id="grantors_wrapper" class="large-12 columns clearfields"	>
+		<div id="grantors_wrapper" class="large-12 columns clearfields grantors_wrapper">
 			<g:if test="${documentInstance?.grantor?.isEmpty() || documentInstance.id == null}">
 			    <p class="form-paragraph">
 			        <input class="grantor uppercase clear" name="grantor[]" type="text" id="grantor" />
@@ -69,7 +69,7 @@
 <div class="grantor-grantee row">
 	<h6>GRANTEES</h6>
 	<div class="panel">
-		<div id="grantees_wrapper" class="large-12 columns clearfields">
+		<div id="grantees_wrapper" class="large-12 columns clearfields grantees_wrapper">
 			<g:if test="${documentInstance?.grantee?.isEmpty() || documentInstance.id == null}">
 			    <p class="form-paragraph">
 			        <input class="grantee uppercase clear" name="grantee[]" type="text" id="grantee"  />
@@ -115,7 +115,7 @@
    <div class="tabs-content legal-description-tab-content ">
 	
      <div class="content" id="panel2-2">
-        <div id="section_township_range_wrapper">
+        <div id="section_township_range_wrapper" class="section_township_range_wrapper">
 			<g:if test="${documentInstance?.legalDescriptionSecTwnRge?.isEmpty() || documentInstance.id == null}">
 			  <div class="a_section_township_range row">
 		          <div class="form-paragraph large-2 columns">
@@ -194,7 +194,7 @@
      </div>
      
 	<div class="content active" id="panel2-1">
-       <div id="city_sub_block_lot_wrapper">
+       <div id="city_sub_block_lot_wrapper" class="city_sub_block_lot_wrapper">
 		   <g:if test="${documentInstance?.legalDescriptionCitySubBlkLot?.isEmpty() || documentInstance.id == null}">
 			   <div class="a_city_sub_block_lot row">
 		          <div class="form-paragraph large-2 columns">
@@ -235,12 +235,12 @@
 	 		          <div class="form-paragraph large-2 columns">
 	 		            <label>City</label>
 	 		            <input type="text" id="city"  size="400" class="city autocomplete city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.city.name}"/>
-	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}].city" class="city-sub-block-lot"/>
+	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}].city" class="city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.city.id}"/>
 	 		          </div>
 	 		          <div class="form-paragraph large-2 columns">
 	 		            <label>Sub</label>
 	 		            <input type="text" size="400" id="sub" class="uppercase city-sub-block-lot subdivision" value="${legalDescriptionCitySubBlkLot.subdivision.name}" />
-	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}].subdivision" class="city-sub-block-lot"  />
+	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}].subdivision" class="city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.subdivision.id}" />
 	 		           </div>
 	 		           <div class="form-paragraph large-1 columns">
 	 		             <label>Block</label>
@@ -268,7 +268,7 @@
 	    </div>
      </div>
      <div class="content" id="panel2-4">
-       <div id="tax_map_parcel_wrapper">
+       <div id="tax_map_parcel_wrapper" class="tax_map_parcel_wrapper">
 		   <g:if test="${documentInstance?.legalDescriptionTaxMapParcel?.isEmpty() || documentInstance.id == null}">
 			   <div class="a_tax_map_parcel row">
 		           <div class="form-paragraph large-3 columns">
@@ -338,7 +338,7 @@
        </div>
      </div>
      <div class="content" id="panel2-3">
-       <div id="survey_abstract_wrapper">
+       <div id="survey_abstract_wrapper" class="survey_abstract_wrapper">
 		   <g:if test="${documentInstance?.legalDescriptionSurveyAbstract?.isEmpty() || documentInstance.id == null}">
 			   <div class="a_survey_abstract row">
 		          <div class="form-paragraph large-2 columns">
@@ -422,7 +422,7 @@
 <div class="related-documents row clearfields">
 	<h6>RELATED DOCUMENTS</h6>
 	<div class="panel related-doc-panel">
-		<div id="related_documents_wrapper">
+		<div id="related_documents_wrapper" class="related_documents_wrapper">
 			<g:if test="${documentInstance?.parentDocument?.isEmpty() || documentInstance.id == null}">
 				<div class="a_related_document">
 					<div class="form-paragraph large-2 columns">
@@ -471,32 +471,33 @@
 	</div>
 </div>
 
-<div class="will-number row clearfields">
+<div class=" row clearfields">
 	<h6>WILL NUMBER</h6>
-	<div class="large-12 columns panel">
-		<input class="uppercase clear" name="willNumber" type="text" value="${documentInstance.willNumber}">
+	<div class="large-12 columns panel will-number-wrapper">
+		<input class="uppercase clear willNumber" name="willNumber" type="text" value="${documentInstance.willNumber}">
 	</div>
 </div>
 
-<div class="notes row clearfields">
+<div class=" row">
 	<h6>NOTES</h6>
 	<div class="large-12 columns panel">
-		 <div id="notes" class="" >
+		 <div id="notes" class="notes-wrapper" >
 			 <h6>NOTES</h6>
-			 <textarea  id="" name="notes"  class="uppercase popout clear">${documentInstance.notes}</textarea>
+			 <textarea  id="" name="notes"  class="uppercase popout notes">${documentInstance.notes}</textarea>
 		 </div>
 	</div>
 </div>
 <div class="row">
 	<div class="large-1 columns">IMAGES LIST</div>
-	<div class="large-11 columns" id="imageTotal">X OF X IMAGES</div>
+	<div class="large-4 columns" id="imageTotal">X OF X IMAGES</div>
+	<div class="large-7 columns" id="assignedImageTotal">X IMAGES ASSIGNED</div>
 </div>
 
 <div class="images row" id="imagesRow">
 	
-	<div class="large-6 columns">
+	<div class="large-4 columns images-content">
 
-		<table class="images-content">
+		<table class="">
 			<thead>
 				<tr>
 					<th width="400">FILENAME</th>
@@ -521,9 +522,8 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="large-6 columns">
-		<h6>IMAGES ASSIGNED TO DOCUMENT</h6>
-		<table id="" class="images-content">
+	<div class="large-8 columns images-assigned-content">
+		<table id="" class="">
 			<thead>
 			    <tr>
 			      <th width="400">FILENAME</th>
@@ -531,7 +531,7 @@
 				  <th>ID</th>
 			    </tr>
 			 </thead>
-			 <tbody id="images-assigned"> 
+			 <tbody id="images-assigned" class="images-assigned"> 
 				 <g:if test="${documentInstance?.images?.isEmpty() || documentInstance.id == null}">
 				 </g:if>
 				 <g:else>
@@ -543,7 +543,7 @@
 							<td class="imageLinkCell">
 								<g:link action="show" controller="image" id="${image.id}" target="imageWindow"></g:link>
 							</td>
-							<td class="imageId">
+							<td class="imageId imageIdAssigned">
 								${image.id}
 							</td>
 						</tr>

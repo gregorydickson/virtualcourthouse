@@ -1,32 +1,37 @@
 function updateImagesCount(){
-	var rows = $('.data-row');
-	var count = $('.data-row').length;
-	var active = $('.selected');
+	var rows = $(".data-row");
+	var count = $(".data-row").length;
+	var active = $(".selected");
 	var message;
 	if(active){
 		var index = rows.index(active);
 		index = index + 1;
 		message = index +" OF " + count + " IMAGES";
-		$("#imageTotal").text(message);
-		return false;
-	}else {
-		return false;
+		$("#imageTotal").text(message);	
 	}
+	rows = $(".image-assigned-row");
+	count = $(".image-assigned-row").length;
+	message =  count + " IMAGES ASSIGNED";
+	console.log("NEW IMAGES ASSIGNED");
+	$("#assignedImageTotal").text(message);
+
 }
 
 function addImageToDocument(id){
 	console.log("Image ID is: " + id);
-	var element = $('<input type="hidden" name="images[]"/>');
+	var element = $('<input type="hidden" name="images[]" class="image-assigned"/>');
 	var div = $("#imagesRow");
     $(element).appendTo(div);
 	$(element).attr("value",id);
 }
 function resetDOM(){
 		$(".added").remove();
-		$("#images-assigned").remove("tr");
+		$(".image-assigned-row").remove();
+		$(".image-assigned").remove();
 		$(".documentId").attr("value", "");
 		$(".clearfields input[type='text']").val(""); 
 		$(".clearfields input[type='hidden']").val("");
+		$(".notes").val("");
 }
 function sumRowsContainingValues(rows){
 	var numberOfRows = 0;

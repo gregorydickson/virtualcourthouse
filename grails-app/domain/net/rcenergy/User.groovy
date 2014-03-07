@@ -10,6 +10,11 @@ class User {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+	//so we can know the assignment when creating a document
+	Assignment currentAssignment
+	Long documentsIndexed
+	Long documentsReviewed
+	Long numberChangesAudit
 	
 	User supervisor;
 	User reviewer;
