@@ -1,5 +1,8 @@
 package net.rcenergy
 
+
+import net.rcenergy.User;
+
 import org.springframework.security.core.GrantedAuthority
 
 /**
@@ -7,7 +10,7 @@ import org.springframework.security.core.GrantedAuthority
  * @author dinko
  *
  */
-class BaseController {
+class ControllerBase {
 
 	def springSecurityService
 

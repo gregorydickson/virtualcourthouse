@@ -10,7 +10,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class AssignmentController extends BaseController {
+class AssignmentController extends ControllerBase {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 	
