@@ -44,4 +44,13 @@ class User {
 	protected void encodePassword() {
 		password = springSecurityService.encodePassword(password)
 	}
+	
+	public boolean hasRole(String role) {
+		for (Role authority : getAuthorities()) {
+			if (role.equals(authority.getAuthority())) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
