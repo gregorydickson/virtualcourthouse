@@ -53,7 +53,7 @@
 		<div id="grantors_wrapper" class="large-12 columns clearfields"	>
 			<g:if test="${documentInstance?.grantor?.isEmpty() || documentInstance.id == null}">
 			    <p class="form-paragraph">
-			        <input class="grantor uppercase clear" name="grantor[]" type="text" id="grantor"   />
+			        <input class="grantor uppercase clear" name="grantor[]" type="text" id="grantor" />
 			    </p>
 			</g:if>
 			<g:else>
