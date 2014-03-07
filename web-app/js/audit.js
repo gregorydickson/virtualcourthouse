@@ -8,7 +8,7 @@ $( document ).ready(function() {
 	jQuery.each(one, function(index, value){
 		console.log("value loop 1: " + value);
 		if ($(this).is( ":hidden" ) == true(
-			$(one).remove(value);
+			$(one.remove(value);
 			console.log("removed");
 		)
 	});
