@@ -3,12 +3,19 @@ package net.rcenergy
 import java.util.Set;
 
 class Assignment {
+
 	District district
+	String stage
+
+	User indexer;
+	User reviewer;
+
 	static hasMany = [images : Image]
-	static belongsTo = [user: User]
-    static constraints = {
+
+	static constraints = {
 		stage(nullable:true)
 		district(nullable:true)
-    }
-	String stage
+		indexer(nullable:true)
+		reviewer(nullable:true)
+	}
 }

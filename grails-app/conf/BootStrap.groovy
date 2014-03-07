@@ -31,10 +31,13 @@ class BootStrap {
 					def supervisorRole = new Role(authority: "ROLE_SUPERVISOR").save();					
 					UserRole.create(supervisor, supervisorRole).save();					
 					
-					def indexer = new User(username : "indexer", password : "password").save();
+					// create two indexers
+					def indexer1 = new User(username : "indexer1", password : "password").save();
 					def indexerRole = new Role(authority: "ROLE_INDEXER").save();
-					UserRole.create(indexer, indexerRole).save();
-					
+					UserRole.create(indexer1, indexerRole).save();
+					def indexer2 = new User(username : "indexer2", password : "password").save();
+					UserRole.create(indexer2, indexerRole).save();
+
 					def reviewer = new User(username : "reviewer", password : "password").save();
 					def reviewerRole = new Role(authority: "ROLE_REVIEWER").save();
 					UserRole.create(reviewer, reviewerRole).save();
@@ -117,10 +120,10 @@ class BootStrap {
 					def img10 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true);
 					
 					//assignment
-					//def assignment1 = new Assignment(district:district1, user: user1).save(failOnError : true);
-					//assignment1.images = new ArrayList<Image>();
-					//assignment1.images.add(img1);
-					//assignment1.save(failOnError : true);
+					def assignment1 = new Assignment(district:district1, indexer: indexer1).save(failOnError : true);
+					assignment1.images = new ArrayList<Image>();
+					assignment1.images.add(img1);
+					assignment1.save(failOnError : true);
 				}
 			}
 		}

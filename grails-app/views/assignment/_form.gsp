@@ -2,15 +2,23 @@
 
 
 <div
-	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'user', 'error')} required">
-	<label for="user"> <g:message code="assignment.user.label"
-			default="User" /> <span class="required-indicator">*</span>
+	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'indexer', 'error')} required">
+	<label for="indexer"> <g:message code="assignment.indexer.label"
+			default="Indexer" /> <span class="required-indicator">*</span>
 	</label>
-	<g:select id="user" name="user.id" from="${net.rcenergy.User.list()}"
-		optionKey="id" optionValue="username" required="" value="${assignmentInstance?.user?.id}"
+	<g:select id="indexer" name="indexer.id" from="${net.rcenergy.User.list()}"
+		optionKey="id" optionValue="username" required="" value="${assignmentInstance?.indexer?.id}"
 		class="many-to-one" />
 </div>
-
+<div
+	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'reviewer', 'error')} required">
+	<label for="reviewer"> <g:message code="assignment.reviewer.label"
+			default="Reviewer" /> <span class="required-indicator">*</span>
+	</label>
+	<g:select id="reviewer" name="reviewer.id" from="${net.rcenergy.User.list()}"
+		optionKey="id" optionValue="username" required="" value="${assignmentInstance?.reviewer?.id}"
+		class="many-to-one" />
+</div>
 <div
 	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'images', 'error')} ">
 	

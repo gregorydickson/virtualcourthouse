@@ -28,20 +28,30 @@
 					<span id="images-label" class="property-label"><g:message code="assignment.images.label" default="Images" /></span>
 					
 						<g:each in="${assignmentInstance.images}" var="i">
-						<span class="property-value" aria-labelledby="images-label"><g:link controller="image" action="show" id="${i.id}">${i?.displayString}</g:link></span>
+						<span class="property-value" aria-labelledby="images-label"><g:link controller="user" action="show" id="${i.id}">${i?.displayString}</g:link></span>
 						</g:each>
 					
 				</li>
 				</g:if>
 			
-				<g:if test="${assignmentInstance?.user}">
+				<g:if test="${assignmentInstance?.indexer}">
 				<li class="fieldcontain">
-					<span id="user-label" class="property-label"><g:message code="assignment.user.label" default="User" /></span>
+					<span id="indexer-label" class="property-label"><g:message code="assignment.indexer.label" default="Indexer" /></span>
 					
-						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${assignmentInstance?.user?.id}">${assignmentInstance?.user?.username}</g:link></span>
+						<span class="property-value" aria-labelledby="indexer-label"><g:link controller="user" action="show" id="${assignmentInstance?.indexer?.id}">${assignmentInstance?.indexer?.username}</g:link></span>
 					
 				</li>
 				</g:if>
+				
+				<g:if test="${assignmentInstance?.reviewer}">
+				<li class="fieldcontain">
+					<span id="reviewer-label" class="property-label"><g:message code="assignment.reviewer.label" default="Reviewer" /></span>
+					
+						<span class="property-value" aria-labelledby="reviewer-label"><g:link controller="reviewer" action="show" id="${assignmentInstance?.reviewer?.id}">${assignmentInstance?.reviewer?.username}</g:link></span>
+					
+				</li>
+				</g:if>
+				
 			
 			</ol>
 			<g:form url="[resource:assignmentInstance, action:'delete']" method="DELETE">

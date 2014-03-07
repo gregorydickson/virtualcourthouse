@@ -33,11 +33,13 @@
 			<thead>
 				<tr>
 
-					<th><g:message code="assignment.user.label" default="User" /></th>
-
-					<th><g:message code="assignment.user.label" default="Images" /></th>
+					<th><g:message code="assignment.indexer.label" default="Indexer" /></th>
 					
-					<th><g:message code="assignment.user.label" default="Action" /></th>
+					<th><g:message code="assignment.reviewer.label" default="Reviewer" /></th>
+
+					<th><g:message code="assignment.images.label" default="Images" /></th>
+					
+					<th><g:message code="assignment.action.label" default="Action" /></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -45,9 +47,13 @@
 					var="assignmentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							<td>
-								${fieldValue(bean: assignmentInstance.user, field: "username")}
+								${fieldValue(bean: assignmentInstance.indexer, field: "username")}
 							</td>
-
+							
+							<td>
+								${fieldValue(bean: assignmentInstance.reviewer, field: "username")}
+							</td>
+							
 							<td>
 								<g:each in="${assignmentInstance.images}" var="i2">
 									<span class="property-value" aria-labelledby="images-label">${i2?.displayString}</span>

@@ -3,19 +3,29 @@ package net.rcenergy
 
 
 import static org.springframework.http.HttpStatus.*
+
+import org.springframework.security.core.GrantedAuthority;
+
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class AssignmentController {
+class AssignmentController extends BaseController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-
-	def springSecurityService
 	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Assignment.list(params), model:[assignmentInstanceCount: Assignment.count()]
+		
+		// TODO: handle when multiple roles are present
+		// TODO: handle paging 		
+		if (hasRole('ROLE_INDEXER')) {
+			respond Assignment.findAllByIndexer(currentUser());
+		} else if (hasRole('ROLE_REVIEWER')) {
+			respond Assignment.findByReviewer(currentUser());
+		} else {
+        	respond Assignment.list(params), model:[assignmentInstanceCount: Assignment.count()]
+		}
     }
 
     def show(Assignment assignmentInstance) {
@@ -105,11 +115,4 @@ class AssignmentController {
         }
     }
 
-	/**
-	 * Use this to get the currently logged user	
-	 * @return
-	 */
-	protected currentUser() {
-		return User.get(springSecurityService.principal.id);
-	}
 }
