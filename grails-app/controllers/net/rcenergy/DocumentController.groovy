@@ -6,9 +6,9 @@ import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-class DocumentController {
+class DocumentController extends ControllerBase {
 
-    static allowedMethods = [ submitDocumentIndexer:"POST",createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
+    static allowedMethods = [create:"GET",submitDocumentIndexer:"POST",createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
 	
 	
 	@Transactional
@@ -45,8 +45,14 @@ class DocumentController {
          
     }	
 
-    def create() {
-        respond new Document(params)
+    @Transactional
+    def create(Document documentInstance) {
+       def user = springSecurityService.currentUser
+       def assignment =  user.currentAssignment
+       println "assignment: " + assignment.id
+       
+       
+       render(view:"/document/create", model: [assignmentInstance: assignment,documentInstance: documentInstance ])
     }
 
    

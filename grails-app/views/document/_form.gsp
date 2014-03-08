@@ -1,7 +1,7 @@
 <%@ page import="net.rcenergy.Document" %>
 <%@ page import="net.rcenergy.City" %>
 <%@ page import="net.rcenergy.Subdivision %>
-<input type="hidden" name="id" class="documentId" id="documentId" value="${documentInstance.id}"/>
+<input type="hidden" name="id" class="documentId" id="documentId" value="${documentInstance?.id}"/>
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
@@ -12,18 +12,18 @@
 	<div class="medium-4 large-1 columns">
 		<div class="input-wrapper">
 			<label>BOOK #</label>
-			<g:field id="bookNumber" name="bookNumber" type="number" value="${documentInstance.bookNumber}" />
+			<g:field id="bookNumber" name="bookNumber" type="number" value="${documentInstance?.bookNumber}" />
 		</div>	
 	</div>
 	<div class="clearfields">
 	<div class="medium-4 large-1 columns">
 		<label>PAGE #</label>
-		<input type="text" name="pageNumber" class="pageNumber" value="${documentInstance.pageNumber}" />
+		<input type="text" name="pageNumber" class="pageNumber" value="${documentInstance?.pageNumber}" />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
 		<label for="instrumentNumber">INST #</label>
-		<g:textField name="instrumentNumber"  class="uppercase instrumentNumber" value="${documentInstance.instrumentNumber}" />
+		<g:textField name="instrumentNumber"  class="uppercase instrumentNumber" value="${documentInstance?.instrumentNumber}" />
 	</div>
 	
 	<div class="medium-4 large-2 columns">
@@ -35,14 +35,14 @@
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper file-date-wrapper">
 			<label>FILE DATE</label>
-			<input type="text" id="fileDate" name="fileDate" class="dateformat fileDate" value="<g:formatDate date="${documentInstance.fileDate}"/>"/>
+			<input type="text" id="fileDate" name="fileDate" class="dateformat fileDate" value="<g:formatDate date="${documentInstance?.fileDate}"/>"/>
 		</div>
 	</div>
 	
 	<div class="medium-2 large-2 columns">
 		<div class="input-wrapper instrument-date-wrapper">
 			<label>INST DATE</label>
-			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat clear instrumentDate" value="<g:formatDate date="${documentInstance.instrumentDate}"/>" />	
+			<input type="text" id="instrumentDate" name="instrumentDate" class="dateformat clear instrumentDate" value="<g:formatDate date="${documentInstance?.instrumentDate}"/>" />	
 		</div>
 	</div>
     </div>
@@ -506,7 +506,7 @@
 				</tr>
 			</thead>
 			<tbody> 
-				<g:each var="images" in="${net.rcenergy.Image.list()}">
+				<g:each var="images" in="${assignmentInstance.images}">
 					<tr class="data-row">
 						<td>
 							${images.toString()}
