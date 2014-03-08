@@ -7,9 +7,9 @@ class User {
 	String username
 	String password
 	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+	boolean accountExpired = false
+	boolean accountLocked = false
+	boolean passwordExpired = false
 	//so we can know the assignment when creating a document
 	Assignment currentAssignment
 	Long documentsIndexed
@@ -24,8 +24,12 @@ class User {
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		supervisor(nullable:true);
-		reviewer(nullable:true);
+		supervisor(nullable:true)
+		reviewer(nullable:true)
+		documentsIndexed(nullable:true)
+		documentsReviewed(nullable:true)
+		numberChangesAudit(nullable:true)
+		currentAssignment(nullable:true)
 	}
 
 	static mapping = {
