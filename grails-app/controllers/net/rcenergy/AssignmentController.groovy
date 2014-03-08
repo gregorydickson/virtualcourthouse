@@ -4,16 +4,18 @@ package net.rcenergy
 
 import static org.springframework.http.HttpStatus.*
 
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.GrantedAuthority
 
 import grails.plugin.springsecurity.annotation.Secured
+
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class AssignmentController extends ControllerBase {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-	
+    static allowedMethods = [work:"GET",save: "POST", update: "PUT", delete: "DELETE"]
+
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 		
@@ -61,6 +63,14 @@ class AssignmentController extends ControllerBase {
 
     def edit(Assignment assignmentInstance) {
         respond assignmentInstance
+    }
+    
+    @Transactional
+    def work(Assignment assignmentInstance) {
+       def user = springSecurityService.currentUser
+       user.currentAssignment = assignmentInstance
+       user.save flush:true 
+       redirect(controller: 'document', action:'create')
     }
 
     @Transactional

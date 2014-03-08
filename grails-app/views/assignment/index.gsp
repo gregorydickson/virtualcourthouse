@@ -29,6 +29,18 @@
 				${flash.message}
 			</div>
 		</g:if>
+		<sec:ifLoggedIn>
+			Logged IN
+			</sec:ifLoggedIn>
+			<br><br>
+			UserName:<sec:loggedInUserInfo field="username"/>
+			<br>
+			<br>
+			<sec:ifNotLoggedIn>
+			<g:link controller='login' action='auth'>Login</g:link>
+			</sec:ifNotLoggedIn>
+			<sec:ifAllGranted roles="ROLE_INDEXER">I AM AN INDEXER</sec:ifAllGranted>
+			<sec:loggedInUserInfo field="username"/>
 		<table>
 			<thead>
 				<tr>
@@ -39,7 +51,7 @@
 
 					<th><g:message code="assignment.images.label" default="Images" /></th>
 					
-					<th><g:message code="assignment.action.label" default="Action" /></th>
+					<th>Work</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -61,7 +73,7 @@
 								</g:each>
 							</td>
 							<td>
-								<g:link action="show" id="${assignmentInstance.id}">
+								<g:link action="work" id="${assignmentInstance.id}">
 									<g:message code="assignment.user.label" default="View" />															
 								</g:link>
 							</td>

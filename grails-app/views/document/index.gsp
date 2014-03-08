@@ -1,4 +1,5 @@
 <%@ page import="net.rcenergy.Document" %>
+<%@ page import="net.rcenergy.User" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,6 +20,13 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			<sec:ifLoggedIn>
+			Logged IN
+			</sec:ifLoggedIn>
+			<sec:ifNotLoggedIn>
+			<g:link controller='login' action='auth'>Login</g:link>
+			</sec:ifNotLoggedIn>
+			<sec:ifAllGranted roles="ROLE_INDEXER">I AM AN INDEXER</sec:ifAllGranted>
 			<table>
 			<thead>
 					<tr>
