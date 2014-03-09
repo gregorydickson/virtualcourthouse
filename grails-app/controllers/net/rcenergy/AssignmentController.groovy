@@ -7,7 +7,7 @@ import static org.springframework.http.HttpStatus.*
 import org.springframework.security.core.GrantedAuthority
 
 import grails.plugin.springsecurity.annotation.Secured
-
+import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -21,9 +21,9 @@ class AssignmentController extends ControllerBase {
 		
 		// TODO: handle when multiple roles are present
 		// TODO: handle paging 		
-		if (hasRole('ROLE_INDEXER')) {
+		if (SpringSecurityUtils.ifAllGranted('ROLE_INDEXER')) {
 			respond Assignment.findAllByIndexer(currentUser());
-		} else if (hasRole('ROLE_REVIEWER')) {
+		} else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
 			respond Assignment.findByReviewer(currentUser());
 		} else {
         	respond Assignment.list(params), model:[assignmentInstanceCount: Assignment.count()]

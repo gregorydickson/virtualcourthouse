@@ -1,7 +1,8 @@
 package net.rcenergy
 
-import java.util.Map;
-import grails.plugin.springsecurity.SpringSecurityUtils;
+import java.util.Map
+import grails.plugin.springsecurity.SpringSecurityUtils
+import org.springframework.security.core.GrantedAuthority
 
 /**
  * Override the spring security user controller 
@@ -9,6 +10,29 @@ import grails.plugin.springsecurity.SpringSecurityUtils;
  *
  */
 class UserController extends grails.plugin.springsecurity.ui.UserController {
+	def springSecurityService
+	
+
+
+def home() {
+
+      if (SpringSecurityUtils.ifAllGranted('ROLE_INDEXER')) {
+         redirect controller: 'assignment', action: 'index'
+         return
+      }
+      if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
+         redirect controller: 'document', action: 'index'
+         return
+      }
+	  if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
+         redirect '/'
+         return
+      }
+      
+   }
+
+
+
 
 	/**
 	 * Override this method to add all indexers/reviewers to the data model

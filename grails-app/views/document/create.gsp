@@ -11,26 +11,27 @@
 			<nav class="top-bar" data-topbar>
 			  <ul class="title-area">
 			    <li class="name">
-			      <h1><a href="#">Virtual Courthouse</a></h1>
+			      <h1><a href="/virtualcourthouse/x">Virtual Courthouse</a></h1>
 			    </li>
-			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+			    <li class="toggle-topbar menu-icon"><a href="#"></a></li>
 			  </ul>
 
 			  <section class="top-bar-section">
 			    <!-- Right Nav Section -->
 			    <ul class="right">
-			      <li class="active"><a href="#">Right Button Active</a></li>
+			      <li class="active"><a href="#">Help</a></li>
 			      <li class="has-dropdown">
-			        <a href="#">Right Button with Dropdown</a>
+			        <a href="#">Actions</a>
 			        <ul class="dropdown">
-			          <li><a href="#">First link in dropdown</a></li>
+			          <li><a href="/virtualcourthouse/assignment/index">Assignment List</a></li>
+			          <li><a href="/virtualcourthouse/document/index">Unsubmitted Docs</a></li>
 			        </ul>
 			      </li>
 			    </ul>
 
 			    <!-- Left Nav Section -->
 			    <ul class="left">
-			      <li><a href="#">Left Nav Button</a></li>
+			      <li><a href="/virtualcourthouse/logout/index">Logout</a></li>
 			    </ul>
 			  </section>
 			</nav>

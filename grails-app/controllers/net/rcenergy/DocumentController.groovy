@@ -3,6 +3,7 @@ package net.rcenergy
 
 import grails.converters.JSON
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
@@ -31,7 +32,14 @@ class DocumentController extends ControllerBase {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Document.list(params), model:[documentInstanceCount: Document.count()]
+        if (SpringSecurityUtils.ifAllGranted('ROLE_INDEXER')) {
+            respond Document.findAllByIndexer(currentUser());
+        } else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
+            respond Document.findByReviewer(currentUser());
+        } else {
+            respond Document.list(params), model:[documentInstanceCount: Document.count()]
+        }
+        
     }
 
     def review(Document documentInstance) {
@@ -111,6 +119,11 @@ class DocumentController extends ControllerBase {
       
     }
 
+    @Transactional
+    def updateAssignment(Document document){
+        def user = springSecurityService.currentUser
+        def assignment =  user.currentAssignment
+    }
 
     @Transactional
     def delete(Document documentInstance) {

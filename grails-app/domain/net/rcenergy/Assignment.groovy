@@ -10,12 +10,15 @@ class Assignment {
 	User indexer;
 	User reviewer;
 
-	static hasMany = [images : Image]
+	static hasMany = [images : Image,
+						imagesRemaining: Image]
+
 
 	static constraints = {
 		stage(nullable:true)
 		district(nullable:true)
 		indexer(nullable:true)
 		reviewer(nullable:true)
+		imagesRemaining(nullable:true)
 	}
 }

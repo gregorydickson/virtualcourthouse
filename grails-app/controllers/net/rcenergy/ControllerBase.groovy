@@ -1,9 +1,10 @@
 package net.rcenergy
 
 
-import net.rcenergy.User;
+import net.rcenergy.User
 
 import org.springframework.security.core.GrantedAuthority
+import grails.plugin.springsecurity.SpringSecurityUtils
 
 /**
  * Provides base functionality for controllers such as spring security

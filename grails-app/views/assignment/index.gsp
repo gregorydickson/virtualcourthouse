@@ -9,8 +9,7 @@
 <title><g:message code="default.list.label" args="[entityName]" /></title>
 </head>
 <body>
-	<a href="#list-assignment" class="skip" tabindex="-1"><g:message
-			code="default.link.skip.label" default="Skip to content&hellip;" /></a>
+	<sec:ifAllGranted roles="ROLE_ADMIN">
 	<div class="nav" role="navigation">
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message
@@ -20,6 +19,7 @@
 				</g:link></li>
 		</ul>
 	</div>
+	</sec:ifAllGranted>
 	<div id="list-assignment" class="content scaffold-list" role="main">
 		<h1>
 			<g:message code="default.list.label" args="[entityName]" />
@@ -33,14 +33,13 @@
 			Logged IN
 			</sec:ifLoggedIn>
 			<br><br>
-			UserName:<sec:loggedInUserInfo field="username"/>
+			UserName: <sec:loggedInUserInfo field="username"/>
 			<br>
 			<br>
 			<sec:ifNotLoggedIn>
 			<g:link controller='login' action='auth'>Login</g:link>
 			</sec:ifNotLoggedIn>
 			<sec:ifAllGranted roles="ROLE_INDEXER">I AM AN INDEXER</sec:ifAllGranted>
-			<sec:loggedInUserInfo field="username"/>
 		<table>
 			<thead>
 				<tr>
