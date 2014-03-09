@@ -49,9 +49,9 @@
 					
 					<th><g:message code="assignment.reviewer.label" default="Reviewer" /></th>
 
-					<th><g:message code="assignment.images.label" default="Images" /></th>
+					<th>COUNTY</th>
 					
-					<th>Work</th>
+					<th>WORK ASSIGNMENT</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,14 +67,11 @@
 							</td>
 							
 							<td>
-								<g:each in="${assignmentInstance.images}" var="i2">
-									<span class="property-value" aria-labelledby="images-label">${i2?.displayString}</span>
-									<br/>
-								</g:each>
+								${fieldValue(bean: assignmentInstance.district, field: "name")}
 							</td>
 							<td>
 								<g:link action="work" id="${assignmentInstance.id}">
-									<g:message code="assignment.user.label" default="View" />															
+									Work Assignment															
 								</g:link>
 							</td>
 

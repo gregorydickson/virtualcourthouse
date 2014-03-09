@@ -123,6 +123,15 @@ class BootStrap {
 					def assignment1 = new Assignment(district:district1, indexer: indexer1).save(failOnError : true);
 					assignment1.images = new ArrayList<Image>();
 					assignment1.images.add(img1);
+					assignment1.images.add(img2);
+					assignment1.images.add(img3);
+					assignment1.images.add(img4);
+					assignment1.images.add(img5);
+					assignment1.images.add(img6);
+					assignment1.images.add(img7);
+					assignment1.images.add(img8);
+					assignment1.images.add(img9);
+					assignment1.images.add(img10);
 					assignment1.save(failOnError : true);
 				}
 			}
