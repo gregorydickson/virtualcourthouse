@@ -24,20 +24,19 @@
 		<g:javascript src="jqueryui-1.10.4.js"/>
 		<g:javascript src="jquery.mousewheel.min.js"/>
 		<g:javascript src="jquery.iviewer.js"/>
-		<g:javascript src="infinity.js"/>
 
 		
 		<%-- Application Javascript --%>
 		<script>
         var $ = jQuery;
         $(document).ready(function(){
-          /*var iv1 = $('#viewer').iviewer({
+          var iv1 = $('#viewer').iviewer({
             src: '${createLink(controller: 'image', action: 'viewImage', id: imageInstance.id)}',
 			zoom: localStorage.getItem("zoom"),
 			zoom_delta: 1.02,
 			onZoom: function(e, newzoom){localStorage.setItem("zoom",newzoom);},
 			zoom_min: 10
-          }); */
+          }); 
 			  
 			          
         });

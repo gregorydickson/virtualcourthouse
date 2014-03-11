@@ -112,7 +112,15 @@ class BootStrap {
 					book2.images.add(img5);
 					book2.images.add(img6);
 					book2.merge();
-									
+					
+					
+					def range = 1..250
+					range.each{
+  						def one = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).save(failOnError : true, flush: true);
+						def two = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).save(failOnError : true, flush: true);
+						def three = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).save(failOnError : true, flush: true);
+						def four = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true, flush: true);
+					}
 					//images with no book (some counties will not have books just images)
 					def img7 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).save(failOnError : true);
 					def img8 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).save(failOnError : true);
