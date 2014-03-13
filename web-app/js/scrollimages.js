@@ -15,7 +15,7 @@ init=function(){
         });
         }
     });
-  mainList.data('listView', listView); //Use jQeary Data to set our list to the element as a conveniance.
+  mainList.data('listView', listView); //Use jQuery Data to set our list to the element .
   load(imagesCount); //Load the number of images in the imagesCount
 }
 //
@@ -24,9 +24,9 @@ init=function(){
 load=function(num){
 	var mainList = $('#list-view');
 	for (var i =  num- 1; i >= 0; i--) {
-		var html='<div> <h1>Document ' +(i+1)+'</h1><br><img class="pic" data-original="/virtualcourthouse/image/viewImage/'+ i +'" style="width: 1070px; height: 1655px;" ></img><div>'
+		var html='<div> <h1>Document ' +(i+1)+'</h1><br><img class="pic" data-original="/virtualcourthouse/image/viewImage/'+ i +'" style="width: 1070px; height: 1655px;" ></img></div>'
 		mainList.data('listView').append( html )
-		console.log('loading: i = '+ i);
+		//console.log('loading: i = '+ i);
 	};
 }
 //
