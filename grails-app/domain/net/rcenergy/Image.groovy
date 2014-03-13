@@ -28,7 +28,9 @@ class Image {
 		id
 	}
 	private static final MAX_IMAGE_SIZE = 1073741824
-
+	static mapping = {
+		cache true
+	}
 
 	static constraints = {
 		image(maxSize:MAX_IMAGE_SIZE)
