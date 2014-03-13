@@ -115,7 +115,7 @@ class BootStrap {
 					book2.merge();
 					
 					
-					def range = 1..1000
+					def range = 1..500
 					range.each{
   						def one = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).async.save(failOnError : true, flush: true);
 						def two = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).async.save(failOnError : true, flush: true);
