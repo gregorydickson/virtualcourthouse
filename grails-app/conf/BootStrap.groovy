@@ -2,17 +2,18 @@ import net.rcenergy.Book
 import net.rcenergy.BookTypes
 import net.rcenergy.District
 import net.rcenergy.Image
-import net.rcenergy.Role;
+import net.rcenergy.Role
 import net.rcenergy.USState
 import net.rcenergy.User
 import net.rcenergy.InstrumentTypes
 import net.rcenergy.City
 import net.rcenergy.Subdivision
 import net.rcenergy.Assignment
-import net.rcenergy.UserRole;
+import net.rcenergy.UserRole
+import static grails.async.Promises.*
 
 class BootStrap {
-
+	def sessionFactory
 	def init = { servletContext ->
 		environments {
 			production {
@@ -114,12 +115,21 @@ class BootStrap {
 					book2.merge();
 					
 					
-					def range = 1..250
+					def range = 1..2000
 					range.each{
-  						def one = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).save(failOnError : true, flush: true);
-						def two = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).save(failOnError : true, flush: true);
-						def three = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).save(failOnError : true, flush: true);
-						def four = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true, flush: true);
+  						def one = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def two = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def three = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def four = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def five = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def six = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def seven = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def eight = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def nine = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def ten = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def eleven = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						def twelve = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).async.save(failOnError : true, flush: true);
+						sessionFactory.getCurrentSession().clear();
 					}
 					//images with no book (some counties will not have books just images)
 					def img7 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).save(failOnError : true);
