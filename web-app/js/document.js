@@ -1,11 +1,12 @@
 function popup(url, winName, xOffset, yOffset) {
 	var x = (window.screenX || window.screenLeft || 0) + (xOffset || 0);
 	var y = (window.screenY || window.screenTop || 0) + (yOffset || 0);
-  	return	window.open(url,winName,"toolbar=yes, scrollbars=yes, resizable=yes, top="+y+", left="+x+", width=400, height=400");
+  	return	window.open(url,winName,"toolbar=yes, scrollbars=yes, resizable=yes, top="+y+", left="+x+", width=1200, height=1800");
 }
 function setImageIds(idarray){
 	jQuery.each(idarray, function(index, value){
 		//TODO: add image ids from other window to document 
+		console.log("adding IDs from other window");
 	});
 }
 
@@ -389,7 +390,7 @@ $( document ).ready(function() {
 
 	$('body').on('click','.data-row', function () {
 		var url = "/virtualcourthouse/assignment/images/" + $('#assignmentId').attr('value');
-		var win = popup(url, 'imagelist', 50, 50);
+		var win = popup(url, 'imagelist', 900, 0);
     });
 	//create new grantor fields dynamically
     $('body').on('keyup','.grantor', function (e) {
