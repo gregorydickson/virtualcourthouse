@@ -3,7 +3,7 @@
 	<head>
 		<meta name="layout" content="indexer">
 		<g:set var="entityName" value="${message(code: 'document.label', default: 'Document')}" />
-		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		
 		
 	</head>
 	<body>
@@ -11,7 +11,7 @@
 			<nav class="top-bar" data-topbar>
 			  <ul class="title-area">
 			    <li class="name">
-			      <h1><a href="/virtualcourthouse/x">Virtual Courthouse</a></h1>
+			      <h1><a href="/virtualcourthouse/">The Edge</a></h1>
 			    </li>
 			    <li class="toggle-topbar menu-icon"><a href="#"></a></li>
 			  </ul>

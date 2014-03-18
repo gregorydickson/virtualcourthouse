@@ -21,7 +21,7 @@ class Document {
 	/*A Document will have two copies, an indexer copy and a review copy.
 	When indexing final, a copy is made and the review copy id is saved
 	in the indexer copy and indexer id in the review copy    */
-	Boolean isIndexerFinal //If True then this copy cannot be updated, it is the indexed version, 
+	Boolean isIndexerFinal = false//If True then this copy cannot be updated, it is the indexed version, 
 							//  and a copy has been generated, the id of the copy has been saved as
 							// submittedVersionId
 	
@@ -78,5 +78,6 @@ class Document {
 		isReviewerCopy(nullable:true)
 		reviewFinal(nullable:true)
 		willNumber(nullable:true)
+		numberOfChangesReview(nullable:true)
     }
 }

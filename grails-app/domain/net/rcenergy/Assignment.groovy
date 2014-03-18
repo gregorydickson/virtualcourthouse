@@ -9,6 +9,7 @@ class Assignment {
 
 	User indexer;
 	User reviewer;
+	Boolean started = false;
 
 	static hasMany = [images : Image,
 						imagesRemaining: Image]

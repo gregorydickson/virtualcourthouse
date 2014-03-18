@@ -1,3 +1,30 @@
+function popup(url, winName, xOffset, yOffset) {
+	var x = (window.screenX || window.screenLeft || 0) + (xOffset || 0);
+	var y = (window.screenY || window.screenTop || 0) + (yOffset || 0);
+  	return	window.open(url,winName,"toolbar=yes, scrollbars=yes, resizable=yes, top="+y+", left="+x+", width=400, height=400");
+}
+function setImageIds(idarray){
+	jQuery.each(idarray, function(index, value){
+		//TODO: add image ids from other window to document 
+	});
+}
+
+function compareElements(compareThis, toThis) {
+	var compare = true;
+	if (!compareThis || toThis.length != compareThis.length) {
+		compare = false;
+		return compare;
+	}
+	jQuery.each(compareThis, function(index, value) {
+		if ($(compareThis[index]).attr("value") != $(toThis[index]).attr("value")) {
+			compare = false;
+			return compare;
+		} 
+	});
+	return compare;
+}
+
+
 function updateImagesCount(){
 	var rows = $(".data-row");
 	var count = $(".data-row").length;
@@ -360,6 +387,10 @@ $( document ).ready(function() {
 	//setup certain fields to pop up a textbox for input
 	$(".popout").popBox();
 
+	$('body').on('click','.data-row', function () {
+		var url = "/virtualcourthouse/assignment/images/" + $('#assignmentId').attr('value');
+		var win = popup(url, 'imagelist', 50, 50);
+    });
 	//create new grantor fields dynamically
     $('body').on('keyup','.grantor', function (e) {
 		var code = e.keyCode || e.which;

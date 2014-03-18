@@ -13,7 +13,7 @@ $( document ).ready(function() {
 			success:function(data,textStatus){
 				resetDOM();
 				var unique_id = $.gritter.add({
-					title: 'SUBMITTED DOCUMENT',
+					title: 'SUBMITTED REVIEW',
 					text: "SUBMITTED DOCUMENT FOR REVIEW ID: " + data.id,
 					image: '',
 					sticky: false,
@@ -41,7 +41,7 @@ $( document ).ready(function() {
 			url: '/virtualcourthouse/document/updateDocumentReviewer',
 			success:function(data,textStatus){
 				var unique_id = $.gritter.add({
-					title: 'SAVED DOCUMENT',
+					title: 'SAVED REVIEW',
 					text: "Saved Document ID: " + data.id,
 					image: '',
 					sticky: false,

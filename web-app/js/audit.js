@@ -1,17 +1,3 @@
-function compareElements(compareThis, toThis) {
-	var compare = true;
-	if (!compareThis || toThis.length != compareThis.length) {
-		compare = false;
-		return compare;
-	}
-	jQuery.each(compareThis, function(index, value) {
-		if ($(compareThis[index]).attr("value") != $(toThis[index]).attr("value")) {
-			compare = false;
-			return compare;
-		} 
-	});
-	return compare;
-}
 
 
 $( document ).ready(function() {

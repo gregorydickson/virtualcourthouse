@@ -11,8 +11,8 @@ $(document).ready(function() {
         }
     });
   	divForList.data('listView', listView); //Use jQuery Data to store our list on the element .
-	for (var i =   1; i <= imagesCount; i++) {
-		var html='<div> <h1>Document ' +i+'</h1><br><img class="pic" data-original="/virtualcourthouse/image/viewImage/'+ i +'" style="width: 1070px; height: 1655px;" ></img></div>'
+	for (var i =   imagesIdStart; i <= (imagesCount+imagesIdStart); i++) {
+		var html='<div> <h1>Image ' +i+'</h1><br><img class="pic" data-original="/virtualcourthouse/image/viewImage/'+ i +'" style="width: 1070px; height: 1655px;" ></img></div>'
 		divForList.data('listView').append( html )
 
 	};

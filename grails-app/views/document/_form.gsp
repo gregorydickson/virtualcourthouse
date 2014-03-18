@@ -2,6 +2,7 @@
 <%@ page import="net.rcenergy.City" %>
 <%@ page import="net.rcenergy.Subdivision %>
 <input type="hidden" name="id" class="documentId" id="documentId" value="${documentInstance?.id}"/>
+<input type="hidden" id="assignmentId" value="${assignmentInstance?.id}"/>
 <div class="top row">
 	<div class="medium-4 large-2 columns">
 		<label>BOOK TYPE</label>
@@ -471,14 +472,14 @@
 	</div>
 </div>
 
-<div class=" row clearfields">
+<div class="willnumber row clearfields">
 	<h6>WILL NUMBER</h6>
 	<div class="large-12 columns panel will-number-wrapper">
 		<input class="uppercase clear willNumber" name="willNumber" type="text" value="${documentInstance.willNumber}">
 	</div>
 </div>
 
-<div class=" row">
+<div class="notes row">
 	<h6>NOTES</h6>
 	<div class="large-12 columns panel">
 		 <div id="notes" class="notes-wrapper" >
@@ -506,19 +507,38 @@
 				</tr>
 			</thead>
 			<tbody> 
-				<g:each var="images" in="${assignmentInstance.images}">
-					<tr class="data-row">
-						<td>
-							${images.toString()}
-						</td>
-						<td class="imageLinkCell">
-							<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
-						</td>
-						<td class="imageId">
-							${images.id}
-						</td>
-					</tr>
-				</g:each>
+				<g:if test="${assignmentInstance?.imagesRemaining?.isEmpty() && assignmentInstance?.started == false}">
+					<g:each var="images" in="${assignmentInstance.images}">
+						<tr class="data-row">
+						<input type="hidden" name="imagesRemaining[]" value="${images.id}"/>
+							<td>
+								${images.toString()}
+							</td>
+							<td class="imageLinkCell">
+								<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
+							</td>
+							<td class="imageId">
+								${images.id}
+							</td>
+						</tr>
+					</g:each>
+			 	</g:if>
+			 	<g:else>
+				 	<g:each var="images" in="${assignmentInstance?.imagesRemaining}">
+						<tr class="data-row">
+						<input type="hidden" name="imagesRemaining[]" value="${images.id}"/>
+							<td>
+								${images.toString()}
+							</td>
+							<td class="imageLinkCell">
+								<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
+							</td>
+							<td class="imageId">
+								${images.id}
+							</td>
+						</tr>
+					</g:each>
+				</g:else>
 			</tbody>
 		</table>
 	</div>
@@ -553,3 +573,4 @@
 		</table>
 	</div>
 </div>
+<g:link action="images" controller="assignment" id="${assignmentInstance?.id}" target="imageWindow">Scroll Images</g:link>

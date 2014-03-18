@@ -176,6 +176,7 @@ $( document ).ready(function() {
 				new_window.blur();
 				doc_window.focus();
 				//copy the image row to the assigned table
+				$(the_row).find(':hidden').remove();
 				the_row.removeClass("data-row");
 				the_row.addClass("image-assigned-row");
 				var clone = the_row.clone();

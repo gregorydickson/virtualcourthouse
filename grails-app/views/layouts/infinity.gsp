@@ -12,6 +12,7 @@
 		<%-- 3rd Party Javascript --%>
 		<g:javascript src="jquery.js"/>
 		<g:javascript src="infinity.js"/>
+		<g:javascript src="scrollimages.js"/>
 
 
 	</head>
@@ -20,14 +21,12 @@
 		<g:layoutBody/>
 			
 
-		<r:layoutResources />
 		
-		<script>
-		var imagesCount = ${Image.count()}
-		</script>
+		
+		
 
 		<%-- Application Javascript --%>
-		<g:javascript src="scrollimages.js"/>
-
+		
+		<r:layoutResources />
 	</body>
 </html>

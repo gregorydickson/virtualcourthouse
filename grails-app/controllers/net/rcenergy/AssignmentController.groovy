@@ -13,9 +13,11 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AssignmentController extends ControllerBase {
 
-    static allowedMethods = [work:"GET",save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [images:"GET",work:"GET",save: "POST", update: "PUT", delete: "DELETE"]
 
-
+    def images(Assignment assignmentInstance) {
+        respond assignmentInstance
+    }
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
 		
@@ -49,7 +51,7 @@ class AssignmentController extends ControllerBase {
             respond assignmentInstance.errors, view:'create'
             return
         }
-
+        
         assignmentInstance.save flush:true
 
         request.withFormat {
