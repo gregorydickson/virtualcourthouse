@@ -506,11 +506,11 @@
 					<th>ID</th>
 				</tr>
 			</thead>
-			<tbody> 
+			<tbody id="images-not-assigned"> 
 				<g:if test="${assignmentInstance?.imagesRemaining?.isEmpty() && assignmentInstance?.started == false}">
 					<g:each var="images" in="${assignmentInstance.images}">
-						<tr class="data-row">
-						<input type="hidden" name="imagesRemaining[]" value="${images.id}"/>
+						<tr class="data-row" id="${images.id}">
+						<input type="hidden"  name="imagesRemaining[]" value="${images.id}"/>
 							<td>
 								${images.toString()}
 							</td>
@@ -525,7 +525,7 @@
 			 	</g:if>
 			 	<g:else>
 				 	<g:each var="images" in="${assignmentInstance?.imagesRemaining}">
-						<tr class="data-row">
+						<tr class="data-row" id="${images.id}">
 						<input type="hidden" name="imagesRemaining[]" value="${images.id}"/>
 							<td>
 								${images.toString()}

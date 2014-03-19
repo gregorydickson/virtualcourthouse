@@ -3,11 +3,27 @@ function popup(url, winName, xOffset, yOffset) {
 	var y = (window.screenY || window.screenTop || 0) + (yOffset || 0);
   	return	window.open(url,winName,"toolbar=yes, scrollbars=yes, resizable=yes, top="+y+", left="+x+", width=1200, height=1800");
 }
-function setImageIds(idarray){
-	jQuery.each(idarray, function(index, value){
-		//TODO: add image ids from other window to document 
-		console.log("adding IDs from other window");
-	});
+
+function removeImageId(id){
+	console.log("removing IDs from other window: " + id);
+	var the_row = $('.image-assigned-row#'+id);
+	var anElement = $('<input type="hidden"  name="imagesRemaining[]" value="'+id+'"/>');
+	var remove_from_table = $('#images-assigned');
+	$(the_row).appendTo(the_row);
+}
+function setImageId(id){
+	var the_row = $('.data-row#'+id);
+	var add_to_table = $('#images-assigned');
+	addImageToDocument(id);
+	//copy the image row to the assigned table
+	$(the_row).find(':hidden').remove();
+	the_row.removeClass("data-row");
+	the_row.addClass("image-assigned-row");
+	var clone = the_row.clone();
+	$(the_row).remove();
+	clone.appendTo(add_to_table);
+	rows = $('.data-row');
+	updateImagesCount();
 }
 
 function compareElements(compareThis, toThis) {
@@ -40,7 +56,6 @@ function updateImagesCount(){
 	rows = $(".image-assigned-row");
 	count = $(".image-assigned-row").length;
 	message =  count + " IMAGES ASSIGNED";
-	console.log("NEW IMAGES ASSIGNED");
 	$("#assignedImageTotal").text(message);
 
 }
@@ -51,6 +66,10 @@ function addImageToDocument(id){
 	var div = $("#imagesRow");
     $(element).appendTo(div);
 	$(element).attr("value",id);
+}
+function removeImageFromDocument(id){
+	console.log("REMOVAL HIDDEN Image ID is: " + id);
+	$('.image-assigned').find('value="'+id+'"]').remove();
 }
 function resetDOM(){
 		$(".added").remove();

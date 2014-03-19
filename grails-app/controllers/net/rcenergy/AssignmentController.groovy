@@ -16,6 +16,7 @@ class AssignmentController extends ControllerBase {
     static allowedMethods = [images:"GET",work:"GET",save: "POST", update: "PUT", delete: "DELETE"]
 
     def images(Assignment assignmentInstance) {
+        
         respond assignmentInstance
     }
     def index(Integer max) {

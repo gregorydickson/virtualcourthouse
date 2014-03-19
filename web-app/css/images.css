@@ -23,7 +23,9 @@ body {
     line-height: 1.4;
     font-family: sans-serif;
 }
-
+.selected {
+    background: #33CCCC !important;
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
