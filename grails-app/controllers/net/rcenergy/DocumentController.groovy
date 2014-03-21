@@ -63,6 +63,8 @@ class DocumentController extends ControllerBase {
 		def doc = Document.get(input.id)
 		doc.properties = input
         doc.save flush:true
+        def indexerCopy = Document.get(doc.indexerVersionId)
+        auditReview(indexerCopy, doc)
         respond doc, [formats:[ 'json']]
     }
     @Transactional
@@ -163,5 +165,27 @@ class DocumentController extends ControllerBase {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+
+    def auditReview(indexerCopy, reviewerDocumentCopy){
+        def auditCount = 0
+        if (indexerCopy.fileDate != reviewerDocumentCopy.fileDate)  {
+            auditCount++
+        }
+        if (indexerCopy.instrumentDate != reviewerDocumentCopy.instrumentDate)  {
+            auditCount++
+        }
+        if (indexerCopy.grantor.sort() != reviewerDocumentCopy.grantor.sort())  {
+            auditCount++
+        }
+        if (indexerCopy.grantee.sort() != reviewerDocumentCopy.grantee.sort())  {
+            auditCount++
+        }
+        if (indexerCopy.legalDescriptionCitySubBlkLot.sort() != reviewerDocumentCopy.legalDescriptionCitySubBlkLot.sort())  {
+            auditCount++
+            println "City Sub Block Lot Audit change"
+        }
+
     }
 }
