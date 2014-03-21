@@ -3,26 +3,33 @@ function popup(url, winName, xOffset, yOffset) {
 	var y = (window.screenY || window.screenTop || 0) + (yOffset || 0);
   	return	window.open(url,winName,"toolbar=yes, scrollbars=yes, resizable=yes, top="+y+", left="+x+", width=1200, height=1800");
 }
-
+//remove this image from the document
 function removeImageId(id){
-	console.log("removing IDs from other window: " + id);
-	var the_row = $('.image-assigned-row#'+id);
-	var anElement = $('<input type="hidden"  name="imagesRemaining[]" value="'+id+'"/>');
-	var remove_from_table = $('#images-assigned');
-	$(the_row).appendTo(the_row);
+	console.log("removing ID/image : " + id);
+	var the_row = $('.data-row#'+id);
+	$(the_row).find(':hidden').attr("name","imagesRemaining[]");
+	the_row.removeClass("selected");
+	the_row.removeClass("selectremain");
+	updateImagesCount();
 }
+//Add this image to the document
 function setImageId(id){
 	var the_row = $('.data-row#'+id);
-	var add_to_table = $('#images-assigned');
-	addImageToDocument(id);
 	//copy the image row to the assigned table
-	$(the_row).find(':hidden').remove();
-	the_row.removeClass("data-row");
-	the_row.addClass("image-assigned-row");
-	var clone = the_row.clone();
-	$(the_row).remove();
-	clone.appendTo(add_to_table);
-	rows = $('.data-row');
+	//change the name for the hidden input so it does not serialize and save in images remaining
+	//make it part of images of the document
+	$(the_row).find(':hidden').attr("name","images[]");
+	the_row.addClass("selected");
+	updateImagesCount();
+}
+//
+function setImageLeaveInRemaining(id){
+	var the_row = $('.data-row#'+id);
+	//copy the image row to the assigned table
+	//change the name for the hidden input so it does not serialize and save in images remaining
+	//make it part of images of the document
+	$(the_row).find(':hidden').attr("name","images[] imagesRemaining[]");
+	the_row.addClass("selectremain");
 	updateImagesCount();
 }
 
@@ -45,32 +52,13 @@ function compareElements(compareThis, toThis) {
 function updateImagesCount(){
 	var rows = $(".data-row");
 	var count = $(".data-row").length;
-	var active = $(".selected");
 	var message;
-	if(active){
-		var index = rows.index(active);
-		index = index + 1;
-		message = index +" OF " + count + " IMAGES";
-		$("#imageTotal").text(message);	
-	}
-	rows = $(".image-assigned-row");
-	count = $(".image-assigned-row").length;
-	message =  count + " IMAGES ASSIGNED";
-	$("#assignedImageTotal").text(message);
 
+	//index = index + 1;
+	//message = index +" OF " + count + " IMAGES";
+	//$("#imageTotal").text(message);	
 }
 
-function addImageToDocument(id){
-	console.log("Image ID is: " + id);
-	var element = $('<input type="hidden" name="images[]" class="image-assigned"/>');
-	var div = $("#imagesRow");
-    $(element).appendTo(div);
-	$(element).attr("value",id);
-}
-function removeImageFromDocument(id){
-	console.log("REMOVAL HIDDEN Image ID is: " + id);
-	$('.image-assigned').find('value="'+id+'"]').remove();
-}
 function resetDOM(){
 		$(".added").remove();
 		$(".image-assigned-row").remove();

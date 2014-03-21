@@ -1,4 +1,4 @@
-<%@ page import="net.rcenergy.Document" %>
+	<%@ page import="net.rcenergy.Document" %>
 <%@ page import="net.rcenergy.City" %>
 <%@ page import="net.rcenergy.Subdivision %>
 <input type="hidden" name="id" class="documentId" id="documentId" value="${documentInstance?.id}"/>
@@ -502,7 +502,6 @@
 			<thead>
 				<tr>
 					<th width="400">FILENAME</th>
-					<th></th>
 					<th>ID</th>
 				</tr>
 			</thead>
@@ -513,9 +512,6 @@
 						<input type="hidden"  name="imagesRemaining[]" value="${images.id}"/>
 							<td>
 								${images.toString()}
-							</td>
-							<td class="imageLinkCell">
-								<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
 							</td>
 							<td class="imageId">
 								${images.id}
@@ -530,9 +526,6 @@
 							<td>
 								${images.toString()}
 							</td>
-							<td class="imageLinkCell">
-								<g:link action="show" controller="image" id="${images.id}" target="imageWindow"></g:link>
-							</td>
 							<td class="imageId">
 								${images.id}
 							</td>
@@ -542,35 +535,4 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="large-8 columns images-assigned-content">
-		<table id="" class="">
-			<thead>
-			    <tr>
-			      <th width="400">FILENAME</th>
-				  <th></th>
-				  <th>ID</th>
-			    </tr>
-			 </thead>
-			 <tbody id="images-assigned" class="images-assigned"> 
-				 <g:if test="${documentInstance?.images?.isEmpty() || documentInstance.id == null}">
-				 </g:if>
-				 <g:else>
-				 	<g:each in="${documentInstance.images}" var="image" status="i">
-						<tr class="image-assigned-row">
-							<td>
-								${image.toString()}
-							</td>
-							<td class="imageLinkCell">
-								<g:link action="show" controller="image" id="${image.id}" target="imageWindow"></g:link>
-							</td>
-							<td class="imageId imageIdAssigned">
-								${image.id}
-							</td>
-						</tr>
-					</g:each>
-				 </g:else>
-			 </tbody>
-		</table>
-	</div>
 </div>
-<g:link action="images" controller="assignment" id="${assignmentInstance?.id}" target="imageWindow">Scroll Images</g:link>

@@ -56,6 +56,15 @@ h6 {
 .selected {
     background: #33CCCC !important;
 }
+.selectremain {
+	background: #C5CA67 !important;
+}
+.button {
+	background: #BECED1;
+}
+.button:hover {
+	background: #BECED1;
+}
 .tabs dd.active a {
 	    background: #C4BFE3; 
 }
