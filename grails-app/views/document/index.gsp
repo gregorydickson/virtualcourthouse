@@ -8,11 +8,9 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-document" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-document" class="content scaffold-list" role="main">
@@ -31,7 +29,7 @@
 			<thead>
 					<tr>
 					
-						<g:sortableColumn property="bookNumber" title="${message(code: 'document.bookNumber.label', default: 'Book Number')}" />
+						<g:sortableColumn property="id" title="${message(code: 'document.bookNumber.label', default: 'ID')}" />
 					
 						<g:sortableColumn property="fileDate" title="${message(code: 'document.fileDate.label', default: 'File Date')}" />
 					
@@ -49,7 +47,8 @@
 				<g:each in="${documentInstanceList}" status="i" var="documentInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "bookNumber")}</g:link></td>
+						<td><sec:ifAllGranted roles="ROLE_INDEXER"><g:link action="create" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "id")}</g:link></sec:ifAllGranted>
+							</td>
 					
 						<td><g:formatDate date="${documentInstance.fileDate}" /></td>
 					

@@ -7,4 +7,5 @@ class Subdivision {
     static mapping = {
 		sort "name"
     }
+    
 }

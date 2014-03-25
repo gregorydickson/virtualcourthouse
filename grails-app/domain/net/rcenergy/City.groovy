@@ -8,4 +8,5 @@ class City {
     static mapping = {
 		sort "name"
     }
+    
 }

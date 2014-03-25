@@ -1,6 +1,6 @@
 package net.rcenergy
 
-class LegalDescriptionCitySubBlkLot {
+class LegalDescriptionCitySubBlkLot implements 	Comparable {
 	City city
 	Subdivision subdivision
 	String block
@@ -23,4 +23,31 @@ class LegalDescriptionCitySubBlkLot {
     static mapping = {
 
     }
+ 
+    int compareTo(Object other) {
+       int result =0
+       if(city.id != other.city.id) {
+       	result = 1
+       }
+	   if(subdivision.id != other.subdivision.id) {
+       	result = 1
+       }
+       if(block != other.block) {
+		result = 1
+       }
+       if(lot != other.lot) {
+		result = 1
+       }
+       if(assessorNumber != other.assessorNumber) {
+		result = 1
+       }
+	   if(acre != other.acre) {
+		result = 1
+       }
+       if(metesBounds != other.metesBounds) {
+		result = 1
+       }
+       println "LegalDescriptionCitySubBlkLot compareTo: " + result
+       return result
+   }
 }

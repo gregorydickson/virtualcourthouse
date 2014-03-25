@@ -14,16 +14,20 @@ class DocumentController extends ControllerBase {
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         if (SpringSecurityUtils.ifAllGranted('ROLE_INDEXER')) {
-
-            println "Getting Documents for Indexer"
-            def results = Document.findAllByIndexer(currentUser()) {
-                isIndexerFinal = false
+           def query = Document.where {
+                indexer == currentUser() && isIndexerFinal == false && isReviewerCopy == false
             }
+            def results = query.list()
+            println "Getting Documents for Indexer"
+            
             respond results
         } else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
-            def results = Document.findByReviewer(currentUser()) {
-                reviewFinal = false
+            def query = Document.where {
+                reviewer == currentUser() && reviewFinal == false && isReviewerCopy == true
             }
+            def results = query.list()
+            println "Getting Documents for Indexer"
+            
             respond results
         } else {
             respond Document.list(params), model:[documentInstanceCount: Document.count()]
@@ -62,9 +66,9 @@ class DocumentController extends ControllerBase {
 		def input = request.JSON
 		def doc = Document.get(input.id)
 		doc.properties = input
-        doc.save flush:true
         def indexerCopy = Document.get(doc.indexerVersionId)
-        auditReview(indexerCopy, doc)
+        doc.numberOfChangesReview = auditReview(indexerCopy, doc)
+        doc.save flush:true
         respond doc, [formats:[ 'json']]
     }
     @Transactional
@@ -75,6 +79,7 @@ class DocumentController extends ControllerBase {
         def input = request.JSON
         def doc = Document.get(input.id)
         doc.properties = input
+        doc.numberOfChangesReview = auditReview(indexerCopy, doc)
         doc.reviewFinal = true
         doc.save flush:true
         respond doc, [formats:[ 'json']]
@@ -170,22 +175,112 @@ class DocumentController extends ControllerBase {
 
     def auditReview(indexerCopy, reviewerDocumentCopy){
         def auditCount = 0
-        if (indexerCopy.fileDate != reviewerDocumentCopy.fileDate)  {
+        if ((indexerCopy.fileDate <=> reviewerDocumentCopy.fileDate) != 0)  {
             auditCount++
+            println "Audit change fileDate, auditCount = " + auditCount
         }
-        if (indexerCopy.instrumentDate != reviewerDocumentCopy.instrumentDate)  {
+        if ((indexerCopy.instrumentDate <=> reviewerDocumentCopy.instrumentDate) != 0)  {
             auditCount++
+            println "Audit change instrumentDate, auditCount = " + auditCount
+        }
+        if ((indexerCopy.instrumentNumber <=> reviewerDocumentCopy.instrumentNumber) != 0)  {
+            auditCount++
+            println "Audit change instrumentNumber, auditCount = " + auditCount
+        }
+        if ((indexerCopy.notes <=> reviewerDocumentCopy.notes) != 0)  {
+            auditCount++
+            println "Audit change notes, auditCount = " + auditCount
+        }
+        if ((indexerCopy.willNumber <=> reviewerDocumentCopy.willNumber) != 0)  {
+            auditCount++
+            println "Audit change willNumber, auditCount = " + auditCount
+        }
+        if ((indexerCopy.pageNumber <=> reviewerDocumentCopy.pageNumber) != 0)  {
+            auditCount++
+            println "Audit change pageNumber, auditCount = " + auditCount
         }
         if (indexerCopy.grantor.sort() != reviewerDocumentCopy.grantor.sort())  {
             auditCount++
+            println "Audit change grantor, auditCount = " + auditCount
         }
         if (indexerCopy.grantee.sort() != reviewerDocumentCopy.grantee.sort())  {
             auditCount++
+            println "Audit change grantee, auditCount = " + auditCount
         }
-        if (indexerCopy.legalDescriptionCitySubBlkLot.sort() != reviewerDocumentCopy.legalDescriptionCitySubBlkLot.sort())  {
+        if (indexerCopy.images.sort() != reviewerDocumentCopy.images.sort())  {
             auditCount++
-            println "City Sub Block Lot Audit change"
+            println "Audit change images, auditCount = " + auditCount
+        }
+        if (indexerCopy.parentDocument.size() != reviewerDocumentCopy.parentDocument.size())  {
+            auditCount++
+            println "Audit change Related Documents Diff size, auditCount = " + auditCount
+        } else  {
+            for(int i =0; i < indexerCopy.parentDocument.size(); i++) {
+                if (indexerCopy.parentDocument[i].compareTo(reviewerDocumentCopy.parentDocument[i])  != 0) {
+                    auditCount++
+                    println "Audit change Related Documents text DIFF, auditCount = " + auditCount
+                    break
+                } 
+            } 
         }
 
+        if (indexerCopy.legalDescriptionCitySubBlkLot.size() != reviewerDocumentCopy.legalDescriptionCitySubBlkLot.size())  {
+            auditCount++
+            println "Audit change CITYSUBBLKLOT Diff size, auditCount = " + auditCount
+            return auditCount
+        } else  {
+            for(int i =0; i < indexerCopy.legalDescriptionCitySubBlkLot.size(); i++) {
+                if (indexerCopy.legalDescriptionCitySubBlkLot[i].compareTo(reviewerDocumentCopy.legalDescriptionCitySubBlkLot[i])  != 0) {
+                    auditCount++
+                    println "Audit change CITYSUBBLKLOT text DIFF, auditCount = " + auditCount
+                    return auditCount
+                    break
+                } 
+            } 
+        }
+        if (indexerCopy.legalDescriptionSecTwnRge.size() != reviewerDocumentCopy.legalDescriptionSecTwnRge.size())  {
+            auditCount++
+            println "Audit change SecTwnRge Diff size, auditCount = " + auditCount
+            return auditCount
+        } else  {
+            for(int i =0; i < indexerCopy.legalDescriptionSecTwnRge.size(); i++) {
+                if (indexerCopy.legalDescriptionSecTwnRge[i].compareTo(reviewerDocumentCopy.legalDescriptionSecTwnRge[i])  != 0) {
+                    auditCount++
+                    println "Audit change CITYSUBBLKLOT text DIFF, auditCount = " + auditCount
+                    return auditCount
+                    break
+                } 
+            } 
+        }
+        if (indexerCopy.legalDescriptionSurveyAbstract.size() != reviewerDocumentCopy.legalDescriptionSurveyAbstract.size())  {
+            auditCount++
+            println "Audit change SurveyAbstract Diff size, auditCount = " + auditCount
+            return auditCount
+        } else  {
+            for(int i =0; i < indexerCopy.legalDescriptionSurveyAbstract.size(); i++) {
+                if (indexerCopy.legalDescriptionSurveyAbstract[i].compareTo(reviewerDocumentCopy.legalDescriptionSurveyAbstract[i])  != 0) {
+                    auditCount++
+                    println "Audit change Survey Abstract text DIFF, auditCount = " + auditCount
+                    return auditCount
+                    break
+                } 
+            } 
+        }       
+        if (indexerCopy.legalDescriptionTaxMapParcel.size() != reviewerDocumentCopy.legalDescriptionTaxMapParcel.size())  {
+            auditCount++
+            println "Audit change Tax Map Parcel Diff size, auditCount = " + auditCount
+            return auditCount
+        } else  {
+            for(int i =0; i < indexerCopy.legalDescriptionTaxMapParcel.size(); i++) {
+                if (indexerCopy.legalDescriptionTaxMapParcel[i].compareTo(reviewerDocumentCopy.legalDescriptionTaxMapParcel[i])  != 0) {
+                    auditCount++
+                    println "Audit change Tax Map Parceltext DIFF, auditCount = " + auditCount
+                    return auditCount
+                    break
+                } 
+            } 
+        }  
+
+        return auditCount
     }
 }

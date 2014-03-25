@@ -30,9 +30,20 @@ class Document {
 	//If this is the indexer copy, and the indexing is final then it will have the id of the review
 	// copy:
 	Long reviewerVersionId
-	Boolean isReviewerCopy //If True then this is the reviewer copy
-	Boolean reviewFinal    //If true then the review is final, NO CHANGES
+	Boolean isReviewerCopy = false //If True then this is the reviewer copy
+	Boolean reviewFinal = false   //If true then the review is final, NO CHANGES
 	
+
+	List legalDescriptionCitySubBlkLot
+	List legalDescriptionSecTwnRge
+	List legalDescriptionSurveyAbstract
+	List legalDescriptionTaxMapParcel
+	static mapping = {
+		legalDescriptionCitySubBlkLot lazy: false
+	 	legalDescriptionSecTwnRge  lazy: false
+	 	legalDescriptionSurveyAbstract  lazy: false
+	 	legalDescriptionTaxMapParcel lazy: false
+	}
 	static hasMany = [images : Image, 
 			parentDocument:RelatedDocument, 
 			childDocument:RelatedDocument,
