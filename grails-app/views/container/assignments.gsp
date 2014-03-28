@@ -26,7 +26,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[controller:container, action:'addassignments']" >
+			<g:form url="[resource:containerInstance, action:'addassignments']" >
 				<g:hiddenField name="version" value="${containerInstance?.version}" />
 				<div class="fieldcontain ${hasErrors(bean: containerInstance, field: 'assignments', 'error')} ">
 					<label for="assignments">
