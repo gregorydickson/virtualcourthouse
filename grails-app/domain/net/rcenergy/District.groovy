@@ -7,4 +7,7 @@ class District {
 	static belongsTo = [usstate: USState]
     static constraints = {
     }
+    String toString() {
+		usstate.toString() + "-" + name.toString()
+	}
 }

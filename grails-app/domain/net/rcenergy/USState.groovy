@@ -7,4 +7,7 @@ class USState {
 	static hasMany = [districts : District]
     static constraints = {
     }
+    String toString() {
+		name.toString()
+	}
 }

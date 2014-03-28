@@ -1,6 +1,7 @@
 <%@ page import="net.rcenergy.Assignment"%>
 
 
+<input type="hidden" name="container.id" value="${containerInstance?.id}" />
 <div
 	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'indexer', 'error')} required">
 	<label for="indexer"> <g:message code="assignment.indexer.label"
@@ -28,6 +29,6 @@
 	</label>
 	<g:select name="images" from="${net.rcenergy.Image.list()}"
 		multiple="multiple" optionKey="id" optionValue="displayString" size="5"
-		value="${assignmentInstance?.images*.id}" style="height:200px;"/>
+		value="${assignmentInstance?.images*.id}" style="height:500px;"/>
 
 </div>

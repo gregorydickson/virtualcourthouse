@@ -10,6 +10,7 @@ import net.rcenergy.City
 import net.rcenergy.Subdivision
 import net.rcenergy.Assignment
 import net.rcenergy.UserRole
+import net.rcenergy.Container
 import static grails.async.Promises.*
 
 class BootStrap {
@@ -17,7 +18,7 @@ class BootStrap {
 	def init = { servletContext ->
 		environments {
 			production {
-				
+	
 			}
 			development {
 				
@@ -28,9 +29,11 @@ class BootStrap {
 					def admin = new User(username : "admin", password : "password").save();										
 					UserRole.create(admin, adminRole).save();					
 
-					def supervisor = new User(username : "supervisor", password : "password").save();
-					def supervisorRole = new Role(authority: "ROLE_SUPERVISOR").save();					
-					UserRole.create(supervisor, supervisorRole).save();					
+					def supervisor = new User(username : "AnnStevenson", password : "password").save()
+					def supervisor2 = new User(username : "JimRambo", password : "password").save()
+					def supervisorRole = new Role(authority: "ROLE_SUPERVISOR").save()					
+					UserRole.create(supervisor, supervisorRole).save()
+					UserRole.create(supervisor2, supervisorRole).save()				
 					
 					// create two indexers
 					def indexer1 = new User(username : "indexer1", password : "password").save();
@@ -55,8 +58,8 @@ class BootStrap {
 					def instrumentType2 = new InstrumentTypes(instrumentType : "OIL AND GAS LEASE").save(failOnError : true);
 					def instrumentType3 = new InstrumentTypes(instrumentType : "WARRANTY DEED").save(failOnError : true);
 					// create a state
-					def state = new USState(name: "OKLAHOMA", layout: "layout").save(failOnError: true);
-					def state2 = new USState(name: "OHIO", layout: "layout").save(failOnError: true);
+					def state = new USState(name: "OK", layout: "layout").save(failOnError: true);
+					def state2 = new USState(name: "OH", layout: "layout").save(failOnError: true);
 					// create districts
 					def district3 = new District(name: "MEIGS", usstate: state2).save(failOnError: true);
 					def district1 = new District(name: "OKLAHOMA", usstate: state).save(failOnError: true);
@@ -137,8 +140,9 @@ class BootStrap {
 					def img9 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image3.png").bytes, fileName: "45837411.png").save(failOnError : true).save(failOnError : true);
 					def img10 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true);
 					
+					
 					//assignment
-					def assignment1 = new Assignment(district:district1, indexer: indexer1).save(failOnError : true);
+					def assignment1 = new Assignment(hasContainer:true,district:district1, indexer:indexer1, reviewer:reviewer).save(failOnError : true)
 					assignment1.images = new ArrayList<Image>();
 					assignment1.images.add(img1);
 					assignment1.images.add(img2);
@@ -150,7 +154,25 @@ class BootStrap {
 					assignment1.images.add(img8);
 					assignment1.images.add(img9);
 					assignment1.images.add(img10);
-					assignment1.save(failOnError : true);
+					assignment1.save(failOnError : true)
+
+					range = 1..100
+					range.each{
+  						def one  = new Assignment(district:district1).save(failOnError : true)
+						one.images = new ArrayList<Image>()
+						one.images.add(img1)
+						one.images.add(img2)
+						one.images.add(img3)
+						one.images.add(img4)
+						one.images.add(img5)
+						one.images.add(img6)
+						one.images.add(img7)
+						one.images.add(img8)
+						one.images.add(img9)
+						one.images.add(img10)
+						one.save(failOnError : true)
+						sessionFactory.getCurrentSession().clear()
+					}
 				}
 			}
 		}

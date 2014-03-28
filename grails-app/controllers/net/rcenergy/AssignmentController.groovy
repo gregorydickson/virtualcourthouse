@@ -25,9 +25,14 @@ class AssignmentController extends ControllerBase {
 		// TODO: handle when multiple roles are present
 		// TODO: handle paging 		
 		if (SpringSecurityUtils.ifAllGranted('ROLE_INDEXER')) {
-			respond Assignment.findAllByIndexer(currentUser());
+            def query = Document.where {
+                indexer == currentUser() && isIndexerFinal == false && isReviewerCopy == false
+            }
+            def documentInstanceList = query.list()
+			def assignmentInstanceList = Assignment.findAllByIndexer(currentUser())
+            render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList,documentInstanceList: documentInstanceList ])
 		} else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
-			respond Assignment.findByReviewer(currentUser());
+			respond Assignment.findByReviewer(currentUser())
 		} else {
         	respond Assignment.list(params), model:[assignmentInstanceCount: Assignment.count()]
 		}
@@ -52,7 +57,6 @@ class AssignmentController extends ControllerBase {
             respond assignmentInstance.errors, view:'create'
             return
         }
-        
         assignmentInstance.save flush:true
 
         request.withFormat {
