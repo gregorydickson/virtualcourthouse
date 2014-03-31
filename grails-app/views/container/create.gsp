@@ -25,7 +25,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:containerInstance, action:'saveinitial']" >
+			<g:form url="[resource:containerInstance, action:'assignments']" >
 				<fieldset class="form">
 					<g:render template="form"/>
 				</fieldset>

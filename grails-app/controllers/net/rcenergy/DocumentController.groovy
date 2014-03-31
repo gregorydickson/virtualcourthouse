@@ -19,7 +19,6 @@ class DocumentController extends ControllerBase {
             }
             def results = query.list()
             println "Getting Documents for Indexer"
-            
             respond results
         } else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
             def query = Document.where {
@@ -27,7 +26,13 @@ class DocumentController extends ControllerBase {
             }
             def results = query.list()
             println "Getting Documents for Indexer"
-            
+            respond results
+        } else if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
+            def query = Document.where {
+                supervisor == currentUser()
+            }
+            def results = query.list()
+            println "Getting Documents for super"
             respond results
         } else {
             respond Document.list(params), model:[documentInstanceCount: Document.count()]
@@ -40,10 +45,10 @@ class DocumentController extends ControllerBase {
     }
 
     def audit() {
-		def doc = Document.get(params.id)
-		def list = Document.getAll(doc.indexerVersionId, doc.id )
-		render(view:"/document/audit",  model: [documentInstanceList: list])
-    }	
+        def doc = Document.get(params.id)
+        def list = Document.getAll(doc.indexerVersionId, doc.id )
+        render(view:"/document/audit",  model: [documentInstanceList: list])
+    }   
 
     @Transactional
     def create(Document documentInstance) {
@@ -60,12 +65,12 @@ class DocumentController extends ControllerBase {
 
     @Transactional
     def updateDocumentReviewer() {
-		println "update Document Reviewer"
+        println "update Document Reviewer"
         println "Here is request.JSON: ${request.JSON as JSON}"
-		println "Here is params: $params"
-		def input = request.JSON
-		def doc = Document.get(input.id)
-		doc.properties = input
+        println "Here is params: $params"
+        def input = request.JSON
+        def doc = Document.get(input.id)
+        doc.properties = input
         def indexerCopy = Document.get(doc.indexerVersionId)
         doc.numberOfChangesReview = auditReview(indexerCopy, doc)
         doc.save flush:true
@@ -101,22 +106,22 @@ class DocumentController extends ControllerBase {
             assignment.save flush:true
             respond document, [formats:[ 'json']]
         } else {
-            for (error in p.errors.allErrors) println "$error.field: $error.code"
+            for (error in document.errors.allErrors) println "$error.field: $error.code"
             render status: 422, text: 'there are errors'
         }
     }
 
     @Transactional
     def updateDocumentIndexer() {
-		def input = request.JSON
+        def input = request.JSON
         def aJSONArray = input.optJSONArray('imagesRemaining')
         def imagesList = Image.getAll(aJSONArray)
         def user = springSecurityService.currentUser
         def assignment =  user.currentAssignment
-		assignment.imagesRemaining = imagesList
+        assignment.imagesRemaining = imagesList
         input.remove('imagesRemaining')
         def doc = Document.get(input.id)
-		doc.properties = input
+        doc.properties = input
         doc.save flush:true
         assignment.save flush:true
         respond doc, [formats:[ 'json']]
@@ -124,22 +129,22 @@ class DocumentController extends ControllerBase {
 
     @Transactional
     def submitDocumentIndexer() {
-		def input = request.JSON
+        def input = request.JSON
         def aJSONArray = input.optJSONArray('imagesRemaining')
         def imagesList = Image.getAll(aJSONArray)
         def user = springSecurityService.currentUser
         def assignment =  user.currentAssignment
         assignment.imagesRemaining = imagesList
         input.remove('imagesRemaining')
-		def doc = Document.get(input.id)
-		doc.properties = input
-		doc.isIndexerFinal = true
-		def reviewerDocumentCopy = new Document(input)
-		reviewerDocumentCopy.isReviewerCopy = true
-		reviewerDocumentCopy.indexerVersionId = doc.id
-		reviewerDocumentCopy.save flush:true
-		doc.reviewerVersionId = reviewerDocumentCopy.id
-		doc.save flush:true
+        def doc = Document.get(input.id)
+        doc.properties = input
+        doc.isIndexerFinal = true
+        def reviewerDocumentCopy = new Document(input)
+        reviewerDocumentCopy.isReviewerCopy = true
+        reviewerDocumentCopy.indexerVersionId = doc.id
+        reviewerDocumentCopy.save flush:true
+        doc.reviewerVersionId = reviewerDocumentCopy.id
+        doc.save flush:true
         assignment.save flush:true
         respond doc, [formats:[ 'json']]
     }
@@ -186,14 +191,6 @@ class DocumentController extends ControllerBase {
         if ((indexerCopy.instrumentNumber <=> reviewerDocumentCopy.instrumentNumber) != 0)  {
             auditCount++
             println "Audit change instrumentNumber, auditCount = " + auditCount
-        }
-        if ((indexerCopy.notes <=> reviewerDocumentCopy.notes) != 0)  {
-            auditCount++
-            println "Audit change notes, auditCount = " + auditCount
-        }
-        if ((indexerCopy.willNumber <=> reviewerDocumentCopy.willNumber) != 0)  {
-            auditCount++
-            println "Audit change willNumber, auditCount = " + auditCount
         }
         if ((indexerCopy.pageNumber <=> reviewerDocumentCopy.pageNumber) != 0)  {
             auditCount++

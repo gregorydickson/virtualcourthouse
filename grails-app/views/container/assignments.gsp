@@ -26,8 +26,8 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form url="[resource:containerInstance, action:'addassignments']" >
-				<g:hiddenField name="version" value="${containerInstance?.version}" />
+			<g:form action="addassignments" >
+				<g:hiddenField name="id" value="${containerInstance?.id}" />
 				<div class="fieldcontain ${hasErrors(bean: containerInstance, field: 'assignments', 'error')} ">
 					<label for="assignments">
 						<g:message code="container.assignments.label" default="Assignments" />
@@ -35,7 +35,7 @@
 					<g:select name="assignments" from="${assignmentInstanceList}" multiple="true" keys="${assignmentInstanceList.id}" style="height:500px;" size="5" value="${containerInstance?.assignments*.id}" class="many-to-many"/>
 				</div>
 				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="ADD" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 			</g:form>
 		</div>

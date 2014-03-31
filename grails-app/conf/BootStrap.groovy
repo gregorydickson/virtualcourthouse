@@ -118,7 +118,7 @@ class BootStrap {
 					book2.merge();
 					
 					
-					def range = 1..100
+					def range = 1..2
 					range.each{
   						def one = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).async.save(failOnError : true, flush: true);
 						def two = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).async.save(failOnError : true, flush: true);
@@ -142,7 +142,7 @@ class BootStrap {
 					
 					
 					//assignment
-					def assignment1 = new Assignment(hasContainer:true,district:district1, indexer:indexer1, reviewer:reviewer).save(failOnError : true)
+					def assignment1 = new Assignment(district:district1, indexer:indexer1, reviewer:reviewer).save(failOnError : true)
 					assignment1.images = new ArrayList<Image>();
 					assignment1.images.add(img1);
 					assignment1.images.add(img2);
@@ -156,7 +156,7 @@ class BootStrap {
 					assignment1.images.add(img10);
 					assignment1.save(failOnError : true)
 
-					range = 1..100
+					range = 1..2
 					range.each{
   						def one  = new Assignment(district:district1).save(failOnError : true)
 						one.images = new ArrayList<Image>()

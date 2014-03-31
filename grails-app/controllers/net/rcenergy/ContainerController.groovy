@@ -8,30 +8,26 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class ContainerController {
 
-    static allowedMethods = [saveinitial: "POST",addassignments:"POST",save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [assignments: "POST",addassignments:[ "POST", "GET", "PUT"],save:[ "POST", "GET", "PUT"], update: "POST", delete: "DELETE"]
 
     @Transactional
-    def saveinitial(Container containerInstance){
+    def assignments(Container containerInstance){
         def containerDistrict = containerInstance.district
         containerInstance.usstate = containerInstance.district.usstate
         containerInstance.save flush:true
-        
-
         def query = Assignment.where {
                 hasContainer == false 
             }
         def assignmentInstanceList = query.list()
         
-        render(view:"/container/assignments", model: [assignmentInstanceList: assignmentInstanceList,containerInstance: containerInstance])
+        render(view:"/container/assignments",model: [assignmentInstanceList: assignmentInstanceList,containerInstance: containerInstance])
+        
     }
 
-    @Transactional
-    def addassignments(){
-        println "Container:assignments params " + params
-        def acontainer = Container.get(params.id)
-        acontainer.properties = params
-        acontainer.save flush:true
-        redirect(action: "index")
+
+    def addassignments(Container containerInstance){
+        containerInstance.save flush:true
+        redirect controller: 'container', action: 'index'
     }
 
     def index(Integer max) {

@@ -66,6 +66,18 @@ $( document ).ready(function() {
 					$(".documentId").attr("value", data.id);
 				},
 				error:function(XMLHttpRequest,textStatus,errorThrown){
+					var unique_id = $.gritter.add({
+						// (string | mandatory) the heading of the notification
+						title: 'ERROR IN SAVING DOCUMENT',
+						// (string | mandatory) the text inside the notification
+						text: "ERROR: " + errorThrown,
+						// (string | optional) the image to display on the left
+						image: '',
+						// (bool | optional) if you want it to fade out on its own or just sit there
+						sticky: false,
+						// (int | optional) the time you want it to be alive for before fading out
+						time: '2000'
+					});
 					console.log("ERROR: " + errorThrown);
 				},
 				complete: function() {

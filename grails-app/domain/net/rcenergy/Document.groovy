@@ -91,5 +91,6 @@ class Document {
 		reviewFinal(nullable:true)
 		willNumber(nullable:true)
 		numberOfChangesReview(nullable:true)
+		supervisor(nullable:true)
     }
 }

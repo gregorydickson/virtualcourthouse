@@ -14,7 +14,7 @@ grails.project.fork = [
     // configure settings for the test-app JVM, uses the daemon by default
     test: [maxMemory: 768, minMemory: 768, debug: false, maxPerm: 768, daemon:true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 2560, minMemory: 1024, debug: false, maxPerm: 2560, forkReserve:false],
+    run: [maxMemory: 4560, minMemory: 1024, debug: false, maxPerm: 2560, forkReserve:false],
     // configure settings for the run-war JVM
     war: [maxMemory: 2560, minMemory: 2560, debug: false, maxPerm: 2560, forkReserve:false],
     // configure settings for the Console UI JVM

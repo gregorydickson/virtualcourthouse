@@ -30,7 +30,16 @@
 			<g:form url="[resource:containerInstance, action:'update']" method="PUT" >
 				<g:hiddenField name="version" value="${containerInstance?.version}" />
 				<fieldset class="form">
-					<g:render template="form"/>
+					<g:hiddenField name="version" value="${containerInstance?.version}" />
+				<div class="fieldcontain ${hasErrors(bean: containerInstance, field: 'assignments', 'error')} ">
+					<label for="assignments">
+						<g:message code="container.assignments.label" default="Assignments" />
+					</label>
+					<g:select name="assignments" from="${assignmentInstanceList}" multiple="true" keys="${assignmentInstanceList?.id}" style="height:500px;" size="5" value="${containerInstance?.assignments?.id}" class="many-to-many"/>
+				</div>
+				<fieldset class="buttons">
+					<g:actionSubmit name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+				</fieldset>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />

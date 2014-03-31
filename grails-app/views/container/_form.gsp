@@ -15,7 +15,7 @@
 		<g:message code="container.supervisor.label" default="Supervisor" />
 		
 	</label>
-	<g:select id="supervisor" name="supervisor.id" from="${supervisorInstanceList}" keys="${supervisorInstanceList.id}" optionValue="username" value="${containerInstance?.supervisor?.id}" class="many-to-one" noSelection="['null': '']" />
+	<g:select id="supervisor" name="supervisor.id" from="${supervisorInstanceList}" keys="${supervisorInstanceList?.id}" optionValue="username" value="${containerInstance?.supervisor?.id}" class="many-to-one" noSelection="['null': '']" />
 </div>
 
 
