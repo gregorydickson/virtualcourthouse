@@ -141,38 +141,8 @@ class BootStrap {
 					def img10 = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image4.png").bytes, fileName: "45837412.png").save(failOnError : true).save(failOnError : true);
 					
 					
-					//assignment
-					def assignment1 = new Assignment(district:district1, indexer:indexer1, reviewer:reviewer).save(failOnError : true)
-					assignment1.images = new ArrayList<Image>();
-					assignment1.images.add(img1);
-					assignment1.images.add(img2);
-					assignment1.images.add(img3);
-					assignment1.images.add(img4);
-					assignment1.images.add(img5);
-					assignment1.images.add(img6);
-					assignment1.images.add(img7);
-					assignment1.images.add(img8);
-					assignment1.images.add(img9);
-					assignment1.images.add(img10);
-					assignment1.save(failOnError : true)
+					
 
-					range = 1..2
-					range.each{
-  						def one  = new Assignment(district:district1).save(failOnError : true)
-						one.images = new ArrayList<Image>()
-						one.images.add(img1)
-						one.images.add(img2)
-						one.images.add(img3)
-						one.images.add(img4)
-						one.images.add(img5)
-						one.images.add(img6)
-						one.images.add(img7)
-						one.images.add(img8)
-						one.images.add(img9)
-						one.images.add(img10)
-						one.async.save(failOnError : true)
-						sessionFactory.getCurrentSession().clear()
-					}
 				}
 			}
 		}

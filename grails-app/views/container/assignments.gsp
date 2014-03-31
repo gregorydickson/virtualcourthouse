@@ -35,7 +35,7 @@
 					<g:select name="assignments" from="${assignmentInstanceList}" multiple="true" keys="${assignmentInstanceList.id}" style="height:500px;" size="5" value="${containerInstance?.assignments*.id}" class="many-to-many"/>
 				</div>
 				<fieldset class="buttons">
-					<g:actionSubmit name="save" value="${message(code: 'default.button.update.label', default: 'Update')}" />
+					<g:actionSubmit name="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
 				</fieldset>
 			</g:form>
 		</div>

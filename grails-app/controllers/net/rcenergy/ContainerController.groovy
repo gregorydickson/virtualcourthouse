@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 import grails.plugin.springsecurity.SpringSecurityUtils
 
 @Transactional(readOnly = true)
-class ContainerController {
+class ContainerController extends ControllerBase {
 
     static allowedMethods = [assignments: [ "POST", "GET", "PUT"], update: "POST", delete: "DELETE"]
     

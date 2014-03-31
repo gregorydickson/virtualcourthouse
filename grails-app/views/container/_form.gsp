@@ -7,7 +7,7 @@
 		<g:message code="container.district.label" default="District" />
 		
 	</label>
-	<g:select id="district" name="district.id" optionValue="name" keys="${net.rcenergy.District.list().id}" from="${net.rcenergy.District.list()}"  value="${containerInstance?.district?.id}" class="many-to-one" noSelection="['null': '']"/>
+	<g:select id="district" name="district.id"  keys="${net.rcenergy.District.list().id}" from="${net.rcenergy.District.list()}"  value="${containerInstance?.district?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class=" ">

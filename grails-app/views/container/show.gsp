@@ -46,7 +46,7 @@
 					<span id="assignments-label" class="property-label"><g:message code="container.assignments.label" default="Assignments" /></span>
 					
 						<g:each in="${containerInstance.assignments}" var="a">
-						<span class="property-value" aria-labelledby="assignments-label"><g:link controller="assignment" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="assignments-label"><g:link controller="assignment" action="assign" id="${a.id}">${a?.encodeAsHTML()}</g:link></span>
 						</g:each>
 					
 				</li>

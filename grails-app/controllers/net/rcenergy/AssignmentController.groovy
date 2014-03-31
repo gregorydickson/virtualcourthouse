@@ -13,16 +13,15 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AssignmentController extends ControllerBase {
 
-    static allowedMethods = [images:"GET",work:"GET",save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [assign:"GET",images:"GET",work:"GET",save:"POST", update:["PUT","GET","POST"], delete: "DELETE"]
     
     def start()
     {
-
     }
-
-   
+    def assign(Assignment assignmentInstance) {
+        respond assignmentInstance
+    }
     def images(Assignment assignmentInstance) {
-        
         respond assignmentInstance
     }
     def index(Integer max) {
@@ -49,9 +48,6 @@ class AssignmentController extends ControllerBase {
     }
 
     def create() {
-       
-        /* only show images that have not been assigned
-        */
         def adistrict
         if (params?.district?.id == null)
         {
@@ -64,7 +60,7 @@ class AssignmentController extends ControllerBase {
         
         def imageInstanceList = Image.findAllByHasAssignmentAndDistrict(false,adistrict)
         println"AssignmentController CREATE found image list"
-        
+
         render(view:"/assignment/create",model: [imageInstanceList: imageInstanceList])
         println"AssignmentController CREATE RENDERED VIEW"
     }
@@ -112,6 +108,7 @@ class AssignmentController extends ControllerBase {
 
     @Transactional
     def update(Assignment assignmentInstance) {
+        println "ASSINMENT UPDATE params " + params
         if (assignmentInstance == null) {
             notFound()
             return

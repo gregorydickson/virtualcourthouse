@@ -54,6 +54,7 @@ class DocumentController extends ControllerBase {
     def create(Document documentInstance) {
        def user = springSecurityService.currentUser
        def assignment =  user.currentAssignment
+       println"Document controller CREATE assignment is: " + assignment
        render(view:"/document/create", model: [assignmentInstance: assignment,documentInstance: documentInstance ])
     }
 
