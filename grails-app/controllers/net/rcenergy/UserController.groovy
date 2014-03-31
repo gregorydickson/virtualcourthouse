@@ -25,11 +25,11 @@ def home() {
          return
       }
 	  if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
-         redirect controller: 'container', action: 'index'
+         redirect  url: '/'
          return
       }
       if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
-         redirect controller: 'document', action: 'index'
+         redirect controller: 'container', action: 'index'
          return
       }
       

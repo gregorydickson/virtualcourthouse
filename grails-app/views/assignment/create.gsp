@@ -27,7 +27,11 @@
 			</g:hasErrors>
 			<g:form url="[resource:assignmentInstance, action:'save']" >
 				<fieldset class="form">
-					<g:render template="form"/>
+					<div class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'images', 'error')} ">
+						<label for="images"> <g:message code="assignment.images.label" default="Images" />
+						</label>
+						<g:select name="images" from="${imageInstanceList}"	multiple="multiple" optionKey="id" optionValue="displayString" size="5" value="${assignmentInstance?.images*.id}" style="height:500px;"/>
+					</div>
 				</fieldset>
 				<fieldset class="buttons">
 					<g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

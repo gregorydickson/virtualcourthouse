@@ -14,7 +14,7 @@
 		<ul>
 			<li><a class="home" href="${createLink(uri: '/')}"><g:message
 						code="default.home.label" /></a></li>
-			<li><g:link class="create" action="create">
+			<li><g:link class="create" action="start">
 					<g:message code="default.new.label" args="[entityName]" />
 				</g:link></li>
 		</ul>
@@ -39,7 +39,10 @@
 			<sec:ifNotLoggedIn>
 			<g:link controller='login' action='auth'>Login</g:link>
 			</sec:ifNotLoggedIn>
-			<sec:ifAllGranted roles="ROLE_INDEXER">I AM AN INDEXER</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_INDEXER">INDEXER</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_REVIEWER">REVIEWER</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_SUPERVISOR">SUPERVISOR</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_ADMIN">ADMIN</sec:ifAllGranted>
 		<table>
 			<thead>
 				<tr>
@@ -66,7 +69,7 @@
 							</td>
 							
 							<td>
-								${fieldValue(bean: assignmentInstance.district, field: "name")}
+								${assignmentInstance.district.toString()}
 							</td>
 							<td>
 								<g:link action="work" id="${assignmentInstance.id}">

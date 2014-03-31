@@ -26,7 +26,7 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form action="addassignments" >
+			<g:form action="update" >
 				<g:hiddenField name="id" value="${containerInstance?.id}" />
 				<div class="fieldcontain ${hasErrors(bean: containerInstance, field: 'assignments', 'error')} ">
 					<label for="assignments">

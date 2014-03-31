@@ -8,13 +8,16 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-container" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
+		<sec:ifAllGranted roles="ROLE_INDEXER">INDEXER</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_REVIEWER">REVIEWER</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_SUPERVISOR">SUPERVISOR</sec:ifAllGranted>
+			<sec:ifAllGranted roles="ROLE_ADMIN">ADMIN</sec:ifAllGranted>
 		<div id="list-container" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">

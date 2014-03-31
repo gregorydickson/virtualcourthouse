@@ -30,7 +30,7 @@ class BootStrap {
 					UserRole.create(admin, adminRole).save();					
 
 					def supervisor = new User(username : "AnnStevenson", password : "password").save()
-					def supervisor2 = new User(username : "JimRambo", password : "password").save()
+					def supervisor2 = new User(username : "JohnRambo", password : "password").save()
 					def supervisorRole = new Role(authority: "ROLE_SUPERVISOR").save()					
 					UserRole.create(supervisor, supervisorRole).save()
 					UserRole.create(supervisor2, supervisorRole).save()				
@@ -118,7 +118,7 @@ class BootStrap {
 					book2.merge();
 					
 					
-					def range = 1..2
+					def range = 1..100
 					range.each{
   						def one = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image1.png").bytes, fileName: "45837409.png").save(failOnError : true).async.save(failOnError : true, flush: true);
 						def two = new Image(dateLoaded : new Date(), district: district1, image: new File("testImages/image2.png").bytes, fileName: "45837410.png").save(failOnError : true).async.save(failOnError : true, flush: true);
@@ -170,7 +170,7 @@ class BootStrap {
 						one.images.add(img8)
 						one.images.add(img9)
 						one.images.add(img10)
-						one.save(failOnError : true)
+						one.async.save(failOnError : true)
 						sessionFactory.getCurrentSession().clear()
 					}
 				}

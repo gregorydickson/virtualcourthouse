@@ -14,7 +14,13 @@ import grails.transaction.Transactional
 class AssignmentController extends ControllerBase {
 
     static allowedMethods = [images:"GET",work:"GET",save: "POST", update: "PUT", delete: "DELETE"]
+    
+    def start()
+    {
 
+    }
+
+   
     def images(Assignment assignmentInstance) {
         
         respond assignmentInstance
@@ -43,11 +49,35 @@ class AssignmentController extends ControllerBase {
     }
 
     def create() {
-        respond new Assignment(params)
+       
+        /* only show images that have not been assigned
+        */
+        def adistrict
+        if (params?.district?.id == null)
+        {
+            adistrict = District.get(session.getAttribute("district.id"))
+        } else {
+            session.setAttribute("district.id", params.district.id) 
+            adistrict = District.get(params.district.id)
+        }
+        println"AssignmentController CREATE SET DISTRICT"
+        
+        def imageInstanceList = Image.findAllByHasAssignmentAndDistrict(false,adistrict)
+        println"AssignmentController CREATE found image list"
+        
+        render(view:"/assignment/create",model: [imageInstanceList: imageInstanceList])
+        println"AssignmentController CREATE RENDERED VIEW"
     }
 
     @Transactional
     def save(Assignment assignmentInstance) {
+        println "ASSIGNMENT SAVE"
+        def adistrict = District.get(session.getAttribute("district.id"))
+        assignmentInstance.district = adistrict
+        def images = Image.getAll(params.images) 
+        println "AssignmentController images : " + images
+        images*.hasAssignment = true
+        images*.save flush:true
         if (assignmentInstance == null) {
             notFound()
             return

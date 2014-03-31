@@ -81,31 +81,50 @@
 		</style>
 	</head>
 	<body>
-		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="status" role="complementary">
-			<h1>Application Status</h1>
+			<h1>Application Version</h1>
 			<ul>
 				<li>App version: <g:meta name="app.version"/></li>
-				<li>JVM version: ${System.getProperty('java.version')}</li>
-				<li>Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</li>
-				<li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
-				<li>Domains: ${grailsApplication.domainClasses.size()}</li>
-				<li>Services: ${grailsApplication.serviceClasses.size()}</li>
-				<li>Tag Libraries: ${grailsApplication.tagLibClasses.size()}</li>
-			</ul>
-			<h1>Installed Plugins</h1>
-			<ul>
-				<g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-					<li>${plugin.name} - ${plugin.version}</li>
-				</g:each>
+				
 			</ul>
 		</div>
 		<div id="page-body" role="main">
-			<h1>Virtual Courthouse</h1>
+			<h1>The Edge</h1>
 			<p></p>
 
 			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
+				<h2>MENU:</h2>
+				<ul>
+				<li><a href="${createLink(controller: 'login')}">LOGIN</a></li>
+				<li><a href="${createLink(controller: 'logout')}">LOGOUT</a></li>
+				</ul>
+				<sec:ifAllGranted roles="ROLE_INDEXER">
+				<ul>
+					<li>INDEXER:</li>
+					<li><a href="${createLink(controller: 'assignment', action: 'index')}">View Assignments</a></li>
+					<li><a href="${createLink(controller: 'document', action: 'index')}">View Unsubmitted Documents</a></li>
+				</ul>
+				</sec:ifAllGranted>
+				<sec:ifAllGranted roles="ROLE_REVIEWER">
+				<ul>
+					<li>REVIEWER:</li>
+					<li><a href="${createLink(controller: 'document', action: 'index')}">Documents to Review</a></li>
+				</ul>
+				</sec:ifAllGranted>
+				<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+				<ul>
+					<li>SUPERVISOR:</li>
+					<li><a href="${createLink(controller: 'container', action: 'index')}">View Containers</a></li>
+					<li><a href="${createLink(controller: 'assignment', action: 'index')}">Manage Assignments</a></li>
+				</ul>
+				</sec:ifAllGranted>
+				<sec:ifAllGranted roles="ROLE_ADMIN">
+				<ul>
+					<li>ADMIN:</li>
+					<li><a href="${createLink(controller: 'container', action: 'index')}">Manage Containers</a></li>
+					<li><a href="${createLink(controller: 'assignment', action: 'index')}">Manage Assignments</a></li>
+				</ul>
+				</sec:ifAllGranted>
 				<ul>
 					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
 						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>

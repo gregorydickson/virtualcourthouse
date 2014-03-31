@@ -12,6 +12,7 @@ class Image {
 	Integer bookNumber
 	Integer pageNumber
 	District district
+	Boolean hasAssignment = false
 
 	/**
 	 * A transient property to represent an image object as string in UI
