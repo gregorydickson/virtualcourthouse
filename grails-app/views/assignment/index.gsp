@@ -12,14 +12,17 @@
 	<sec:ifAllGranted roles="ROLE_ADMIN">
 	<div class="nav" role="navigation">
 		<ul>
-			<li><a class="home" href="${createLink(uri: '/')}"><g:message
-						code="default.home.label" /></a></li>
 			<li><g:link class="create" action="start">
 					<g:message code="default.new.label" args="[entityName]" />
 				</g:link></li>
 		</ul>
 	</div>
 	</sec:ifAllGranted>
+	<div class="nav" role="navigation">
+			<ul>
+				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label" /></a></li>
+			</ul>
+	</div>
 	<div id="list-assignment" class="content scaffold-list" role="main">
 		<h1>
 			<g:message code="default.list.label" args="[entityName]" />
@@ -29,9 +32,7 @@
 				${flash.message}
 			</div>
 		</g:if>
-		<sec:ifLoggedIn>
-		Logged IN
-		</sec:ifLoggedIn>
+		
 		<br><br>
 		UserName: <sec:loggedInUserInfo field="username"/>
 		<br>
@@ -51,6 +52,7 @@
 					<tr>
 						<th>ID</th>
 						<th>County</th>
+						<th>Review Complete Date</th>
 						<th>Supervisor</th>
 					</tr>
 				</thead>
@@ -64,6 +66,9 @@
 							</td>
 							<td>
 								${assignmentInstance.district.toString()}
+							</td>
+							<td>
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance?.reviewComplete}"/>
 							</td>
 							<td>
 								<g:select optionKey="id" noSelection="${['':'Assign...']}" value="${assignmentInstance?.supervisor?.id}" optionValue="username" name="assignment.${assignmentInstance.id}.supervisor" from="${supervisorInstanceList}" />
@@ -99,7 +104,7 @@
 					<g:each in="${assignmentInstanceList}" status="i" var="assignmentInstance">
 						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 							<td>
-								<g:link action="edit" id="${assignmentInstance.id}">
+								<g:link action="supervisoredit" id="${assignmentInstance.id}">
 									${fieldValue(bean: assignmentInstance, field: "id")}
 								</g:link>
 							</td>
@@ -107,28 +112,28 @@
 								${assignmentInstance.district.toString()}
 							</td>
 							<td>
-								${fieldValue(bean: assignmentInstance, field: "supervisorAssigned")}
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance.supervisorAssigned}"/>
 							</td>
 							<td>
-								${fieldValue(bean: assignmentInstance, field: "indexerAssigned")}
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance.indexerAssigned}"/>
 							</td>
 							<td>
 								${fieldValue(bean: assignmentInstance.indexer, field: "username")}
 							</td>
 							<td>
-								${fieldValue(bean: assignmentInstance, field: "indexingComplete")}
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance.indexingComplete}"/>
 							</td>
 							<td>
-								${fieldValue(bean: assignmentInstance, field: "reviewerAssigned")}
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance.reviewerAssigned}"/>
 							</td>
 							<td>
 								${fieldValue(bean: assignmentInstance.reviewer, field: "username")}
 							</td>
 							<td>
-								${fieldValue(bean: assignmentInstance, field: "reviewComplete")}
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance.reviewComplete}"/>
 							</td>
 							<td>
-								${fieldValue(bean: assignmentInstance, field: "finalizedToAdmin")}
+								<g:formatDate format="dd/MM/yyyy" date="${assignmentInstance.finalizedToAdmin}"/>
 							</td>
 							<td>
 								${fieldValue(bean: assignmentInstance, field: "auditPercentage")}
@@ -152,6 +157,8 @@
 					<th>COUNTY</th>
 					
 					<th>WORK ASSIGNMENT</th>
+
+					<th>ASSIGNMENT COMPLETE</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -172,6 +179,59 @@
 							<td>
 								<g:link action="work" id="${assignmentInstance.id}">
 									Work Assignment															
+								</g:link>
+							</td>
+							<td>
+								<g:link action="indexercomplete" id="${assignmentInstance.id}">
+									Complete															
+								</g:link>
+							</td>
+
+					</tr>
+				</g:each>
+			</tbody>
+		</table>
+		</sec:ifAllGranted>
+
+		<sec:ifAllGranted roles="ROLE_REVIEWER">
+		<table>
+			<thead>
+				<tr>
+
+					<th><g:message code="assignment.indexer.label" default="Indexer" /></th>
+					
+					<th><g:message code="assignment.reviewer.label" default="Reviewer" /></th>
+
+					<th>COUNTY</th>
+					
+					<th>WORK ASSIGNMENT</th>
+
+					<th>COMPLETE ASSIGNMENT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<g:each in="${assignmentInstanceList}" status="i"
+					var="assignmentInstance">
+					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+							<td>
+								${fieldValue(bean: assignmentInstance.indexer, field: "username")}
+							</td>
+							
+							<td>
+								${fieldValue(bean: assignmentInstance.reviewer, field: "username")}
+							</td>
+							
+							<td>
+								${assignmentInstance.district.toString()}
+							</td>
+							<td>
+								<g:link action="review" id="${assignmentInstance.id}">
+									Work Assignment															
+								</g:link>
+							</td>
+							<td>
+								<g:link action="reviewercomplete" id="${assignmentInstance.id}">
+									Complete															
 								</g:link>
 							</td>
 

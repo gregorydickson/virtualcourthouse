@@ -1,7 +1,7 @@
 <%@ page import="net.rcenergy.Assignment"%>
 
 
-<input type="hidden" name="container.id" value="${containerInstance?.id}" />
+<input type="hidden" name="id" value="${assignmentInstance?.id}" />
 <div
 	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'indexer', 'error')}">
 	<label for="indexer"> <g:message code="assignment.indexer.label"

@@ -18,52 +18,92 @@
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
-			<sec:ifLoggedIn>
-			Logged IN
-			</sec:ifLoggedIn>
-			<sec:ifNotLoggedIn>
-			<g:link controller='login' action='auth'>Login</g:link>
-			</sec:ifNotLoggedIn>
-			<sec:ifAllGranted roles="ROLE_INDEXER">I AM AN INDEXER</sec:ifAllGranted>
-			<table>
-			<thead>
-					<tr>
-					
-						<g:sortableColumn property="id" title="${message(code: 'document.bookNumber.label', default: 'ID')}" />
-					
-						<g:sortableColumn property="fileDate" title="${message(code: 'document.fileDate.label', default: 'File Date')}" />
-					
-						<g:sortableColumn property="instrumentDate" title="${message(code: 'document.instrumentDate.label', default: 'Instrument Date')}" />
-					
-						<g:sortableColumn property="instrumentNumber" title="${message(code: 'document.instrumentNumber.label', default: 'Instrument Number')}" />
-					
-						<th><g:message code="document.instrumentType.label" default="Instrument Type" /></th>
-					
-						<g:sortableColumn property="pageNumber" title="${message(code: 'document.pageNumber.label', default: 'Page Number')}" />
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${documentInstanceList}" status="i" var="documentInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><sec:ifAllGranted roles="ROLE_INDEXER"><g:link action="create" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "id")}</g:link></sec:ifAllGranted>
-							</td>
-					
-						<td><g:formatDate date="${documentInstance.fileDate}" /></td>
-					
-						<td><g:formatDate date="${documentInstance.instrumentDate}" /></td>
-					
-						<td>${fieldValue(bean: documentInstance, field: "instrumentNumber")}</td>
-					
-						<td>${fieldValue(bean: documentInstance, field: "instrumentType")}</td>
-					
-						<td>${fieldValue(bean: documentInstance, field: "pageNumber")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
+
+
+			<sec:ifAllGranted roles="ROLE_INDEXER">
+				<table>
+				<thead>
+						<tr>
+						
+							<g:sortableColumn property="id" title="${message(code: 'document.bookNumber.label', default: 'ID')}" />
+						
+							<g:sortableColumn property="fileDate" title="${message(code: 'document.fileDate.label', default: 'File Date')}" />
+						
+							<g:sortableColumn property="instrumentDate" title="${message(code: 'document.instrumentDate.label', default: 'Instrument Date')}" />
+						
+							<g:sortableColumn property="instrumentNumber" title="${message(code: 'document.instrumentNumber.label', default: 'Instrument Number')}" />
+						
+							<th><g:message code="document.instrumentType.label" default="Instrument Type" /></th>
+						
+							<g:sortableColumn property="pageNumber" title="${message(code: 'document.pageNumber.label', default: 'Page Number')}" />
+						
+						</tr>
+					</thead>
+					<tbody>
+					<g:each in="${documentInstanceList}" status="i" var="documentInstance">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+						
+							<td><g:link action="create" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "id")}</g:link>
+								</td>
+						
+							<td><g:formatDate date="${documentInstance.fileDate}" /></td>
+						
+							<td><g:formatDate date="${documentInstance.instrumentDate}" /></td>
+						
+							<td>${fieldValue(bean: documentInstance, field: "instrumentNumber")}</td>
+						
+							<td>${fieldValue(bean: documentInstance, field: "instrumentType")}</td>
+						
+							<td>${fieldValue(bean: documentInstance, field: "pageNumber")}</td>
+						
+						</tr>
+					</g:each>
+					</tbody>
+				</table>
+			</sec:ifAllGranted>
+
+			<sec:ifAllGranted roles="ROLE_REVIEWER">
+				<table>
+				<thead>
+						<tr>
+						
+							<g:sortableColumn property="id" title="${message(code: 'document.bookNumber.label', default: 'ID')}" />
+						
+							<g:sortableColumn property="fileDate" title="${message(code: 'document.fileDate.label', default: 'File Date')}" />
+						
+							<g:sortableColumn property="instrumentDate" title="${message(code: 'document.instrumentDate.label', default: 'Instrument Date')}" />
+						
+							<g:sortableColumn property="instrumentNumber" title="${message(code: 'document.instrumentNumber.label', default: 'Instrument Number')}" />
+						
+							<th><g:message code="document.instrumentType.label" default="Instrument Type" /></th>
+						
+							<g:sortableColumn property="pageNumber" title="${message(code: 'document.pageNumber.label', default: 'Page Number')}" />
+						
+						</tr>
+					</thead>
+					<tbody>
+					<g:each in="${documentInstanceList}" status="i" var="documentInstance">
+						<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+						
+							<td><g:link action="review" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "id")}</g:link>
+								</td>
+						
+							<td><g:formatDate date="${documentInstance.fileDate}" /></td>
+						
+							<td><g:formatDate date="${documentInstance.instrumentDate}" /></td>
+						
+							<td>${fieldValue(bean: documentInstance, field: "instrumentNumber")}</td>
+						
+							<td>${fieldValue(bean: documentInstance, field: "instrumentType")}</td>
+						
+							<td>${fieldValue(bean: documentInstance, field: "pageNumber")}</td>
+						
+						</tr>
+					</g:each>
+					</tbody>
+				</table>
+			</sec:ifAllGranted>
+
 			<div class="pagination">
 				<g:paginate total="${documentInstanceCount ?: 0}" />
 			</div>

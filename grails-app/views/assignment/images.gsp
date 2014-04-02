@@ -10,12 +10,26 @@
 		<div id='list-view' class="list-view"></div>        
 
 		<script>
-		var imagesCount = ${assignmentInstance.images.size()};
-		var imagesIdStart = ${assignmentInstance.images[0].id};
+		
 		<%   
 			def imageIdList = []
-			assignmentInstance.images.eachWithIndex() {obj, i -> imageIdList.add(obj.id)};
+			def listSize
+			def firstId
+			if(assignmentInstance.indexStarted == true)
+			{
+				assignmentInstance.imagesRemaining.eachWithIndex() {obj, i -> imageIdList.add(obj.id)};
+				firstId = assignmentInstance.imagesRemaining[0].id
+				listSize = assignmentInstance.imagesRemaining.size()
+			} else {
+				assignmentInstance.images.eachWithIndex() {obj, i -> imageIdList.add(obj.id)};
+				firstId = assignmentInstance.images[0].id
+				listSize = assignmentInstance.images.size()
+			}
+			
 		%>
+		var imagesCount = ${listSize};
+		var imagesIdStart = ${firstId};
+		
 		var imageIdList = ${imageIdList};
         				
 		</script>

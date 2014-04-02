@@ -21,11 +21,15 @@ class Assignment {
 	Date reviewComplete
 	Date finalizedToAdmin
 
+	Boolean indexStarted = false
+
 	Integer auditPercentage
 
 	String toString() {
 		"county: " + district.toString() + " id:" + id
 	}
+	List images
+	List imagesRemaining
 	static hasMany = [images : Image,
 						imagesRemaining: Image]
 

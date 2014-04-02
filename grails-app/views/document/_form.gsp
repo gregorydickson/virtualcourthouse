@@ -506,7 +506,7 @@
 				</tr>
 			</thead>
 			<tbody id="images-not-assigned"> 
-				<g:if test="${assignmentInstance?.imagesRemaining?.isEmpty() && assignmentInstance?.started == false}">
+				<g:if test="${assignmentInstance?.imagesRemaining?.isEmpty() && assignmentInstance?.indexStarted == false}">
 					<g:each var="images" in="${assignmentInstance.images}">
 						<tr class="data-row" id="${images.id}">
 						<input type="hidden"  name="imagesRemaining[]" value="${images.id}"/>

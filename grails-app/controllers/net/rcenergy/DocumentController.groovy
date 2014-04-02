@@ -21,11 +21,11 @@ class DocumentController extends ControllerBase {
             println "Getting Documents for Indexer"
             respond results
         } else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
-            def query = Document.where {
-                reviewer == currentUser() && reviewFinal == false && isReviewerCopy == true
-            }
-            def results = query.list()
-            println "Getting Documents for Indexer"
+            def currentAssignment = currentUser().currentAssignment
+            println "assignment " + currentAssignment
+            def results = Document.findAllByAssignmentAndReviewFinalAndIsReviewerCopy(currentAssignment,false, true ) 
+            
+            println "Getting Documents for Reviewer results: " + results
             respond results
         } else if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
             def query = Document.where {
@@ -84,6 +84,7 @@ class DocumentController extends ControllerBase {
         println "Here is params: $params"
         def input = request.JSON
         def doc = Document.get(input.id)
+        def indexerCopy = Document.get(doc.indexerVersionId)
         doc.properties = input
         doc.numberOfChangesReview = auditReview(indexerCopy, doc)
         doc.reviewFinal = true
@@ -94,14 +95,15 @@ class DocumentController extends ControllerBase {
     @Transactional
     def createDocumentIndexer(){
         def input = request.JSON
-        def user = springSecurityService.currentUser
+        def user = currentUser()
         def assignment =  user.currentAssignment
         def aJSONArray = input.optJSONArray('imagesRemaining')
         def imagesList = Image.getAll(aJSONArray)
         assignment.imagesRemaining = imagesList
-        assignment.started = true
+        assignment.indexStarted = true
         input.remove('imagesRemaining')
         def document = new Document(input)
+        document.assignment = assignment
         document.indexer = user
         if (document.save(flush: true)) {
             assignment.save flush:true
@@ -142,6 +144,7 @@ class DocumentController extends ControllerBase {
         doc.isIndexerFinal = true
         def reviewerDocumentCopy = new Document(input)
         reviewerDocumentCopy.isReviewerCopy = true
+        reviewerDocumentCopy.assignment = user.currentAssignment
         reviewerDocumentCopy.indexerVersionId = doc.id
         reviewerDocumentCopy.save flush:true
         doc.reviewerVersionId = reviewerDocumentCopy.id
