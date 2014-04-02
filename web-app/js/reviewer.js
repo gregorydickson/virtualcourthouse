@@ -1,4 +1,10 @@
 $( document ).ready(function() {
+	$('body').on('click','.data-row', function () {
+		var url = "/virtualcourthouse/document/images/" + $('#documentId').attr('value');
+		win = popup(url, 'imagelist', 900, 0);
+    });
+
+
 	// CTRL J is save/update
 	// CTRL K is save/submit the review
 	$.key('ctrl+k', function(){

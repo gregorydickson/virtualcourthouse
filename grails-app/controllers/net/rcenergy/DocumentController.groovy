@@ -9,7 +9,11 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DocumentController extends ControllerBase {
 
-    static allowedMethods = [create:"GET",submitDocumentIndexer:"POST",createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
+    static allowedMethods = [images:"GET",create:"GET",submitDocumentIndexer:"POST",createDocumentIndexer: "POST", updateDocumentIndexer: "POST"]
+    
+    def images(Document documentInstance) {
+        respond documentInstance
+    }
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

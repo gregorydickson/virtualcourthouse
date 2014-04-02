@@ -1,5 +1,10 @@
 //START DOCUMENT READY FUNCTION
 $( document ).ready(function() {
+	$('body').on('click','.data-row', function () {
+		var url = "/virtualcourthouse/assignment/images/" + $('#assignmentId').attr('value');
+		win = popup(url, 'imagelist', 900, 0);
+    });
+
 	// START - SAVE DOCUMENT VIA AJAX WITH JSON
 	// CTRL J is save/update
 	// CTRL K is save/submit to review
