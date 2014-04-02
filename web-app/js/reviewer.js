@@ -17,7 +17,7 @@ $( document ).ready(function() {
 			contentType:'application/json',
 			url:'/virtualcourthouse/document/submitDocumentReviewer',
 			success:function(data,textStatus){
-				resetDOM();
+				
 				var unique_id = $.gritter.add({
 					title: 'SUBMITTED REVIEW',
 					text: "SUBMITTED DOCUMENT FOR REVIEW ID: " + data.id,
