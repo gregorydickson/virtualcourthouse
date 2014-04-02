@@ -79,7 +79,7 @@ class DocumentController extends ControllerBase {
     }
     @Transactional
     def submitDocumentReviewer() {
-        println "update Document Reviewer"
+        println "SUBMIT Document Reviewer"
         println "Here is request.JSON: ${request.JSON as JSON}"
         println "Here is params: $params"
         def input = request.JSON

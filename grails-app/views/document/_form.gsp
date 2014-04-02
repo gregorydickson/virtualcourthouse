@@ -519,6 +519,19 @@
 						</tr>
 					</g:each>
 			 	</g:if>
+			 	<g:if test="${documentInstance?.isReviewerCopy}">
+					<g:each var="images" in="${documentInstance?.images}">
+						<tr class="data-row" id="${images?.id}">
+						<input type="hidden"  name="imagesRemaining[]" value="${images?.id}"/>
+							<td>
+								${images.toString()}
+							</td>
+							<td class="imageId">
+								${images.id}
+							</td>
+						</tr>
+					</g:each>
+			 	</g:if>
 			 	<g:else>
 				 	<g:each var="images" in="${assignmentInstance?.imagesRemaining}">
 						<tr class="data-row" id="${images.id}">

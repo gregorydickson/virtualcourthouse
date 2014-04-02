@@ -19,7 +19,7 @@ $(document).ready(function() {
 
 	};
   var imagesChosen = [];
-  $('.imagechooser, .pic, .imagechoosertwo').on('click', function (e) {
+  $('body').on('click','.imagechooser, .pic, .imagechoosertwo' , function (e) {
     console.log("Clicked on image/button");
     var imageid = $(this).attr('data-image-id');
     var headers = $(".imagechooser#"+ imageid +", .imagechoosertwo#"+ imageid);

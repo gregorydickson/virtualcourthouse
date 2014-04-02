@@ -39,6 +39,8 @@ class Document {
 	List legalDescriptionSecTwnRge
 	List legalDescriptionSurveyAbstract
 	List legalDescriptionTaxMapParcel
+	List images
+	
 	static mapping = {
 		legalDescriptionCitySubBlkLot lazy: false
 	 	legalDescriptionSecTwnRge  lazy: false

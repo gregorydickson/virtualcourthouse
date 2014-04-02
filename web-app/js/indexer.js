@@ -14,6 +14,7 @@ $( document ).ready(function() {
 			url:'/virtualcourthouse/document/submitDocumentIndexer',
 			success:function(data,textStatus){
 				resetDOM();
+				win.close();
 				var unique_id = $.gritter.add({
 					// (string | mandatory) the heading of the notification
 					title: 'SUBMITTED DOCUMENT',

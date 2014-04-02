@@ -81,7 +81,7 @@ class AssignmentController extends ControllerBase {
 			def assignmentInstanceList = Assignment.findAllByIndexerAndIndexingCompleteIsNull(currentUser())
             render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList])
 		} else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
-			def assignmentInstanceList = Assignment.findByReviewerAndReviewCompleteIsNull(currentUser())
+			def assignmentInstanceList = Assignment.findAllByReviewerAndReviewCompleteIsNull(currentUser())
             render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList])
 		} else if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
             def assignmentInstanceList = Assignment.findAllBySupervisorAndFinalizedToAdminIsNull(currentUser())
