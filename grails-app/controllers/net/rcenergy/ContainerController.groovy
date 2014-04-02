@@ -9,7 +9,7 @@ import grails.plugin.springsecurity.SpringSecurityUtils
 @Transactional(readOnly = true)
 class ContainerController extends ControllerBase {
 
-    static allowedMethods = [assignments: [ "POST", "GET", "PUT"], update: "POST", delete: "DELETE"]
+    static allowedMethods = [assignments: ["POST", "GET", "PUT"], update: "POST", delete: "DELETE"]
     
 
     @Transactional
@@ -19,7 +19,7 @@ class ContainerController extends ControllerBase {
         containerInstance.usstate = containerInstance.district.usstate
         containerInstance.save flush:true
         def query = Assignment.where {
-                hasContainer == false && district == containerDistrict
+                 district == containerDistrict
             }
         def assignmentInstanceList = query.list()
         
@@ -59,7 +59,7 @@ class ContainerController extends ControllerBase {
     def edit(Container containerInstance) {
         println "ContainerController EDIT"
         def query = Assignment.where {
-                hasContainer == false
+                
             }
         def assignmentInstanceList = query.list()
         

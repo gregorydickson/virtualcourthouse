@@ -133,9 +133,10 @@ grails.plugin.springsecurity.rejectIfNoRule = false
 grails.plugin.springsecurity.interceptUrlMap = [
 	
 	// role-based access, most restrictive rules should go first
-	'/assignment/index':		['ROLE_ADMIN', 'ROLE_INDEXER', 'ROLE_REVIEWER'],
+	'/assignment/index':		['ROLE_ADMIN', 'ROLE_SUPERVISOR','ROLE_INDEXER', 'ROLE_REVIEWER'],
 	'/assignment/create':		['ROLE_ADMIN'],
-	'/document/create':			['ROLE_INDEXER'],
+	'/document/create':			['ROLE_ADMIN', 'ROLE_SUPERVISOR','ROLE_INDEXER'],
+    '/document/review':         ['ROLE_ADMIN', 'ROLE_SUPERVISOR','ROLE_REVIEWER'],
 
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],

@@ -12,23 +12,16 @@ class User {
 	boolean passwordExpired = false
 	//so we can know the assignment when creating a document
 	Assignment currentAssignment
-	Long documentsIndexed
-	Long documentsReviewed
-	Long numberChangesAudit
+
 	
-	User supervisor;
-	User reviewer;
 
 	static transients = ['springSecurityService']
 
 	static constraints = {
 		username blank: false, unique: true
 		password blank: false
-		supervisor(nullable:true)
-		reviewer(nullable:true)
-		documentsIndexed(nullable:true)
-		documentsReviewed(nullable:true)
-		numberChangesAudit(nullable:true)
+
+
 		currentAssignment(nullable:true)
 	}
 

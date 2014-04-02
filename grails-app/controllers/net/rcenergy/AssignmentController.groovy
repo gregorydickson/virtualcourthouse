@@ -13,8 +13,21 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AssignmentController extends ControllerBase {
 
-    static allowedMethods = [assign:"GET",images:"GET",work:"GET",save:"POST", update:["PUT","GET","POST"], delete: "DELETE"]
-    
+    static allowedMethods = [supervisor:"POST",assign:"GET",images:"GET",work:"GET",save:"POST", update:["PUT","GET","POST"], delete: "DELETE"]
+    @Transactional
+    def supervisor()
+    {
+        params.entrySet().findAll {
+            it.key.startsWith("assignment.")
+        }.each {
+            def assignment = Assignment.get(it.key.substring(11,12)) 
+            def user = User.get(it.value)
+            assignment.supervisor = user
+            assignment.supervisorAssigned = new Date()
+            assignment.save flush:true
+        }
+        redirect(action: "index")
+    }
     def start()
     {
     }
@@ -30,17 +43,25 @@ class AssignmentController extends ControllerBase {
 		// TODO: handle when multiple roles are present
 		// TODO: handle paging 		
 		if (SpringSecurityUtils.ifAllGranted('ROLE_INDEXER')) {
-            def query = Document.where {
-                indexer == currentUser() && isIndexerFinal == false && isReviewerCopy == false
-            }
-            def documentInstanceList = query.list()
+            
 			def assignmentInstanceList = Assignment.findAllByIndexer(currentUser())
-            render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList,documentInstanceList: documentInstanceList ])
+            render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList])
 		} else if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
 			respond Assignment.findByReviewer(currentUser())
-		} else {
+		} else if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
+            println "ASSIGNMENT SUPER current user : " + currentUser()
+            
+            def assignmentInstanceList = Assignment.findAllBySupervisor(currentUser())
+            render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList])
+        } else if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
+            def role = Role.findByAuthority("ROLE_SUPERVISOR")
+            def supervisorInstanceList = UserRole.findAllByRole(role).user
+            def assignmentInstanceList = Assignment.findAllBySupervisorAssignedIsNull()
+            render(view:"/assignment/index", model: [assignmentInstanceList: assignmentInstanceList,supervisorInstanceList: supervisorInstanceList ])
+        } else {
         	respond Assignment.list(params), model:[assignmentInstanceCount: Assignment.count()]
-		}
+        }
+		
     }
 
     def show(Assignment assignmentInstance) {
@@ -95,7 +116,13 @@ class AssignmentController extends ControllerBase {
     }
 
     def edit(Assignment assignmentInstance) {
-        respond assignmentInstance
+        def role = Role.findByAuthority("ROLE_ADMIN")
+        def adminInstanceList = UserRole.findAllByRole(role).user
+        role = Role.findByAuthority("ROLE_INDEXER")
+        def indexerInstanceList = UserRole.findAllByRole(role).user
+        role = Role.findByAuthority("ROLE_REVIEWER")
+        def reviewerInstanceList = UserRole.findAllByRole(role).user
+        render(view:"/assignment/edit",model: [assignmentInstance: assignmentInstance,indexerInstanceList:indexerInstanceList,reviewerInstanceList: reviewerInstanceList,adminInstanceList:adminInstanceList ])
     }
     
     @Transactional

@@ -3,32 +3,29 @@
 
 <input type="hidden" name="container.id" value="${containerInstance?.id}" />
 <div
-	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'indexer', 'error')} required">
+	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'indexer', 'error')}">
 	<label for="indexer"> <g:message code="assignment.indexer.label"
-			default="Indexer" /> <span class="required-indicator">*</span>
+			default="Indexer" /> 
 	</label>
-	<g:select id="indexer" name="indexer.id" from="${net.rcenergy.User.list()}"
-		optionKey="id" optionValue="username" required="" value="${assignmentInstance?.indexer?.id}"
+	<g:select id="indexer" noSelection="${['':'Assign...']}" name="indexer.id" from="${indexerInstanceList}"
+		optionKey="id" optionValue="username"  value="${assignmentInstance?.indexer?.id}"
 		class="many-to-one" />
 </div>
 <div
-	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'reviewer', 'error')} required">
+	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'reviewer', 'error')} ">
 	<label for="reviewer"> <g:message code="assignment.reviewer.label"
-			default="Reviewer" /> <span class="required-indicator">*</span>
+			default="Reviewer" /> 
 	</label>
-	<g:select id="reviewer" name="reviewer.id" from="${net.rcenergy.User.list()}"
-		optionKey="id" optionValue="username" required="" value="${assignmentInstance?.reviewer?.id}"
+	<g:select id="reviewer" noSelection="${['':'Assign...']}" name="reviewer.id" from="${reviewerInstanceList}"
+		optionKey="id" optionValue="username"  value="${assignmentInstance?.reviewer?.id}"
 		class="many-to-one" />
 </div>
 <div
-	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'images', 'error')} ">
-	
-	<label for="images"> <g:message code="assignment.images.label"
-			default="Images" />
-
+	class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'admin', 'error')} required">
+	<label for="reviewer"> <g:message code="assignment.reviewer.label"
+			default="Reviewer" /> 
 	</label>
-	<g:select name="images" from="${net.rcenergy.Image.list()}"
-		multiple="multiple" optionKey="id" optionValue="displayString" size="5"
-		value="${assignmentInstance?.images*.id}" style="height:500px;"/>
-
+	<g:select id="reviewer" noSelection="${['':'Assign...']}" name="admin.id" from="${adminInstanceList}"
+		optionKey="id" optionValue="username"  value="${assignmentInstance?.admin?.id}"
+		class="many-to-one" />
 </div>

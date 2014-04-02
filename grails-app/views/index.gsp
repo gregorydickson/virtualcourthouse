@@ -114,14 +114,12 @@
 				<sec:ifAllGranted roles="ROLE_SUPERVISOR">
 				<ul>
 					<li>SUPERVISOR:</li>
-					<li><a href="${createLink(controller: 'container', action: 'index')}">View Containers</a></li>
 					<li><a href="${createLink(controller: 'assignment', action: 'index')}">Manage Assignments</a></li>
 				</ul>
 				</sec:ifAllGranted>
 				<sec:ifAllGranted roles="ROLE_ADMIN">
 				<ul>
 					<li>ADMIN:</li>
-					<li><a href="${createLink(controller: 'container', action: 'index')}">Manage Containers</a></li>
 					<li><a href="${createLink(controller: 'assignment', action: 'index')}">Manage Assignments</a></li>
 				</ul>
 				</sec:ifAllGranted>

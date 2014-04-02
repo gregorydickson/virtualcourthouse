@@ -21,7 +21,7 @@ def home() {
          return
       }
       if (SpringSecurityUtils.ifAllGranted('ROLE_REVIEWER')) {
-         redirect controller: 'document', action: 'index'
+         redirect controller: 'assignment', action: 'index'
          return
       }
 	  if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
@@ -29,7 +29,7 @@ def home() {
          return
       }
       if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
-         redirect controller: 'container', action: 'index'
+         redirect controller: 'assignment', action: 'index'
          return
       }
       
