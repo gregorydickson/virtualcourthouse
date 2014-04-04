@@ -1,7 +1,11 @@
 
 
 $( document ).ready(function() {
-
+	$('body').on('click','.data-row', function () {
+		var url = "/virtualcourthouse/document/images/" + $('#documentId').attr('value');
+		win = popup(url, 'imagelist', 900, 0);
+    });
+    
 	if($("#auditDocumentNumber0 #fileDate").attr("value") != $("#auditDocumentNumber1 #fileDate").attr("value")) {
 		$("#auditDocumentNumber1 .file-date-wrapper").addClass("audit");
 	}

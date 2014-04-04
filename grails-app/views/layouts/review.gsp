@@ -34,10 +34,6 @@
 		<g:javascript src="jquery.gritter.js"/>
 		<%-- Application Javascript --%>
 		<script>
-		function getBookTypeOptions(){
-			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
-			return returnString;
-		}
 		var districtJSON = [
 		<g:each var="District" in="${net.rcenergy.District.list()}">
 		{
