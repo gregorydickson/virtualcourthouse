@@ -95,8 +95,16 @@
 			<div id="controller-list" role="navigation">
 				<h2>MENU:</h2>
 				<ul>
-				<li><a href="${createLink(controller: 'login')}">LOGIN</a></li>
-				<li><a href="${createLink(controller: 'logout')}">LOGOUT</a></li>
+				<li>
+					<sec:ifNotLoggedIn>
+						<a href="${createLink(controller: 'login')}">LOGIN</a>
+					</sec:ifNotLoggedIn>
+				</li>
+				<li>
+					<sec:ifLoggedIn>
+						<a href="${createLink(controller: 'logout')}">LOGOUT</a>
+					</sec:ifLoggedIn>
+				</li>
 				</ul>
 				<sec:ifAllGranted roles="ROLE_INDEXER">
 				<ul>

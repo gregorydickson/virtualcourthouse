@@ -13,8 +13,15 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AssignmentController extends ControllerBase {
 
-    static allowedMethods = [reviewercomplete:"GET",review:"GET",indexercomplete:"GET",assignadmin:"POST",assignreviewer:"POST",assignindexer:"POST",supervisoredit:["GET","POST"],supervisor:"POST",assign:"GET",images:"GET",work:"GET",save:"POST", update:["PUT","GET","POST"], delete: "DELETE"]
+    static allowedMethods = [audit:"GET",reviewercomplete:"GET",review:"GET",indexercomplete:"GET",assignadmin:"POST",assignreviewer:"POST",assignindexer:"POST",supervisoredit:["GET","POST"],supervisor:"POST",assign:"GET",images:"GET",work:"GET",save:"POST", update:["PUT","GET","POST"], delete: "DELETE"]
     
+    @Transactional
+    def audit(Assignment assignmentInstance) {
+        def user = springSecurityService.currentUser
+        user.currentAssignment = assignmentInstance
+        user.save flush:true 
+        redirect(controller: "document", action: "index")
+    }
     @Transactional
     def reviewercomplete(Assignment assignmentInstance) {
         assignmentInstance.reviewComplete = new Date()
@@ -53,7 +60,7 @@ class AssignmentController extends ControllerBase {
             it.key.startsWith("assignment.")
         }.each {
             def assignment = Assignment.findByIdAndSupervisorAssignedIsNull(it.key.substring(11,12)) 
-            if(assignment != null){
+            if(assignment != null && it.value != ""){
                 def user = User.get(it.value)
                 assignment.supervisor = user
                 assignment.supervisorAssigned = new Date()

@@ -1,0 +1,11 @@
+body {
+  background: #DADCE8;
+  padding-top: 0 !important; 
+}
+.row {
+  max-width: 120rem;
+  margin-left: 1rem;
+  margin-right: 3rem;
+  padding-bottom: 1rem;
+  margin-bottom:1rem;
+}

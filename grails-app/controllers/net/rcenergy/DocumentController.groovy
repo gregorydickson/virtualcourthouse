@@ -32,11 +32,11 @@ class DocumentController extends ControllerBase {
             println "Getting Documents for Reviewer results: " + results
             respond results
         } else if (SpringSecurityUtils.ifAllGranted('ROLE_SUPERVISOR')) {
-            def query = Document.where {
-                supervisor == currentUser()
-            }
-            def results = query.list()
-            println "Getting Documents for super"
+            def currentAssignment = currentUser().currentAssignment
+            println "assignment " + currentAssignment
+            def results = Document.findAllByAssignmentAndReviewFinalAndIsReviewerCopy(currentAssignment,true, true ) 
+            
+            println "Getting Documents for Reviewer results: " + results
             respond results
         } else {
             respond Document.list(params), model:[documentInstanceCount: Document.count()]
@@ -93,7 +93,18 @@ class DocumentController extends ControllerBase {
         doc.numberOfChangesReview = auditReview(indexerCopy, doc)
         doc.reviewFinal = true
         doc.save flush:true
+        updateAssignmentAuditPercentage(springSecurityService.currentUser.currentAssignment)
         respond doc, [formats:[ 'json']]
+    }
+
+    def updateAssignmentAuditPercentage(assignment){
+        def documents = Document.findAllByAssignmentAndIsReviewerCopyAndReviewFinal(assignment, true, true)
+        Long totalErrors = 0
+        documents.each() { doc -> totalErrors = totalErrors + doc.numberOfChangesReview};
+        Float assignmentAccuracy =  totalErrors / (documents.size() * 9)
+        assignmentAccuracy = (assignmentAccuracy - 1).abs() * 100
+        assignment.auditPercentage = assignmentAccuracy.round(0)
+        assignment.save flush:true
     }
 
     @Transactional
@@ -156,7 +167,7 @@ class DocumentController extends ControllerBase {
         assignment.save flush:true
         respond doc, [formats:[ 'json']]
     }
-
+    
 
     @Transactional
     def delete(Document documentInstance) {
@@ -184,6 +195,7 @@ class DocumentController extends ControllerBase {
             '*'{ render status: NOT_FOUND }
         }
     }
+
 
 
     def auditReview(indexerCopy, reviewerDocumentCopy){

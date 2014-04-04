@@ -48,7 +48,7 @@
 	</div>
     </div>
 </div>
-<div class="grantor-grantee row">
+<div class="grantor row">
 	<h6>GRANTORS</h6>
 	<div class="panel">
 		<div id="grantors_wrapper" class="large-12 columns clearfields grantors_wrapper">
@@ -67,7 +67,7 @@
 		</div>
 	</div>
 </div>
-<div class="grantor-grantee row">
+<div class="grantee row">
 	<h6>GRANTEES</h6>
 	<div class="panel">
 		<div id="grantees_wrapper" class="large-12 columns clearfields grantees_wrapper">
@@ -235,21 +235,21 @@
 	 			   <div class="a_city_sub_block_lot row">
 	 		          <div class="form-paragraph large-2 columns">
 	 		            <label>City</label>
-	 		            <input type="text" id="city"  size="400" class="city autocomplete city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.city.name}"/>
-	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}].city" class="city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.city.id}"/>
+	 		            <input type="text" id="city"  size="400" class="city autocomplete city-sub-block-lot" value="${legalDescriptionCitySubBlkLot?.city?.name}"/>
+	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}]?.city" class="city-sub-block-lot" value="${legalDescriptionCitySubBlkLot?.city?.id}"/>
 	 		          </div>
 	 		          <div class="form-paragraph large-2 columns">
 	 		            <label>Sub</label>
-	 		            <input type="text" size="400" id="sub" class="uppercase city-sub-block-lot subdivision" value="${legalDescriptionCitySubBlkLot.subdivision.name}" />
-	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}].subdivision" class="city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.subdivision.id}" />
+	 		            <input type="text" size="400" id="sub" class="uppercase city-sub-block-lot subdivision" value="${legalDescriptionCitySubBlkLot?.subdivision?.name}" />
+	 					<input type="hidden" name="legalDescriptionCitySubBlkLot[${i}]?.subdivision" class="city-sub-block-lot" value="${legalDescriptionCitySubBlkLot?.subdivision?.id}" />
 	 		           </div>
 	 		           <div class="form-paragraph large-1 columns">
 	 		             <label>Block</label>
-	 		             <input type="text" size="400" id="block" name="legalDescriptionCitySubBlkLot[${i}].block" class="uppercase city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.block}" />
+	 		             <input type="text" size="400" id="block" name="legalDescriptionCitySubBlkLot[${i}]?.block" class="uppercase city-sub-block-lot" value="${legalDescriptionCitySubBlkLot?.block}" />
 	 		           </div>
 	 		           <div class="form-paragraph large-1 columns">
 	 		             <label>Lot</label>
-	 		             <input type="text" name="legalDescriptionCitySubBlkLot[${i}].lot" id="lot" class="uppercase city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.lot}" />
+	 		             <input type="text" name="legalDescriptionCitySubBlkLot[${i}]?.lot" id="lot" class="uppercase city-sub-block-lot" value="${legalDescriptionCitySubBlkLot.lot}" />
 	 		           </div>
 	 		           <div class="form-paragraph large-2 columns">
 	 		             <label>Acre</label>

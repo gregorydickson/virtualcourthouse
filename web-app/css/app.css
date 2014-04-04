@@ -29,7 +29,11 @@ h6 {
   	margin-bottom: 0.1rem;
   	line-height: .8;
 }
-.grantor-grantee .panel { 
+.grantor .panel { 
+	max-height: 120px; 
+	overflow-y: scroll; 
+}
+.grantee .panel { 
 	max-height: 120px; 
 	overflow-y: scroll; 
 }
@@ -53,6 +57,10 @@ h6 {
 		max-height: 250px;
 		overflow-y: scroll;
 }
+.audit {
+	background: #FA5858 !important
+}
+
 .selected {
     background: #33CCCC !important;
 }
