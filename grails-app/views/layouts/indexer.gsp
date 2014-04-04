@@ -38,6 +38,13 @@
 		<%-- Application Javascript --%>
 		<script>
 
+		var districtJSON = [
+		<g:each var="District" in="${net.rcenergy.District.list()}">
+		{
+			"id": "${District.id}",
+			"value": "${District.name}"
+		},</g:each>
+		]; 
 		var booktypeJSON = [
 		<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 		{

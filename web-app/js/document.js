@@ -281,6 +281,23 @@ $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
 	//#################### JQUERY AUTOCOMPLETE
+	$(".district").autocomplete({
+		delay: 0,
+		autoFocus: "true",
+		minLength: 0,
+		change: function (event, ui) {
+			if (ui.item === null) {
+				$(this).val('');
+			}
+		},
+		select: function(event, ui) {
+		            // feed hidden id field
+		            $(this).parent().find(':hidden').attr('value',ui.item.id);
+		        },
+		source: districtJSON
+	});
+
+
 	$("#BookType").autocomplete({
 		position: { my : "left top", at: "left bottom", of: "#BookType" },
 		delay: 0,
@@ -430,17 +447,7 @@ $( document ).ready(function() {
 		}
 	});
 	//end handle grantees
-	$('body').on('click','.image-assigned-row', function (e) {
-		console.log("Clicked on image assigned row");
-		var the_cell = $(this).find('.imageLinkCell');
-		var anchor = the_cell.find("a");
-		var href = $(anchor).attr('href');
-		var doc_window = window.self;
-		var new_window = window.open(href, 'imageWindow');
-		new_window.blur();
-		doc_window.focus();
-		return false;
-	});
+	
     $('body').on('keyup','.related-documents', function (e) {
         var code = e.keyCode || e.which;
         if (code == 13) {

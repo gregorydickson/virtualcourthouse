@@ -1,7 +1,7 @@
 package net.rcenergy
 
 class LegalDescriptionTaxMapParcel  implements 	Comparable {
-	String district
+	District district
 	String tax
 	String map
 	String parcel

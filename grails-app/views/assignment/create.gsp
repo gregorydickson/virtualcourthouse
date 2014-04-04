@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="assignmentcreate">
 		<g:set var="entityName" value="${message(code: 'assignment.label', default: 'Assignment')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
@@ -30,7 +30,7 @@
 					<div class="fieldcontain ${hasErrors(bean: assignmentInstance, field: 'images', 'error')} ">
 						<label for="images"> <g:message code="assignment.images.label" default="Images" />
 						</label>
-						<g:select name="images" from="${imageInstanceList}"	multiple="multiple" optionKey="id" optionValue="displayString" size="5" value="${assignmentInstance?.images*.id}" style="height:500px;"/>
+						<g:select class="imageselect" name="images" from="${imageInstanceList}"	multiple="multiple" optionKey="id" optionValue="displayString" size="5" value="${assignmentInstance?.images*.id}" style="height:500px;"/>
 					</div>
 				</fieldset>
 				<fieldset class="buttons">
@@ -38,5 +38,9 @@
 				</fieldset>
 			</g:form>
 		</div>
+		
+		<script>
+		var districtId = ${assignmentInstance.district.id};
+		</script>
 	</body>
 </html>

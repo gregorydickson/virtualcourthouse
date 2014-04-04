@@ -1,6 +1,7 @@
-	<%@ page import="net.rcenergy.Document" %>
+<%@ page import="net.rcenergy.Document" %>
 <%@ page import="net.rcenergy.City" %>
-<%@ page import="net.rcenergy.Subdivision %>
+<%@ page import="net.rcenergy.Subdivision" %>
+<%@ page import="net.rcenergy.District" %>
 <input type="hidden" name="id" class="documentId" id="documentId" value="${documentInstance?.id}"/>
 <input type="hidden" id="assignmentId" value="${assignmentInstance?.id}"/>
 <div class="top row">
@@ -274,7 +275,8 @@
 			   <div class="a_tax_map_parcel row">
 		           <div class="form-paragraph large-3 columns">
 		             <label>Dis/Twn</label>
-		             <input type="text" size="400" id="district" name="legalDescriptionTaxMapParcel[0].district" class="district uppercase tax-map-parcel"/>
+		             <input type="text" size="400" id="district" class="district autocomplete tax-map-parcel"/>
+		             <input type="hidden" name="legalDescriptionTaxMapParcel[0].district"  class="tax-map-parcel" />
 		           </div>
 		           <div class="form-paragraph large-2 columns">
 		            <label>Tax</label>
@@ -307,7 +309,8 @@
 			   <div class="a_tax_map_parcel row">
 		           <div class="form-paragraph large-3 columns">
 		             <label>Dis/Twn</label>
-		             <input type="text" size="400" id="district" name="legalDescriptionTaxMapParcel[${i}].district" class="district uppercase tax-map-parcel" value="${legalDescriptionTaxMapParcel.district}" />
+		             <input type="text" size="400" id="district"  class="autocomplete district tax-map-parcel" value="${legalDescriptionTaxMapParcel?.district?.name}" />
+		             <input type="hidden" value="${legalDescriptionTaxMapParcel.district.id}" name="legalDescriptionTaxMapParcel[${i}].district" class="tax-map-parcel" />
 		           </div>
 		           <div class="form-paragraph large-2 columns">
 		            <label>Tax</label>

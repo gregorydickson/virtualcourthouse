@@ -108,7 +108,7 @@ class AssignmentController extends ControllerBase {
         respond assignmentInstance
     }
 
-    def create() {
+    def create(Assignment assignmentInstance) {
         def adistrict
         if (params?.district?.id == null)
         {
@@ -117,12 +117,13 @@ class AssignmentController extends ControllerBase {
             session.setAttribute("district.id", params.district.id) 
             adistrict = District.get(params.district.id)
         }
+
         println"AssignmentController CREATE SET DISTRICT"
         
         def imageInstanceList = Image.findAllByHasAssignmentAndDistrict(false,adistrict)
         println"AssignmentController CREATE found image list"
 
-        render(view:"/assignment/create",model: [imageInstanceList: imageInstanceList])
+        render(view:"/assignment/create",model: [imageInstanceList: imageInstanceList,assignmentInstance:assignmentInstance])
         println"AssignmentController CREATE RENDERED VIEW"
     }
 

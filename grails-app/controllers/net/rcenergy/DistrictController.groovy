@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class DistrictController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE",images:"GET"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -18,7 +18,10 @@ class DistrictController {
     def show(District districtInstance) {
         respond districtInstance
     }
-
+    def images(District districtInstance) {
+        def imageInstanceList = Image.findAllByDistrictAndHasAssignment(districtInstance, false)
+        respond imageInstanceList
+    }
     def create() {
         respond new District(params)
     }
