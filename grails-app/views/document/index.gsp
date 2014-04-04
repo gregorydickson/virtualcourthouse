@@ -11,6 +11,9 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				<sec:ifAllGranted roles="ROLE_SUPERVISOR">
+					<li><g:link controller="assignment" action="index" >Assignment List</g:link></li>
+				</sec:ifAllGranted>
 			</ul>
 		</div>
 		<div id="list-document" class="content scaffold-list" role="main">

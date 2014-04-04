@@ -18,20 +18,11 @@
 			  </ul>
 
 			  <section class="top-bar-section">
-			    <!-- Right Nav Section -->
-			    <ul class="right">
-			      <li class="active"><a href="#">Right Button Active</a></li>
-			      <li class="has-dropdown">
-			        <a href="#">Right Button with Dropdown</a>
-			        <ul class="dropdown">
-			          <li><a href="#">First link in dropdown</a></li>
-			        </ul>
-			      </li>
-			    </ul>
+			    
 
 			    <!-- Left Nav Section -->
 			    <ul class="left">
-			      <li><a href="#">Left Nav Button</a></li>
+			      <li><g:link controller="document" action="index" >Document List</g:link></li>
 			    </ul>
 			  </section>
 			</nav>
