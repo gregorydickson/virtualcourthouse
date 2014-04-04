@@ -38,6 +38,13 @@
 			var returnString = '<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}"><option value="${BookType.id}" > ${BookType.bookType}</option></g:each>';
 			return returnString;
 		}
+		var districtJSON = [
+		<g:each var="District" in="${net.rcenergy.District.list()}">
+		{
+			"id": "${District.id}",
+			"value": "${District.name}"
+		},</g:each>
+		]; 
 		var booktypeJSON = [
 		<g:each var="BookType" in="${net.rcenergy.BookTypes.list()}">
 		{
