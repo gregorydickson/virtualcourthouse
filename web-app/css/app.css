@@ -57,8 +57,12 @@ h6 {
 		max-height: 250px;
 		overflow-y: scroll;
 }
+.audittitle {
+	margin-top: 2rem;
+	margin-bottom: -3rem;
+}
 .audit {
-	background: #FA5858 !important
+	background: #FA5858 !important;
 }
 
 .selected {

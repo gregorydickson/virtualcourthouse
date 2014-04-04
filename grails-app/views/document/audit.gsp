@@ -12,7 +12,7 @@
 			<nav class="top-bar" data-topbar>
 			  <ul class="title-area">
 			    <li class="name">
-			      <h1><a href="#">Virtual Courthouse</a></h1>
+			      <h1><a href="#">The Edge - AUDIT SCREEN</a></h1>
 			    </li>
 			    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
 			  </ul>
@@ -31,6 +31,12 @@
 
 		<g:each in="${documentInstanceList}" status="i" var="documentInstance">
 			<form  id="auditDocumentNumber${i}">
+				<g:if test="${i == 0}">
+     				<div class="audittitle"><h1>INDEXER VERSION</h1></div>
+				</g:if>
+				<g:else>
+     				<h1>REVIEWER VERSION</h1>
+				</g:else>
 				<fieldset class="form" id="auditDocumentNumber${i}">
 					<g:render template="form" model="${[documentInstance: documentInstance]}"/>
 				</fieldset>
