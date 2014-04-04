@@ -280,6 +280,7 @@ function addNewCitySubBlkLot(i) {
 $( document ).ready(function() {
 	//Initialize foundation
 	$(document).foundation();
+	updateImagesCount();
 	//#################### JQUERY AUTOCOMPLETE
 	$(".district").autocomplete({
 		delay: 0,
