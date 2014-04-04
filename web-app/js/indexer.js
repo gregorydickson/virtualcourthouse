@@ -1,5 +1,6 @@
 //START DOCUMENT READY FUNCTION
 $( document ).ready(function() {
+	updateImagesCount();
 	$('body').on('click','.data-row', function () {
 		var url = "/virtualcourthouse/assignment/images/" + $('#assignmentId').attr('value');
 		win = popup(url, 'imagelist', 900, 0);
@@ -19,6 +20,7 @@ $( document ).ready(function() {
 			url:'/virtualcourthouse/document/submitDocumentIndexer',
 			success:function(data,textStatus){
 				resetDOM();
+				updateImagesCount();
 				win.close();
 				var unique_id = $.gritter.add({
 					// (string | mandatory) the heading of the notification

@@ -493,8 +493,8 @@
 </div>
 <div class="row">
 	<div class="large-1 columns">IMAGES LIST</div>
-	<div class="large-4 columns" id="imageTotal">X OF X IMAGES</div>
-	<div class="large-7 columns" id="assignedImageTotal">X IMAGES ASSIGNED</div>
+	<div class="large-4 columns" id="imageTotal"> IMAGES</div>
+	<div class="large-7 columns" id="assignedImageTotal"> IMAGES ASSIGNED</div>
 </div>
 
 <div class="images row" id="imagesRow">

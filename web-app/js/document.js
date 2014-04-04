@@ -52,13 +52,13 @@ function compareElements(compareThis, toThis) {
 
 
 function updateImagesCount(){
-	var rows = $(".data-row");
+	
+	var selected = $(".selected").length;
 	var count = $(".data-row").length;
-	var message;
-
-	//index = index + 1;
-	//message = index +" OF " + count + " IMAGES";
-	//$("#imageTotal").text(message);	
+	var imagestotal =  count + " IMAGES";
+	var imagesassigned = selected + " IMAGES SELECTED";
+	$("#imageTotal").text(imagestotal);	
+	$("#assignedImageTotal").text(imagesassigned);
 }
 
 function resetDOM(){
