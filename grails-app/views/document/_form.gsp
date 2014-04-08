@@ -512,7 +512,8 @@
 				<g:if test="${assignmentInstance?.imagesRemaining?.isEmpty() && assignmentInstance?.indexStarted == false}">
 					<g:each var="images" in="${assignmentInstance.images}">
 						<tr class="data-row" id="${images.id}">
-						<input type="hidden"  name="imagesRemaining[]" value="${images.id}"/>
+						<input type="hidden"  class="imagesRemaining" name="imagesRemaining[]" value="${images.id}"/>
+						<input type="hidden"  class="images" name="" value="${images.id}"/>
 							<td>
 								${images.toString()}
 							</td>
@@ -525,7 +526,7 @@
 			 	<g:if test="${documentInstance?.isReviewerCopy}">
 					<g:each var="images" in="${documentInstance?.images}">
 						<tr class="data-row" id="${images?.id}">
-						<input type="hidden"  name="imagesRemaining[]" value="${images?.id}"/>
+						<input type="hidden"  name="images[]" value="${images?.id}"/>
 							<td>
 								${images.toString()}
 							</td>
@@ -536,9 +537,22 @@
 					</g:each>
 			 	</g:if>
 			 	<g:else>
+			 		<g:each var="images" in="${documentInstance?.images}">
+						<tr class="data-row selected" id="${images.id}">
+						<input type="hidden"  class="imagesRemaining" name="" value="${images.id}"/>
+						<input type="hidden"  class="images" name="images[]" value="${images.id}"/>
+							<td>
+								${images.toString()}
+							</td>
+							<td class="imageId">
+								${images.id}
+							</td>
+						</tr>
+					</g:each>
 				 	<g:each var="images" in="${assignmentInstance?.imagesRemaining}">
 						<tr class="data-row" id="${images.id}">
-						<input type="hidden" name="imagesRemaining[]" value="${images.id}"/>
+						<input type="hidden"  class="imagesRemaining" name="imagesRemaining[]" value="${images.id}"/>
+						<input type="hidden"  class="images" name="" value="${images.id}"/>
 							<td>
 								${images.toString()}
 							</td>

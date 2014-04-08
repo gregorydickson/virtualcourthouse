@@ -132,7 +132,9 @@ class DocumentController extends ControllerBase {
     @Transactional
     def updateDocumentIndexer() {
         def input = request.JSON
+        println "INPUT: " + input
         def aJSONArray = input.optJSONArray('imagesRemaining')
+        println "imagesREmaining: " + aJSONArray
         def imagesList = Image.getAll(aJSONArray)
         def user = springSecurityService.currentUser
         def assignment =  user.currentAssignment

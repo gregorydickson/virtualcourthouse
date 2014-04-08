@@ -9,7 +9,8 @@ function popup(url, winName, xOffset, yOffset) {
 function removeImageId(id){
 	console.log("removing ID/image : " + id);
 	var the_row = $('.data-row#'+id);
-	$(the_row).find(':hidden').attr("name","imagesRemaining[]");
+	$(the_row).find(':hidden.images').attr("name","");
+	$(the_row).find(':hidden.imagesRemaining').attr("name","imagesRemaining[]");
 	the_row.removeClass("selected");
 	the_row.removeClass("selectremain");
 	updateImagesCount();
@@ -20,17 +21,19 @@ function setImageId(id){
 	//copy the image row to the assigned table
 	//change the name for the hidden input so it does not serialize and save in images remaining
 	//make it part of images of the document
-	$(the_row).find(':hidden').attr("name","images[]");
+	$(the_row).find(':hidden.images').attr("name","images[]");
+	$(the_row).find(':hidden.imagesRemaining').attr("name","");
 	the_row.addClass("selected");
 	updateImagesCount();
 }
 //
 function setImageLeaveInRemaining(id){
 	var the_row = $('.data-row#'+id);
-	//copy the image row to the assigned table
+	
 	//change the name for the hidden input so it does not serialize and save in images remaining
 	//make it part of images of the document
-	$(the_row).find(':hidden').attr("name","images[] imagesRemaining[]");
+	$(the_row).find(':hidden.images').attr("name","images[]");
+	$(the_row).find(':hidden.imagesRemaining').attr("name","imagesRemaining[]");
 	the_row.addClass("selectremain");
 	updateImagesCount();
 }
